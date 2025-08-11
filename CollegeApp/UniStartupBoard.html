@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniStartupBoard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Add Firebase SDK -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getAuth, 
+      GoogleAuthProvider, 
+      signInWithPopup, 
+      signOut, 
+      onAuthStateChanged,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDai51SRR7C5mFO4KlORs6qwHyPohyvsgg",
+      authDomain: "unistartupboard.firebaseapp.com",
+      projectId: "unistartupboard",
+      storageBucket: "unistartupboard.firebasestorage.app",
+      messagingSenderId: "361490758670",
+      appId: "1:361490758670:web:7b6c730b759198949bd05f",
+      measurementId: "G-YY7CQKH2WJ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Make Firebase available globally
+    window.firebase = {
+      auth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut,
+      onAuthStateChanged,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword
+    };
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    
+    // Initialize empty arrays for data
+    const initialUniversities = [];
+    const initialPosts = [];
+    const initialUsers = [];
+
+    // Random animal images for default avatars
+    const defaultAvatars = [
+      "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba", // Cat
+      "https://images.unsplash.com/photo-1534361967620-2249b4a87a49", // Dog
+      "https://images.unsplash.com/photo-1519338381761-c7523edc1f46", // Fox
+      "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7", // Panda
+    ];
+
+    // Get random avatar
+    const getRandomAvatar = () => defaultAvatars[Math.floor(Math.random() * defaultAvatars.length)];
+
+    // Save data to localStorage
+    const saveToLocalStorage = (key, data) => {
+      localStorage.setItem(key, JSON.stringify(data));
+    };
+
+    // Haversine formula for distance
+    function getDistance(lat1, lng1, lat2, lng2) {
+      const R = 3958.8; // Earth's radius in miles
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    // Function to get university name from email domain
+    function getUniversityFromDomain(emailDomain) {
+      // Convert domain to university name (e.g., "harvard.edu" -> "Harvard University")
+      const domain = emailDomain.split('.')[0];
+      return domain.charAt(0).toUpperCase() + domain.slice(1) + " University";
+    }
+
+    // Function to get default coordinates for a university
+    function getDefaultCoordinates() {
+      // Default to Pittsburgh
+      return { lat: 40.4406, lng: -79.9959 };
+    }
+
+    // Save data to server
+    const saveToServer = async (key, data) => {
+      try {
+        await fetch('/api/data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key, data })
+        });
+      } catch (error) {
+        console.error('Error saving to server:', error);
+      }
+    };
+
+    function App() {
+      const [user, setUser] = useState(null);
+      const [posts, setPosts] = useState(initialPosts);
+      const [users, setUsers] = useState(initialUsers);
+      const [universities, setUniversities] = useState(initialUniversities);
+      const [view, setView] = useState("signin");
+      const [verificationSent, setVerificationSent] = useState(false);
+      const [selectedUserId, setSelectedUserId] = useState(null);
+      const [feedMode, setFeedMode] = useState("local"); // 'local' | 'global' | 'city'
+      const [selectedCity, setSelectedCity] = useState("Pittsburgh");
+      const [isLocalView, setIsLocalView] = useState(true); // deprecated, kept for backward compatibility
+      const [universityFilter, setUniversityFilter] = useState(null);
+      const [distanceFilter, setDistanceFilter] = useState(50); // Default 50 miles
+
+      // Save data whenever it changes
+      useEffect(() => {
+        saveToServer('posts', posts);
+      }, [posts]);
+
+      useEffect(() => {
+        saveToServer('users', users);
+      }, [users]);
+
+      useEffect(() => {
+        saveToServer('universities', universities);
+      }, [universities]);
+
+      useEffect(() => {
+        // Listen for auth state changes
+        const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, (firebaseUser) => {
+          console.log("Auth state changed:", firebaseUser); // Debug log
+          if (firebaseUser) {
+            const email = firebaseUser.email;
+        const emailDomain = email.split("@")[1];
+            
+            // Find or create university
+            let university = universities.find(u => u.emailDomain === emailDomain);
+            if (!university) {
+              // Create new university entry
+              const newUniversity = {
+                id: universities.length + 1,
+                name: getUniversityFromDomain(emailDomain),
+                emailDomain: emailDomain,
+                ...getDefaultCoordinates()
+              };
+              setUniversities(prev => [...prev, newUniversity]);
+              university = newUniversity;
+            }
+
+            // Check if user already exists in our users array
+            const existingUser = users.find(u => u.email === email);
+            if (existingUser) {
+              console.log("Found existing user:", existingUser);
+              setUser(existingUser);
+              setView("board");
+            } else {
+              // Create new user
+              const newUser = { 
+                id: users.length + 1, 
+                email, 
+                university: university.name, 
+                lat: university.lat, 
+                lng: university.lng,
+                profile: null
+              };
+              console.log("Creating new user:", newUser);
+              setUsers(prev => [...prev, newUser]);
+              setUser(newUser);
+              setView("profile");
+            }
+          } else {
+            console.log("No user, resetting state"); // Debug log
+            setUser(null);
+            setView("signin");
+          }
+        });
+
+        return () => unsubscribe();
+      }, [universities, users]); // Add dependencies to useEffect
+
+      useEffect(() => {
+        const fetchData = async () => {
+          console.log('Fetching data from server...');
+          const pittsburghUniversities = [
+            { id: 1, name: "University of Pittsburgh", emailDomain: "pitt.edu", lat: 40.4440, lng: -79.9532, city: "Pittsburgh" },
+            { id: 2, name: "Carnegie Mellon University", emailDomain: "cmu.edu", lat: 40.4433, lng: -79.9440, city: "Pittsburgh" },
+            { id: 3, name: "Duquesne University", emailDomain: "duq.edu", lat: 40.4374, lng: -79.9909, city: "Pittsburgh" },
+            { id: 4, name: "Carlow University", emailDomain: "carlow.edu", lat: 40.4397, lng: -79.9642, city: "Pittsburgh" },
+            { id: 5, name: "Point Park University", emailDomain: "pointpark.edu", lat: 40.4387, lng: -80.0019, city: "Pittsburgh" },
+            { id: 6, name: "Chatham University", emailDomain: "chatham.edu", lat: 40.4492, lng: -79.9258, city: "Pittsburgh" },
+            { id: 7, name: "Community College of Allegheny County", emailDomain: "ccac.edu", lat: 40.4450, lng: -80.0180, city: "Pittsburgh" },
+            { id: 8, name: "Robert Morris University", emailDomain: "rmu.edu", lat: 40.5206, lng: -80.2106, city: "Pittsburgh" },
+            { id: 9, name: "Seton Hill University", emailDomain: "setonhill.edu", lat: 40.3092, lng: -79.5567, city: "Pittsburgh" },
+            { id: 10, name: "Saint Vincent College", emailDomain: "stvincent.edu", lat: 40.2931, lng: -79.4036, city: "Pittsburgh" },
+            { id: 11, name: "University of Pittsburgh at Greensburg", emailDomain: "greensburg.pitt.edu", lat: 40.2766, lng: -79.5316, city: "Pittsburgh" },
+            { id: 12, name: "PennWest California", emailDomain: "calu.edu", lat: 40.0656, lng: -79.8853, city: "Pittsburgh" },
+            { id: 13, name: "Washington & Jefferson College", emailDomain: "washjeff.edu", lat: 40.1709, lng: -80.2392, city: "Pittsburgh" },
+            { id: 14, name: "Waynesburg University", emailDomain: "waynesburg.edu", lat: 39.9006, lng: -80.1867, city: "Pittsburgh" },
+            { id: 15, name: "Slippery Rock University", emailDomain: "sru.edu", lat: 41.0639, lng: -80.0423, city: "Pittsburgh" },
+            { id: 16, name: "Indiana University of Pennsylvania", emailDomain: "iup.edu", lat: 40.6175, lng: -79.1603, city: "Pittsburgh" }
+          ];
+          const sanFranciscoUniversities = [
+            { name: "Stanford University", emailDomain: "stanford.edu", lat: 37.4275, lng: -122.1697, city: "San Francisco" },
+            { name: "University of California, Berkeley", emailDomain: "berkeley.edu", lat: 37.8715, lng: -122.2730, city: "San Francisco" },
+            { name: "San Francisco State University", emailDomain: "sfsu.edu", lat: 37.7219, lng: -122.4782, city: "San Francisco" },
+            { name: "University of San Francisco", emailDomain: "usfca.edu", lat: 37.7750, lng: -122.4500, city: "San Francisco" }
+          ];
+          const bostonUniversities = [
+            { name: "Harvard University", emailDomain: "harvard.edu", lat: 42.3770, lng: -71.1167, city: "Boston" },
+            { name: "Massachusetts Institute of Technology", emailDomain: "mit.edu", lat: 42.3601, lng: -71.0942, city: "Boston" },
+            { name: "Boston University", emailDomain: "bu.edu", lat: 42.3505, lng: -71.1054, city: "Boston" },
+            { name: "Northeastern University", emailDomain: "northeastern.edu", lat: 42.3398, lng: -71.0892, city: "Boston" }
+          ];
+          const [unis, ps, usrs] = await Promise.all([
+            fetch('/api/data?key=universities').then(res => res.json()).catch(err => { console.error('Error fetching universities:', err); return []; }),
+            fetch('/api/data?key=posts').then(res => res.json()).catch(err => { console.error('Error fetching posts:', err); return []; }),
+            fetch('/api/data?key=users').then(res => res.json()).catch(err => { console.error('Error fetching users:', err); return []; })
+          ]);
+          let universitiesToSet = unis;
+          console.log('Universities from server:', unis);
+          if (unis.length === 0) {
+            console.log('No universities found, initializing with Pittsburgh universities...');
+            universitiesToSet = pittsburghUniversities;
+            await saveToServer('universities', universitiesToSet);
+            console.log('Saved universities to server');
+          }
+          // Ensure Pittsburgh entries have city metadata and add SF/Boston if missing
+          let changed = false;
+          const nameToUni = new Map(universitiesToSet.map(u => [u.name, u]));
+          // Add missing city to Pittsburgh unis
+          pittsburghUniversities.forEach(pu => {
+            const existing = nameToUni.get(pu.name);
+            if (existing && !existing.city) {
+              existing.city = 'Pittsburgh';
+              changed = true;
+            }
+          });
+          // Helper to get next id
+          const nextId = () => (Math.max(0, ...universitiesToSet.map(u => u.id || 0)) + 1);
+          // Add SF and Boston unis if not present
+          [...sanFranciscoUniversities, ...bostonUniversities].forEach(nu => {
+            if (!nameToUni.has(nu.name)) {
+              const newUni = { id: nextId(), ...nu };
+              universitiesToSet.push(newUni);
+              nameToUni.set(nu.name, newUni);
+              changed = true;
+            }
+          });
+          if (changed) {
+            await saveToServer('universities', universitiesToSet);
+          }
+          setUniversities(universitiesToSet);
+
+          let usersToSet = usrs;
+          if (usrs.length === 0) {
+            usersToSet = []; // generate dummy users based on universitiesToSet
+            
+            // Pittsburgh-themed user profiles
+            const pittsburghUsers = [
+              { firstName: "Sarah", lastName: "Chen", bio: "Computer Science major passionate about sustainable technology and smart city solutions.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Marcus", lastName: "Johnson", bio: "Engineering student focused on robotics and environmental conservation. Love exploring Pittsburgh's rivers.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Priya", lastName: "Patel", bio: "Public Health major working on healthcare accessibility solutions for rural communities.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "no" },
+              { firstName: "Alex", lastName: "Rodriguez", bio: "Business student with a passion for local food systems and community development.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Emily", lastName: "Thompson", bio: "Environmental Science major working on renewable energy solutions for Pittsburgh neighborhoods.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "David", lastName: "Kim", bio: "Computer Engineering student developing IoT solutions for smart city infrastructure.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Rachel", lastName: "Williams", bio: "Psychology major creating mental health support platforms for college students.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Jordan", lastName: "Davis", bio: "Urban Planning student focused on sustainable transportation solutions for Pittsburgh's unique topography.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "no" },
+              { firstName: "Aisha", lastName: "Hassan", bio: "Data Science major working on analytics solutions for small businesses in the Strip District.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Michael", lastName: "O'Connor", bio: "Mechanical Engineering student developing autonomous systems for environmental cleanup.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Sophia", lastName: "Garcia", bio: "Education major creating personalized learning platforms for K-12 students.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Tyler", lastName: "Brown", bio: "Chemical Engineering student working on smart brewing technology for craft beer enthusiasts.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Nina", lastName: "Anderson", bio: "Architecture student developing VR solutions for urban planning and architectural visualization.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "no" },
+              { firstName: "Kevin", lastName: "Zhang", bio: "Blockchain developer working on credential verification systems for educational institutions.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Maya", lastName: "Singh", bio: "Community Development major creating platforms to strengthen neighborhood bonds in Pittsburgh.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Chris", lastName: "Wilson", bio: "AR/VR developer working on navigation and tourism solutions for Pittsburgh visitors.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" }
+            ];
+            
+            universitiesToSet.forEach((uni, index) => {
+              const userProfile = pittsburghUsers[index % pittsburghUsers.length];
+              usersToSet.push({
+                id: index + 1,
+                email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${uni.emailDomain}`,
+                university: uni.name,
+                lat: uni.lat,
+                lng: uni.lng,
+                profile: {
+                  firstName: userProfile.firstName,
+                  lastName: userProfile.lastName,
+                  bio: userProfile.bio,
+                  picture: getRandomAvatar(),
+                  graduationYear: userProfile.graduationYear,
+                  hasIdea: userProfile.hasIdea,
+                  isWorkingOnIdea: userProfile.isWorkingOnIdea,
+                  social: {}
+                }
+              });
+            });
+            
+            // Create additional users for CMU, Pitt, and Duquesne
+            const additionalUsers = [];
+            
+            // CMU additional users (4 more to make 5 total)
+            const cmuUsers = [
+              { firstName: "Alex", lastName: "Chen", bio: "Computer Science major specializing in AI and machine learning. Passionate about educational technology and personalized learning systems.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Maya", lastName: "Patel", bio: "Robotics Engineering student focused on assistive technology and social robotics. Working on projects that help people with disabilities.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "David", lastName: "Kim", bio: "Cybersecurity major developing threat detection systems. Interested in protecting small businesses from cyber attacks.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Sarah", lastName: "Johnson", bio: "Environmental Engineering student working on sustainable campus initiatives. Focused on IoT and energy management systems.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "no" }
+            ];
+            
+            // Pitt additional users (2 more to make 3 total)
+            const pittUsers = [
+              { firstName: "Michael", lastName: "Brown", bio: "Public Health major creating mental health support platforms for college students. Focused on accessible healthcare solutions.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Emily", lastName: "Davis", bio: "Business major working on startup incubation and innovation hubs. Passionate about connecting students with entrepreneurial opportunities.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "yes" }
+            ];
+            
+            // Duquesne additional users (2 more to make 3 total)
+            const duquesneUsers = [
+              { firstName: "James", lastName: "Wilson", bio: "Law student developing legal technology solutions. Working on AI-powered legal research and document analysis tools.", graduationYear: "2025", hasIdea: "yes", isWorkingOnIdea: "yes" },
+              { firstName: "Lisa", lastName: "Garcia", bio: "Business Ethics major creating AI systems for ethical decision-making in business. Focused on stakeholder impact analysis.", graduationYear: "2026", hasIdea: "yes", isWorkingOnIdea: "no" }
+            ];
+            
+            // Add CMU users
+            cmuUsers.forEach((userProfile, index) => {
+              const cmuUni = universitiesToSet.find(u => u.name === "Carnegie Mellon University");
+              additionalUsers.push({
+                id: usersToSet.length + index + 1,
+                email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${cmuUni.emailDomain}`,
+                university: cmuUni.name,
+                lat: cmuUni.lat,
+                lng: cmuUni.lng,
+                profile: {
+                  firstName: userProfile.firstName,
+                  lastName: userProfile.lastName,
+                  bio: userProfile.bio,
+                  picture: getRandomAvatar(),
+                  graduationYear: userProfile.graduationYear,
+                  hasIdea: userProfile.hasIdea,
+                  isWorkingOnIdea: userProfile.isWorkingOnIdea,
+                  social: {}
+                }
+              });
+            });
+            
+            // Add Pitt users
+            pittUsers.forEach((userProfile, index) => {
+              const pittUni = universitiesToSet.find(u => u.name === "University of Pittsburgh");
+              additionalUsers.push({
+                id: usersToSet.length + cmuUsers.length + index + 1,
+                email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${pittUni.emailDomain}`,
+                university: pittUni.name,
+                lat: pittUni.lat,
+                lng: pittUni.lng,
+                profile: {
+                  firstName: userProfile.firstName,
+                  lastName: userProfile.lastName,
+                  bio: userProfile.bio,
+                  picture: getRandomAvatar(),
+                  graduationYear: userProfile.graduationYear,
+                  hasIdea: userProfile.hasIdea,
+                  isWorkingOnIdea: userProfile.isWorkingOnIdea,
+                  social: {}
+                }
+              });
+            });
+            
+            // Add Duquesne users
+            duquesneUsers.forEach((userProfile, index) => {
+              const duquesneUni = universitiesToSet.find(u => u.name === "Duquesne University");
+              additionalUsers.push({
+                id: usersToSet.length + cmuUsers.length + pittUsers.length + index + 1,
+                email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${duquesneUni.emailDomain}`,
+                university: duquesneUni.name,
+                lat: duquesneUni.lat,
+                lng: duquesneUni.lng,
+                profile: {
+                  firstName: userProfile.firstName,
+                  lastName: userProfile.lastName,
+                  bio: userProfile.bio,
+                  picture: getRandomAvatar(),
+                  graduationYear: userProfile.graduationYear,
+                  hasIdea: userProfile.hasIdea,
+                  isWorkingOnIdea: userProfile.isWorkingOnIdea,
+                  social: {}
+                }
+              });
+            });
+            
+            // Combine all users
+            const allUsers = [...usersToSet, ...additionalUsers];
+            await saveToServer('users', allUsers);
+            setUsers(allUsers);
+          } else {
+            setUsers(usersToSet);
+          }
+          // Ensure users exist for newly added SF/Boston universities
+          const ensureUserForUniversity = (uniName, emailDomain, firstName, lastName, bio, gradYear) => {
+            const existingUser = usersToSet.find(u => u.university === uniName);
+            if (existingUser) return existingUser;
+            const newUser = {
+              id: (Math.max(0, ...usersToSet.map(u => u.id || 0)) + 1),
+              email: `${firstName.toLowerCase()}${lastName.toLowerCase()}@${emailDomain}`,
+              university: uniName,
+              lat: universitiesToSet.find(u => u.name === uniName)?.lat || getDefaultCoordinates().lat,
+              lng: universitiesToSet.find(u => u.name === uniName)?.lng || getDefaultCoordinates().lng,
+              profile: {
+                firstName,
+                lastName,
+                bio,
+                picture: getRandomAvatar(),
+                graduationYear: gradYear,
+                hasIdea: 'yes',
+                isWorkingOnIdea: 'yes',
+                social: {}
+              }
+            };
+            usersToSet.push(newUser);
+            return newUser;
+          };
+          // Align user coordinates with their university if mismatched
+          let usersChanged = false;
+          usersToSet.forEach(u => {
+            const uni = universitiesToSet.find(x => x.name === u.university);
+            if (uni && (u.lat !== uni.lat || u.lng !== uni.lng)) {
+              u.lat = uni.lat;
+              u.lng = uni.lng;
+              usersChanged = true;
+            }
+          });
+          // Create minimal users per SF/Boston uni if missing
+          const sfUserSpecs = [
+            { uni: 'Stanford University', emailDomain: 'stanford.edu', first: 'Lena', last: 'Zhao', bio: 'CS student exploring AI for social good.', year: '2026' },
+            { uni: 'University of California, Berkeley', emailDomain: 'berkeley.edu', first: 'Diego', last: 'Martinez', bio: 'EECS student building open-source tools.', year: '2025' },
+            { uni: 'San Francisco State University', emailDomain: 'sfsu.edu', first: 'Ava', last: 'Nguyen', bio: 'Design student interested in civic tech.', year: '2025' },
+            { uni: 'University of San Francisco', emailDomain: 'usfca.edu', first: 'Noah', last: 'Williams', bio: 'Business student focused on impact startups.', year: '2026' }
+          ];
+          const bostonUserSpecs = [
+            { uni: 'Harvard University', emailDomain: 'harvard.edu', first: 'Maya', last: 'Singh', bio: 'Bioengineering student working on diagnostics.', year: '2025' },
+            { uni: 'Massachusetts Institute of Technology', emailDomain: 'mit.edu', first: 'Ethan', last: 'Chen', bio: 'Robotics engineer building urban mobility.', year: '2026' },
+            { uni: 'Boston University', emailDomain: 'bu.edu', first: 'Sofia', last: 'Garcia', bio: 'Public health student focused on access.', year: '2025' },
+            { uni: 'Northeastern University', emailDomain: 'northeastern.edu', first: 'Liam', last: 'OBrien', bio: 'Software engineer passionate about co-ops.', year: '2026' }
+          ];
+          const createdCityUsers = [];
+          [...sfUserSpecs, ...bostonUserSpecs].forEach(spec => {
+            const u = ensureUserForUniversity(spec.uni, spec.emailDomain, spec.first, spec.last, spec.bio, spec.year);
+            if (u) createdCityUsers.push(u);
+          });
+          // Ensure at least 3 users per SF/Boston university for diverse authorship
+          const ensureNUsersForUni = (uniName, emailDomain, baseNames, n) => {
+            const existing = usersToSet.filter(u => u.university === uniName);
+            let nextId = Math.max(0, ...usersToSet.map(u => u.id || 0)) + 1;
+            for (let i = existing.length; i < n; i++) {
+              const name = baseNames[i % baseNames.length];
+              const first = name.first;
+              const last = name.last;
+              const newUser = {
+                id: nextId++,
+                email: `${first.toLowerCase()}${last.toLowerCase()}@${emailDomain}`,
+                university: uniName,
+                lat: universitiesToSet.find(u => u.name === uniName)?.lat || getDefaultCoordinates().lat,
+                lng: universitiesToSet.find(u => u.name === uniName)?.lng || getDefaultCoordinates().lng,
+                profile: {
+                  firstName: first,
+                  lastName: last,
+                  bio: `${first} ${last} is a student at ${uniName} working on innovative projects.`,
+                  picture: getRandomAvatar(),
+                  graduationYear: `${2025 + ((i + 1) % 2)}`,
+                  hasIdea: 'yes',
+                  isWorkingOnIdea: 'yes',
+                  social: {}
+                }
+              };
+              usersToSet.push(newUser);
+            }
+          };
+          // Names per university to generate authors if needed
+          const nameBank = {
+            'Stanford University': { domain: 'stanford.edu', names: [
+              { first: 'Aarav', last: 'Shah' }, { first: 'Ivy', last: 'Nguyen' }, { first: 'Lena', last: 'Zhao' },
+              { first: 'Noah', last: 'Park' }
+            ]},
+            'University of California, Berkeley': { domain: 'berkeley.edu', names: [
+              { first: 'Diego', last: 'Martinez' }, { first: 'Ananya', last: 'Patel' }, { first: 'Maya', last: 'Singh' },
+              { first: 'Kevin', last: 'Zhang' }
+            ]},
+            'San Francisco State University': { domain: 'sfsu.edu', names: [
+              { first: 'Luis', last: 'Romero' }, { first: 'Mina', last: 'Park' }, { first: 'Priya', last: 'Patel' },
+              { first: 'Alex', last: 'Chen' }
+            ]},
+            'University of San Francisco': { domain: 'usfca.edu', names: [
+              { first: 'Tara', last: 'Singh' }, { first: 'Owen', last: 'Chen' }, { first: 'Noah', last: 'Williams' },
+              { first: 'Ava', last: 'Nguyen' }
+            ]},
+            'Harvard University': { domain: 'harvard.edu', names: [
+              { first: 'Emily', last: 'Thompson' }, { first: 'Noah', last: 'Brooks' }, { first: 'Zoe', last: 'Li' },
+              { first: 'Liam', last: 'OBrien' }
+            ]},
+            'Massachusetts Institute of Technology': { domain: 'mit.edu', names: [
+              { first: 'David', last: 'Kim' }, { first: 'Eric', last: 'Zhao' }, { first: 'Sara', last: 'Ahmed' },
+              { first: 'Hana', last: 'Lee' }
+            ]},
+            'Boston University': { domain: 'bu.edu', names: [
+              { first: 'Rachel', last: 'Williams' }, { first: 'Ben', last: 'Cohen' }, { first: 'Hanna', last: 'Lee' },
+              { first: 'Ethan', last: 'Chen' }
+            ]},
+            'Northeastern University': { domain: 'northeastern.edu', names: [
+              { first: 'Jordan', last: 'Davis' }, { first: 'Mateo', last: 'Garcia' }, { first: 'Chloe', last: 'Park' },
+              { first: 'Aisha', last: 'Hassan' }
+            ]}
+          };
+          Object.entries(nameBank).forEach(([uniName, info]) => {
+            ensureNUsersForUni(uniName, info.domain, info.names, 3);
+          });
+          if (createdCityUsers.length > 0 || usersChanged) {
+            await saveToServer('users', usersToSet);
+            setUsers(usersToSet);
+          }
+
+          let postsToSet = ps;
+          if (ps.length === 0) {
+            postsToSet = [];
+            // Always use the users loaded into state for post generation
+            const currentUsers = usersToSet;
+            // Pittsburgh startup ideas with realistic names and descriptions
+            const pittsburghProjects = [
+              // Carnegie Mellon Projects (5)
+              {
+                title: "CMU AI Tutor",
+                summary: "Personalized AI tutoring system that adapts to individual learning styles and provides real-time feedback. Uses natural language processing to understand student questions and generate customized explanations.",
+                lookingFor: "AI/ML engineers, educational psychologists, and full-stack developers. Experience with natural language processing and educational technology preferred.",
+                category: "Education",
+                stage: "development",
+                projectLink: "https://cmuaitutor.com"
+              },
+              {
+                title: "Robotics for Good",
+                summary: "Social robotics platform designed to assist elderly and disabled individuals with daily tasks. Combines computer vision, natural language processing, and mechanical engineering for accessible automation.",
+                lookingFor: "Robotics engineers, computer vision specialists, and healthcare professionals. Experience with assistive technology and human-robot interaction.",
+                category: "Health",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Cybersecurity Sentinel",
+                summary: "Advanced threat detection system using machine learning to identify and prevent cyber attacks in real-time. Designed for small to medium businesses with limited IT resources.",
+                lookingFor: "Cybersecurity experts, machine learning engineers, and backend developers. Experience with network security and threat intelligence.",
+                category: "Tech",
+                stage: "development",
+                projectLink: "https://cybersentinel.cmu.edu"
+              },
+              {
+                title: "Sustainable Campus",
+                summary: "IoT-based energy management system for university campuses. Monitors and optimizes energy usage across buildings while providing data-driven insights for sustainability initiatives.",
+                lookingFor: "IoT engineers, data scientists, and sustainability experts. Experience with building management systems and renewable energy.",
+                category: "Sustainability",
+                stage: "idea",
+                projectLink: ""
+              },
+              {
+                title: "Digital Art Marketplace",
+                summary: "Blockchain-powered platform for digital artists to sell and authenticate their work. Uses smart contracts to ensure fair compensation and provenance tracking.",
+                lookingFor: "Blockchain developers, UX designers, and art market experts. Experience with NFT technology and digital art platforms.",
+                category: "Tech",
+                stage: "planning",
+                projectLink: ""
+              },
+              // University of Pittsburgh Projects (3)
+              {
+                title: "Pitt Health Connect",
+                summary: "Telemedicine platform specifically designed for university students, connecting them with mental health professionals and peer support networks. Includes anonymous chat and crisis intervention features.",
+                lookingFor: "Healthcare professionals, mobile app developers, and psychologists. Experience with mental health apps and HIPAA compliance.",
+                category: "Health",
+                stage: "development",
+                projectLink: "https://pitthealthconnect.com"
+              },
+              {
+                title: "Oakland Innovation Hub",
+                summary: "Co-working space and startup incubator for Pitt students and alumni. Provides mentorship, funding connections, and access to university resources and research facilities.",
+                lookingFor: "Business mentors, investors, and community organizers. Experience with startup ecosystems and university partnerships.",
+                category: "Social Impact",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Pitt Research Exchange",
+                summary: "Platform connecting Pitt researchers with industry partners and investors. Facilitates technology transfer and commercialization of university research projects.",
+                lookingFor: "Business development specialists, legal experts, and research administrators. Experience with technology transfer and intellectual property.",
+                category: "Tech",
+                stage: "idea",
+                projectLink: ""
+              },
+              // Duquesne University Projects (3)
+              {
+                title: "Duquesne Legal Tech",
+                summary: "AI-powered legal research and document analysis platform. Helps law students and legal professionals quickly find relevant case law and generate legal documents.",
+                lookingFor: "Legal professionals, AI engineers, and law students. Experience with legal research and natural language processing.",
+                category: "Tech",
+                stage: "development",
+                projectLink: "https://duquesnelegaltech.com"
+              },
+              {
+                title: "Business Ethics AI",
+                summary: "AI system that helps businesses make ethical decisions by analyzing potential impacts on stakeholders. Uses machine learning to evaluate business decisions against ethical frameworks.",
+                lookingFor: "Ethics experts, AI engineers, and business analysts. Experience with ethical decision-making frameworks and machine learning.",
+                category: "Social Impact",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Pharmacy Innovation Lab",
+                summary: "Digital platform for pharmaceutical research and development. Connects pharmacy students with pharmaceutical companies for collaborative research projects.",
+                lookingFor: "Pharmacy professionals, software developers, and research coordinators. Experience with pharmaceutical research and clinical trials.",
+                category: "Health",
+                stage: "idea",
+                projectLink: ""
+              },
+              // Additional Pittsburgh Projects
+              {
+                title: "Steel City Smart Grid",
+                summary: "Developing an AI-powered energy management system for Pittsburgh's aging infrastructure. Using machine learning to optimize power distribution and reduce energy waste in residential and commercial buildings across the city.",
+                lookingFor: "Electrical engineers, data scientists, and urban planning experts. Experience with IoT sensors and renewable energy systems preferred.",
+                category: "Sustainability",
+                stage: "development",
+                projectLink: "https://steelcitysmartgrid.com"
+              },
+              {
+                title: "Pittsburgh Food Hub",
+                summary: "A digital platform connecting local farmers with restaurants and consumers in the Pittsburgh area. Features include real-time inventory tracking, delivery scheduling, and sustainable packaging solutions.",
+                lookingFor: "Full-stack developers, UX designers, and business development specialists. Knowledge of supply chain logistics is a plus.",
+                category: "Social Impact",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "MedTech Pittsburgh",
+                summary: "Revolutionary telemedicine platform specifically designed for elderly care in rural Pennsylvania. Combines AI diagnostics with human oversight to provide accessible healthcare solutions.",
+                lookingFor: "Healthcare professionals, software engineers, and regulatory compliance experts. Experience with HIPAA and medical device regulations required.",
+                category: "Health",
+                stage: "idea",
+                projectLink: ""
+              },
+              {
+                title: "Riverside Robotics",
+                summary: "Autonomous cleaning robots for Pittsburgh's three rivers. Using computer vision and environmental sensors to collect floating debris while monitoring water quality in real-time.",
+                lookingFor: "Robotics engineers, environmental scientists, and mechanical engineers. Experience with autonomous systems and water quality monitoring preferred.",
+                category: "Tech",
+                stage: "development",
+                projectLink: "https://riversiderobotics.pitt.edu"
+              },
+              {
+                title: "Oakland EdTech",
+                summary: "Personalized learning platform for K-12 students in the Pittsburgh Public Schools district. Uses adaptive algorithms to create custom curriculum paths based on individual learning styles.",
+                lookingFor: "Educational psychologists, software developers, and curriculum designers. Experience with educational technology and student assessment systems.",
+                category: "Education",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Strip District Analytics",
+                summary: "Data analytics platform for small businesses in Pittsburgh's historic Strip District. Provides insights on customer behavior, inventory optimization, and market trends to help local businesses compete with larger retailers.",
+                lookingFor: "Data analysts, business consultants, and marketing specialists. Experience with retail analytics and small business operations.",
+                category: "Finance",
+                stage: "idea",
+                projectLink: ""
+              },
+              {
+                title: "Squirrel Hill Social",
+                summary: "Community engagement app for Pittsburgh neighborhoods. Features include local event coordination, neighborhood watch integration, and community resource sharing to strengthen neighborhood bonds.",
+                lookingFor: "Community organizers, mobile app developers, and social workers. Experience with community building and civic technology preferred.",
+                category: "Social Impact",
+                stage: "development",
+                projectLink: "https://squirrelhillsocial.org"
+              },
+              {
+                title: "Mount Washington Mobility",
+                summary: "Electric bike sharing and charging network for Pittsburgh's hilly terrain. Includes smart routing algorithms that consider elevation changes and battery optimization for the city's unique topography.",
+                lookingFor: "Transportation engineers, electrical engineers, and urban mobility experts. Experience with electric vehicles and smart city infrastructure.",
+                category: "Sustainability",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Carnegie Crypto",
+                summary: "Blockchain-based credential verification system for educational institutions. Allows students to securely share verified academic achievements with employers and other institutions.",
+                lookingFor: "Blockchain developers, cybersecurity experts, and higher education administrators. Experience with digital credentials and academic verification systems.",
+                category: "Tech",
+                stage: "idea",
+                projectLink: ""
+              },
+              {
+                title: "Bloomfield BrewTech",
+                summary: "Smart brewing system for craft beer enthusiasts. Uses IoT sensors and machine learning to optimize brewing conditions and create consistent, high-quality homebrew.",
+                lookingFor: "Chemical engineers, IoT developers, and craft brewing experts. Experience with fermentation processes and sensor technology.",
+                category: "Tech",
+                stage: "development",
+                projectLink: "https://bloomfieldbrewtech.com"
+              },
+              {
+                title: "Lawrenceville Labs",
+                summary: "Virtual reality platform for architectural visualization and urban planning. Allows stakeholders to experience proposed developments in immersive 3D before construction begins.",
+                lookingFor: "VR developers, architects, and urban planners. Experience with 3D modeling and real estate development preferred.",
+                category: "Tech",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "Shadyside Health",
+                summary: "Mental health support platform connecting college students with peer counselors and professional therapists. Includes anonymous chat features and crisis intervention protocols.",
+                lookingFor: "Mental health professionals, psychologists, and software developers. Experience with mental health apps and crisis intervention training.",
+                category: "Health",
+                stage: "development",
+                projectLink: "https://shadysidehealth.org"
+              },
+              {
+                title: "Point Breeze Energy",
+                summary: "Community solar energy cooperative for Pittsburgh neighborhoods. Enables residents to invest in and benefit from local renewable energy projects.",
+                lookingFor: "Energy policy experts, financial analysts, and community organizers. Experience with renewable energy projects and cooperative business models.",
+                category: "Sustainability",
+                stage: "idea",
+                projectLink: ""
+              },
+              {
+                title: "East Liberty Innovation",
+                summary: "Startup incubator and co-working space focused on minority-owned businesses in Pittsburgh. Provides mentorship, funding connections, and business development resources.",
+                lookingFor: "Business mentors, investors, and community development specialists. Experience with startup ecosystems and minority business development.",
+                category: "Social Impact",
+                stage: "planning",
+                projectLink: ""
+              },
+              {
+                title: "North Shore Navigation",
+                summary: "Augmented reality app for Pittsburgh tourists and new residents. Provides historical context, restaurant recommendations, and navigation assistance using AR overlays.",
+                lookingFor: "AR developers, historians, and UX designers. Experience with location-based services and Pittsburgh history preferred.",
+                category: "Tech",
+                stage: "development",
+                projectLink: "https://northshorenav.com"
+              },
+              {
+                title: "South Side Sustainability",
+                summary: "Zero-waste delivery service for Pittsburgh restaurants and consumers. Uses reusable containers and electric vehicles to eliminate single-use packaging.",
+                lookingFor: "Logistics experts, environmental scientists, and restaurant industry professionals. Experience with sustainable packaging and delivery systems.",
+                category: "Sustainability",
+                stage: "idea",
+                projectLink: ""
+              }
+            ];
+
+            // Helper: get N unique users for a university
+            function getNUsersForUniversity(university, n) {
+              const users = currentUsers.filter(u => u.university === university);
+              if (users.length === 0) return [];
+              // Return unique users up to the available count
+              return users.slice(0, n);
+            }
+
+            let postId = 1;
+            // CMU: 5 posts (we have 5 unique users)
+            const cmuUsers = getNUsersForUniversity("Carnegie Mellon University", 5);
+            if (cmuUsers.length >= 5) {
+              for (let i = 0; i < 5; i++) {
+                const user = cmuUsers[i];
+                const project = pittsburghProjects[i];
+                postsToSet.push({
+                  id: postId++,
+                  userId: user.id,
+                  university: user.university,
+                  title: project.title,
+                  summary: project.summary,
+                  lookingFor: project.lookingFor,
+                  category: project.category,
+                  projectLink: project.projectLink,
+                  stage: project.stage,
+                  createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+                  comments: []
+                });
+              }
+            }
+            // Pitt: 3 posts (we have 3 unique users)
+            const pittUsers = getNUsersForUniversity("University of Pittsburgh", 3);
+            if (pittUsers.length >= 3) {
+              for (let i = 0; i < 3; i++) {
+                const user = pittUsers[i];
+                const project = pittsburghProjects[5 + i];
+                postsToSet.push({
+                  id: postId++,
+                  userId: user.id,
+                  university: user.university,
+                  title: project.title,
+                  summary: project.summary,
+                  lookingFor: project.lookingFor,
+                  category: project.category,
+                  projectLink: project.projectLink,
+                  stage: project.stage,
+                  createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+                  comments: []
+                });
+              }
+            }
+            // Duquesne: 3 posts (we have 3 unique users)
+            const duqUsers = getNUsersForUniversity("Duquesne University", 3);
+            if (duqUsers.length >= 3) {
+              for (let i = 0; i < 3; i++) {
+                const user = duqUsers[i];
+                const project = pittsburghProjects[8 + i];
+                postsToSet.push({
+                  id: postId++,
+                  userId: user.id,
+                  university: user.university,
+                  title: project.title,
+                  summary: project.summary,
+                  lookingFor: project.lookingFor,
+                  category: project.category,
+                  projectLink: project.projectLink,
+                  stage: project.stage,
+                  createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+                  comments: []
+                });
+              }
+            }
+            // All other universities: 1 post each (each gets a unique user)
+            const usedUniversities = ["Carnegie Mellon University", "University of Pittsburgh", "Duquesne University"];
+            let extraProjectIdx = 11;
+            universitiesToSet.forEach(uni => {
+              if (!usedUniversities.includes(uni.name)) {
+                const users = currentUsers.filter(u => u.university === uni.name);
+                if (users.length > 0 && pittsburghProjects[extraProjectIdx]) {
+                  const user = users[0]; // Use the first available user
+                  const project = pittsburghProjects[extraProjectIdx];
+                  postsToSet.push({
+                    id: postId++,
+                    userId: user.id,
+                    university: user.university,
+                    title: project.title,
+                    summary: project.summary,
+                    lookingFor: project.lookingFor,
+                    category: project.category,
+                    projectLink: project.projectLink,
+                    stage: project.stage,
+                    createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+                    comments: []
+                  });
+                  extraProjectIdx++;
+                }
+              }
+            });
+            await saveToServer('posts', postsToSet);
+          }
+          // Seed posts for SF/Boston ensuring at least 3 per university
+          const sanFranciscoProjects = [
+            { title: 'Bay Area Clean Mobility', summary: 'EV charging optimization across SF neighborhoods.', lookingFor: 'Electrical engineers, backend devs', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'Berkeley Open Science Cloud', summary: 'Open platform for reproducible research.', lookingFor: 'Full-stack devs, data scientists', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'Civic Tech SF', summary: 'Tools for city services accessibility and transparency.', lookingFor: 'Designers, product managers', category: 'Social Impact', stage: 'development', projectLink: '' },
+            { title: 'Health AI Assistant', summary: 'Personalized health insights from wearable data.', lookingFor: 'ML engineers, clinicians', category: 'Health', stage: 'planning', projectLink: '' }
+          ];
+          const bostonProjects = [
+            { title: 'Harvard Diagnostics Lab', summary: 'Rapid, low-cost diagnostic tools for clinics.', lookingFor: 'Bioengineers, ML researchers', category: 'Health', stage: 'development', projectLink: '' },
+            { title: 'MIT Urban Routing', summary: 'Real-time routing with multimodal transit in Boston.', lookingFor: 'Routing algos, mobile devs', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'BU Health Analytics', summary: 'Analytics platform for hospital operations.', lookingFor: 'Data engineers, analysts', category: 'Finance', stage: 'idea', projectLink: '' },
+            { title: 'Northeastern Co-op Hub', summary: 'Marketplace connecting students with startups.', lookingFor: 'Full-stack, growth', category: 'Education', stage: 'development', projectLink: '' }
+          ];
+          let addedCityPosts = false;
+          const ensurePostForUni = (uniName, project) => {
+            const exists = postsToSet.some(p => p.university === uniName);
+            if (exists) return;
+            const uniUsers = usersToSet.filter(u => u.university === uniName);
+            if (uniUsers.length === 0) return;
+            const author = uniUsers[0];
+            const newPost = {
+              id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+              userId: author.id,
+              university: uniName,
+              title: project.title,
+              summary: project.summary,
+              lookingFor: project.lookingFor,
+              category: project.category,
+              projectLink: project.projectLink,
+              stage: project.stage,
+              createdAt: new Date().toISOString().split('T')[0],
+              comments: []
+            };
+            postsToSet.push(newPost);
+            addedCityPosts = true;
+          };
+          const ensurePostsCountForUni = (uniName, projectList, count) => {
+            let current = postsToSet.filter(p => p.university === uniName).length;
+            while (current < count) {
+              const idx = current % projectList.length;
+              const project = projectList[idx];
+              const authors = usersToSet.filter(u => u.university === uniName);
+              if (authors.length === 0) break;
+              const author = authors[current % authors.length];
+              const newPost = {
+                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+                userId: author.id,
+                university: uniName,
+                title: project.title,
+                summary: project.summary,
+                lookingFor: project.lookingFor,
+                category: project.category,
+                projectLink: project.projectLink,
+                stage: project.stage,
+                createdAt: new Date().toISOString().split('T')[0],
+                comments: []
+              };
+              postsToSet.push(newPost);
+              current++;
+              addedCityPosts = true;
+            }
+          };
+          // Create one post per SF/Boston uni if no posts yet
+          sanFranciscoUniversities.forEach((uni, idx) => ensurePostForUni(uni.name, sanFranciscoProjects[idx % sanFranciscoProjects.length]));
+          bostonUniversities.forEach((uni, idx) => ensurePostForUni(uni.name, bostonProjects[idx % bostonProjects.length]));
+          // Ensure at least 3 per university in these cities
+          sanFranciscoUniversities.forEach((uni) => ensurePostsCountForUni(uni.name, sanFranciscoProjects, 3));
+          bostonUniversities.forEach((uni) => ensurePostsCountForUni(uni.name, bostonProjects, 3));
+          if (addedCityPosts) {
+            await saveToServer('posts', postsToSet);
+          }
+          setPosts(postsToSet);
+        };
+        fetchData();
+      }, []);
+
+      // Function to set the view to a specific user's profile
+      const viewUserProfile = (userId) => {
+        setSelectedUserId(userId);
+        setView("profile-view");
+      };
+
+      // Handle Google Sign In
+      const handleGoogleSignIn = async () => {
+        const provider = new window.firebase.GoogleAuthProvider();
+        try {
+          await window.firebase.signInWithPopup(window.firebase.auth, provider);
+        } catch (error) {
+          console.error("Error signing in with Google:", error);
+          alert("Error signing in with Google. Please try again.");
+        }
+      };
+
+      // Handle Email/Password Sign In
+      const handleEmailSignIn = async (email, password) => {
+        try {
+          console.log("Attempting sign in with:", email); // Debug log
+          const result = await window.firebase.signInWithEmailAndPassword(window.firebase.auth, email, password);
+          console.log("Sign in successful:", result); // Debug log
+          
+          // The auth state change listener will handle the rest
+        } catch (error) {
+          console.error("Error signing in:", error);
+          alert("Error signing in. Please try again.");
+        }
+      };
+
+      // Handle Email/Password Sign Up
+      const handleEmailSignUp = async (email, password) => {
+        try {
+          console.log("Attempting sign up with:", email); // Debug log
+          const result = await window.firebase.createUserWithEmailAndPassword(window.firebase.auth, email, password);
+          console.log("Sign up successful:", result); // Debug log
+          
+          // The auth state change listener will handle the rest
+        } catch (error) {
+          console.error("Error signing up:", error);
+          alert("Error signing up. Please try again.");
+        }
+      };
+
+      // Handle Sign Out
+      const handleSignOut = async () => {
+        try {
+          await window.firebase.signOut(window.firebase.auth);
+        } catch (error) {
+          console.error("Error signing out:", error);
+        }
+      };
+
+      // Save profile
+      const handleProfileSave = (profile) => {
+        if (!user) return; // Add null check
+        
+        console.log('Saving profile for user:', user.id, profile);
+        
+        const newUser = { 
+          ...user, 
+          profile: { 
+            ...profile, 
+            picture: profile.picture || getRandomAvatar() 
+          } 
+        };
+        
+        console.log('New user object:', newUser);
+        
+        setUsers(users.map(u => u.id === user.id ? newUser : u));
+        setUser(newUser);
+        setView("board");
+      };
+
+      // Update profile
+      const handleProfileUpdate = (profile) => {
+        if (!user) return; // Add null check
+        
+        console.log('Updating profile for user:', user.id, profile);
+        
+        const updatedUser = { 
+          ...user, 
+          profile: { 
+            ...profile, 
+            picture: profile.picture || user.profile?.picture 
+          } 
+        };
+        
+        console.log('Updated user object:', updatedUser);
+        
+        setUsers(users.map(u => u.id === user.id ? updatedUser : u));
+        setUser(updatedUser);
+        setView("profile-view");
+      };
+
+      // Create post
+      const handleCreatePost = (post) => {
+        if (!user) return; // Add null check
+        
+        setPosts([...posts, { 
+          id: posts.length + 1, 
+          userId: user.id, 
+          university: user.university, 
+          ...post, 
+          createdAt: new Date().toISOString().split("T")[0], 
+          comments: [] 
+        }]);
+        setView("board");
+      };
+
+      // Edit post
+      const handleEditPost = (postId, updatedPost) => {
+        if (!user) return; // Add null check
+        
+        setPosts(posts.map(p => p.id === postId ? { ...p, ...updatedPost } : p));
+        setView("board");
+      };
+
+      // Delete post
+      const handleDeletePost = (postId) => {
+        if (!user) return; // Add null check
+        
+        setPosts(posts.filter(p => p.id !== postId));
+        setView("board");
+      };
+
+      // Add comment
+      const handleAddComment = (postId, comment) => {
+        if (!user) return; // Add null check
+        
+        setPosts(posts.map(p => p.id === postId ? { 
+          ...p, 
+          comments: [...p.comments, { 
+            id: p.comments.length + 1, 
+            userId: user.id, 
+            text: comment, 
+            createdAt: new Date().toISOString().split("T")[0] 
+          }] 
+        } : p));
+      };
+
+      // Handle university filter from map
+      const handleUniversityFilter = (universityName) => {
+        setUniversityFilter(universityName);
+      };
+
+      // Clear university filter
+      const clearUniversityFilter = () => {
+        setUniversityFilter(null);
+      };
+
+      // Filter posts by university or proximity
+      const filteredPosts = user ? posts.filter(post => {
+        // If university filter is active, only show posts from that university
+        if (universityFilter) {
+          return post.university === universityFilter;
+        }
+        
+        // Otherwise, use the distance filter for local view
+        const postUni = universities.find(u => u.name === post.university);
+        if (post.university === user.university) return true;
+        if (postUni && user.lat && user.lng) {
+          const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
+          return distance <= distanceFilter;
+        }
+        return false;
+      }) : [];
+      const cityFilteredPosts = user ? posts.filter(post => {
+        if (universityFilter) return post.university === universityFilter;
+        const postUni = universities.find(u => u.name === post.university);
+        return postUni && postUni.city === selectedCity;
+      }) : [];
+      
+      const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 font-sans">
+          {/* Header */}
+          <header className="bg-white shadow-md">
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-8">
+                  <div className="flex items-center space-x-3">
+                    <svg className="w-9 h-9 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <h1 className="text-2xl font-bold text-gray-800">UniStartupBoard</h1>
+                  </div>
+                  {user && (
+                    <button 
+                      onClick={() => setView("board")} 
+                      className="px-5 py-2 text-gray-700 hover:text-orange-500 transition-colors font-mono text-base font-medium border-b-2 border-transparent hover:border-orange-500"
+                    >
+                      Map
+                    </button>
+                  )}
+                </div>
+                <nav>
+                {user ? (
+                    <div className="flex items-center space-x-6">
+                      <button 
+                        onClick={() => setView("about")} 
+                        className="px-5 py-2 text-gray-700 hover:text-orange-500 transition-colors font-mono text-sm font-medium border-b-2 border-transparent hover:border-orange-500"
+                      >
+                        About
+                      </button>
+                      <button 
+                        onClick={() => setView("create")} 
+                        className="px-5 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-mono text-sm font-medium shadow-sm hover:shadow-md"
+                      >
+                        Create Post
+                      </button>
+                      <button 
+                        onClick={() => setView("profile-view")} 
+                        className="px-5 py-2 text-gray-700 hover:text-orange-500 transition-colors font-mono text-sm font-medium border-b-2 border-transparent hover:border-orange-500"
+                      >
+                        Profile
+                      </button>
+                      <button 
+                        onClick={handleSignOut} 
+                        className="px-5 py-2 text-gray-600 hover:text-orange-500 transition-colors font-mono text-sm font-medium border-b-2 border-transparent hover:border-orange-500"
+                      >
+                        Sign Out
+                      </button>
+                  </div>
+                ) : (
+                    <button 
+                      onClick={() => setView("signin")} 
+                      className="px-5 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-mono text-sm font-medium shadow-sm hover:shadow-md"
+                    >
+                      Sign In
+                    </button>
+                )}
+              </nav>
+              </div>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <main className="container mx-auto px-4 py-8">
+            {view === "signin" && (
+              <div className="max-w-md mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h2>
+                    <SignInForm 
+                      onGoogleSignIn={handleGoogleSignIn} 
+                      onEmailSignIn={handleEmailSignIn}
+                      onEmailSignUp={handleEmailSignUp}
+                      setView={setView}
+                      user={user}
+                      selectedUserId={selectedUserId}
+                      viewUserProfile={viewUserProfile}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "profile" && user && (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Set Up Your Profile</h2>
+              <ProfileForm onSave={handleProfileSave} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "profile-view" && user && (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+              <ProfileView user={user} users={users} selectedUserId={selectedUserId} onEdit={() => setView("profile-edit")} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "profile-edit" && user && (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Edit Profile</h2>
+              <ProfileForm onSave={handleProfileUpdate} initialProfile={user.profile} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "board" && user && (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    {feedMode === 'local' && (
+                      <MapView 
+                        user={user} 
+                        posts={filteredPosts} 
+                        users={users} 
+                        onUniversityFilter={handleUniversityFilter}
+                        title="Startup Projects Near You"
+                      />
+                    )}
+                    {feedMode === 'city' && (
+                      <MapView 
+                        user={user} 
+                        posts={cityFilteredPosts} 
+                        users={users} 
+                        onUniversityFilter={handleUniversityFilter}
+                        center={(function(){
+                          // City-specific centering for better map focus
+                          if (selectedCity === 'San Francisco') {
+                            // Center on actual SF city center, not university average
+                            return {lat: 37.7749, lng: -122.4194};
+                          } else if (selectedCity === 'Boston') {
+                            // Center on actual Boston city center
+                            return {lat: 42.3601, lng: -71.0589};
+                          } else if (selectedCity === 'Pittsburgh') {
+                            // Center on actual Pittsburgh city center
+                            return {lat: 40.4406, lng: -79.9959};
+                          }
+                          // Fallback to university average for other cities
+                          const cityUnis = universities.filter(u => u.city === selectedCity);
+                          if (cityUnis.length === 0) return null;
+                          const avgLat = cityUnis.reduce((s,u)=>s+u.lat,0)/cityUnis.length;
+                          const avgLng = cityUnis.reduce((s,u)=>s+u.lng,0)/cityUnis.length;
+                          return {lat: avgLat, lng: avgLng};
+                        })()}
+                        zoom={(function(){
+                          // City-specific zoom levels for better focus
+                          if (selectedCity === 'San Francisco') {
+                            return 11; // Closer zoom for SF to focus on the city
+                          } else if (selectedCity === 'Boston') {
+                            return 11; // Closer zoom for Boston
+                          } else if (selectedCity === 'Pittsburgh') {
+                            return 11; // Closer zoom for Pittsburgh
+                          }
+                          return 12; // Default zoom
+                        })()}
+                        showUserMarker={false}
+                        title={`${selectedCity} Startup Projects`}
+                      />
+                    )}
+                    <div className={isLocalView ? "mt-8" : ""}>
+                      <PostBoard 
+                        posts={displayedPosts} 
+                        user={user} 
+                        onEditPost={handleEditPost} 
+                        onDeletePost={handleDeletePost} 
+                        onAddComment={handleAddComment} 
+                        users={users} 
+                        setView={setView} 
+                        selectedUserId={selectedUserId}
+                        viewUserProfile={viewUserProfile}
+                        feedMode={feedMode}
+                        setFeedMode={setFeedMode}
+                        selectedCity={selectedCity}
+                        setSelectedCity={setSelectedCity}
+                        universities={universities}
+                        universityFilter={universityFilter}
+                        clearUniversityFilter={clearUniversityFilter}
+                        distanceFilter={distanceFilter}
+                        setDistanceFilter={setDistanceFilter}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "posts" && user && (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <PostBoard 
+                      posts={displayedPosts} 
+                      user={user} 
+                      onEditPost={handleEditPost} 
+                      onDeletePost={handleDeletePost} 
+                      onAddComment={handleAddComment} 
+                      users={users} 
+                      setView={setView} 
+                      selectedUserId={selectedUserId}
+                      viewUserProfile={viewUserProfile}
+                      feedMode={feedMode}
+                      setFeedMode={setFeedMode}
+                      selectedCity={selectedCity}
+                      setSelectedCity={setSelectedCity}
+                      universities={universities}
+                      universityFilter={universityFilter}
+                      clearUniversityFilter={clearUniversityFilter}
+                      distanceFilter={distanceFilter}
+                      setDistanceFilter={setDistanceFilter}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "create" && user && (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Create a New Post</h2>
+              <CreatePostForm onCreate={handleCreatePost} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view.startsWith("edit-") && user && (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Edit Post</h2>
+              <CreatePostForm
+                onCreate={(post) => handleEditPost(parseInt(view.split("-")[1]), post)}
+                initialPost={posts.find(p => p.id === parseInt(view.split("-")[1]))}
+              />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view.startsWith("post-") && user && (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+              <PostView
+                post={posts.find(p => p.id === parseInt(view.split("-")[1]))}
+                user={user}
+                users={users}
+                onEdit={() => setView(`edit-${view.split("-")[1]}`)}
+                onDelete={() => handleDeletePost(parseInt(view.split("-")[1]))}
+                onAddComment={handleAddComment}
+                setView={setView}
+                selectedUserId={selectedUserId}
+                viewUserProfile={viewUserProfile}
+              />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "about" && (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <AboutPage />
+                  </div>
+                </div>
+              </div>
+            )}
+          </main>
+        </div>
+      );
+    }
+
+    function SignInForm({ onGoogleSignIn, onEmailSignIn, onEmailSignUp, setView, user, selectedUserId, viewUserProfile }) {
+      const [email, setEmail] = useState("");
+      const [password, setPassword] = useState("");
+      const [isSignUp, setIsSignUp] = useState(false);
+      const [isLoading, setIsLoading] = useState(false);
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+          if (isSignUp) {
+            await onEmailSignUp(email, password);
+          } else {
+            await onEmailSignIn(email, password);
+          }
+        } catch (error) {
+          console.error("Form submission error:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      return (
+        <div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50"
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : (isSignUp ? "Sign Up" : "Sign In")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsSignUp(!isSignUp)}
+              className="w-full text-orange-500 hover:text-orange-600 transition-colors"
+            >
+              {isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up"}
+            </button>
+          </form>
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+            </div>
+          </div>
+          <button
+            onClick={onGoogleSignIn}
+            className="w-full bg-white border border-gray-300 py-2 rounded-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+          >
+            <img 
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+              alt="Google" 
+              className="w-5 h-5 mr-2"
+            />
+            Sign in with Google
+          </button>
+        </div>
+      );
+    }
+
+    function ProfileForm({ onSave, initialProfile = {} }) {
+      // Handle case where initialProfile might be null
+      const safeProfile = initialProfile || {};
+      const [firstName, setFirstName] = useState(safeProfile.firstName || "");
+      const [lastName, setLastName] = useState(safeProfile.lastName || "");
+      const [bio, setBio] = useState(safeProfile.bio || "");
+      const [idea, setIdea] = useState(safeProfile.idea || "");
+      const [lookingFor, setLookingFor] = useState(safeProfile.lookingFor || "");
+      const [picture, setPicture] = useState(safeProfile.picture || null);
+      const [graduationYear, setGraduationYear] = useState(safeProfile.graduationYear || "");
+      const [projectLink, setProjectLink] = useState(safeProfile.projectLink || "");
+      const [hasIdea, setHasIdea] = useState(safeProfile.hasIdea || "");
+      const [isWorkingOnIdea, setIsWorkingOnIdea] = useState(safeProfile.isWorkingOnIdea || "");
+      const [social, setSocial] = useState({
+        twitter: safeProfile.social?.twitter || "",
+        linkedin: safeProfile.social?.linkedin || "",
+        website: safeProfile.social?.website || "",
+        github: safeProfile.social?.github || ""
+      });
+      const [error, setError] = useState("");
+
+      const handleSave = () => {
+        if (!firstName.trim()) {
+          setError("First Name is required.");
+          return;
+        } else {
+          setError("");
+        }
+        onSave({
+          firstName,
+          lastName,
+          bio,
+          idea,
+          lookingFor,
+          picture,
+          graduationYear,
+          projectLink,
+          hasIdea,
+          isWorkingOnIdea,
+          social
+        });
+      };
+
+      // Generate graduation year options
+      const currentYear = new Date().getFullYear();
+      const graduationYears = Array.from({ length: 6 }, (_, i) => currentYear + i);
+
+      return (
+        <div className="space-y-6">
+          <div className="flex items-start space-x-6">
+            <div className="flex-shrink-0">
+              <div className="relative">
+                {picture ? (
+                  <img 
+                    src={picture} 
+                    alt="Profile" 
+                    className="w-32 h-32 object-cover rounded-lg shadow-md"
+                  />
+                ) : (
+                  <div className="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                )}
+                <label className="absolute bottom-0 right-0 bg-orange-500 text-white p-2 rounded-full cursor-pointer hover:bg-orange-600 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setPicture(e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : null)}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+            </div>
+            <div className="flex-grow space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your first name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+            />
+          </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+          <textarea
+                  placeholder="Tell us about yourself..."
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  rows="3"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">I have an Idea</label>
+                  <select
+                    value={hasIdea}
+                    onChange={(e) => setHasIdea(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  >
+                    <option value="">Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">I'm working on an idea currently</label>
+                  <select
+                    value={isWorkingOnIdea}
+                    onChange={(e) => setIsWorkingOnIdea(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  >
+                    <option value="">Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Your Idea</label>
+          <textarea
+              placeholder="Describe your startup idea..."
+            value={idea}
+            onChange={(e) => setIdea(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+              rows="4"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Graduation Year</label>
+              <select
+                value={graduationYear}
+                onChange={(e) => setGraduationYear(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+              >
+                <option value="">Select Year</option>
+                {graduationYears.map(year => (
+                  <option key={year} value={year}>{year}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Project Link</label>
+              <input
+                type="url"
+                placeholder="https://your-project.com"
+                value={projectLink}
+                onChange={(e) => setProjectLink(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">What You're Looking For</label>
+          <textarea
+              placeholder="Describe what kind of collaborators you're looking for..."
+            value={lookingFor}
+            onChange={(e) => setLookingFor(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+              rows="3"
+            />
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium text-gray-900">Social Links</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Twitter</label>
+                <input
+                  type="url"
+                  placeholder="https://twitter.com/username"
+                  value={social.twitter}
+                  onChange={(e) => setSocial({...social, twitter: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">LinkedIn</label>
+                <input
+                  type="url"
+                  placeholder="https://linkedin.com/in/username"
+                  value={social.linkedin}
+                  onChange={(e) => setSocial({...social, linkedin: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Personal Website</label>
+                <input
+                  type="url"
+                  placeholder="https://yourwebsite.com"
+                  value={social.website}
+                  onChange={(e) => setSocial({...social, website: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">GitHub</label>
+                <input
+                  type="url"
+                  placeholder="https://github.com/username"
+                  value={social.github}
+                  onChange={(e) => setSocial({...social, github: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          {error && (
+            <div className="text-red-500 text-xs font-mono mb-2">{error}</div>
+          )}
+
+          <button
+            onClick={handleSave}
+            className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-colors font-mono"
+          >
+            {safeProfile.bio ? "Update Profile" : "Save Profile"}
+          </button>
+        </div>
+      );
+    }
+
+    function ProfileView({ user, users, selectedUserId, onEdit }) {
+      // Determine which user's profile to display
+      const profileUser = selectedUserId ? users.find(u => u.id === selectedUserId) : user;
+
+      if (!profileUser) {
+        return (
+          <div className="text-center py-4">
+            <p className="text-gray-500 font-mono text-sm">Profile not found.</p>
+          </div>
+        );
+      }
+
+      return (
+        <div className="space-y-6">
+          <div className="flex items-start space-x-6">
+            <div className="flex-shrink-0">
+          <img
+                src={profileUser.profile?.picture || getRandomAvatar()}
+            alt="Profile"
+                className="w-32 h-32 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div className="flex-grow">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2 font-mono">
+                {profileUser.profile?.firstName && profileUser.profile?.lastName 
+                  ? `${profileUser.profile.firstName} ${profileUser.profile.lastName}`
+                  : profileUser.email}
+              </h2>
+              {!profileUser.profile && (
+                <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-800 text-sm font-mono">Profile not set up yet. Click "Edit Profile" to create your profile.</p>
+                </div>
+              )}
+              <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                <span>{profileUser.university}</span>
+                {profileUser.profile?.graduationYear && (
+                  <>
+                    <span>•</span>
+                    <span>Class of {profileUser.profile.graduationYear}</span>
+                    {profileUser?.email && (
+                      <>
+                        <span className="mx-2">•</span>
+                        <a
+                          href={`mailto:${profileUser.email}`}
+                          className="text-orange-500 hover:text-orange-600 font-mono text-sm font-medium"
+                        >
+                          email
+                        </a>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+              {profileUser.profile?.projectLink && (
+                <a 
+                  href={profileUser.profile.projectLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mb-4 text-orange-500 hover:text-orange-600 font-mono text-sm"
+                >
+                  View Project →
+                </a>
+              )}
+              <div className="flex space-x-4">
+                {profileUser.profile?.social?.twitter && (
+                  <a href={profileUser.profile.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-orange-500">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                  </a>
+                )}
+                {profileUser.profile?.social?.linkedin && (
+                  <a href={profileUser.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-orange-500">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                )}
+                {profileUser.profile?.social?.github && (
+                  <a href={profileUser.profile.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-orange-500">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                  </a>
+                )}
+                {profileUser.profile?.social?.website && (
+                  <a href={profileUser.profile.social.website} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-orange-500">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2 font-mono">Bio</h3>
+              <p className="text-gray-600 font-mono text-sm">{profileUser.profile?.bio || "No bio provided."}</p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2 font-mono">Idea</h3>
+              <p className="text-gray-600 font-mono text-sm">{profileUser.profile?.idea || "No idea provided."}</p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2 font-mono">Looking For</h3>
+              <p className="text-gray-600 font-mono text-sm">{profileUser.profile?.lookingFor || "Not specified."}</p>
+            </div>
+          </div>
+
+          {user && profileUser.id === user.id && (
+             <button
+               onClick={() => onEdit()}
+               className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-colors font-mono"
+             >
+               {profileUser.profile ? "Edit Profile" : "Set Up Profile"}
+             </button>
+          )}
+        </div>
+      );
+    }
+
+    function PostBoard({ posts, user, onEditPost, onDeletePost, onAddComment, users, setView, selectedUserId, viewUserProfile, feedMode, setFeedMode, selectedCity, setSelectedCity, universities, universityFilter, clearUniversityFilter, distanceFilter, setDistanceFilter }) {
+      const availableCities = React.useMemo(() => {
+        const set = new Set();
+        universities.forEach(u => { if (u.city) set.add(u.city); });
+        // Ensure Pittsburgh exists
+        if (!set.has('Pittsburgh')) set.add('Pittsburgh');
+        // Prefer ordered list
+        const ordered = ['Pittsburgh', 'San Francisco', 'Boston'];
+        const rest = Array.from(set).filter(c => !ordered.includes(c)).sort();
+        return [...ordered.filter(c => set.has(c)), ...rest];
+      }, [universities]);
+
+      return (
+        <div className="max-w-4xl mx-auto">
+          <div className="mt-2 mb-3">
+            <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
+          </div>
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center space-x-4">
+              {!universityFilter && (
+                <>
+                  <button
+                    onClick={() => setFeedMode('local')}
+                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'local' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  >
+                    Local
+                  </button>
+                  <button
+                    onClick={() => setFeedMode('city')}
+                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'city' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  >
+                    Cities
+                  </button>
+                  <button
+                    onClick={() => setFeedMode('global')}
+                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'global' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  >
+                    Global
+                  </button>
+                  {feedMode === 'local' && (
+                    <div className="flex items-center space-x-2 ml-4">
+                      <span className="text-gray-600 font-mono text-sm">Distance:</span>
+                      <select
+                        value={distanceFilter}
+                        onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
+                        className="px-2 py-1 border border-gray-300 rounded text-sm font-mono bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      >
+                        <option value={50}>50 miles</option>
+                        <option value={100}>100 miles</option>
+                        <option value={200}>200 miles</option>
+                      </select>
+                    </div>
+                  )}
+                  {feedMode === 'city' && (
+                    <div className="flex items-center space-x-2 ml-4">
+                      <span className="text-gray-600 font-mono text-sm">City:</span>
+                      <select
+                        value={selectedCity}
+                        onChange={(e) => { setSelectedCity(e.target.value); }}
+                        className="px-2 py-1 border border-gray-300 rounded text-sm font-mono bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      >
+                        {availableCities.map(city => (
+                          <option key={city} value={city}>{city}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </>
+              )}
+              {universityFilter && (
+                <div className="flex items-center space-x-2 bg-gradient-to-r from-orange-400 to-orange-500 shadow border border-orange-500 rounded-full px-3 py-1">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-white font-mono text-sm font-semibold truncate max-w-[210px]">
+                    {universityFilter}
+                  </span>
+                  <button
+                    onClick={clearUniversityFilter}
+                    className="ml-1 bg-white text-orange-600 hover:bg-orange-100 hover:text-orange-800 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold shadow transition"
+                    aria-label="Clear filter"
+                    style={{ lineHeight: 1 }}
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="flex space-x-2">
+              <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm">
+                <option value="all">All Categories</option>
+                <option value="Tech">Tech</option>
+                <option value="Sustainability">Sustainability</option>
+                <option value="Social Impact">Social Impact</option>
+                <option value="Health">Health</option>
+              </select>
+              <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm">
+                <option value="recent">Most Recent</option>
+                <option value="comments">Most Comments</option>
+              </select>
+            </div>
+          </div>
+          {posts.length === 0 ? (
+            <div className="text-center py-4">
+              <p className="text-gray-500 font-mono text-sm">No posts available.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {posts.map(post => {
+                const postUser = users.find(u => u.id === post.userId);
+                return (
+                  <div
+                    key={post.id}
+                    className="bg-white rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 p-3 hover:bg-orange-50 hover:shadow-lg cursor-pointer"
+                    style={{ transition: 'background 0.2s' }}
+                    onClick={() => setView(`post-${post.id}`)}
+                  >
+                    {/* Title */}
+                    <h3 className="text-base font-bold text-gray-900 mb-1 font-mono line-clamp-1">
+                      {post.title}
+                    </h3>
+                    {/* Summary */}
+                    <p className="text-gray-700 mb-2 font-mono text-xs leading-snug line-clamp-2">{post.summary}</p>
+                    {/* Looking For */}
+                    <div className="bg-orange-100 border border-orange-200 rounded p-1 mb-2 mt-0">
+                      <span className="text-xs font-semibold text-orange-700 font-mono">Looking for: </span>
+                      <span className="text-gray-800 font-mono text-xs leading-snug line-clamp-1">{post.lookingFor}</span>
+                    </div>
+                    {/* Bottom Row: Meta and Actions */}
+                    <div className="flex justify-between items-center mt-1">
+                      {/* Meta info */}
+                      <div className="flex items-center space-x-2 text-[11px] text-gray-500 font-mono">
+                        <span className="bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full text-[10px] font-medium">{post.category}</span>
+                        <span>{post.university}</span>
+                        <span>•</span>
+                        <span>{post.createdAt}</span>
+                        {postUser && postUser.profile && (
+                          <>
+                            <span className="ml-1 text-gray-600">by</span>
+                            <button
+                              className="text-orange-600 hover:underline font-mono text-xs font-semibold ml-1"
+                              onClick={e => { e.stopPropagation(); viewUserProfile && viewUserProfile(postUser.id); }}
+                            >
+                              {postUser.profile.firstName} {postUser.profile.lastName}
+                            </button>
+                          </>
+                        )}
+                      </div>
+                      {/* Actions */}
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={e => { e.stopPropagation(); setView(`post-${post.id}`); }}
+                          className="text-orange-500 hover:text-orange-600 font-mono text-xs font-semibold px-1"
+                        >
+                          Project Details
+                        </button>
+                        {post.projectLink && (
+                          <a
+                            href={post.projectLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-orange-500 hover:text-orange-600 font-mono text-xs font-semibold px-1"
+                            onClick={e => e.stopPropagation()}
+                          >
+                            Project Site →
+                          </a>
+                        )}
+                        {user && user.id === post.userId && (
+                          <>
+                            <button
+                              onClick={e => { e.stopPropagation(); onDeletePost(post.id); }}
+                              className="text-red-500 hover:text-red-600 font-mono text-xs font-semibold px-1"
+                            >
+                              Delete
+                            </button>
+                            <button
+                              onClick={e => { e.stopPropagation(); setView(`edit-${post.id}`); }}
+                              className="text-orange-500 hover:text-orange-600 font-mono text-xs font-semibold px-1"
+                            >
+                              Edit
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function PostView({ post, user, users, onEdit, onDelete, onAddComment, setView, selectedUserId, viewUserProfile }) {
+      // Find the user who created this post
+      const postUser = users.find(u => u.id === post?.userId);
+
+      return (
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="p-6">
+            {/* Back Button */}
+            <button
+              onClick={() => setView && setView("posts")}
+              className="mt-0 mb-3 text-orange-400 hover:text-orange-500 font-mono text-xs font-medium px-2 py-0.5 rounded border border-orange-100 bg-orange-50 hover:bg-orange-100 transition-colors shadow-none"
+              style={{ boxShadow: 'none' }}
+            >
+              ← Back to Posts
+            </button>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h2 className="text-xl font-bold text-gray-800 mb-2 font-mono">{post.title}</h2>
+                <div className="flex items-center text-sm text-gray-500 font-mono">
+                  <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium mr-2">
+                    {post.category}
+                  </span>
+                  <span>{post.university}</span>
+                  <span className="mx-2">•</span>
+                  <span>{post.createdAt}</span>
+                  {postUser && postUser.profile && (
+                    <>
+                      <span className="ml-1 text-gray-600">by</span>
+                      <button
+                        className="text-orange-600 hover:underline font-mono text-xs font-semibold ml-1"
+                        onClick={e => { e.stopPropagation(); viewUserProfile && viewUserProfile(postUser.id); }}
+                      >
+                        {postUser.profile.firstName} {postUser.profile.lastName}
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+              {user && user.id === post.userId && (
+                <div className="flex space-x-2">
+                  <button
+                    onClick={onEdit}
+                    className="text-orange-500 hover:text-orange-600 text-sm font-mono"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={onDelete}
+                    className="text-red-500 hover:text-red-600 text-sm font-mono"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="prose max-w-none mb-5">
+              <p className="text-gray-700 font-mono text-base leading-relaxed">{post.summary}</p>
+            </div>
+            <div className="bg-orange-50 p-3 rounded-lg mb-5">
+              <h4 className="font-semibold text-orange-700 mb-2 font-mono text-sm">Looking for:</h4>
+              <p className="text-gray-700 font-mono text-sm leading-relaxed">{post.lookingFor}</p>
+            </div>
+            {/* Project Site Link */}
+            {post.projectLink && (
+              <a
+                href={post.projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-6 text-orange-500 hover:text-orange-600 font-mono text-sm font-semibold"
+              >
+                Project Site →
+              </a>
+            )}
+            <div className="border-t pt-5">
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 font-mono">Comments</h4>
+              {post.comments.length === 0 ? (
+                <p className="text-gray-500 font-mono text-sm">No comments yet.</p>
+              ) : (
+                <div className="space-y-4">
+                  {post.comments.map(comment => {
+                    const commentUser = users.find(u => u.id === comment.userId);
+                    const fullName = commentUser?.profile?.firstName && commentUser?.profile?.lastName
+                      ? `${commentUser.profile.firstName} ${commentUser.profile.lastName}`
+                      : commentUser?.email || "Unknown";
+                    return (
+                      <div key={comment.id} className="bg-gray-50 p-2 rounded-lg">
+                        <div className="flex items-center mb-1">
+                          <button
+                            className="flex items-center group focus:outline-none"
+                            style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }}
+                            onClick={() => viewUserProfile && viewUserProfile(commentUser.id)}
+                          >
+                            <img
+                              src={commentUser?.profile?.picture || getRandomAvatar()}
+                              alt="User"
+                              className="w-5 h-5 rounded-full mr-1.5 group-hover:ring-2 group-hover:ring-orange-300"
+                            />
+                            <span className="font-medium text-sm group-hover:underline font-mono">
+                              {fullName}
+                            </span>
+                          </button>
+                          <p className="text-xs text-gray-500 ml-2 font-mono">{comment.createdAt}</p>
+                        </div>
+                        <p className="text-gray-600 font-mono text-sm leading-snug">{comment.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <CommentForm postId={post.id} onAddComment={onAddComment} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function CommentForm({ postId, onAddComment }) {
+      const [comment, setComment] = useState("");
+
+      return (
+        <div className="mt-3">
+          <textarea
+            placeholder="Add a comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+            rows="2"
+          />
+          <button
+            onClick={() => {
+              if (comment.trim()) {
+                onAddComment(postId, comment);
+                setComment("");
+              }
+            }}
+            className="mt-2 bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 transition-colors duration-200 font-mono text-xs"
+          >
+            Post Comment
+          </button>
+        </div>
+      );
+    }
+
+    function CreatePostForm({ onCreate, initialPost = {} }) {
+      const [title, setTitle] = useState(initialPost.title || "");
+      const [summary, setSummary] = useState(initialPost.summary || "");
+      const [lookingFor, setLookingFor] = useState(initialPost.lookingFor || "");
+      const [category, setCategory] = useState(initialPost.category || "Tech");
+      const [projectLink, setProjectLink] = useState(initialPost.projectLink || "");
+      const [stage, setStage] = useState(initialPost.stage || "idea");
+
+      return (
+        <div className="space-y-4">
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="text-lg font-medium text-gray-900 mb-3 font-mono">Basic Information</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+          <input
+            type="text"
+                  placeholder="Give your post a clear, concise title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+          >
+            <option value="Tech">Tech</option>
+            <option value="Sustainability">Sustainability</option>
+            <option value="Social Impact">Social Impact</option>
+            <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Finance">Finance</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Stage</label>
+                  <select
+                    value={stage}
+                    onChange={(e) => setStage(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  >
+                    <option value="idea">Just an Idea</option>
+                    <option value="planning">Planning Phase</option>
+                    <option value="development">In Development</option>
+                    <option value="launched">Launched</option>
+          </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="text-lg font-medium text-gray-900 mb-3 font-mono">Project Details</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Project Link (if any)</label>
+                <input
+                  type="url"
+                  placeholder="https://your-project.com"
+                  value={projectLink}
+                  onChange={(e) => setProjectLink(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Summary</label>
+                <textarea
+                  placeholder="Describe your startup idea in detail..."
+                  value={summary}
+                  onChange={(e) => setSummary(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  rows="6"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">What You're Looking For</label>
+                <textarea
+                  placeholder="Describe what kind of collaborators you're looking for..."
+                  value={lookingFor}
+                  onChange={(e) => setLookingFor(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  rows="4"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => onCreate({ 
+              title, 
+              summary, 
+              lookingFor, 
+              category,
+              projectLink,
+              stage,
+              createdAt: new Date().toISOString().split("T")[0]
+            })}
+            className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-colors font-mono"
+          >
+            {initialPost.title ? "Update Post" : "Create Post"}
+          </button>
+        </div>
+      );
+    }
+
+    function MapView({ user, posts, users, onUniversityFilter, center = null, showUserMarker = true, title = null, zoom = 12 }) {
+      const mapRef = React.useRef(null);
+      const mapInstanceRef = React.useRef(null);
+
+      React.useEffect(() => {
+        if (!mapRef.current || mapInstanceRef.current) return;
+
+        // Initialize map centered either on provided center or user's location
+        const initialCenter = center ? [center.lat, center.lng] : [user.lat, user.lng];
+        mapInstanceRef.current = L.map(mapRef.current).setView(initialCenter, zoom);
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(mapInstanceRef.current);
+
+        // Add user marker (optional)
+        if (showUserMarker && user.lat && user.lng) {
+          L.marker([user.lat, user.lng])
+            .addTo(mapInstanceRef.current)
+            .bindPopup(`<b>You</b><br>${user.university}`)
+            .openPopup();
+        }
+
+        // Group posts by university
+        const universityPosts = {};
+        posts.forEach(post => {
+          const postUser = users.find(u => u.id === post.userId);
+          if (postUser && postUser.lat && postUser.lng) {
+            if (!universityPosts[postUser.university]) {
+              universityPosts[postUser.university] = {
+                lat: postUser.lat,
+                lng: postUser.lng,
+                posts: [],
+                user: postUser
+              };
+            }
+            universityPosts[postUser.university].posts.push(post);
+          }
+        });
+
+        // Add university markers with counts
+        Object.entries(universityPosts).forEach(([universityName, data]) => {
+          const count = data.posts.length;
+          
+          // Create custom icon with count
+          const customIcon = L.divIcon({
+            className: 'custom-marker',
+            html: `
+              <div style="
+                background: #f97316;
+                color: white;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 12px;
+                border: 2px solid white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+              ">
+                ${count}
+              </div>
+            `,
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+          });
+
+          const marker = L.marker([data.lat, data.lng], { icon: customIcon })
+            .addTo(mapInstanceRef.current)
+            .bindPopup(`
+              <div style="min-width: 200px;">
+                <b>${universityName}</b><br>
+                <small>${count} project${count > 1 ? 's' : ''}</small><br>
+                <button onclick="window.filterByUniversity('${universityName}')" 
+                        style="
+                          background: #f97316; 
+                          color: white; 
+                          border: none; 
+                          padding: 4px 8px; 
+                          border-radius: 4px; 
+                          margin-top: 8px; 
+                          cursor: pointer;
+                          font-size: 12px;
+                        ">
+                  View Projects
+                </button>
+              </div>
+            `);
+
+          // Add click handler for filtering
+          marker.on('click', () => {
+            onUniversityFilter(universityName);
+          });
+        });
+
+        return () => {
+          if (mapInstanceRef.current) {
+            mapInstanceRef.current.remove();
+            mapInstanceRef.current = null;
+          }
+        };
+      }, [user, posts, users, onUniversityFilter, center, showUserMarker]);
+
+      return (
+        <div className="mb-4">
+          <h3 className="text-lg font-medium text-gray-900 mb-3 font-mono">{title || 'Startup Projects Near You'}</h3>
+          <div ref={mapRef} style={{ height: '500px', width: '100%' }} className="rounded-lg border"></div>
+        </div>
+      );
+    }
+
+    function AboutPage() {
+      return (
+        <div className="space-y-6">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 font-mono">About UniStartupBoard</h2>
+          <p className="text-gray-700 font-mono text-sm leading-relaxed">
+            UniStartupBoard is a platform designed to connect university students who are interested in startups and entrepreneurship.
+            Here, you can share your startup ideas, find collaborators for your projects, and discover what other students are working on.
+          </p>
+          <p className="text-gray-700 font-mono text-sm leading-relaxed">
+            You can create a profile to showcase your skills and interests, browse posts from students at your university and nearby, 
+            and connect with potential team members. Our goal is to make it easy for students to find each other and turn their innovative ideas into reality.
+          </p>
+        </div>
+      );
+    }
+
+    // Handle navigation for edit post and post view
+    function handleHashChange() {
+      const hash = window.location.hash.replace("#", "");
+      if (hash.startsWith("edit-") || hash.startsWith("post-")) {
+        document.dispatchEvent(new Event("viewChange"));
+      }
+    }
+
+    window.addEventListener("hashchange", handleHashChange);
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
+</html>
