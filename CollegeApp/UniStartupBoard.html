@@ -112,22 +112,32 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
       try {
         if (Array.isArray(data)) {
           // For arrays, add each item as a separate document
-          const promises = data.map(item => {
-            if (item.id) {
-              // Update existing document
-              return setDoc(doc(window.firebase.firestore, collectionName, item.id.toString()), item);
+          const promises = data.map(async (item) => {
+            if (item.id && typeof item.id === 'string') {
+              // Update existing document with string ID
+              return setDoc(doc(window.firebase.firestore, collectionName, item.id), item);
             } else {
-              // Add new document
-              return addDoc(collection(window.firebase.firestore, collectionName), item);
+              // Add new document without ID (Firestore will auto-generate)
+              const docRef = await addDoc(collection(window.firebase.firestore, collectionName), item);
+              // Update the item with the generated ID for local state
+              item.id = docRef.id;
+              return docRef;
             }
           });
           await Promise.all(promises);
         } else {
           // For single objects
-          await setDoc(doc(window.firebase.firestore, collectionName, data.id?.toString() || 'default'), data);
+          if (data.id && typeof data.id === 'string') {
+            await setDoc(doc(window.firebase.firestore, collectionName, data.id), data);
+          } else {
+            const docRef = await addDoc(collection(window.firebase.firestore, collectionName), data);
+            data.id = docRef.id;
+          }
         }
+        console.log(`Successfully saved ${Array.isArray(data) ? data.length : 1} document(s) to ${collectionName}`);
       } catch (error) {
         console.error('Error saving to Firestore:', error);
+        throw error; // Re-throw for proper error handling
       }
     };
 
@@ -173,16 +183,20 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
       }, [posts]);
 
       useEffect(() => {
-        saveToServer('users', users);
+        if (users.length > 0) {
+          saveToFirestore('users', users);
+        }
       }, [users]);
 
       useEffect(() => {
-        saveToServer('universities', universities);
+        if (universities.length > 0) {
+          saveToFirestore('universities', universities);
+        }
       }, [universities]);
 
       useEffect(() => {
         // Listen for auth state changes
-        const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, (firebaseUser) => {
+        const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, async (firebaseUser) => {
           console.log("Auth state changed:", firebaseUser); // Debug log
           if (firebaseUser) {
             const email = firebaseUser.email;
@@ -193,7 +207,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
               if (!university) {
               // Create new university entry
               const newUniversity = {
-                id: universities.length + 1,
                 name: getUniversityFromDomain(emailDomain),
                 emailDomain: emailDomain,
                 ...getDefaultCoordinates()
@@ -213,7 +226,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
               const nowIso = new Date().toISOString();
               const isEdu = emailDomain && emailDomain.endsWith(".edu");
               const newUser = { 
-                id: users.length + 1, 
                 email, 
                 name: "",
                 university: university.name, 
@@ -233,11 +245,21 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
                 profile: null
               };
                               console.log("Creating new user:", newUser);
-                // Save new user to Firestore
-                saveToFirestore('users', newUser);
+              // Save new user to Firestore
+              try {
+                await saveToFirestore('users', newUser);
+                console.log("New user saved to Firestore successfully");
                 setUsers(prev => [...prev, newUser]);
                 setUser(newUser);
                 setView("onboarding");
+              } catch (error) {
+                console.error("Failed to save new user to Firestore:", error);
+                // Still set the user locally but show an error
+                alert("User created but there was an issue saving to database. Please try again.");
+                setUsers(prev => [...prev, newUser]);
+                setUser(newUser);
+                setView("onboarding");
+              }
             }
                   } else {
             console.log("No user, resetting state"); // Debug log
@@ -251,7 +273,11 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
 
       useEffect(() => {
         const fetchData = async () => {
-            console.log('Fetching data from server...');
+            console.log('Fetching data from Firestore...');
+            
+            // Check if we've already seeded data
+            const hasSeeded = localStorage.getItem('firestoreSeeded');
+            
             const pittsburghUniversities = [
               { id: 1, name: "University of Pittsburgh", emailDomain: "pitt.edu", lat: 40.4440, lng: -79.9532, city: "Pittsburgh" },
             { id: 2, name: "Carnegie Mellon University", emailDomain: "cmu.edu", lat: 40.4433, lng: -79.9440, city: "Pittsburgh" },
@@ -290,11 +316,17 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           let universitiesToSet = unis;
           console.log('Universities from server:', unis);
           // Seed initial data if none exists
-          if (unis.length === 0) {
+          if (unis.length === 0 && !hasSeeded) {
             console.log('No universities found, initializing with Pittsburgh universities...');
-            universitiesToSet = pittsburghUniversities;
-            await saveToFirestore('universities', universitiesToSet);
-            console.log('Saved universities to Firestore');
+            try {
+              universitiesToSet = pittsburghUniversities;
+              await saveToFirestore('universities', universitiesToSet);
+              console.log('Saved universities to Firestore');
+            } catch (error) {
+              console.error('Failed to seed universities:', error);
+              // Continue with local data if Firestore fails
+              universitiesToSet = pittsburghUniversities;
+            }
           }
           // Ensure Pittsburgh entries have city metadata and add SF/Boston if missing
           let changed = false;
@@ -319,12 +351,18 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             }
           });
           if (changed) {
-            await saveToFirestore('universities', universitiesToSet);
+            try {
+              await saveToFirestore('universities', universitiesToSet);
+              console.log('University metadata updated in Firestore successfully');
+            } catch (error) {
+              console.error('Failed to update university metadata in Firestore:', error);
+              // Continue with local data if Firestore fails
+            }
           }
           setUniversities(universitiesToSet);
 
           let usersToSet = usrs;
-          if (usrs.length === 0) {
+          if (usrs.length === 0 && !hasSeeded) {
             usersToSet = []; // generate dummy users based on universitiesToSet
             
             // Pittsburgh-themed user profiles
@@ -350,7 +388,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             universitiesToSet.forEach((uni, index) => {
               const userProfile = pittsburghUsers[index % pittsburghUsers.length];
               usersToSet.push({
-                id: index + 1,
                 email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${uni.emailDomain}`,
                 university: uni.name,
                 lat: uni.lat,
@@ -395,7 +432,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             cmuUsers.forEach((userProfile, index) => {
               const cmuUni = universitiesToSet.find(u => u.name === "Carnegie Mellon University");
               additionalUsers.push({
-                id: usersToSet.length + index + 1,
                 email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${cmuUni.emailDomain}`,
                 university: cmuUni.name,
                 lat: cmuUni.lat,
@@ -417,7 +453,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             pittUsers.forEach((userProfile, index) => {
               const pittUni = universitiesToSet.find(u => u.name === "University of Pittsburgh");
               additionalUsers.push({
-                id: usersToSet.length + cmuUsers.length + index + 1,
                 email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${pittUni.emailDomain}`,
                 university: pittUni.name,
                 lat: pittUni.lat,
@@ -439,7 +474,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             duquesneUsers.forEach((userProfile, index) => {
               const duquesneUni = universitiesToSet.find(u => u.name === "Duquesne University");
               additionalUsers.push({
-                id: usersToSet.length + cmuUsers.length + pittUsers.length + index + 1,
                 email: `${userProfile.firstName.toLowerCase()}${userProfile.lastName.toLowerCase()}@${duquesneUni.emailDomain}`,
                 university: duquesneUni.name,
                 lat: duquesneUni.lat,
@@ -459,7 +493,13 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             
             // Combine all users
             const allUsers = [...usersToSet, ...additionalUsers];
-            await saveToServer('users', allUsers);
+            try {
+              await saveToFirestore('users', allUsers);
+              console.log('Users seeded to Firestore successfully');
+            } catch (error) {
+              console.error('Failed to seed users to Firestore:', error);
+              // Continue with local data if Firestore fails
+            }
             setUsers(allUsers);
           } else {
             setUsers(usersToSet);
@@ -469,7 +509,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             const existingUser = usersToSet.find(u => u.university === uniName);
             if (existingUser) return existingUser;
             const newUser = {
-              id: (Math.max(0, ...usersToSet.map(u => u.id || 0)) + 1),
               email: `${firstName.toLowerCase()}${lastName.toLowerCase()}@${emailDomain}`,
               university: uniName,
               lat: universitiesToSet.find(u => u.name === uniName)?.lat || getDefaultCoordinates().lat,
@@ -519,13 +558,11 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           // Ensure at least 3 users per SF/Boston university for diverse authorship
           const ensureNUsersForUni = (uniName, emailDomain, baseNames, n) => {
             const existing = usersToSet.filter(u => u.university === uniName);
-            let nextId = Math.max(0, ...usersToSet.map(u => u.id || 0)) + 1;
             for (let i = existing.length; i < n; i++) {
               const name = baseNames[i % baseNames.length];
               const first = name.first;
               const last = name.last;
               const newUser = {
-                id: nextId++,
                 email: `${first.toLowerCase()}${last.toLowerCase()}@${emailDomain}`,
                 university: uniName,
                 lat: universitiesToSet.find(u => u.name === uniName)?.lat || getDefaultCoordinates().lat,
@@ -588,7 +625,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           }
 
           let postsToSet = ps;
-          if (ps.length === 0) {
+          if (ps.length === 0 && !hasSeeded) {
             postsToSet = [];
             // Always use the users loaded into state for post generation
             const currentUsers = usersToSet;
@@ -914,7 +951,13 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
                 }
               }
             });
-            await saveToServer('posts', postsToSet);
+            try {
+              await saveToFirestore('posts', postsToSet);
+              console.log('Pittsburgh posts seeded to Firestore successfully');
+            } catch (error) {
+              console.error('Failed to seed Pittsburgh posts to Firestore:', error);
+              // Continue with local data if Firestore fails
+            }
           }
           // Seed posts for SF/Boston ensuring at least 3 per university
           const sanFranciscoProjects = [
@@ -937,7 +980,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
             if (uniUsers.length === 0) return;
             const author = uniUsers[0];
             const newPost = {
-              id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
               userId: author.id,
               university: uniName,
               title: project.title,
@@ -946,7 +988,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
               category: project.category,
               projectLink: project.projectLink,
               stage: project.stage,
-              createdAt: new Date().toISOString().split('T')[0],
+              createdAt: new Date().toISOString().split("T")[0],
               comments: []
             };
             postsToSet.push(newPost);
@@ -961,7 +1003,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
               if (authors.length === 0) break;
               const author = authors[current % authors.length];
               const newPost = {
-                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
                 userId: author.id,
                 university: uniName,
                 title: project.title,
@@ -985,9 +1026,21 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           sanFranciscoUniversities.forEach((uni) => ensurePostsCountForUni(uni.name, sanFranciscoProjects, 3));
           bostonUniversities.forEach((uni) => ensurePostsCountForUni(uni.name, bostonProjects, 3));
           if (addedCityPosts) {
-            await saveToServer('posts', postsToSet);
+            try {
+              await saveToFirestore('posts', postsToSet);
+              console.log('City posts seeded to Firestore successfully');
+            } catch (error) {
+              console.error('Failed to seed city posts to Firestore:', error);
+              // Continue with local data if Firestore fails
+            }
           }
           setPosts(postsToSet);
+          
+          // Mark seeding as complete
+          if (!hasSeeded) {
+            localStorage.setItem('firestoreSeeded', 'true');
+            console.log('Initial data seeding completed and marked as done');
+          }
       };
       fetchData();
     }, []);
@@ -1047,7 +1100,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
       };
 
       // Save profile
-      const handleProfileSave = (profile) => {
+      const handleProfileSave = async (profile) => {
         if (!user) return; // Add null check
         
         console.log('Saving profile for user:', user.id, profile);
@@ -1062,13 +1115,25 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
         
         console.log('New user object:', newUser);
         
-        setUsers(users.map(u => u.id === user.id ? newUser : u));
-        setUser(newUser);
-        setView("board");
+        try {
+          // Save to Firestore
+          await saveToFirestore('users', newUser);
+          console.log('Profile saved to Firestore successfully');
+          
+          setUsers(users.map(u => u.id === user.id ? newUser : u));
+          setUser(newUser);
+          setView("board");
+        } catch (error) {
+          console.error('Failed to save profile to Firestore:', error);
+          alert('Profile saved locally but there was an issue saving to database. Please try again.');
+          setUsers(users.map(u => u.id === user.id ? newUser : u));
+          setUser(newUser);
+          setView("board");
+        }
       };
 
       // Update profile
-      const handleProfileUpdate = (profile) => {
+      const handleProfileUpdate = async (profile) => {
         if (!user) return; // Add null check
         
         console.log('Updating profile for user:', user.id, profile);
@@ -1083,17 +1148,28 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
         
         console.log('Updated user object:', updatedUser);
         
-        setUsers(users.map(u => u.id === user.id ? updatedUser : u));
-        setUser(updatedUser);
-        setView("profile-view");
+        try {
+          // Save to Firestore
+          await saveToFirestore('users', updatedUser);
+          console.log('Profile updated in Firestore successfully');
+          
+          setUsers(users.map(u => u.id === user.id ? updatedUser : u));
+          setUser(updatedUser);
+          setView("profile-view");
+        } catch (error) {
+          console.error('Failed to update profile in Firestore:', error);
+          alert('Profile updated locally but there was an issue saving to database. Please try again.');
+          setUsers(users.map(u => u.id === user.id ? updatedUser : u));
+          setUser(updatedUser);
+          setView("profile-view");
+        }
       };
 
       // Create post
-      const handleCreatePost = (post) => {
+      const handleCreatePost = async (post) => {
         if (!user) return; // Add null check
         
         const newPost = { 
-          id: posts.length + 1, 
           userId: user.id, 
           university: user.university, 
           ...post, 
@@ -1101,27 +1177,43 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           comments: [] 
         };
         
-        // Save to Firestore
-        saveToFirestore('posts', newPost);
-        
-        setPosts([...posts, newPost]);
-        setView("board");
+        try {
+          // Save to Firestore
+          await saveToFirestore('posts', newPost);
+          console.log('Post created in Firestore successfully');
+          
+          setPosts([...posts, newPost]);
+          setView("board");
+        } catch (error) {
+          console.error('Failed to create post in Firestore:', error);
+          alert('Post created locally but there was an issue saving to database. Please try again.');
+          setPosts([...posts, newPost]);
+          setView("board");
+        }
       };
 
       // Edit post
-      const handleEditPost = (postId, updatedPost) => {
+      const handleEditPost = async (postId, updatedPost) => {
         if (!user) return; // Add null check
         
         const updatedPosts = posts.map(p => p.id === postId ? { ...p, ...updatedPost } : p);
         
-        // Save updated post to Firestore
-        const postToUpdate = updatedPosts.find(p => p.id === postId);
-        if (postToUpdate) {
-          saveToFirestore('posts', postToUpdate);
+        try {
+          // Save updated post to Firestore
+          const postToUpdate = updatedPosts.find(p => p.id === postId);
+          if (postToUpdate) {
+            await saveToFirestore('posts', postToUpdate);
+            console.log('Post updated in Firestore successfully');
+          }
+          
+          setPosts(updatedPosts);
+          setView("board");
+        } catch (error) {
+          console.error('Failed to update post in Firestore:', error);
+          alert('Post updated locally but there was an issue saving to database. Please try again.');
+          setPosts(updatedPosts);
+          setView("board");
         }
-        
-        setPosts(updatedPosts);
-        setView("board");
       };
 
       // Delete post
@@ -1135,7 +1227,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
       };
 
       // Add comment
-      const handleAddComment = (postId, comment) => {
+      const handleAddComment = async (postId, comment) => {
         if (!user) return; // Add null check
         
         const updatedPosts = posts.map(p => p.id === postId ? { 
@@ -1148,13 +1240,20 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
           }] 
         } : p);
         
-        // Save updated post with comment to Firestore
-        const postWithComment = updatedPosts.find(p => p.id === postId);
-        if (postWithComment) {
-          saveToFirestore('posts', postWithComment);
+        try {
+          // Save updated post with comment to Firestore
+          const postWithComment = updatedPosts.find(p => p.id === postId);
+          if (postWithComment) {
+            await saveToFirestore('posts', postWithComment);
+            console.log('Comment added to Firestore successfully');
+          }
+          
+          setPosts(updatedPosts);
+        } catch (error) {
+          console.error('Failed to add comment to Firestore:', error);
+          alert('Comment added locally but there was an issue saving to database. Please try again.');
+          setPosts(updatedPosts);
         }
-        
-        setPosts(updatedPosts);
       };
 
       // Handle university filter from map
