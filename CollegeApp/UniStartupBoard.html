@@ -173,19 +173,33 @@
               setUser(existingUser);
               setView("board");
             } else {
-              // Create new user
+              // Create new user with extended schema
+              const nowIso = new Date().toISOString();
+              const isEdu = emailDomain && emailDomain.endsWith(".edu");
               const newUser = { 
                 id: users.length + 1, 
-                email, 
+                email,
+                name: "",
                 university: university.name, 
                 lat: university.lat, 
                 lng: university.lng,
+                isEduVerified: !!isEdu,
+                skills: [],
+                interests: [],
+                availabilityHours: 0,
+                city: university.city || "",
+                campus: "",
+                intent: null,
+                portfolio: { github: "", behance: "", linkedin: "", personalSite: "" },
+                preferences: { emailImmediate: false, emailDigest: "weekly" },
+                createdAt: nowIso,
+                updatedAt: nowIso,
                 profile: null
               };
               console.log("Creating new user:", newUser);
               setUsers(prev => [...prev, newUser]);
               setUser(newUser);
-              setView("profile");
+              setView("onboarding");
             }
           } else {
             console.log("No user, resetting state"); // Debug log
@@ -1039,14 +1053,15 @@
       const handleCreatePost = (post) => {
         if (!user) return; // Add null check
         
-        setPosts([...posts, { 
+        const newPost = { 
           id: posts.length + 1, 
           userId: user.id, 
           university: user.university, 
           ...post, 
           createdAt: new Date().toISOString().split("T")[0], 
           comments: [] 
-        }]);
+        };
+        setPosts([...posts, newPost]);
         setView("board");
       };
 
@@ -1092,28 +1107,24 @@
       };
 
       // Filter posts by university or proximity
-      const filteredPosts = user ? posts.filter(post => {
-        // If university filter is active, only show posts from that university
-        if (universityFilter) {
-          return post.university === universityFilter;
-        }
-        
-        // Otherwise, use the distance filter for local view
-        const postUni = universities.find(u => u.name === post.university);
-        if (post.university === user.university) return true;
-        if (postUni && user.lat && user.lng) {
-          const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
-          return distance <= distanceFilter;
-        }
-        return false;
-      }) : [];
-      const cityFilteredPosts = user ? posts.filter(post => {
-        if (universityFilter) return post.university === universityFilter;
-        const postUni = universities.find(u => u.name === post.university);
-        return postUni && postUni.city === selectedCity;
-      }) : [];
-      
-      const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
+                const filteredPosts = user ? posts.filter(post => {
+            if (universityFilter) return post.university === universityFilter;
+            if (feedMode === 'global') return true;
+            const postUni = universities.find(u => u.name === post.university);
+            if (post.university === user.university) return true;
+            if (postUni && user.lat && user.lng) {
+              const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
+              return distance <= distanceFilter;
+            }
+            return false;
+          }) : [];
+          const cityFilteredPosts = user ? posts.filter(post => {
+            if (universityFilter) return post.university === universityFilter;
+            const postUni = universities.find(u => u.name === post.university);
+            return postUni && postUni.city === selectedCity;
+          }) : [];
+          
+          const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
 
       return (
         <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 font-sans">
@@ -1146,11 +1157,11 @@
                       >
                         About
                       </button>
-                      <button 
-                        onClick={() => setView("create")} 
+                                            <button 
+                        onClick={() => setView("composer")} 
                         className="px-5 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-mono text-sm font-medium shadow-sm hover:shadow-md"
                       >
-                        Create Post
+                        Start Project
                       </button>
                       <button 
                         onClick={() => setView("profile-view")} 
@@ -1180,7 +1191,7 @@
 
           {/* Main Content */}
           <main className="container mx-auto px-4 py-8">
-            {view === "signin" && (
+                        {view === "signin" && (
               <div className="max-w-md mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
@@ -1194,6 +1205,16 @@
                       selectedUserId={selectedUserId}
                       viewUserProfile={viewUserProfile}
                     />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "onboarding" && user && (
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Welcome! Let’s get you set up</h2>
+                    <OnboardingFlow user={user} setUser={setUser} users={users} setUsers={setUsers} setView={setView} universities={universities} />
                   </div>
                 </div>
               </div>
@@ -1283,6 +1304,7 @@
                     <div className={isLocalView ? "mt-8" : ""}>
                       <PostBoard 
                         posts={displayedPosts} 
+                        allPosts={posts}
                         user={user} 
                         onEditPost={handleEditPost} 
                         onDeletePost={handleDeletePost} 
@@ -1312,6 +1334,7 @@
                   <div className="p-8">
                     <PostBoard 
                       posts={displayedPosts} 
+                      allPosts={posts}
                       user={user} 
                       onEditPost={handleEditPost} 
                       onDeletePost={handleDeletePost} 
@@ -1334,12 +1357,23 @@
                 </div>
               </div>
             )}
-            {view === "create" && user && (
+                        {view === "create" && user && (
               <div className="max-w-2xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Create a New Post</h2>
-              <CreatePostForm onCreate={handleCreatePost} />
+            <div className="mb-4 text-xs text-gray-600">Prefer a guided flow? Try the Project Composer.</div>
+            <CreatePostForm onCreate={handleCreatePost} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {view === "composer" && user && (
+              <div className="max-w-5xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="p-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Project Composer</h2>
+                    <ProjectComposer onCreate={handleCreatePost} setView={setView} />
                   </div>
                 </div>
               </div>
@@ -1477,6 +1511,138 @@
             />
             Sign in with Google
           </button>
+        </div>
+      );
+    }
+
+    function OnboardingFlow({ user, setUser, users, setUsers, setView, universities }) {
+      const [step, setStep] = React.useState(1);
+      const [university, setUniversity] = React.useState(user.university || "");
+      const [isEduVerified, setIsEduVerified] = React.useState(!!user.isEduVerified);
+      const [skills, setSkills] = React.useState(user.skills || []);
+      const [interests, setInterests] = React.useState(user.interests || []);
+      const [availabilityHours, setAvailabilityHours] = React.useState(user.availabilityHours || 5);
+      const [city, setCity] = React.useState(user.city || "");
+      const [campus, setCampus] = React.useState(user.campus || "");
+      const [intent, setIntent] = React.useState(user.intent || null);
+
+      const topSkills = ["Frontend", "Backend", "Full-Stack", "Product", "Design", "AI/ML", "Data", "Hardware", "Marketing"];
+      const topInterests = ["Web Apps", "Mobile", "AI/ML", "Health", "Sustainability", "Education", "Social Impact", "Fintech", "Hardware"];
+
+      const toggleInArray = (arr, value) => arr.includes(value) ? arr.filter(v => v !== value) : [...arr, value];
+
+      const handleNext = () => setStep(s => Math.min(3, s + 1));
+      const handleBack = () => setStep(s => Math.max(1, s - 1));
+
+      const saveAndProceed = (updated) => {
+        const merged = { ...user, ...updated, updatedAt: new Date().toISOString() };
+        setUser(merged);
+        setUsers(users.map(u => u.id === user.id ? merged : u));
+      };
+
+      const completeOnboarding = (chosenIntent) => {
+        const updated = { intent: chosenIntent };
+        saveAndProceed(updated);
+        if (chosenIntent === "start") {
+          setView("composer");
+        } else {
+          setView("board");
+        }
+      };
+
+      const eduDomains = new Set(universities.map(u => u.emailDomain));
+      const userDomain = (user.email || "").split("@")[1] || "";
+
+      return (
+        <div className="space-y-6">
+          {step === 1 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Your University</h3>
+              <p className="text-sm text-gray-600">We guessed from your email domain. You can change it.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">University</label>
+                  <select
+                    value={university}
+                    onChange={(e)=>{ setUniversity(e.target.value); saveAndProceed({ university: e.target.value }); }}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  >
+                    {[...new Set(universities.map(u => u.name))].sort().map(name => (
+                      <option key={name} value={name}>{name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Edu Verified</label>
+                  <div className="flex items-center space-x-2">
+                    <input type="checkbox" checked={isEduVerified} onChange={(e)=>{ setIsEduVerified(e.target.checked); saveAndProceed({ isEduVerified: e.target.checked }); }} />
+                    <span className="text-sm text-gray-600">Based on domain match: {eduDomains.has(userDomain) ? userDomain : 'non-edu'}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-end space-x-2">
+                <button onClick={handleNext} className="px-4 py-2 bg-orange-500 text-white rounded-lg">Next</button>
+              </div>
+            </div>
+          )}
+          {step === 2 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Basics</h3>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Skills</label>
+                <div className="flex flex-wrap gap-2">
+                  {topSkills.map(s => (
+                    <button key={s} type="button" onClick={()=>{ const next = toggleInArray(skills, s); setSkills(next); saveAndProceed({ skills: next }); }} className={`px-3 py-1 rounded-full text-sm border ${skills.includes(s) ? 'bg-orange-500 text-white border-orange-500' : 'bg-white text-gray-700 border-gray-300'}`}>{s}</button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Interests</label>
+                <div className="flex flex-wrap gap-2">
+                  {topInterests.map(s => (
+                    <button key={s} type="button" onClick={()=>{ const next = toggleInArray(interests, s); setInterests(next); saveAndProceed({ interests: next }); }} className={`px-3 py-1 rounded-full text-sm border ${interests.includes(s) ? 'bg-orange-500 text-white border-orange-500' : 'bg-white text-gray-700 border-gray-300'}`}>{s}</button>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <input value={city} onChange={(e)=>{ setCity(e.target.value); saveAndProceed({ city: e.target.value }); }} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm" placeholder="e.g., Pittsburgh" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Campus</label>
+                  <input value={campus} onChange={(e)=>{ setCampus(e.target.value); saveAndProceed({ campus: e.target.value }); }} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm" placeholder="Main, North, etc." />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Availability (hours/week)</label>
+                <input type="range" min="2" max="15" step="1" value={availabilityHours} onChange={(e)=>{ const v=parseInt(e.target.value); setAvailabilityHours(v); saveAndProceed({ availabilityHours: v }); }} className="w-full" />
+                <div className="text-sm text-gray-600">{availabilityHours} h/wk</div>
+              </div>
+              <div className="flex justify-between">
+                <button onClick={handleBack} className="px-4 py-2 border rounded-lg">Back</button>
+                <button onClick={handleNext} className="px-4 py-2 bg-orange-500 text-white rounded-lg">Next</button>
+              </div>
+            </div>
+          )}
+          {step === 3 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">What do you want to do?</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onClick={()=>completeOnboarding("start")} className="border rounded-lg p-4 hover:shadow bg-white text-left">
+                  <div className="text-lg font-bold">Start a Project</div>
+                  <div className="text-sm text-gray-600">Compose an idea and open roles</div>
+                </button>
+                <button onClick={()=>completeOnboarding("join")} className="border rounded-lg p-4 hover:shadow bg-white text-left">
+                  <div className="text-lg font-bold">Join a Team</div>
+                  <div className="text-sm text-gray-600">Browse roles and apply fast</div>
+                </button>
+              </div>
+              <div className="flex justify-start">
+                <button onClick={handleBack} className="px-4 py-2 border rounded-lg">Back</button>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
@@ -1856,7 +2022,27 @@
       );
     }
 
-    function PostBoard({ posts, user, onEditPost, onDeletePost, onAddComment, users, setView, selectedUserId, viewUserProfile, feedMode, setFeedMode, selectedCity, setSelectedCity, universities, universityFilter, clearUniversityFilter, distanceFilter, setDistanceFilter }) {
+    function RecommendedRemote({ posts, users, setView }) {
+      const remoteCandidates = posts
+        .filter(p => (p.lookingFor || '').toLowerCase().includes('remote') || (p.category || '').toLowerCase().includes('tech'))
+        .slice(0,6);
+      if (remoteCandidates.length === 0) return null;
+      return (
+        <div className="max-w-3xl mx-auto text-left">
+          <h4 className="text-sm font-semibold text-gray-800 mb-2">Recommended remote-friendly roles</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {remoteCandidates.map(p => (
+              <div key={p.id} className="bg-white border rounded p-3 hover:shadow cursor-pointer" onClick={()=>setView(`post-${p.id}`)}>
+                <div className="text-sm font-bold">{p.title}</div>
+                <div className="text-xs text-gray-600 line-clamp-2">{p.lookingFor}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    function PostBoard({ posts, allPosts, user, onEditPost, onDeletePost, onAddComment, users, setView, selectedUserId, viewUserProfile, feedMode, setFeedMode, selectedCity, setSelectedCity, universities, universityFilter, clearUniversityFilter, distanceFilter, setDistanceFilter }) {
       const availableCities = React.useMemo(() => {
         const set = new Set();
         universities.forEach(u => { if (u.city) set.add(u.city); });
@@ -1873,35 +2059,41 @@
           <div className="mt-2 mb-3">
             <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
           </div>
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-4">
-              {!universityFilter && (
-                <>
-                  <button
-                    onClick={() => setFeedMode('local')}
-                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'local' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                  >
-                    Local
-                  </button>
-                  <button
-                    onClick={() => setFeedMode('city')}
-                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'city' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                  >
-                    Cities
-                  </button>
-                  <button
-                    onClick={() => setFeedMode('global')}
-                    className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'global' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                  >
-                    Global
-                  </button>
-                  {feedMode === 'local' && (
-                    <div className="flex items-center space-x-2 ml-4">
-                      <span className="text-gray-600 font-mono text-sm">Distance:</span>
+                                  <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                {/* Feed Mode Tabs */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {!universityFilter && (
+                    <div className="flex items-center bg-gray-100 rounded-lg p-1">
+                      <button
+                        onClick={() => setFeedMode('local')}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'local' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
+                      >
+                        Local
+                      </button>
+                      <button
+                        onClick={() => setFeedMode('city')}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'city' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
+                      >
+                        Cities
+                      </button>
+                      <button
+                        onClick={() => setFeedMode('global')}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'global' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
+                      >
+                        Remote
+                      </button>
+                    </div>
+                  )}
+                  
+                  {/* Context-specific filters */}
+                  {feedMode === 'local' && !universityFilter && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600 text-sm font-medium">Within:</span>
                       <select
                         value={distanceFilter}
                         onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
-                        className="px-2 py-1 border border-gray-300 rounded text-sm font-mono bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                        className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                       >
                         <option value={50}>50 miles</option>
                         <option value={100}>100 miles</option>
@@ -1909,13 +2101,14 @@
                       </select>
                     </div>
                   )}
-                  {feedMode === 'city' && (
-                    <div className="flex items-center space-x-2 ml-4">
-                      <span className="text-gray-600 font-mono text-sm">City:</span>
+                  
+                  {feedMode === 'city' && !universityFilter && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600 text-sm font-medium">City:</span>
                       <select
                         value={selectedCity}
                         onChange={(e) => { setSelectedCity(e.target.value); }}
-                        className="px-2 py-1 border border-gray-300 rounded text-sm font-mono bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                        className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                       >
                         {availableCities.map(city => (
                           <option key={city} value={city}>{city}</option>
@@ -1923,44 +2116,64 @@
                       </select>
                     </div>
                   )}
-                </>
-              )}
-              {universityFilter && (
-                <div className="flex items-center space-x-2 bg-gradient-to-r from-orange-400 to-orange-500 shadow border border-orange-500 rounded-full px-3 py-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-white font-mono text-sm font-semibold truncate max-w-[210px]">
-                    {universityFilter}
-                  </span>
-                  <button
-                    onClick={clearUniversityFilter}
-                    className="ml-1 bg-white text-orange-600 hover:bg-orange-100 hover:text-orange-800 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold shadow transition"
-                    aria-label="Clear filter"
-                    style={{ lineHeight: 1 }}
+                  
+                  {universityFilter && (
+                    <div className="flex items-center gap-2 bg-gradient-to-r from-orange-400 to-orange-500 rounded-lg px-4 py-2 shadow-sm">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-white text-sm font-medium truncate max-w-[200px]">
+                        {universityFilter}
+                      </span>
+                      <button
+                        onClick={clearUniversityFilter}
+                        className="ml-2 bg-white/20 hover:bg-white/30 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold transition-colors"
+                        aria-label="Clear filter"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right side controls */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex gap-3">
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[140px]">
+                      <option value="all">All Categories</option>
+                      <option value="Tech">Tech</option>
+                      <option value="Sustainability">Sustainability</option>
+                      <option value="Social Impact">Social Impact</option>
+                      <option value="Health">Health</option>
+                      <option value="Education">Education</option>
+                      <option value="Finance">Finance</option>
+                    </select>
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[120px]">
+                      <option value="recent">Most Recent</option>
+                      <option value="comments">Most Comments</option>
+                    </select>
+                  </div>
+                  <button 
+                    onClick={()=>setView('composer')} 
+                    className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium text-sm transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
                   >
-                    ×
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Start Project
                   </button>
                 </div>
-              )}
+              </div>
             </div>
-            <div className="flex space-x-2">
-              <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm">
-                <option value="all">All Categories</option>
-                <option value="Tech">Tech</option>
-                <option value="Sustainability">Sustainability</option>
-                <option value="Social Impact">Social Impact</option>
-                <option value="Health">Health</option>
-              </select>
-              <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm">
-                <option value="recent">Most Recent</option>
-                <option value="comments">Most Comments</option>
-              </select>
-            </div>
-          </div>
           {posts.length === 0 ? (
-            <div className="text-center py-4">
-              <p className="text-gray-500 font-mono text-sm">No posts available.</p>
+            <div className="text-center py-8">
+              <p className="text-gray-700 font-mono text-sm mb-3">No posts match your filters.</p>
+              <div className="flex flex-wrap gap-2 justify-center mb-4">
+                <button onClick={()=>{ setFeedMode('global'); }} className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">Show Remote</button>
+                <button onClick={()=>{ setFeedMode('city'); setSelectedCity('Boston'); }} className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">Browse Boston</button>
+                <button onClick={()=>{ setFeedMode('city'); setSelectedCity('San Francisco'); }} className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">Browse SF</button>
+              </div>
+              <RecommendedRemote posts={allPosts || posts} users={users} setView={setView} />
             </div>
           ) : (
             <div className="space-y-4">
@@ -2106,11 +2319,11 @@
               )}
             </div>
             <div className="prose max-w-none mb-5">
-              <p className="text-gray-700 font-mono text-base leading-relaxed">{post.summary}</p>
+              <p className="text-gray-700 font-mono text-base leading-relaxed whitespace-pre-wrap">{post.summary}</p>
             </div>
             <div className="bg-orange-50 p-3 rounded-lg mb-5">
               <h4 className="font-semibold text-orange-700 mb-2 font-mono text-sm">Looking for:</h4>
-              <p className="text-gray-700 font-mono text-sm leading-relaxed">{post.lookingFor}</p>
+              <p className="text-gray-700 font-mono text-sm leading-relaxed whitespace-pre-wrap">{post.lookingFor}</p>
             </div>
             {/* Project Site Link */}
             {post.projectLink && (
@@ -2189,6 +2402,157 @@
           >
             Post Comment
           </button>
+        </div>
+      );
+    }
+
+    function ProjectComposer({ onCreate, setView }) {
+      const [problem, setProblem] = React.useState("");
+      const [solution, setSolution] = React.useState("");
+      const [stage, setStage] = React.useState("idea");
+      const [links, setLinks] = React.useState({ github: "", figma: "", website: "" });
+      const [title, setTitle] = React.useState("");
+      const [lookingFor, setLookingFor] = React.useState("");
+      const [image, setImage] = React.useState(null);
+
+      const presets = {
+        "Web App": {
+          problem: "Students need a way to find cofounders on campus",
+          solution: "A web app to match students by skills and interests",
+          stage: "idea",
+          title: "Campus Cofounder",
+          lookingFor: "Full-stack dev, designer, PM"
+        },
+        "Mobile App": {
+          problem: "Clubs struggle to drive attendance",
+          solution: "A mobile app for event discovery and RSVP",
+          stage: "prototype",
+          title: "Campus Events",
+          lookingFor: "iOS/Android devs, designer"
+        },
+        "AI/ML": {
+          problem: "Students need AI help with research",
+          solution: "LLM-powered assistant for lit reviews",
+          stage: "prototype",
+          title: "ResearchCopilot",
+          lookingFor: "ML engineer, backend dev"
+        },
+        "Hardware": {
+          problem: "Campus bikes get stolen frequently",
+          solution: "Smart lock with GPS and BLE alerts",
+          stage: "beta",
+          title: "SafeWheel",
+          lookingFor: "EE, firmware, industrial design"
+        }
+      };
+
+      const applyPreset = (key) => {
+        const p = presets[key];
+        setProblem(p.problem);
+        setSolution(p.solution);
+        setStage(p.stage);
+        setTitle(p.title);
+        setLookingFor(p.lookingFor);
+      };
+
+      const createPost = () => {
+        const summary = `${problem.slice(0,300)}\n\nSolution: ${solution.slice(0,300)}`;
+        onCreate({ title: title || "Untitled Project", summary, lookingFor, category: "Tech", projectLink: links.website || "", stage });
+        setView("board");
+      };
+
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              {Object.keys(presets).map(k => (
+                <button key={k} onClick={()=>applyPreset(k)} className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">{k}</button>
+              ))}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <input value={title} onChange={(e)=>setTitle(e.target.value)} className="w-full px-3 py-2 border rounded" placeholder="Project name" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Problem (max 300 chars)</label>
+              <textarea value={problem} onChange={(e)=>setProblem(e.target.value.slice(0,300))} rows="3" className="w-full p-2 border rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Proposed Solution (max 300 chars)</label>
+              <textarea value={solution} onChange={(e)=>setSolution(e.target.value.slice(0,300))} rows="3" className="w-full p-2 border rounded" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Stage</label>
+                <select value={stage} onChange={(e)=>setStage(e.target.value)} className="w-full p-2 border rounded">
+                  <option value="idea">idea</option>
+                  <option value="prototype">prototype</option>
+                  <option value="beta">beta</option>
+                  <option value="launched">launched</option>
+                </select>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Credibility</label>
+              <input placeholder="GitHub" value={links.github} onChange={(e)=>setLinks({...links, github: e.target.value})} className="w-full p-2 border rounded" />
+              <input placeholder="Figma" value={links.figma} onChange={(e)=>setLinks({...links, figma: e.target.value})} className="w-full p-2 border rounded" />
+              <input placeholder="Website" value={links.website} onChange={(e)=>setLinks({...links, website: e.target.value})} className="w-full p-2 border rounded" />
+              <input type="file" accept="image/*" onChange={(e)=> setImage(e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : null)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Open Roles</label>
+              <InlineRoleForm onChange={(text)=> setLookingFor(text)} />
+            </div>
+            <div className="flex justify-end">
+              <button onClick={createPost} className="px-4 py-2 bg-orange-500 text-white rounded-lg">Publish</button>
+            </div>
+          </div>
+          <div className="bg-gray-50 p-4 rounded border">
+            <h3 className="text-lg font-semibold mb-3">Live Preview</h3>
+            <div className="bg-white rounded shadow p-3">
+              <div className="text-xs text-gray-500 mb-1 uppercase">{stage}</div>
+              <div className="text-xl font-bold mb-1">{title || 'Untitled Project'}</div>
+              <div className="text-sm text-gray-700 whitespace-pre-wrap">{`${problem}\n\nSolution: ${solution}`}</div>
+              {image && <img src={image} alt="preview" className="mt-3 rounded" />}
+              <div className="mt-3">
+                <div className="text-xs text-gray-600">Links:</div>
+                <div className="text-sm text-orange-600 space-x-2">
+                  {links.github && <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub</a>}
+                  {links.figma && <a href={links.figma} target="_blank" rel="noopener noreferrer">Figma</a>}
+                  {links.website && <a href={links.website} target="_blank" rel="noopener noreferrer">Website</a>}
+                </div>
+              </div>
+              <div className="mt-3 bg-orange-50 border border-orange-200 rounded p-2">
+                <div className="text-xs font-semibold text-orange-700">Looking for</div>
+                <div className="text-sm">{lookingFor}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function InlineRoleForm({ onChange }) {
+      const templates = {
+        "Full-stack Engineer": "Full-stack engineer (React/Node) ~10h/wk. Build MVP, own deployment.",
+        "Frontend Engineer": "Frontend engineer (React/Tailwind) ~8h/wk. Implement UI components.",
+        "Designer": "Product designer ~5h/wk. Wireframes, usability.",
+        "ML Engineer": "ML engineer ~10h/wk. Prototypes, data pipeline."
+      };
+      const [roles, setRoles] = React.useState([]);
+      const addRole = (t) => {
+        const next = [...roles, t];
+        setRoles(next);
+        onChange(next.join("; "));
+      };
+      return (
+        <div className="space-y-2">
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(templates).map(k => (
+              <button key={k} onClick={()=>addRole(templates[k])} type="button" className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">{k}</button>
+            ))}
+          </div>
+          <textarea className="w-full p-2 border rounded" rows="3" placeholder="Describe roles..." onChange={(e)=>onChange(e.target.value)} />
         </div>
       );
     }

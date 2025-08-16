@@ -190,12 +190,5 @@
     "lat": 42.3398,
     "lng": -71.0892,
     "city": "Boston"
-  },
-  {
-    "id": 25,
-    "name": "Alias University",
-    "emailDomain": "alias.co",
-    "lat": 40.4406,
-    "lng": -79.9959
   }
 ]

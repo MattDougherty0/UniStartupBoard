@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const port = 3001;
+const port = 3002;
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));
@@ -37,4 +37,4 @@ app.get('/api/data', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
-}); 
+});
