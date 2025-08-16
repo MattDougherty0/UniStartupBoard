@@ -617,6 +617,8 @@
             const allUsers = [...usersToSet, ...additionalUsers];
             await saveToFirestoreApp('users', allUsers);
             setUsers(allUsers);
+            // Update currentUsers to include the additional users for post creation
+            currentUsers = allUsers;
           } else {
             setUsers(usersToSet);
           }
@@ -747,7 +749,7 @@
           if (ps.length === 0) {
             postsToSet = [];
             // Always use the users loaded into state for post generation
-            const currentUsers = usersToSet;
+            let currentUsers = usersToSet;
             // Pittsburgh startup ideas with realistic names and descriptions
             const pittsburghProjects = [
               // Carnegie Mellon Projects (5)
