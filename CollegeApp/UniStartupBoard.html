@@ -24,7 +24,7 @@
       signInWithEmailAndPassword
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-    import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -44,7 +44,7 @@
     const db = getFirestore(app);
     // Expose Firestore pieces to the global scope for the Babel script
     window.firestoreDb = db;
-    window.firestoreApi = { doc, setDoc, getDoc, collection, getDocs };
+    window.firestoreApi = { doc, setDoc, getDoc, collection, getDocs, addDoc };
 
     // Make Firebase available globally
     window.firebase = {
@@ -64,7 +64,7 @@
     const { useState, useEffect } = React;
     // Access Firestore DB and API that were initialized in the module script
     const firestoreDb = window.firestoreDb;
-    const { doc, setDoc, getDoc, collection, getDocs } = window.firestoreApi || {};
+    const { doc, setDoc, getDoc, collection, getDocs, addDoc } = window.firestoreApi || {};
     
     // Initialize empty arrays for data
     const initialUniversities = [];
