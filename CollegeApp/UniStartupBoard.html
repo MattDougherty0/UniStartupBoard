@@ -42,6 +42,11 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    
+    // Set initialization flag to prevent premature Firestore operations
+    window.isInitializing = true;
+    window.currentUser = null;
+    
     // Expose Firestore pieces to the global scope for the Babel script
     window.firestoreDb = db;
     window.firestoreApi = { doc, setDoc, getDoc, collection, getDocs, addDoc };
@@ -190,6 +195,11 @@
 
     // Firestore save function for app data
     const saveToFirestoreApp = async (key, data) => {
+      // Don't try to save if we're still initializing or if no user is authenticated
+      if (window.isInitializing || !window.currentUser) {
+        return;
+      }
+      
       try {
         await saveToFirestore('app', key, { data, updatedAt: new Date().toISOString() });
       } catch (error) {
@@ -255,22 +265,32 @@
         return { uni: fallback, changed: true };
       };
 
-      // Save data whenever it changes
+      // Save data whenever it changes - but only if user is authenticated
       useEffect(() => {
-        saveToFirestoreApp('posts', posts);
-      }, [posts]);
+        if (user) {
+          saveToFirestoreApp('posts', posts);
+        }
+      }, [posts, user]);
 
       useEffect(() => {
-        saveToFirestoreApp('users', users);
-      }, [users]);
+        if (user) {
+          saveToFirestoreApp('users', users);
+        }
+      }, [users, user]);
 
       useEffect(() => {
-        saveToFirestoreApp('universities', universities);
-      }, [universities]);
+        if (user) {
+          saveToFirestoreApp('universities', universities);
+        }
+      }, [universities, user]);
 
       useEffect(() => {
         // Listen for auth state changes
         const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, async (firebaseUser) => {
+          // Update global flags for Firestore operations
+          window.currentUser = firebaseUser;
+          window.isInitializing = false;
+          
           if (firebaseUser) {
             const email = firebaseUser.email;
         const emailDomain = email.split("@")[1];
@@ -392,6 +412,8 @@
               setView("profile");
             }
                   } else {
+            // No user authenticated - update global flags
+            window.currentUser = null;
             setUser(null);
             setView("signin");
           }
@@ -494,7 +516,10 @@
             try {
               // Initialize with empty domain index if none exists
               setDomainIndex({});
-              await saveToFirestoreApp('domain_index', { map: {}, updatedAt: new Date().toISOString() });
+              // Only try to save if user is authenticated
+              if (window.currentUser) {
+                await saveToFirestoreApp('domain_index', { map: {}, updatedAt: new Date().toISOString() });
+              }
             } catch (e) { console.warn('Failed to seed domain index', e); }
           }
 
