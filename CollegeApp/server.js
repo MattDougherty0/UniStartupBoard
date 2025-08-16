@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3003;
+const port = 3002;
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));

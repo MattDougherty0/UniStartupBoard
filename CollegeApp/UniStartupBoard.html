@@ -10,37 +10,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <style>
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    
-    /* Ensure custom markers are always visible */
-    .custom-marker {
-      transition: all 0.2s ease-in-out;
-    }
-    
-    .custom-marker:hover {
-      z-index: 1000 !important;
-    }
-  </style>
   <!-- Add Firebase SDK -->
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { 
-      getAuth, 
-      GoogleAuthProvider, 
-      signInWithPopup, 
-      signOut, 
-      onAuthStateChanged,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  signOut, 
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, collection, doc, setDoc, getDocs, addDoc, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -57,10 +41,12 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const firestore = getFirestore(app);
 
     // Make Firebase available globally
     window.firebase = {
       auth,
+      firestore,
       GoogleAuthProvider,
       signInWithPopup,
       signOut,
@@ -121,17 +107,48 @@
       return { lat: 40.4406, lng: -79.9959 };
     }
 
-    // Save data to server
-    const saveToServer = async (key, data) => {
+    // Save data to Firestore
+    const saveToFirestore = async (collectionName, data) => {
       try {
-        await fetch('/api/data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ key, data })
-        });
+        if (Array.isArray(data)) {
+          // For arrays, add each item as a separate document
+          const promises = data.map(item => {
+            if (item.id) {
+              // Update existing document
+              return setDoc(doc(window.firebase.firestore, collectionName, item.id.toString()), item);
+            } else {
+              // Add new document
+              return addDoc(collection(window.firebase.firestore, collectionName), item);
+            }
+          });
+          await Promise.all(promises);
+        } else {
+          // For single objects
+          await setDoc(doc(window.firebase.firestore, collectionName, data.id?.toString() || 'default'), data);
+        }
       } catch (error) {
-        console.error('Error saving to server:', error);
+        console.error('Error saving to Firestore:', error);
       }
+    };
+
+    // Read data from Firestore
+    const readFromFirestore = async (collectionName) => {
+      try {
+        const querySnapshot = await getDocs(collection(window.firebase.firestore, collectionName));
+        const data = [];
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data() });
+        });
+        return data;
+      } catch (error) {
+        console.error('Error reading from Firestore:', error);
+        return [];
+      }
+    };
+
+    // Legacy function for backward compatibility
+    const saveToServer = async (key, data) => {
+      await saveToFirestore(key, data);
     };
 
     function App() {
@@ -150,7 +167,9 @@
 
       // Save data whenever it changes
       useEffect(() => {
-        saveToServer('posts', posts);
+        if (posts.length > 0) {
+          saveToFirestore('posts', posts);
+        }
       }, [posts]);
 
       useEffect(() => {
@@ -213,10 +232,12 @@
                 updatedAt: nowIso,
                 profile: null
               };
-              console.log("Creating new user:", newUser);
-              setUsers(prev => [...prev, newUser]);
-              setUser(newUser);
-              setView("onboarding");
+                              console.log("Creating new user:", newUser);
+                // Save new user to Firestore
+                saveToFirestore('users', newUser);
+                setUsers(prev => [...prev, newUser]);
+                setUser(newUser);
+                setView("onboarding");
             }
                   } else {
             console.log("No user, resetting state"); // Debug log
@@ -262,17 +283,18 @@
             { name: "Northeastern University", emailDomain: "northeastern.edu", lat: 42.3398, lng: -71.0892, city: "Boston" }
           ];
           const [unis, ps, usrs] = await Promise.all([
-            fetch('/api/data?key=universities').then(res => res.json()).catch(err => { console.error('Error fetching universities:', err); return []; }),
-            fetch('/api/data?key=posts').then(res => res.json()).catch(err => { console.error('Error fetching posts:', err); return []; }),
-            fetch('/api/data?key=users').then(res => res.json()).catch(err => { console.error('Error fetching users:', err); return []; })
+            readFromFirestore('universities'),
+            readFromFirestore('posts'),
+            readFromFirestore('users')
           ]);
           let universitiesToSet = unis;
           console.log('Universities from server:', unis);
+          // Seed initial data if none exists
           if (unis.length === 0) {
             console.log('No universities found, initializing with Pittsburgh universities...');
             universitiesToSet = pittsburghUniversities;
-            await saveToServer('universities', universitiesToSet);
-            console.log('Saved universities to server');
+            await saveToFirestore('universities', universitiesToSet);
+            console.log('Saved universities to Firestore');
           }
           // Ensure Pittsburgh entries have city metadata and add SF/Boston if missing
           let changed = false;
@@ -297,7 +319,7 @@
             }
           });
           if (changed) {
-            await saveToServer('universities', universitiesToSet);
+            await saveToFirestore('universities', universitiesToSet);
           }
           setUniversities(universitiesToSet);
 
@@ -561,7 +583,7 @@
             ensureNUsersForUni(uniName, info.domain, info.names, 3);
           });
           if (createdCityUsers.length > 0 || usersChanged) {
-            await saveToServer('users', usersToSet);
+            await saveToFirestore('users', usersToSet);
             setUsers(usersToSet);
           }
 
@@ -1078,6 +1100,10 @@
           createdAt: new Date().toISOString().split("T")[0], 
           comments: [] 
         };
+        
+        // Save to Firestore
+        saveToFirestore('posts', newPost);
+        
         setPosts([...posts, newPost]);
         setView("board");
       };
@@ -1086,7 +1112,15 @@
       const handleEditPost = (postId, updatedPost) => {
         if (!user) return; // Add null check
         
-        setPosts(posts.map(p => p.id === postId ? { ...p, ...updatedPost } : p));
+        const updatedPosts = posts.map(p => p.id === postId ? { ...p, ...updatedPost } : p);
+        
+        // Save updated post to Firestore
+        const postToUpdate = updatedPosts.find(p => p.id === postId);
+        if (postToUpdate) {
+          saveToFirestore('posts', postToUpdate);
+        }
+        
+        setPosts(updatedPosts);
         setView("board");
       };
 
@@ -1094,6 +1128,8 @@
       const handleDeletePost = (postId) => {
         if (!user) return; // Add null check
         
+        // Note: Firestore delete would require additional setup
+        // For now, we'll just remove from local state
         setPosts(posts.filter(p => p.id !== postId));
         setView("board");
       };
@@ -1102,7 +1138,7 @@
       const handleAddComment = (postId, comment) => {
         if (!user) return; // Add null check
         
-        setPosts(posts.map(p => p.id === postId ? { 
+        const updatedPosts = posts.map(p => p.id === postId ? { 
           ...p, 
           comments: [...p.comments, { 
             id: p.comments.length + 1, 
@@ -1110,7 +1146,15 @@
             text: comment, 
             createdAt: new Date().toISOString().split("T")[0] 
           }] 
-        } : p));
+        } : p);
+        
+        // Save updated post with comment to Firestore
+        const postWithComment = updatedPosts.find(p => p.id === postId);
+        if (postWithComment) {
+          saveToFirestore('posts', postWithComment);
+        }
+        
+        setPosts(updatedPosts);
       };
 
       // Handle university filter from map
@@ -1124,26 +1168,22 @@
       };
 
       // Filter posts by university or proximity
-      const filteredPosts = (user ? posts : posts).filter(post => {
-        if (universityFilter) return post.university === universityFilter;
-        if (feedMode === 'global') return true;
+      const filteredPosts = user ? posts.filter(post => {
+            if (universityFilter) return post.university === universityFilter;
+            if (feedMode === 'global') return true;
         const postUni = universities.find(u => u.name === post.university);
-        if (user && post.university === user.university) return true;
-        if (user && postUni && user.lat && user.lng) {
+        if (post.university === user.university) return true;
+        if (postUni && user.lat && user.lng) {
           const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
           return distance <= distanceFilter;
         }
-        // When not signed in, show posts from the selected city in local view
-        if (!user && postUni && postUni.city) {
-          return postUni.city === selectedCity;
-        }
         return false;
-      });
-      const cityFilteredPosts = (user ? posts : posts).filter(post => {
-        if (universityFilter) return post.university === universityFilter;
-        const postUni = universities.find(u => u.name === post.university);
-        return postUni && postUni.city === selectedCity;
-      });
+      }) : [];
+          const cityFilteredPosts = user ? posts.filter(post => {
+            if (universityFilter) return post.university === universityFilter;
+            const postUni = universities.find(u => u.name === post.university);
+            return postUni && postUni.city === selectedCity;
+          }) : [];
       
       const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
 
@@ -1289,87 +1329,34 @@
                         users={users} 
                         onUniversityFilter={handleUniversityFilter}
                         center={(function(){
-                          // For city view, center on universities within reasonable distance of city center
-                          if (feedMode === 'city' && selectedCity) {
-                            // Get city center coordinates
-                            let cityCenter = null;
+                          // City-specific centering for better map focus
                           if (selectedCity === 'San Francisco') {
-                              cityCenter = {lat: 37.7749, lng: -122.4194};
+                            // Center on actual SF city center, not university average
+                            return {lat: 37.7749, lng: -122.4194};
                           } else if (selectedCity === 'Boston') {
-                              cityCenter = {lat: 42.3601, lng: -71.0589};
+                            // Center on actual Boston city center
+                            return {lat: 42.3601, lng: -71.0589};
                           } else if (selectedCity === 'Pittsburgh') {
-                              cityCenter = {lat: 40.4406, lng: -79.9959};
-                            }
-                            
-                            if (cityCenter) {
-                              // Find universities within 10 miles of city center for map centering
-                              const nearbyUnis = universities.filter(u => {
-                                const distance = Math.sqrt(
-                                  Math.pow((u.lat - cityCenter.lat) * 69, 2) + 
-                                  Math.pow((u.lng - cityCenter.lng) * 54.6, 2)
-                                );
-                                return distance <= 10; // 10 miles radius
-                              });
-                              
-                              if (nearbyUnis.length > 0) {
-                                // Average the nearby universities for better map focus
-                                const avgLat = nearbyUnis.reduce((s,u)=>s+u.lat,0)/nearbyUnis.length;
-                                const avgLng = nearbyUnis.reduce((s,u)=>s+u.lng,0)/nearbyUnis.length;
-                          return {lat: avgLat, lng: avgLng};
-                              }
-                            }
-                            
-                            // Fallback to city center if no nearby universities
-                            return cityCenter;
+                            // Center on actual Pittsburgh city center
+                            return {lat: 40.4406, lng: -79.9959};
                           }
-                          
-                          // Default fallback
-                          return null;
+                          // Fallback to university average for other cities
+                          const cityUnis = universities.filter(u => u.city === selectedCity);
+                          if (cityUnis.length === 0) return null;
+                          const avgLat = cityUnis.reduce((s,u)=>s+u.lat,0)/cityUnis.length;
+                          const avgLng = cityUnis.reduce((s,u)=>s+u.lng,0)/cityUnis.length;
+                          return {lat: avgLat, lng: avgLng};
                         })()}
                         zoom={(function(){
-                          // For city view, use appropriate zoom for 10-mile radius
-                          if (feedMode === 'city' && selectedCity) {
-                            // Get city center coordinates
-                            let cityCenter = null;
+                          // City-specific zoom levels for better focus
                           if (selectedCity === 'San Francisco') {
-                              cityCenter = {lat: 37.7749, lng: -122.4194};
+                            return 11; // Closer zoom for SF to focus on the city
                           } else if (selectedCity === 'Boston') {
-                              cityCenter = {lat: 42.3601, lng: -71.0589};
+                            return 11; // Closer zoom for Boston
                           } else if (selectedCity === 'Pittsburgh') {
-                              cityCenter = {lat: 40.4406, lng: -79.9959};
-                            }
-                            
-                            if (cityCenter) {
-                              // Find universities within 10 miles of city center
-                              const nearbyUnis = universities.filter(u => {
-                                const distance = Math.sqrt(
-                                  Math.pow((u.lat - cityCenter.lat) * 69, 2) + 
-                                  Math.pow((u.lng - cityCenter.lng) * 54.6, 2)
-                                );
-                                return distance <= 10; // 10 miles radius
-                              });
-                              
-                              if (nearbyUnis.length > 1) {
-                                // Calculate spread of nearby universities for zoom
-                                const lats = nearbyUnis.map(u => u.lat);
-                                const lngs = nearbyUnis.map(u => u.lng);
-                                const latSpread = Math.max(...lats) - Math.min(...lats);
-                                const lngSpread = Math.max(...lngs) - Math.min(...lngs);
-                                const maxSpread = Math.max(latSpread, lngSpread);
-                                
-                                // Zoom based on spread of nearby universities
-                                if (maxSpread < 0.02) return 14;      // Very close (like Harvard/MIT)
-                                if (maxSpread < 0.05) return 13;      // Close (like SF universities)
-                                return 12;                            // Medium spread
-                              }
-                            }
-                            
-                            // Default zoom for city view with 10-mile radius
-                            return 12; // Good for showing ~10 mile area
+                            return 11; // Closer zoom for Pittsburgh
                           }
-                          
-                          // Default zoom for other views
-                          return 13;
+                          return 12; // Default zoom
                         })()}
                         showUserMarker={false}
                         title={`${selectedCity} Startup Projects`}
@@ -2130,52 +2117,40 @@
 
       return (
         <div className="max-w-4xl mx-auto">
-                    {/* Header with title and Start Project button */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-900 font-mono">Startup Board</h2>
-            <button 
-              onClick={()=>setView('composer')} 
-              className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold text-base transition-all shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-3"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Start Project
-            </button>
+          <div className="mt-2 mb-3">
+            <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
           </div>
-
-                      {/* Filters Container */}
-            <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6 shadow-sm">
-              <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-              {/* Feed Mode Tabs */}
-                              <div className="flex flex-col sm:flex-row gap-3">
+                                  <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                {/* Feed Mode Tabs */}
+                <div className="flex flex-col sm:flex-row gap-4">
               {!universityFilter && (
-                    <div className="flex items-center bg-gray-100 rounded-xl p-1">
+                    <div className="flex items-center bg-gray-100 rounded-lg p-1">
                   <button
                     onClick={() => setFeedMode('local')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'local' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'local' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
                   >
                     Local
                   </button>
                   <button
                     onClick={() => setFeedMode('city')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'city' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'city' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
                   >
                     Cities
                   </button>
                   <button
                     onClick={() => setFeedMode('global')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'global' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'global' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
                   >
                         Remote
                   </button>
                     </div>
                   )}
-                
-                                  {/* Context-specific filters */}
+                  
+                  {/* Context-specific filters */}
                   {feedMode === 'local' && !universityFilter && (
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-700 text-sm font-medium">Within:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600 text-sm font-medium">Within:</span>
                       <select
                         value={distanceFilter}
                         onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
@@ -2189,8 +2164,8 @@
                   )}
                   
                   {feedMode === 'city' && !universityFilter && (
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-700 text-sm font-medium">City:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600 text-sm font-medium">City:</span>
                       <select
                         value={selectedCity}
                         onChange={(e) => { setSelectedCity(e.target.value); }}
@@ -2204,7 +2179,7 @@
                   )}
                   
               {universityFilter && (
-                    <div className="flex items-center gap-3 bg-gradient-to-r from-orange-400 to-orange-500 rounded-xl px-3 py-2 shadow-md">
+                    <div className="flex items-center gap-2 bg-gradient-to-r from-orange-400 to-orange-500 rounded-lg px-4 py-2 shadow-sm">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -2222,9 +2197,10 @@
               )}
             </div>
 
-                              {/* Right side filters */}
-                <div className="flex gap-3">
-                  <select className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[160px]">
+                {/* Right side controls */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex gap-3">
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[140px]">
                 <option value="all">All Categories</option>
                 <option value="Tech">Tech</option>
                 <option value="Sustainability">Sustainability</option>
@@ -2233,13 +2209,23 @@
                 <option value="Education">Education</option>
                 <option value="Finance">Finance</option>
               </select>
-                  <select className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[140px]">
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[120px]">
                 <option value="recent">Most Recent</option>
                 <option value="comments">Most Comments</option>
               </select>
             </div>
+                  <button 
+                    onClick={()=>setView('composer')} 
+                    className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium text-sm transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Start Project
+                  </button>
           </div>
-          </div>
+              </div>
+            </div>
           {posts.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-700 font-mono text-sm mb-3">No posts match your filters.</p>
@@ -2755,14 +2741,6 @@
         // Initialize map centered either on provided center or user's location
         const initialCenter = center ? [center.lat, center.lng] : [user.lat, user.lng];
         mapInstanceRef.current = L.map(mapRef.current).setView(initialCenter, zoom);
-        
-        // Listen for global filter events
-        const handleGlobalFilter = (event) => {
-          if (onUniversityFilter) {
-            onUniversityFilter(event.detail.universityName);
-          }
-        };
-        document.addEventListener('filterByUniversity', handleGlobalFilter);
 
         // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -2845,28 +2823,9 @@
               </div>
             `);
 
-          // Make the marker clickable to filter by university
+          // Add click handler for filtering
           marker.on('click', () => {
-            console.log('Marker clicked for university:', universityName);
-            if (onUniversityFilter) {
             onUniversityFilter(universityName);
-            }
-          });
-          
-          // Add hover effect to show it's clickable (using safer CSS properties)
-          marker.on('mouseover', function() {
-            const element = this.getElement();
-            if (element) {
-              element.style.cursor = 'pointer';
-              element.style.filter = 'brightness(1.2) drop-shadow(0 4px 8px rgba(0,0,0,0.4))';
-            }
-          });
-          
-          marker.on('mouseout', function() {
-            const element = this.getElement();
-            if (element) {
-              element.style.filter = 'brightness(1) drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
-            }
           });
         });
 
@@ -2875,7 +2834,6 @@
             mapInstanceRef.current.remove();
             mapInstanceRef.current = null;
           }
-          document.removeEventListener('filterByUniversity', handleGlobalFilter);
         };
       }, [user, posts, users, onUniversityFilter, center, showUserMarker]);
 
@@ -2902,15 +2860,6 @@
         </div>
       );
     }
-
-    // Global function for popup button clicks
-    window.filterByUniversity = function(universityName) {
-      // Find the current MapView component and trigger the filter
-      const event = new CustomEvent('filterByUniversity', { 
-        detail: { universityName } 
-      });
-      document.dispatchEvent(event);
-    };
 
     // Handle navigation for edit post and post view
     function handleHashChange() {
