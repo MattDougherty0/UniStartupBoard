@@ -70,6 +70,9 @@
     const initialUniversities = [];
     const initialPosts = [];
     const initialUsers = [];
+    
+    // Global variable for current users to avoid reference errors
+    let currentUsers = [];
 
     // Random animal images for default avatars
     const defaultAvatars = [
@@ -135,7 +138,12 @@
       try {
         await setDoc(doc(firestoreDb, collectionName, docId), data, { merge: true });
       } catch (error) {
-        console.error('Error saving to Firestore:', error);
+        if (error.code === 'permission-denied') {
+          console.warn('Permission denied saving to Firestore:', error.message);
+          // Continue without saving - this is expected for unauthenticated users
+        } else {
+          console.error('Error saving to Firestore:', error);
+        }
       }
     };
 
@@ -144,8 +152,14 @@
         const snap = await getDoc(doc(firestoreDb, collectionName, docId));
         return snap.exists() ? snap.data() : null;
       } catch (error) {
-        console.error('Error loading from Firestore:', error);
-        return null;
+        if (error.code === 'permission-denied') {
+          console.warn('Permission denied loading from Firestore:', error.message);
+          // Return null for permission issues - this is expected for unauthenticated users
+          return null;
+        } else {
+          console.error('Error loading from Firestore:', error);
+          return null;
+        }
       }
     };
 
@@ -176,7 +190,12 @@
 
     // Firestore save function for app data
     const saveToFirestoreApp = async (key, data) => {
-      await saveToFirestore('app', key, { data, updatedAt: new Date().toISOString() });
+      try {
+        await saveToFirestore('app', key, { data, updatedAt: new Date().toISOString() });
+      } catch (error) {
+        console.warn('Failed to save app data to Firestore:', error.message);
+        // Continue without saving - this is expected for unauthenticated users
+      }
     };
 
     function App() {
@@ -417,12 +436,19 @@
             { name: "Boston University", emailDomain: "bu.edu", lat: 42.3505, lng: -71.1054, city: "Boston" },
             { name: "Northeastern University", emailDomain: "northeastern.edu", lat: 42.3398, lng: -71.0892, city: "Boston" }
           ];
-          const [unisDoc, postsDoc, usersDoc, domainIdxDoc] = await Promise.all([
-            loadFromFirestore('app', 'universities'),
-            loadFromFirestore('app', 'posts'),
-            loadFromFirestore('app', 'users'),
-            loadFromFirestore('app', 'domain_index')
-          ]);
+          // Try to load from Firestore, but continue with fallback data if permissions fail
+          let unisDoc, postsDoc, usersDoc, domainIdxDoc;
+          try {
+            [unisDoc, postsDoc, usersDoc, domainIdxDoc] = await Promise.all([
+              loadFromFirestore('app', 'universities'),
+              loadFromFirestore('app', 'posts'),
+              loadFromFirestore('app', 'users'),
+              loadFromFirestore('app', 'domain_index')
+            ]);
+          } catch (error) {
+            console.warn('Failed to load data from Firestore, using fallback data:', error.message);
+            unisDoc = postsDoc = usersDoc = domainIdxDoc = null;
+          }
           const unis = unisDoc?.data || [];
           const ps = postsDoc?.data || [];
           const usrs = usersDoc?.data || [];
@@ -749,7 +775,7 @@
           if (ps.length === 0) {
             postsToSet = [];
             // Always use the users loaded into state for post generation
-            let currentUsers = usersToSet;
+            currentUsers = usersToSet;
             // Pittsburgh startup ideas with realistic names and descriptions
             const pittsburghProjects = [
               // Carnegie Mellon Projects (5)
