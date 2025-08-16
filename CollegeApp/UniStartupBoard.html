@@ -10,6 +10,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    /* Ensure custom markers are always visible */
+    .custom-marker {
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .custom-marker:hover {
+      z-index: 1000 !important;
+    }
+  </style>
   <!-- Add Firebase SDK -->
   <script type="module">
     // Import the functions you need from the SDKs you need
@@ -154,7 +171,7 @@
             
             // Find or create university
             let university = universities.find(u => u.emailDomain === emailDomain);
-            if (!university) {
+              if (!university) {
               // Create new university entry
               const newUniversity = {
                 id: universities.length + 1,
@@ -178,7 +195,7 @@
               const isEdu = emailDomain && emailDomain.endsWith(".edu");
               const newUser = { 
                 id: users.length + 1, 
-                email,
+                email, 
                 name: "",
                 university: university.name, 
                 lat: university.lat, 
@@ -201,7 +218,7 @@
               setUser(newUser);
               setView("onboarding");
             }
-          } else {
+                  } else {
             console.log("No user, resetting state"); // Debug log
             setUser(null);
             setView("signin");
@@ -213,9 +230,9 @@
 
       useEffect(() => {
         const fetchData = async () => {
-          console.log('Fetching data from server...');
-          const pittsburghUniversities = [
-            { id: 1, name: "University of Pittsburgh", emailDomain: "pitt.edu", lat: 40.4440, lng: -79.9532, city: "Pittsburgh" },
+            console.log('Fetching data from server...');
+            const pittsburghUniversities = [
+              { id: 1, name: "University of Pittsburgh", emailDomain: "pitt.edu", lat: 40.4440, lng: -79.9532, city: "Pittsburgh" },
             { id: 2, name: "Carnegie Mellon University", emailDomain: "cmu.edu", lat: 40.4433, lng: -79.9440, city: "Pittsburgh" },
             { id: 3, name: "Duquesne University", emailDomain: "duq.edu", lat: 40.4374, lng: -79.9909, city: "Pittsburgh" },
             { id: 4, name: "Carlow University", emailDomain: "carlow.edu", lat: 40.4397, lng: -79.9642, city: "Pittsburgh" },
@@ -949,9 +966,9 @@
             await saveToServer('posts', postsToSet);
           }
           setPosts(postsToSet);
-        };
-        fetchData();
-      }, []);
+      };
+      fetchData();
+    }, []);
 
       // Function to set the view to a specific user's profile
       const viewUserProfile = (userId) => {
@@ -1107,24 +1124,28 @@
       };
 
       // Filter posts by university or proximity
-                const filteredPosts = user ? posts.filter(post => {
-            if (universityFilter) return post.university === universityFilter;
-            if (feedMode === 'global') return true;
-            const postUni = universities.find(u => u.name === post.university);
-            if (post.university === user.university) return true;
-            if (postUni && user.lat && user.lng) {
-              const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
-              return distance <= distanceFilter;
-            }
-            return false;
-          }) : [];
-          const cityFilteredPosts = user ? posts.filter(post => {
-            if (universityFilter) return post.university === universityFilter;
-            const postUni = universities.find(u => u.name === post.university);
-            return postUni && postUni.city === selectedCity;
-          }) : [];
-          
-          const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
+      const filteredPosts = (user ? posts : posts).filter(post => {
+        if (universityFilter) return post.university === universityFilter;
+        if (feedMode === 'global') return true;
+        const postUni = universities.find(u => u.name === post.university);
+        if (user && post.university === user.university) return true;
+        if (user && postUni && user.lat && user.lng) {
+          const distance = getDistance(user.lat, user.lng, postUni.lat, postUni.lng);
+          return distance <= distanceFilter;
+        }
+        // When not signed in, show posts from the selected city in local view
+        if (!user && postUni && postUni.city) {
+          return postUni.city === selectedCity;
+        }
+        return false;
+      });
+      const cityFilteredPosts = (user ? posts : posts).filter(post => {
+        if (universityFilter) return post.university === universityFilter;
+        const postUni = universities.find(u => u.name === post.university);
+        return postUni && postUni.city === selectedCity;
+      });
+      
+      const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
 
       return (
         <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 font-sans">
@@ -1157,7 +1178,7 @@
                       >
                         About
                       </button>
-                                            <button 
+                      <button 
                         onClick={() => setView("composer")} 
                         className="px-5 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-mono text-sm font-medium shadow-sm hover:shadow-md"
                       >
@@ -1191,7 +1212,7 @@
 
           {/* Main Content */}
           <main className="container mx-auto px-4 py-8">
-                        {view === "signin" && (
+            {view === "signin" && (
               <div className="max-w-md mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
@@ -1213,7 +1234,7 @@
               <div className="max-w-3xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Welcome! Let’s get you set up</h2>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Welcome! Let's get you set up</h2>
                     <OnboardingFlow user={user} setUser={setUser} users={users} setUsers={setUsers} setView={setView} universities={universities} />
                   </div>
                 </div>
@@ -1252,15 +1273,15 @@
               <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
-                    {feedMode === 'local' && (
-                      <MapView 
-                        user={user} 
-                        posts={filteredPosts} 
-                        users={users} 
-                        onUniversityFilter={handleUniversityFilter}
-                        title="Startup Projects Near You"
-                      />
-                    )}
+                        {feedMode === 'local' && (
+                          <MapView 
+                            user={user} 
+                            posts={filteredPosts} 
+                            users={users} 
+                            onUniversityFilter={handleUniversityFilter}
+                            title="Startup Projects Near You"
+                          />
+                        )}
                     {feedMode === 'city' && (
                       <MapView 
                         user={user} 
@@ -1268,34 +1289,87 @@
                         users={users} 
                         onUniversityFilter={handleUniversityFilter}
                         center={(function(){
-                          // City-specific centering for better map focus
+                          // For city view, center on universities within reasonable distance of city center
+                          if (feedMode === 'city' && selectedCity) {
+                            // Get city center coordinates
+                            let cityCenter = null;
                           if (selectedCity === 'San Francisco') {
-                            // Center on actual SF city center, not university average
-                            return {lat: 37.7749, lng: -122.4194};
+                              cityCenter = {lat: 37.7749, lng: -122.4194};
                           } else if (selectedCity === 'Boston') {
-                            // Center on actual Boston city center
-                            return {lat: 42.3601, lng: -71.0589};
+                              cityCenter = {lat: 42.3601, lng: -71.0589};
                           } else if (selectedCity === 'Pittsburgh') {
-                            // Center on actual Pittsburgh city center
-                            return {lat: 40.4406, lng: -79.9959};
-                          }
-                          // Fallback to university average for other cities
-                          const cityUnis = universities.filter(u => u.city === selectedCity);
-                          if (cityUnis.length === 0) return null;
-                          const avgLat = cityUnis.reduce((s,u)=>s+u.lat,0)/cityUnis.length;
-                          const avgLng = cityUnis.reduce((s,u)=>s+u.lng,0)/cityUnis.length;
+                              cityCenter = {lat: 40.4406, lng: -79.9959};
+                            }
+                            
+                            if (cityCenter) {
+                              // Find universities within 10 miles of city center for map centering
+                              const nearbyUnis = universities.filter(u => {
+                                const distance = Math.sqrt(
+                                  Math.pow((u.lat - cityCenter.lat) * 69, 2) + 
+                                  Math.pow((u.lng - cityCenter.lng) * 54.6, 2)
+                                );
+                                return distance <= 10; // 10 miles radius
+                              });
+                              
+                              if (nearbyUnis.length > 0) {
+                                // Average the nearby universities for better map focus
+                                const avgLat = nearbyUnis.reduce((s,u)=>s+u.lat,0)/nearbyUnis.length;
+                                const avgLng = nearbyUnis.reduce((s,u)=>s+u.lng,0)/nearbyUnis.length;
                           return {lat: avgLat, lng: avgLng};
+                              }
+                            }
+                            
+                            // Fallback to city center if no nearby universities
+                            return cityCenter;
+                          }
+                          
+                          // Default fallback
+                          return null;
                         })()}
                         zoom={(function(){
-                          // City-specific zoom levels for better focus
+                          // For city view, use appropriate zoom for 10-mile radius
+                          if (feedMode === 'city' && selectedCity) {
+                            // Get city center coordinates
+                            let cityCenter = null;
                           if (selectedCity === 'San Francisco') {
-                            return 11; // Closer zoom for SF to focus on the city
+                              cityCenter = {lat: 37.7749, lng: -122.4194};
                           } else if (selectedCity === 'Boston') {
-                            return 11; // Closer zoom for Boston
+                              cityCenter = {lat: 42.3601, lng: -71.0589};
                           } else if (selectedCity === 'Pittsburgh') {
-                            return 11; // Closer zoom for Pittsburgh
+                              cityCenter = {lat: 40.4406, lng: -79.9959};
+                            }
+                            
+                            if (cityCenter) {
+                              // Find universities within 10 miles of city center
+                              const nearbyUnis = universities.filter(u => {
+                                const distance = Math.sqrt(
+                                  Math.pow((u.lat - cityCenter.lat) * 69, 2) + 
+                                  Math.pow((u.lng - cityCenter.lng) * 54.6, 2)
+                                );
+                                return distance <= 10; // 10 miles radius
+                              });
+                              
+                              if (nearbyUnis.length > 1) {
+                                // Calculate spread of nearby universities for zoom
+                                const lats = nearbyUnis.map(u => u.lat);
+                                const lngs = nearbyUnis.map(u => u.lng);
+                                const latSpread = Math.max(...lats) - Math.min(...lats);
+                                const lngSpread = Math.max(...lngs) - Math.min(...lngs);
+                                const maxSpread = Math.max(latSpread, lngSpread);
+                                
+                                // Zoom based on spread of nearby universities
+                                if (maxSpread < 0.02) return 14;      // Very close (like Harvard/MIT)
+                                if (maxSpread < 0.05) return 13;      // Close (like SF universities)
+                                return 12;                            // Medium spread
+                              }
+                            }
+                            
+                            // Default zoom for city view with 10-mile radius
+                            return 12; // Good for showing ~10 mile area
                           }
-                          return 12; // Default zoom
+                          
+                          // Default zoom for other views
+                          return 13;
                         })()}
                         showUserMarker={false}
                         title={`${selectedCity} Startup Projects`}
@@ -1357,13 +1431,13 @@
                 </div>
               </div>
             )}
-                        {view === "create" && user && (
+            {view === "create" && user && (
               <div className="max-w-2xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Create a New Post</h2>
             <div className="mb-4 text-xs text-gray-600">Prefer a guided flow? Try the Project Composer.</div>
-            <CreatePostForm onCreate={handleCreatePost} />
+              <CreatePostForm onCreate={handleCreatePost} />
                   </div>
                 </div>
               </div>
@@ -2056,40 +2130,52 @@
 
       return (
         <div className="max-w-4xl mx-auto">
-          <div className="mt-2 mb-3">
-            <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
+                    {/* Header with title and Start Project button */}
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 font-mono">Startup Board</h2>
+            <button 
+              onClick={()=>setView('composer')} 
+              className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold text-base transition-all shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-3"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              Start Project
+            </button>
           </div>
-                                  <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                {/* Feed Mode Tabs */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {!universityFilter && (
-                    <div className="flex items-center bg-gray-100 rounded-lg p-1">
-                      <button
-                        onClick={() => setFeedMode('local')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'local' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
-                      >
-                        Local
-                      </button>
-                      <button
-                        onClick={() => setFeedMode('city')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'city' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
-                      >
-                        Cities
-                      </button>
-                      <button
-                        onClick={() => setFeedMode('global')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${feedMode === 'global' ? 'bg-orange-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
-                      >
+
+                      {/* Filters Container */}
+            <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6 shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+              {/* Feed Mode Tabs */}
+                              <div className="flex flex-col sm:flex-row gap-3">
+              {!universityFilter && (
+                    <div className="flex items-center bg-gray-100 rounded-xl p-1">
+                  <button
+                    onClick={() => setFeedMode('local')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'local' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                  >
+                    Local
+                  </button>
+                  <button
+                    onClick={() => setFeedMode('city')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'city' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                  >
+                    Cities
+                  </button>
+                  <button
+                    onClick={() => setFeedMode('global')}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${feedMode === 'global' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'}`}
+                  >
                         Remote
-                      </button>
+                  </button>
                     </div>
                   )}
-                  
-                  {/* Context-specific filters */}
+                
+                                  {/* Context-specific filters */}
                   {feedMode === 'local' && !universityFilter && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-600 text-sm font-medium">Within:</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-gray-700 text-sm font-medium">Within:</span>
                       <select
                         value={distanceFilter}
                         onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
@@ -2103,8 +2189,8 @@
                   )}
                   
                   {feedMode === 'city' && !universityFilter && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-600 text-sm font-medium">City:</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-gray-700 text-sm font-medium">City:</span>
                       <select
                         value={selectedCity}
                         onChange={(e) => { setSelectedCity(e.target.value); }}
@@ -2117,54 +2203,43 @@
                     </div>
                   )}
                   
-                  {universityFilter && (
-                    <div className="flex items-center gap-2 bg-gradient-to-r from-orange-400 to-orange-500 rounded-lg px-4 py-2 shadow-sm">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
+              {universityFilter && (
+                    <div className="flex items-center gap-3 bg-gradient-to-r from-orange-400 to-orange-500 rounded-xl px-3 py-2 shadow-md">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                       <span className="text-white text-sm font-medium truncate max-w-[200px]">
-                        {universityFilter}
-                      </span>
-                      <button
-                        onClick={clearUniversityFilter}
+                    {universityFilter}
+                  </span>
+                  <button
+                    onClick={clearUniversityFilter}
                         className="ml-2 bg-white/20 hover:bg-white/30 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold transition-colors"
-                        aria-label="Clear filter"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Right side controls */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="flex gap-3">
-                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[140px]">
-                      <option value="all">All Categories</option>
-                      <option value="Tech">Tech</option>
-                      <option value="Sustainability">Sustainability</option>
-                      <option value="Social Impact">Social Impact</option>
-                      <option value="Health">Health</option>
-                      <option value="Education">Education</option>
-                      <option value="Finance">Finance</option>
-                    </select>
-                    <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[120px]">
-                      <option value="recent">Most Recent</option>
-                      <option value="comments">Most Comments</option>
-                    </select>
-                  </div>
-                  <button 
-                    onClick={()=>setView('composer')} 
-                    className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium text-sm transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
+                    aria-label="Clear filter"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    Start Project
+                    ×
                   </button>
                 </div>
-              </div>
+              )}
             </div>
+
+                              {/* Right side filters */}
+                <div className="flex gap-3">
+                  <select className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[160px]">
+                <option value="all">All Categories</option>
+                <option value="Tech">Tech</option>
+                <option value="Sustainability">Sustainability</option>
+                <option value="Social Impact">Social Impact</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Finance">Finance</option>
+              </select>
+                  <select className="px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm min-w-[140px]">
+                <option value="recent">Most Recent</option>
+                <option value="comments">Most Comments</option>
+              </select>
+            </div>
+          </div>
+          </div>
           {posts.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-700 font-mono text-sm mb-3">No posts match your filters.</p>
@@ -2469,18 +2544,18 @@
                 <button key={k} onClick={()=>applyPreset(k)} className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">{k}</button>
               ))}
             </div>
-            <div>
+              <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
               <input value={title} onChange={(e)=>setTitle(e.target.value)} className="w-full px-3 py-2 border rounded" placeholder="Project name" />
-            </div>
-            <div>
+              </div>
+              <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Problem (max 300 chars)</label>
               <textarea value={problem} onChange={(e)=>setProblem(e.target.value.slice(0,300))} rows="3" className="w-full p-2 border rounded" />
-            </div>
-            <div>
+              </div>
+                <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Proposed Solution (max 300 chars)</label>
               <textarea value={solution} onChange={(e)=>setSolution(e.target.value.slice(0,300))} rows="3" className="w-full p-2 border rounded" />
-            </div>
+                  </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Stage</label>
@@ -2499,14 +2574,14 @@
               <input placeholder="Website" value={links.website} onChange={(e)=>setLinks({...links, website: e.target.value})} className="w-full p-2 border rounded" />
               <input type="file" accept="image/*" onChange={(e)=> setImage(e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : null)} />
             </div>
-            <div>
+        <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Open Roles</label>
               <InlineRoleForm onChange={(text)=> setLookingFor(text)} />
-            </div>
+          </div>
             <div className="flex justify-end">
               <button onClick={createPost} className="px-4 py-2 bg-orange-500 text-white rounded-lg">Publish</button>
-            </div>
-          </div>
+                      </div>
+                                </div>
           <div className="bg-gray-50 p-4 rounded border">
             <h3 className="text-lg font-semibold mb-3">Live Preview</h3>
             <div className="bg-white rounded shadow p-3">
@@ -2520,12 +2595,12 @@
                   {links.github && <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub</a>}
                   {links.figma && <a href={links.figma} target="_blank" rel="noopener noreferrer">Figma</a>}
                   {links.website && <a href={links.website} target="_blank" rel="noopener noreferrer">Website</a>}
-                </div>
-              </div>
+                              </div>
+                      </div>
               <div className="mt-3 bg-orange-50 border border-orange-200 rounded p-2">
                 <div className="text-xs font-semibold text-orange-700">Looking for</div>
                 <div className="text-sm">{lookingFor}</div>
-              </div>
+                    </div>
             </div>
           </div>
         </div>
@@ -2551,7 +2626,7 @@
             {Object.keys(templates).map(k => (
               <button key={k} onClick={()=>addRole(templates[k])} type="button" className="px-3 py-1 rounded-full text-sm border bg-white hover:bg-gray-50">{k}</button>
             ))}
-          </div>
+            </div>
           <textarea className="w-full p-2 border rounded" rows="3" placeholder="Describe roles..." onChange={(e)=>onChange(e.target.value)} />
         </div>
       );
@@ -2680,6 +2755,14 @@
         // Initialize map centered either on provided center or user's location
         const initialCenter = center ? [center.lat, center.lng] : [user.lat, user.lng];
         mapInstanceRef.current = L.map(mapRef.current).setView(initialCenter, zoom);
+        
+        // Listen for global filter events
+        const handleGlobalFilter = (event) => {
+          if (onUniversityFilter) {
+            onUniversityFilter(event.detail.universityName);
+          }
+        };
+        document.addEventListener('filterByUniversity', handleGlobalFilter);
 
         // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -2762,9 +2845,28 @@
               </div>
             `);
 
-          // Add click handler for filtering
+          // Make the marker clickable to filter by university
           marker.on('click', () => {
+            console.log('Marker clicked for university:', universityName);
+            if (onUniversityFilter) {
             onUniversityFilter(universityName);
+            }
+          });
+          
+          // Add hover effect to show it's clickable (using safer CSS properties)
+          marker.on('mouseover', function() {
+            const element = this.getElement();
+            if (element) {
+              element.style.cursor = 'pointer';
+              element.style.filter = 'brightness(1.2) drop-shadow(0 4px 8px rgba(0,0,0,0.4))';
+            }
+          });
+          
+          marker.on('mouseout', function() {
+            const element = this.getElement();
+            if (element) {
+              element.style.filter = 'brightness(1) drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
+            }
           });
         });
 
@@ -2773,6 +2875,7 @@
             mapInstanceRef.current.remove();
             mapInstanceRef.current = null;
           }
+          document.removeEventListener('filterByUniversity', handleGlobalFilter);
         };
       }, [user, posts, users, onUniversityFilter, center, showUserMarker]);
 
@@ -2799,6 +2902,15 @@
         </div>
       );
     }
+
+    // Global function for popup button clicks
+    window.filterByUniversity = function(universityName) {
+      // Find the current MapView component and trigger the filter
+      const event = new CustomEvent('filterByUniversity', { 
+        detail: { universityName } 
+      });
+      document.dispatchEvent(event);
+    };
 
     // Handle navigation for edit post and post view
     function handleHashChange() {
