@@ -1830,8 +1830,14 @@
             let merged = { ...seeds };
             const tryPaths = [
               'data/university_domains.json',
-              '/data/university_domains.json'
-            ];
+              '/data/university_domains.json',
+              (function () {
+                try {
+                  const base = (window.location.pathname || '').replace(/[^\/]+$/, '');
+                  return base + 'data/university_domains.json';
+                } catch (_) { return null; }
+              })()
+            ].filter(Boolean);
             for (const p of tryPaths) {
               try {
                 const res = await fetch(p, { cache: 'no-store' });
