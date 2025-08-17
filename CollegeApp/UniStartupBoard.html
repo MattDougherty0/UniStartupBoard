@@ -1597,7 +1597,7 @@
                         zoom={(function(){
                           // Fixed zoom levels that match the screenshots exactly
                           if (selectedCity === 'San Francisco') {
-                            return 9; // Zoom out further to include all 6 Bay Area schools
+                            return 9.5; // Slightly closer but still shows all 6 Bay Area schools
                           } else if (selectedCity === 'Boston') {
                             return 13; // Same zoom as Pittsburgh to show Cambridge, Somerville, Back Bay, South End clearly
                           } else if (selectedCity === 'Pittsburgh') {
@@ -2278,7 +2278,7 @@
         // Ensure Pittsburgh exists
         if (!set.has('Pittsburgh')) set.add('Pittsburgh');
         // Prefer ordered list
-        const ordered = ['Pittsburgh', 'San Francisco', 'Boston'];
+        const ordered = ['Boston', 'San Francisco', 'Pittsburgh'];
         const rest = Array.from(set).filter(c => !ordered.includes(c)).sort();
         return [...ordered.filter(c => set.has(c)), ...rest];
       }, [universities]);
