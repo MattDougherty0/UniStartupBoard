@@ -1864,6 +1864,8 @@
           setSelectedUniversityName("");
           return;
         }
+        // Wait for known-domain map to be ready so first try uses the JSON list
+        if (knownDomainMap === null) return;
         // 0) Immediate hard map (prefer exact subdomain match, then normalized root)
         if (knownDomainMap && (knownDomainMap[domainRaw] || knownDomainMap[domain])) {
           const name = knownDomainMap[domainRaw] || knownDomainMap[domain];
@@ -1909,7 +1911,7 @@
           setDetectedChoices([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }]);
           setSelectedUniversityName(inferred);
         })();
-      }, [email, universities]);
+      }, [email, universities, knownDomainMap]);
 
       const handleSubmit = async (e) => {
         e.preventDefault();
