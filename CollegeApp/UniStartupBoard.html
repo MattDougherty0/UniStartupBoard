@@ -267,6 +267,7 @@
         __knownDomainsLoadPromise = (async () => {
           const tryPaths = [
             'data/university_domains.json',
+            '/CollegeApp/data/university_domains.json',
             '/data/university_domains.json',
             (function () {
               try {
@@ -282,6 +283,7 @@
                 const json = await res.json();
                 if (json && typeof json === 'object') {
                   KNOWN_DOMAIN_MAP = { ...KNOWN_DOMAIN_MAP, ...json };
+                  window.__KNOWN_DOMAIN_MAP = KNOWN_DOMAIN_MAP;
                   break;
                 }
               }
@@ -1948,7 +1950,20 @@
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setEmail(val);
+                  // Synchronous resolve on keystroke for instant mapping
+                  const raw = (val.split('@')[1] || '').toLowerCase();
+                  if (!raw) return;
+                  const norm = normalizeDomain(raw);
+                  const name = (window.__KNOWN_DOMAIN_MAP && (window.__KNOWN_DOMAIN_MAP[raw] || window.__KNOWN_DOMAIN_MAP[norm])) ||
+                               (typeof KNOWN_DOMAIN_MAP !== 'undefined' && (KNOWN_DOMAIN_MAP[raw] || KNOWN_DOMAIN_MAP[norm]));
+                  if (name) {
+                    setDetectedChoices([{ name, emailDomain: norm, ...getDefaultCoordinates() }]);
+                    setSelectedUniversityName(name);
+                  }
+                }}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 required
               />
