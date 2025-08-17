@@ -2872,6 +2872,15 @@
         };
       }, [user, posts, users, onUniversityFilter, center, showUserMarker]);
 
+      // Recenter and update zoom whenever `center` or `zoom` changes
+      React.useEffect(() => {
+        if (!mapInstanceRef.current) return;
+        const nextCenter = center ? [center.lat, center.lng] : (user?.lat && user?.lng ? [user.lat, user.lng] : null);
+        if (nextCenter) {
+          mapInstanceRef.current.setView(nextCenter, zoom);
+        }
+      }, [center, zoom]);
+
       return (
         <div className="mb-4">
           <h3 className="text-lg font-medium text-gray-900 mb-3 font-mono">{title || 'Startup Projects Near You'}</h3>
