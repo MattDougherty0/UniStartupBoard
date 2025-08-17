@@ -479,10 +479,32 @@
           let universitiesToSet = unis;
           console.log('Universities from server:', unis);
           if (unis.length === 0) {
-            console.log('No universities found, initializing with Pittsburgh universities...');
-            universitiesToSet = pittsburghUniversities;
+            console.log('No universities found in Firestore, using comprehensive local data...');
+            // Use our comprehensive local data that includes SJSU and Santa Clara University
+            universitiesToSet = [
+              ...pittsburghUniversities,
+              ...sanFranciscoUniversities, 
+              ...bostonUniversities,
+              // Explicitly add our new schools to ensure they're included
+              {
+                id: 26,
+                name: "San Jose State University",
+                emailDomain: "sjsu.edu",
+                lat: 37.3352,
+                lng: -121.8811,
+                city: "San Francisco"
+              },
+              {
+                id: 27,
+                name: "Santa Clara University",
+                emailDomain: "scu.edu",
+                lat: 37.3496,
+                lng: -121.9390,
+                city: "San Francisco"
+              }
+            ];
             await saveToFirestoreApp('universities', universitiesToSet);
-            console.log('Saved universities to server');
+            console.log('Saved comprehensive universities (including SJSU and SCU) to server');
           }
           // Ensure Pittsburgh entries have city metadata and add SF/Boston if missing
           let changed = false;
@@ -714,7 +736,9 @@
             { uni: 'Stanford University', emailDomain: 'stanford.edu', first: 'Lena', last: 'Zhao', bio: 'CS student exploring AI for social good.', year: '2026' },
             { uni: 'University of California, Berkeley', emailDomain: 'berkeley.edu', first: 'Diego', last: 'Martinez', bio: 'EECS student building open-source tools.', year: '2025' },
             { uni: 'San Francisco State University', emailDomain: 'sfsu.edu', first: 'Ava', last: 'Nguyen', bio: 'Design student interested in civic tech.', year: '2025' },
-            { uni: 'University of San Francisco', emailDomain: 'usfca.edu', first: 'Noah', last: 'Williams', bio: 'Business student focused on impact startups.', year: '2026' }
+            { uni: 'University of San Francisco', emailDomain: 'usfca.edu', first: 'Noah', last: 'Williams', bio: 'Business student focused on impact startups.', year: '2026' },
+            { uni: 'San Jose State University', emailDomain: 'sjsu.edu', first: 'Jessica', last: 'Wong', bio: 'Computer Engineering major working on smart home automation.', year: '2025' },
+            { uni: 'Santa Clara University', emailDomain: 'scu.edu', first: 'Sophia', last: 'Garcia', bio: 'Environmental Science major working on sustainable agriculture.', year: '2025' }
           ];
           const bostonUserSpecs = [
             { uni: 'Harvard University', emailDomain: 'harvard.edu', first: 'Maya', last: 'Singh', bio: 'Bioengineering student working on diagnostics.', year: '2025' },
@@ -772,6 +796,14 @@
             'University of San Francisco': { domain: 'usfca.edu', names: [
               { first: 'Tara', last: 'Singh' }, { first: 'Owen', last: 'Chen' }, { first: 'Noah', last: 'Williams' },
               { first: 'Ava', last: 'Nguyen' }
+            ]},
+            'San Jose State University': { domain: 'sjsu.edu', names: [
+              { first: 'Jessica', last: 'Wong' }, { first: 'Carlos', last: 'Rodriguez' }, { first: 'Maya', last: 'Patel' },
+              { first: 'Alex', last: 'Kim' }
+            ]},
+            'Santa Clara University': { domain: 'scu.edu', names: [
+              { first: 'Sophia', last: 'Garcia' }, { first: 'Kevin', last: 'Chen' }, { first: 'Emma', last: 'Wilson' },
+              { first: 'Ryan', last: 'Davis' }
             ]},
             'Harvard University': { domain: 'harvard.edu', names: [
               { first: 'Emily', last: 'Thompson' }, { first: 'Noah', last: 'Brooks' }, { first: 'Zoe', last: 'Li' },
