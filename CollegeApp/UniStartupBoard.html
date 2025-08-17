@@ -1324,6 +1324,53 @@
           if (addedCityPosts) {
             await saveToFirestoreApp('posts', postsToSet);
           }
+
+          // Ensure Pittsburgh authors and posts exist even if Firestore had other cities (fix for CMU/Pitt)
+          (function ensurePittsburghAlways() {
+            const ensureMinUsersForUni = (uniName, emailDomain, minCount) => {
+              const existing = usersToSet.filter(u => u.university === uniName);
+              let nextId = Math.max(0, ...usersToSet.map(u => u.id || 0)) + 1;
+              const seed = [
+                { first: 'Alex', last: 'Chen' }, { first: 'Maya', last: 'Patel' },
+                { first: 'David', last: 'Kim' }, { first: 'Sarah', last: 'Johnson' },
+                { first: 'Emily', last: 'Thompson' }
+              ];
+              for (let i = existing.length; i < minCount; i++) {
+                const n = seed[i % seed.length];
+                const uniObj = universitiesToSet.find(u => u.name === uniName);
+                usersToSet.push({
+                  id: nextId++,
+                  email: `${n.first.toLowerCase()}${n.last.toLowerCase()}@${emailDomain}`,
+                  university: uniName,
+                  lat: uniObj?.lat || getDefaultCoordinates().lat,
+                  lng: uniObj?.lng || getDefaultCoordinates().lng,
+                  profile: { firstName: n.first, lastName: n.last, bio: `${n.first} ${n.last} is a student at ${uniName}.`, picture: getRandomAvatar(), graduationYear: '2025', hasIdea: 'yes', isWorkingOnIdea: 'yes', social: {} }
+                });
+              }
+            };
+
+            const cmuDomain = (universitiesToSet.find(u => u.name === 'Carnegie Mellon University')?.emailDomain) || 'cmu.edu';
+            const pittDomain = (universitiesToSet.find(u => u.name === 'University of Pittsburgh')?.emailDomain) || 'pitt.edu';
+            ensureMinUsersForUni('Carnegie Mellon University', cmuDomain, 5);
+            ensureMinUsersForUni('University of Pittsburgh', pittDomain, 3);
+
+            const cmuFixProjects = [
+              { title: 'CMU Robotics Studio', summary: 'Service robots for campus logistics.', lookingFor: 'Robotics, CV, ROS', category: 'Tech', stage: 'development', projectLink: '' },
+              { title: 'CMU EdTech AI', summary: 'LLM-driven tutor for intro CS.', lookingFor: 'NLP, full-stack', category: 'Education', stage: 'planning', projectLink: '' },
+              { title: 'CMU Cyber Defense', summary: 'Threat intel for small orgs.', lookingFor: 'Security, data', category: 'Tech', stage: 'idea', projectLink: '' },
+              { title: 'CMU Green Campus', summary: 'IoT metering dashboards for buildings.', lookingFor: 'IoT, data viz', category: 'Sustainability', stage: 'planning', projectLink: '' },
+              { title: 'CMU Creator Tools', summary: 'Tools for student creators to monetize work.', lookingFor: 'Frontend, product', category: 'Tech', stage: 'development', projectLink: '' }
+            ];
+            const pittFixProjects = [
+              { title: 'Pitt Health Hub', summary: 'Student mental health platform.', lookingFor: 'Clinicians, mobile devs', category: 'Health', stage: 'development', projectLink: '' },
+              { title: 'Oakland Co-Work', summary: 'Student-run incubator & events.', lookingFor: 'Ops, community', category: 'Social Impact', stage: 'planning', projectLink: '' },
+              { title: 'Pitt Research X', summary: 'Matchmaking for labs and industry.', lookingFor: 'BD, backend', category: 'Tech', stage: 'idea', projectLink: '' }
+            ];
+            ensurePostsCountForUni('Carnegie Mellon University', cmuFixProjects, 5);
+            ensurePostsCountForUni('University of Pittsburgh', pittFixProjects, 3);
+          })();
+
+          setUsers(usersToSet);
           setPosts(postsToSet);
           setIsLoading(false);
           setIsInitializing(false);
