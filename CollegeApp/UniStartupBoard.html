@@ -1487,12 +1487,13 @@
         }
         return false;
       }) : [];
-          const cityFilteredPosts = user ? posts.filter(post => {
+          // City view should not require auth; always filter by selected city
+          const cityFilteredPosts = posts.filter(post => {
             if (universityFilter) return post.university === universityFilter;
             const postUni = universities.find(u => u.name === post.university);
             const city = postUni?.city || inferCity(post.university);
             return city === selectedCity;
-          }) : [];
+          });
       
       const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
 
