@@ -1337,6 +1337,66 @@
       fetchData();
     }, []);
 
+    // Admin reseed for Pittsburgh via ?seedPgh=1
+    useEffect(() => {
+      const params = new URLSearchParams(window.location.search || '');
+      if (params.get('seedPgh') !== '1') return;
+      (async () => {
+        try {
+          console.log('[ADMIN] Resetting Pittsburgh users/posts...');
+          const pghUnis = pittsburghUniversities.map(u => ({ ...u }));
+          const seedNames = [
+            { firstName: 'Alex', lastName: 'Chen' },
+            { firstName: 'Maya', lastName: 'Patel' },
+            { firstName: 'David', lastName: 'Kim' },
+            { firstName: 'Sarah', lastName: 'Johnson' },
+            { firstName: 'Emily', lastName: 'Thompson' },
+            { firstName: 'Jordan', lastName: 'Davis' },
+            { firstName: 'Aisha', lastName: 'Hassan' },
+            { firstName: 'Michael', lastName: "O'Connor" }
+          ];
+          let uid = 1;
+          const seededUsers = pghUnis.flatMap((uni, idx) => {
+            const perUni = 5;
+            const arr = [];
+            for (let i = 0; i < perUni; i++) {
+              const n = seedNames[(idx * perUni + i) % seedNames.length];
+              arr.push({
+                id: uid++, email: `${n.firstName.toLowerCase()}${n.lastName.toLowerCase()}@${uni.emailDomain}`,
+                university: uni.name, lat: uni.lat, lng: uni.lng,
+                profile: { firstName: n.firstName, lastName: n.lastName, bio: `${n.firstName} ${n.lastName} at ${uni.name}.`, picture: getRandomAvatar(), graduationYear: '2025', hasIdea: 'yes', isWorkingOnIdea: 'yes', social: {} }
+              });
+            }
+            return arr;
+          });
+          const cmuFix = [
+            { title: 'CMU Robotics Studio', summary: 'Service robots for campus logistics.', lookingFor: 'Robotics, CV, ROS', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'CMU EdTech AI', summary: 'LLM-driven tutor for intro CS.', lookingFor: 'NLP, full-stack', category: 'Education', stage: 'planning', projectLink: '' },
+            { title: 'CMU Cyber Defense', summary: 'Threat intel for small orgs.', lookingFor: 'Security, data', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'CMU Green Campus', summary: 'IoT metering dashboards.', lookingFor: 'IoT, data viz', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'CMU Creator Tools', summary: 'Tools for student creators.', lookingFor: 'Frontend, product', category: 'Tech', stage: 'development', projectLink: '' }
+          ];
+          const pittFix = [
+            { title: 'Pitt Health Hub', summary: 'Student mental health platform.', lookingFor: 'Clinicians, mobile devs', category: 'Health', stage: 'development', projectLink: '' },
+            { title: 'Oakland Co-Work', summary: 'Student-run incubator & events.', lookingFor: 'Ops, community', category: 'Social Impact', stage: 'planning', projectLink: '' },
+            { title: 'Pitt Research X', summary: 'Matchmaking for labs and industry.', lookingFor: 'BD, backend', category: 'Tech', stage: 'idea', projectLink: '' }
+          ];
+          let pid = 1;
+          const seededPosts = [];
+          const authors = (u, n) => seededUsers.filter(x => x.university === u).slice(0, n);
+          authors('Carnegie Mellon University', 5).forEach((a, i) => { const pr = cmuFix[i % cmuFix.length]; seededPosts.push({ id: pid++, userId: a.id, university: a.university, title: pr.title, summary: pr.summary, lookingFor: pr.lookingFor, category: pr.category, projectLink: pr.projectLink, stage: pr.stage, createdAt: new Date().toISOString().split('T')[0], comments: [] }); });
+          authors('University of Pittsburgh', 3).forEach((a, i) => { const pr = pittFix[i % pittFix.length]; seededPosts.push({ id: pid++, userId: a.id, university: a.university, title: pr.title, summary: pr.summary, lookingFor: pr.lookingFor, category: pr.category, projectLink: pr.projectLink, stage: pr.stage, createdAt: new Date().toISOString().split('T')[0], comments: [] }); });
+          try { await saveToFirestoreApp('users', seededUsers); } catch(e) {}
+          try { await saveToFirestoreApp('posts', seededPosts); } catch(e) {}
+          setUsers(prev => [...prev.filter(u => inferCityByName(u.university) !== 'Pittsburgh'), ...seededUsers]);
+          setPosts(prev => [...prev.filter(p => inferCityByName(p.university) !== 'Pittsburgh'), ...seededPosts]);
+          console.log('[ADMIN] Pittsburgh reseed complete');
+        } catch (e) {
+          console.error('[ADMIN] Seed Pittsburgh failed', e);
+        }
+      })();
+    }, []);
+
       // Function to set the view to a specific user's profile
       const viewUserProfile = (userId) => {
         setSelectedUserId(userId);
