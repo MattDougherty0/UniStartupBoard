@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // App documents we read on load and occasionally write
+    // Structure: collection "app", docs: universities, users, posts, domain_index
+    match /app/{docId} {
+      // Public read is OK for this demo app. Tighten if needed.
+      allow read: if true;
+      // Writes only for authenticated users
+      allow write: if request.auth != null;
+    }
+
+    // Users collection (if you later split from /app/users)
+    match /users/{uid} {
+      allow read: if true; // public profiles
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
+
+
