@@ -1578,7 +1578,8 @@
                         center={(function(){
                           // Fixed coordinates that match the screenshots exactly
                           if (selectedCity === 'San Francisco') {
-                            return {lat: 37.7749, lng: -122.4194};
+                            // Center a bit south-east of downtown to frame SF + Peninsula (Stanford, SJSU, SCU) and East Bay (Berkeley)
+                            return {lat: 37.55, lng: -122.15};
                           } else if (selectedCity === 'Boston') {
                             // Center between BU (42.3505, -71.1054) and MIT (42.3601, -71.0942)
                             return {lat: 42.3553, lng: -71.0998};
@@ -1596,7 +1597,7 @@
                         zoom={(function(){
                           // Fixed zoom levels that match the screenshots exactly
                           if (selectedCity === 'San Francisco') {
-                            return 10; // Zoomed out to show broader area
+                            return 9; // Zoom out further to include all 6 Bay Area schools
                           } else if (selectedCity === 'Boston') {
                             return 13; // Same zoom as Pittsburgh to show Cambridge, Somerville, Back Bay, South End clearly
                           } else if (selectedCity === 'Pittsburgh') {
