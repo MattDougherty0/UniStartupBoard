@@ -253,31 +253,55 @@
         'berkeley.edu': 'University of California, Berkeley',
         'sjsu.edu': 'San Jose State University',
         'scu.edu': 'Santa Clara University',
+        'cnu.edu': 'Christopher Newport University',
         'harvard.edu': 'Harvard University',
         'mit.edu': 'Massachusetts Institute of Technology',
         'bu.edu': 'Boston University',
         'northeastern.edu': 'Northeastern University'
       };
 
-      // Expand KNOWN_DOMAIN_MAP from static JSON list (bundled)
-      async function preloadKnownDomains() {
-        try {
-          const res = await fetch('data/university_domains.json');
-          if (!res.ok) return;
-          const json = await res.json();
-          KNOWN_DOMAIN_MAP = { ...KNOWN_DOMAIN_MAP, ...json };
-        } catch (_) {}
+      // Expand KNOWN_DOMAIN_MAP from static JSON list (bundled) and cache the load
+      let __knownDomainsLoadPromise = null;
+      function ensureKnownDomainsLoaded() {
+        if (__knownDomainsLoadPromise) return __knownDomainsLoadPromise;
+        __knownDomainsLoadPromise = (async () => {
+          const tryPaths = [
+            'data/university_domains.json',
+            '/data/university_domains.json',
+            (function () {
+              try {
+                const base = (window.location.pathname || '').replace(/[^\/]+$/, '');
+                return base + 'data/university_domains.json';
+              } catch (_) { return null; }
+            })()
+          ].filter(Boolean);
+          for (const p of tryPaths) {
+            try {
+              const res = await fetch(p, { cache: 'no-store' });
+              if (res && res.ok) {
+                const json = await res.json();
+                if (json && typeof json === 'object') {
+                  KNOWN_DOMAIN_MAP = { ...KNOWN_DOMAIN_MAP, ...json };
+                  break;
+                }
+              }
+            } catch (_) { /* try next */ }
+          }
+        })();
+        return __knownDomainsLoadPromise;
       }
 
       // Canonical resolver by email domain
       const resolveUniversityByDomain = async (emailDomain, currentUniversities) => {
+        await ensureKnownDomainsLoaded();
+        const rawDomain = (emailDomain || '').toLowerCase().trim();
         const domain = normalizeDomain(emailDomain);
         // 1) Use already-known universities (keeps existing ids)
         let uni = currentUniversities.find(u => (u.emailDomain || '').toLowerCase() === domain);
         if (uni) return { uni, changed: false };
         // 1b) Quick map
-        if (KNOWN_DOMAIN_MAP[domain]) {
-          const quickName = KNOWN_DOMAIN_MAP[domain];
+        const quickName = KNOWN_DOMAIN_MAP[rawDomain] || KNOWN_DOMAIN_MAP[domain];
+        if (quickName) {
           const existingByName = currentUniversities.find(u => (u.name || '') === quickName);
           if (existingByName) return { uni: existingByName, changed: false };
         }
@@ -334,8 +358,9 @@
       }, [universities, user]);
 
       useEffect(() => {
+        (async () => { await ensureKnownDomainsLoaded(); })();
         // Preload domain map so first detection is accurate
-        preloadKnownDomains();
+        
         // Listen for auth state changes
         const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, async (firebaseUser) => {
           // Update global flags for Firestore operations
@@ -1779,6 +1804,50 @@
       const [isLoading, setIsLoading] = useState(false);
       const [selectedUniversityName, setSelectedUniversityName] = useState("");
       const [detectedChoices, setDetectedChoices] = useState([]);
+      const [knownDomainMap, setKnownDomainMap] = useState(null);
+
+      // Load the large domain map once for the sign-up form (independent of app state)
+      useEffect(() => {
+        (async () => {
+          try {
+            // Minimal built-in seeds to avoid any flash before fetch resolves
+            const seeds = {
+              'cmu.edu': 'Carnegie Mellon University',
+              'pitt.edu': 'University of Pittsburgh',
+              'duq.edu': 'Duquesne University',
+              'cnu.edu': 'Christopher Newport University',
+              'sfsu.edu': 'San Francisco State University',
+              'usfca.edu': 'University of San Francisco',
+              'stanford.edu': 'Stanford University',
+              'berkeley.edu': 'University of California, Berkeley',
+              'sjsu.edu': 'San Jose State University',
+              'scu.edu': 'Santa Clara University',
+              'harvard.edu': 'Harvard University',
+              'mit.edu': 'Massachusetts Institute of Technology',
+              'bu.edu': 'Boston University',
+              'northeastern.edu': 'Northeastern University'
+            };
+            let merged = { ...seeds };
+            const tryPaths = [
+              'data/university_domains.json',
+              '/data/university_domains.json'
+            ];
+            for (const p of tryPaths) {
+              try {
+                const res = await fetch(p, { cache: 'no-store' });
+                if (res && res.ok) {
+                  const json = await res.json();
+                  merged = { ...merged, ...json };
+                  break;
+                }
+              } catch (_) {}
+            }
+            setKnownDomainMap(merged);
+          } catch (_) {
+            setKnownDomainMap(null);
+          }
+        })();
+      }, []);
 
     // Build candidate universities from email domain
       useEffect(() => {
@@ -1789,9 +1858,9 @@
           setSelectedUniversityName("");
           return;
         }
-        // 0) Immediate hard map (from bundled list + runtime JSON expansion)
-        if (KNOWN_DOMAIN_MAP && KNOWN_DOMAIN_MAP[domain]) {
-          const name = KNOWN_DOMAIN_MAP[domain];
+        // 0) Immediate hard map (prefer exact subdomain match, then normalized root)
+        if (knownDomainMap && (knownDomainMap[domainRaw] || knownDomainMap[domain])) {
+          const name = knownDomainMap[domainRaw] || knownDomainMap[domain];
           setDetectedChoices([{ name, emailDomain: domain, ...getDefaultCoordinates() }]);
           setSelectedUniversityName(name);
           return;
