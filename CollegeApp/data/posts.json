@@ -479,5 +479,57 @@
     "stage": "idea",
     "createdAt": "2025-08-16",
     "comments": []
+  },
+  {
+    "id": 38,
+    "userId": 42,
+    "university": "San Jose State University",
+    "title": "Silicon Valley Smart Home",
+    "summary": "AI-powered smart home automation system that learns user preferences and optimizes energy usage. Integrates with existing smart devices and provides real-time energy consumption analytics.",
+    "lookingFor": "IoT developers, machine learning engineers, and UX designers. Experience with smart home protocols and energy management systems preferred.",
+    "category": "Tech",
+    "projectLink": "",
+    "stage": "development",
+    "createdAt": "2025-08-16",
+    "comments": []
+  },
+  {
+    "id": 39,
+    "userId": 43,
+    "university": "San Jose State University",
+    "title": "FinTech for Small Business",
+    "summary": "Digital banking platform designed specifically for small businesses and startups. Features include automated bookkeeping, expense tracking, and financial forecasting tools.",
+    "lookingFor": "Full-stack developers, financial analysts, and compliance experts. Knowledge of banking regulations and fintech security required.",
+    "category": "Finance",
+    "projectLink": "",
+    "stage": "planning",
+    "createdAt": "2025-08-16",
+    "comments": []
+  },
+  {
+    "id": 40,
+    "userId": 44,
+    "university": "Santa Clara University",
+    "title": "Sustainable Agriculture Network",
+    "summary": "Platform connecting local farmers with consumers and restaurants to reduce food waste and promote sustainable farming practices. Includes real-time inventory management and delivery optimization.",
+    "lookingFor": "Agricultural experts, supply chain specialists, and mobile app developers. Experience with sustainable farming and logistics preferred.",
+    "category": "Sustainability",
+    "projectLink": "",
+    "stage": "idea",
+    "createdAt": "2025-08-16",
+    "comments": []
+  },
+  {
+    "id": 41,
+    "userId": 45,
+    "university": "Santa Clara University",
+    "title": "AI Education Platform",
+    "summary": "Personalized learning platform that uses artificial intelligence to adapt to individual student needs. Provides targeted tutoring, progress tracking, and adaptive assessments for underserved communities.",
+    "lookingFor": "AI engineers, educational psychologists, and frontend developers. Experience with machine learning and educational technology required.",
+    "category": "Education",
+    "projectLink": "",
+    "stage": "planning",
+    "createdAt": "2025-08-16",
+    "comments": []
   }
 ]

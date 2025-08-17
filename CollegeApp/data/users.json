@@ -706,5 +706,73 @@
     "createdAt": "2025-08-16T05:42:32.400Z",
     "updatedAt": "2025-08-16T05:42:32.400Z",
     "profile": null
+  },
+  {
+    "id": 42,
+    "email": "jessicawong@sjsu.edu",
+    "university": "San Jose State University",
+    "lat": 37.3352,
+    "lng": -121.8811,
+    "profile": {
+      "firstName": "Jessica",
+      "lastName": "Wong",
+      "bio": "Computer Engineering major working on smart home automation and energy efficiency solutions.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 43,
+    "email": "carlosrodriguez@sjsu.edu",
+    "university": "San Jose State University",
+    "lat": 37.3352,
+    "lng": -121.8811,
+    "profile": {
+      "firstName": "Carlos",
+      "lastName": "Rodriguez",
+      "bio": "Business major developing fintech solutions for small businesses and startups.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 44,
+    "email": "sophiagarcia@scu.edu",
+    "university": "Santa Clara University",
+    "lat": 37.3496,
+    "lng": -121.9390,
+    "profile": {
+      "firstName": "Sophia",
+      "lastName": "Garcia",
+      "bio": "Environmental Science major working on sustainable agriculture and food waste reduction.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 45,
+    "email": "kevinchen@scu.edu",
+    "university": "Santa Clara University",
+    "lat": 37.3496,
+    "lng": -121.9390,
+    "profile": {
+      "firstName": "Kevin",
+      "lastName": "Chen",
+      "bio": "Computer Science major developing AI-powered educational tools for underserved communities.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
   }
 ]

@@ -4287,12 +4287,14 @@
   "sjsu.edu": {
     "name": "San Jose State University",
     "lat": 37.3351902,
-    "lng": -121.8812255
+    "lng": -121.8812255,
+    "city": "San Francisco"
   },
   "scu.edu": {
     "name": "Santa Clara University",
     "lat": 37.3486243,
-    "lng": -121.936544
+    "lng": -121.936544,
+    "city": "San Francisco"
   },
   "slc.edu": {
     "name": "Sarah Lawrence College",

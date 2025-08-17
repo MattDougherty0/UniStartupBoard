@@ -197,5 +197,21 @@
     "emailDomain": "alias.co",
     "lat": 40.4406,
     "lng": -79.9959
+  },
+  {
+    "id": 26,
+    "name": "San Jose State University",
+    "emailDomain": "sjsu.edu",
+    "lat": 37.3352,
+    "lng": -121.8811,
+    "city": "San Francisco"
+  },
+  {
+    "id": 27,
+    "name": "Santa Clara University",
+    "emailDomain": "scu.edu",
+    "lat": 37.3496,
+    "lng": -121.9390,
+    "city": "San Francisco"
   }
 ]
