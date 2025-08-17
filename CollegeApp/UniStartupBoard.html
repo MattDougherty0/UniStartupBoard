@@ -1384,6 +1384,35 @@
       fetchData();
     }, []);
 
+    // Admin prune for Pittsburgh posts via ?prunePgh=1
+    useEffect(() => {
+      const params = new URLSearchParams(window.location.search || '');
+      if (params.get('prunePgh') !== '1') return;
+      try {
+        const allowed = new Set([
+          'Carnegie Mellon University',
+          'University of Pittsburgh',
+          'Duquesne University',
+          'Robert Morris University',
+          'Point Park University'
+        ]);
+        const pruned = posts.filter(p => {
+          const city = inferCityByName(p.university);
+          if (city !== 'Pittsburgh') return true;
+          return allowed.has(p.university);
+        });
+        if (pruned.length !== posts.length) {
+          setPosts(pruned);
+          (async () => { try { await saveToFirestoreApp('posts', pruned); } catch(_) {} })();
+          console.log(`[ADMIN] Pruned Pittsburgh posts. Before=${posts.length}, After=${pruned.length}`);
+        } else {
+          console.log('[ADMIN] No Pittsburgh posts needed pruning.');
+        }
+      } catch (e) {
+        console.warn('[ADMIN] prunePgh failed', e);
+      }
+    }, [posts]);
+
     // Admin reseed for Pittsburgh via ?seedPgh=1
     useEffect(() => {
       const params = new URLSearchParams(window.location.search || '');
