@@ -242,7 +242,8 @@
       const [error, setError] = useState(null);
 
       // Known quick domain→name hints to short-circuit common cases
-      const KNOWN_DOMAIN_MAP = {
+      // Base quick map. Will be expanded at runtime from data/university_domains.json
+      let KNOWN_DOMAIN_MAP = {
         'cmu.edu': 'Carnegie Mellon University',
         'pitt.edu': 'University of Pittsburgh',
         'duq.edu': 'Duquesne University',
@@ -257,6 +258,16 @@
         'bu.edu': 'Boston University',
         'northeastern.edu': 'Northeastern University'
       };
+
+      // Expand KNOWN_DOMAIN_MAP from static JSON list (bundled)
+      async function preloadKnownDomains() {
+        try {
+          const res = await fetch('data/university_domains.json');
+          if (!res.ok) return;
+          const json = await res.json();
+          KNOWN_DOMAIN_MAP = { ...KNOWN_DOMAIN_MAP, ...json };
+        } catch (_) {}
+      }
 
       // Canonical resolver by email domain
       const resolveUniversityByDomain = async (emailDomain, currentUniversities) => {
@@ -323,6 +334,8 @@
       }, [universities, user]);
 
       useEffect(() => {
+        // Preload domain map so first detection is accurate
+        preloadKnownDomains();
         // Listen for auth state changes
         const unsubscribe = window.firebase.onAuthStateChanged(window.firebase.auth, async (firebaseUser) => {
           // Update global flags for Firestore operations
