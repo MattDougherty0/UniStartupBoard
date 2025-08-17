@@ -1782,51 +1782,58 @@
 
     // Build candidate universities from email domain
       useEffect(() => {
-        const domain = (email.split('@')[1] || '').toLowerCase();
+        const domainRaw = (email.split('@')[1] || '').toLowerCase();
+        const domain = normalizeDomain(domainRaw);
         if (!domain) {
           setDetectedChoices([]);
+          setSelectedUniversityName("");
           return;
         }
-        // 1) Exact domain match from our runtime list
+        // 0) Immediate hard map (from bundled list + runtime JSON expansion)
+        if (KNOWN_DOMAIN_MAP && KNOWN_DOMAIN_MAP[domain]) {
+          const name = KNOWN_DOMAIN_MAP[domain];
+          setDetectedChoices([{ name, emailDomain: domain, ...getDefaultCoordinates() }]);
+          setSelectedUniversityName(name);
+          return;
+        }
+        // 1) Exact domain match from current universities list
         const candidates = (universities || []).filter(u => {
           const d = (u.emailDomain || '').toLowerCase();
-          return domain === d || domain.endsWith('.' + d);
+          return domain === d;
         });
         if (candidates.length > 0) {
           setDetectedChoices(candidates);
           setSelectedUniversityName(candidates[0].name);
-        } else {
-          // 2) Try from domain index (Firestore -> bundled JSON)
-          const mapPromise = (async () => {
-            if (window.__domainIndex && Object.keys(window.__domainIndex).length) return window.__domainIndex;
-            try {
-              const doc = await loadFromFirestore('app', 'domain_index');
-              if (doc && doc.map) { window.__domainIndex = doc.map; return doc.map; }
-            } catch (error) {
-              console.warn('Failed to load domain index from cache:', error);
-            }
-            const json = {};
-            window.__domainIndex = json || {}; return json || {};
-          })();
-          mapPromise.then(map => {
-              const hit = map && map[domain];
-              if (hit) {
-                const choice = { name: hit.name, emailDomain: domain, lat: hit.lat, lng: hit.lng, city: hit.city };
-                setDetectedChoices([choice]);
-                setSelectedUniversityName(choice.name);
-              } else {
-                // 3) Fallback: infer from domain string
-                const inferred = getUniversityFromDomain(domain);
-                setDetectedChoices([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }]);
-                setSelectedUniversityName(inferred);
-              }
-            })
-            .catch(() => {
-              const inferred = getUniversityFromDomain(domain);
-              setDetectedChoices([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }]);
-              setSelectedUniversityName(inferred);
-            });
+          return;
         }
+        // 2) Try from domain index (Firestore)
+        (async () => {
+          try {
+            const map = (function() {
+              if (window.__domainIndex && Object.keys(window.__domainIndex).length) return window.__domainIndex;
+              return null;
+            })();
+            let m = map;
+            if (!m) {
+              const doc = await loadFromFirestore('app', 'domain_index');
+              m = (doc && doc.map) ? doc.map : {};
+              window.__domainIndex = m;
+            }
+            const hit = m && m[domain];
+            if (hit) {
+              const choice = { name: hit.name, emailDomain: domain, lat: hit.lat, lng: hit.lng, city: hit.city };
+              setDetectedChoices([choice]);
+              setSelectedUniversityName(choice.name);
+              return;
+            }
+          } catch (error) {
+            console.warn('Domain index lookup failed:', error);
+          }
+          // 3) Fallback: infer from domain string
+          const inferred = getUniversityFromDomain(domain);
+          setDetectedChoices([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }]);
+          setSelectedUniversityName(inferred);
+        })();
       }, [email, universities]);
 
       const handleSubmit = async (e) => {
