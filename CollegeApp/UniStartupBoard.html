@@ -138,6 +138,21 @@
       return undefined;
     }
 
+    // Normalize an input domain to its registrable root (simple heuristic):
+    // - lowercases
+    // - trims whitespace
+    // - keeps the last two labels (e.g., "andrew.cmu.edu" -> "cmu.edu").
+    // This is sufficient for our .edu domains and most common cases in the app.
+    function normalizeDomain(input) {
+      const raw = (input || '').toLowerCase().trim();
+      const parts = raw.split('@');
+      const domainOnly = parts.length > 1 ? parts[1] : parts[0];
+      const labels = domainOnly.split('.').filter(Boolean);
+      if (labels.length <= 2) return domainOnly;
+      const root = labels.slice(-2).join('.');
+      return root;
+    }
+
     // Firestore helpers
     const saveToFirestore = async (collectionName, docId, data) => {
       try {
@@ -217,7 +232,7 @@
       const [verificationSent, setVerificationSent] = useState(false);
       const [selectedUserId, setSelectedUserId] = useState(null);
       const [feedMode, setFeedMode] = useState("local"); // 'local' | 'global' | 'city'
-      const [selectedCity, setSelectedCity] = useState("Pittsburgh");
+      const [selectedCity, setSelectedCity] = useState("Boston");
 
       const [universityFilter, setUniversityFilter] = useState(null);
       const [distanceFilter, setDistanceFilter] = useState(50); // Default 50 miles
@@ -226,12 +241,35 @@
       const [isInitializing, setIsInitializing] = useState(true);
       const [error, setError] = useState(null);
 
+      // Known quick domain→name hints to short-circuit common cases
+      const KNOWN_DOMAIN_MAP = {
+        'cmu.edu': 'Carnegie Mellon University',
+        'pitt.edu': 'University of Pittsburgh',
+        'duq.edu': 'Duquesne University',
+        'sfsu.edu': 'San Francisco State University',
+        'usfca.edu': 'University of San Francisco',
+        'stanford.edu': 'Stanford University',
+        'berkeley.edu': 'University of California, Berkeley',
+        'sjsu.edu': 'San Jose State University',
+        'scu.edu': 'Santa Clara University',
+        'harvard.edu': 'Harvard University',
+        'mit.edu': 'Massachusetts Institute of Technology',
+        'bu.edu': 'Boston University',
+        'northeastern.edu': 'Northeastern University'
+      };
+
       // Canonical resolver by email domain
       const resolveUniversityByDomain = async (emailDomain, currentUniversities) => {
-        const domain = (emailDomain || '').toLowerCase();
+        const domain = normalizeDomain(emailDomain);
         // 1) Use already-known universities (keeps existing ids)
         let uni = currentUniversities.find(u => (u.emailDomain || '').toLowerCase() === domain);
         if (uni) return { uni, changed: false };
+        // 1b) Quick map
+        if (KNOWN_DOMAIN_MAP[domain]) {
+          const quickName = KNOWN_DOMAIN_MAP[domain];
+          const existingByName = currentUniversities.find(u => (u.name || '') === quickName);
+          if (existingByName) return { uni: existingByName, changed: false };
+        }
         // 2) Use domain index (Firestore-seeded)
         let hit = domainIndex && domainIndex[domain];
         if (!hit) {
@@ -293,7 +331,7 @@
           
           if (firebaseUser) {
             const email = firebaseUser.email;
-        const emailDomain = email.split("@")[1];
+        const emailDomain = normalizeDomain(email);
             
             // Find or create university (allow override from sign-up selection)
             const emailDomainLower = (emailDomain || '').toLowerCase();
