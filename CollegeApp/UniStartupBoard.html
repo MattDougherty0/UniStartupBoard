@@ -1299,6 +1299,22 @@
               addedCityPosts = true;
             }
           };
+
+          // Ensure Pittsburgh (CMU/Pitt) always have baseline posts, even if Firestore had other cities
+          const cmuFixProjects = [
+            { title: 'CMU Robotics Studio', summary: 'Service robots for campus logistics.', lookingFor: 'Robotics, CV, ROS', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'CMU EdTech AI', summary: 'LLM-driven tutor for intro CS.', lookingFor: 'NLP, full-stack', category: 'Education', stage: 'planning', projectLink: '' },
+            { title: 'CMU Cyber Defense', summary: 'Threat intel for small orgs.', lookingFor: 'Security, data', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'CMU Green Campus', summary: 'IoT metering dashboards for buildings.', lookingFor: 'IoT, data viz', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'CMU Creator Tools', summary: 'Tools for student creators to monetize work.', lookingFor: 'Frontend, product', category: 'Tech', stage: 'development', projectLink: '' }
+          ];
+          const pittFixProjects = [
+            { title: 'Pitt Health Hub', summary: 'Student mental health platform.', lookingFor: 'Clinicians, mobile devs', category: 'Health', stage: 'development', projectLink: '' },
+            { title: 'Oakland Co-Work', summary: 'Student-run incubator & events.', lookingFor: 'Ops, community', category: 'Social Impact', stage: 'planning', projectLink: '' },
+            { title: 'Pitt Research X', summary: 'Matchmaking for labs and industry.', lookingFor: 'BD, backend', category: 'Tech', stage: 'idea', projectLink: '' }
+          ];
+          ensurePostsCountForUni('Carnegie Mellon University', cmuFixProjects, 5);
+          ensurePostsCountForUni('University of Pittsburgh', pittFixProjects, 3);
           // Create one post per SF/Boston uni if no posts yet
           sanFranciscoUniversities.forEach((uni, idx) => ensurePostForUni(uni.name, sanFranciscoProjects[idx % sanFranciscoProjects.length]));
           bostonUniversities.forEach((uni, idx) => ensurePostForUni(uni.name, bostonProjects[idx % bostonProjects.length]));
