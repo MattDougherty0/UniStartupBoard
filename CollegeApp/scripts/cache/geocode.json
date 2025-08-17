@@ -1,0 +1,8448 @@
+{
+  "Marywood University|": {
+    "lat": 41.4345694,
+    "lng": -75.6325017
+  },
+  "Lindenwood University|": {
+    "lat": 38.5230861,
+    "lng": -90.01096
+  },
+  "Sullivan University|": {
+    "lat": 38.2110329,
+    "lng": -85.6739695
+  },
+  "Florida State College at Jacksonville|": {
+    "lat": 30.3353821,
+    "lng": -81.6598334
+  },
+  "Xavier University|": {
+    "lat": 39.1513078,
+    "lng": -84.4708348
+  },
+  "Tusculum College|": {
+    "lat": 36.1807812,
+    "lng": -82.7570203
+  },
+  "Claremont School of Theology|": null,
+  "Columbia College (SC)|": {
+    "lat": 34.0461318,
+    "lng": -81.0303894
+  },
+  "Chabot-Las Positas Community College District|": null,
+  "Keller Graduate School of Management|": null,
+  "Monroe College|": {
+    "lat": 40.8644489,
+    "lng": -73.9001062
+  },
+  "San Mateo County Community College District|": {
+    "lat": 37.5304194,
+    "lng": -122.3373653
+  },
+  "Los Rios Community College District|": null,
+  "DigiPen Institute of Technology|": {
+    "lat": 47.6888943,
+    "lng": -122.1506732
+  },
+  "University of Pittsburgh Medical Center|Pennsylvania": null,
+  "Claremont Graduate University|": {
+    "lat": 34.1103852,
+    "lng": -117.7175884
+  },
+  "The University of Texas at Rio Grande Valley|Texas": null,
+  "College of Mount Saint Vincent|": {
+    "lat": 40.912857,
+    "lng": -73.906968
+  },
+  "University of Arkansas System eVersity|": null,
+  "ECPI University|": {
+    "lat": 36.8423571,
+    "lng": -76.177753
+  },
+  "University of Mary Washington|": {
+    "lat": 38.3007911,
+    "lng": -77.4734265
+  },
+  "Baldwin Wallace University|": {
+    "lat": 41.3716101,
+    "lng": -81.8484895
+  },
+  "California State University Channel Islands|": {
+    "lat": 34.1672689,
+    "lng": -119.045118
+  },
+  "Brandman University|": {
+    "lat": 47.0615044,
+    "lng": -122.7687407
+  },
+  "United States Coast Guard Academy|": {
+    "lat": 41.3822475,
+    "lng": -74.3129464
+  },
+  "Athens State University|": {
+    "lat": 34.8060684,
+    "lng": -86.9651364
+  },
+  "The Scripps Research Institute|": null,
+  "Eastern Florida State College|": {
+    "lat": 27.9901303,
+    "lng": -80.6309063
+  },
+  "Western New England University|": {
+    "lat": 42.1125825,
+    "lng": -72.5147814
+  },
+  "King University|": {
+    "lat": 36.5877694,
+    "lng": -82.1598014
+  },
+  "Georgia Gwinnett College|": {
+    "lat": 33.9811126,
+    "lng": -84.0026512
+  },
+  "Trident University|": {
+    "lat": 32.9770659,
+    "lng": -80.0724555
+  },
+  "Alliant International University|": {
+    "lat": 37.8077859,
+    "lng": -122.4095315
+  },
+  "Mississippi Valley State University|": {
+    "lat": 33.5112606,
+    "lng": -90.3426333
+  },
+  "Roosevelt University|": {
+    "lat": 41.8761348,
+    "lng": -87.6251817
+  },
+  "ITT Technical Institute|": {
+    "lat": 30.3232798,
+    "lng": -97.6992972
+  },
+  "Illinois Eastern Community Colleges|": {
+    "lat": 38.7296442,
+    "lng": -88.0819426
+  },
+  "Park University|": {
+    "lat": 39.1890087,
+    "lng": -94.6725289
+  },
+  "Icahn School of Medicine at Mount Sinai|": {
+    "lat": 40.789793,
+    "lng": -73.9532536
+  },
+  "Utah Valley University|Utah": {
+    "lat": 40.2794106,
+    "lng": -111.7178868
+  },
+  "Wisconsin Lutheran College|": {
+    "lat": 43.0372653,
+    "lng": -88.0219466
+  },
+  "Riverside Community College District|": {
+    "lat": 33.9823617,
+    "lng": -117.3762476
+  },
+  "Wake Forest Baptist Health|": {
+    "lat": 36.0881297,
+    "lng": -79.8325369
+  },
+  "University of Massachusetts Boston|": {
+    "lat": 42.314068,
+    "lng": -71.0387132
+  },
+  "Florida Polytechnic University|Florida": {
+    "lat": 28.1477054,
+    "lng": -81.8487852
+  },
+  "Wagner College|": {
+    "lat": 40.6147187,
+    "lng": -74.0935587
+  },
+  "Wilmington University|": {
+    "lat": 39.6821331,
+    "lng": -75.5869978
+  },
+  "International Technological University|": {
+    "lat": 37.3771689,
+    "lng": -121.9634207
+  },
+  "Young Harris College|": {
+    "lat": 34.9357023,
+    "lng": -83.8459681
+  },
+  "University of Findlay|": {
+    "lat": 41.0535031,
+    "lng": -83.6543427
+  },
+  "Philadelphia College of Osteopathic Medicine|": {
+    "lat": 40.0050714,
+    "lng": -75.2166213
+  },
+  "Yosemite Community College District|": {
+    "lat": 37.6609257,
+    "lng": -121.038602
+  },
+  "Coastal Alabama Community College|": {
+    "lat": 31.4890523,
+    "lng": -87.324707
+  },
+  "Purdue University Northwest|": {
+    "lat": 41.5813508,
+    "lng": -87.474601
+  },
+  "Columbia Basin College|": {
+    "lat": 46.2534693,
+    "lng": -119.1213647
+  },
+  "Seattle Colleges|": {
+    "lat": 47.6168004,
+    "lng": -122.3358659
+  },
+  "Lipscomb University|": {
+    "lat": 36.1050716,
+    "lng": -86.7986409
+  },
+  "Tiffin University|": {
+    "lat": 41.119112,
+    "lng": -83.1855835
+  },
+  "Troy University|": {
+    "lat": 31.8022234,
+    "lng": -85.9556867
+  },
+  "42 US|": {
+    "lat": 43.1347936,
+    "lng": -79.0458542
+  },
+  "California Baptist University|": {
+    "lat": 33.9283239,
+    "lng": -117.4259206
+  },
+  "Stevenson University|": {
+    "lat": 36.9975362,
+    "lng": -122.0512876
+  },
+  "Marine Biological Laboratory|": {
+    "lat": 41.5256249,
+    "lng": -70.6723967
+  },
+  "Maryville University|": {
+    "lat": 38.6458826,
+    "lng": -90.5043057
+  },
+  "The Art Institutes|": {
+    "lat": 44.9757599,
+    "lng": -93.2765789
+  },
+  "University of Mississippi Medical Center|": {
+    "lat": 32.3309299,
+    "lng": -90.1723002
+  },
+  "University of Central Oklahoma|": {
+    "lat": 35.6557303,
+    "lng": -97.4703286
+  },
+  "Hallmark University|": {
+    "lat": 29.4669453,
+    "lng": -98.6860126
+  },
+  "Keiser University|": {
+    "lat": 30.503864,
+    "lng": -84.2477116
+  },
+  "St. Johns River State College|": {
+    "lat": 29.9103854,
+    "lng": -81.3583273
+  },
+  "Indian River State College|": {
+    "lat": 27.419618,
+    "lng": -80.3598103
+  },
+  "Barnard College|": {
+    "lat": 40.8094864,
+    "lng": -73.963551
+  },
+  "California Southern University|": {
+    "lat": 34.0218689,
+    "lng": -118.2858579
+  },
+  "University of La Verne|": {
+    "lat": 34.0998636,
+    "lng": -117.7726225
+  },
+  "Washington & Jefferson College|": {
+    "lat": 40.1719209,
+    "lng": -80.2413496
+  },
+  "University of the People|": {
+    "lat": 22.5409781,
+    "lng": 114.0745922
+  },
+  "Touro College|": {
+    "lat": 40.606913,
+    "lng": -73.9621683
+  },
+  "New Jersey City University|": {
+    "lat": 40.7098627,
+    "lng": -74.0876608
+  },
+  "Lander University|": {
+    "lat": 34.201233,
+    "lng": -82.1656497
+  },
+  "SUNY Maritime College|": {
+    "lat": 40.8070978,
+    "lng": -73.7957328
+  },
+  "Lesley University|": {
+    "lat": 42.3864348,
+    "lng": -71.1190947
+  },
+  "Laurus College|": null,
+  "National Park College|": {
+    "lat": 34.5126059,
+    "lng": -93.1195045
+  },
+  "Oklahoma Christian University|": {
+    "lat": 35.6127098,
+    "lng": -97.4703197
+  },
+  "San Diego Christian College|": {
+    "lat": 32.8429024,
+    "lng": -116.9781681
+  },
+  "SANS Technology Institute|": {
+    "lat": 38.9916469,
+    "lng": -77.0969831
+  },
+  "Pasco-Hernando State College|": {
+    "lat": 28.3791105,
+    "lng": -82.2161196
+  },
+  "New College of Florida|": {
+    "lat": 27.3859013,
+    "lng": -82.5602038
+  },
+  "Grand Canyon University|": {
+    "lat": 33.5131316,
+    "lng": -112.1297514
+  },
+  "Cold Spring Harbor Laboratory|": {
+    "lat": 40.8623522,
+    "lng": -73.4699926
+  },
+  "Albany State University|": {
+    "lat": 31.5678798,
+    "lng": -84.1405794
+  },
+  "Lasell College|": {
+    "lat": 42.3410686,
+    "lng": -71.2485963
+  },
+  "Contra Costa Community College District|": null,
+  "Mount St. Mary's University|": {
+    "lat": 34.0852201,
+    "lng": -118.4824686
+  },
+  "Robert Morris University Illinois|": {
+    "lat": 41.8762347,
+    "lng": -87.6272166
+  },
+  "Northwest Florida State College|": {
+    "lat": 30.5392957,
+    "lng": -86.476227
+  },
+  "West Virginia Wesleyan College|": {
+    "lat": 38.9904756,
+    "lng": -80.2182609
+  },
+  "Utica College|": {
+    "lat": 43.076606,
+    "lng": -75.2166599
+  },
+  "Career College of Northern Nevada|": {
+    "lat": 39.5409114,
+    "lng": -119.7194237
+  },
+  "College of Southern Nevada|NV": {
+    "lat": 36.0065097,
+    "lng": -114.9675522
+  },
+  "University of North Georgia|": {
+    "lat": 33.8661343,
+    "lng": -83.4262405
+  },
+  "The Principia|": {
+    "lat": 39.0987305,
+    "lng": -76.7113599
+  },
+  "Lynn University|": {
+    "lat": 26.3837711,
+    "lng": -80.1254028
+  },
+  "Colorado Community College System|": null,
+  "Valencia College|": {
+    "lat": 28.5199391,
+    "lng": -81.4611403
+  },
+  "St. Petersburg College|": {
+    "lat": 27.7577433,
+    "lng": -82.6626254
+  },
+  "Globe University & Minnesota School of Business|": null,
+  "Everest College|": {
+    "lat": 37.1816479,
+    "lng": -93.3047083
+  },
+  "Southwest Research Institute|": {
+    "lat": 29.4441203,
+    "lng": -98.6136109
+  },
+  "American Public University System|": null,
+  "Full Sail University|": {
+    "lat": 28.5930223,
+    "lng": -81.3050127
+  },
+  "YTI Career Institute|": {
+    "lat": 39.9925906,
+    "lng": -76.6603164
+  },
+  "Defense Language Institute Foreign Language Center|": {
+    "lat": 36.6057423,
+    "lng": -121.9104797
+  },
+  "Columbus State University|": {
+    "lat": 32.50189,
+    "lng": -84.9415046
+  },
+  "Morehead State University|": {
+    "lat": 38.1867483,
+    "lng": -83.4332396
+  },
+  "Colorado State University - Global Campus|": {
+    "lat": 39.7247627,
+    "lng": -104.7866826
+  },
+  "North Dakota University System|": null,
+  "University of Houston-Downtown|": {
+    "lat": 29.7661239,
+    "lng": -95.3596316
+  },
+  "Stratford University|": {
+    "lat": 38.9074004,
+    "lng": -77.2144527
+  },
+  "California Polytechnic State University, Pomona|": {
+    "lat": 34.0556686,
+    "lng": -117.8239282
+  },
+  "Baker College|": {
+    "lat": 42.9762426,
+    "lng": -83.6967251
+  },
+  "The College of New Jersey|": {
+    "lat": 40.2685515,
+    "lng": -74.7779768
+  },
+  "Abilene Christian University|": {
+    "lat": 32.4699728,
+    "lng": -99.7073595
+  },
+  "Adelphi University|": {
+    "lat": 40.7197638,
+    "lng": -73.6519719
+  },
+  "Agnes Scott College|": {
+    "lat": 33.7688851,
+    "lng": -84.2944452
+  },
+  "Aiken Technical College|": {
+    "lat": 33.5343573,
+    "lng": -81.8427108
+  },
+  "Air Force Institute of Technology|": {
+    "lat": 22.7982251,
+    "lng": 120.2788252
+  },
+  "Alabama A&M University|": {
+    "lat": 34.7842987,
+    "lng": -86.5701304
+  },
+  "Alabama State University|": {
+    "lat": 32.3634508,
+    "lng": -86.2935823
+  },
+  "Alamo Colleges|": {
+    "lat": 29.5616705,
+    "lng": -98.3318381
+  },
+  "Albertson College of Idaho|": null,
+  "Albion College|": {
+    "lat": 42.2437255,
+    "lng": -84.742901
+  },
+  "Alfred University|": {
+    "lat": 42.255862,
+    "lng": -77.7857087
+  },
+  "Allegheny College|": {
+    "lat": 41.6480894,
+    "lng": -80.1452977
+  },
+  "Allentown College of Saint Francis de Sales|": null,
+  "Alma College|": {
+    "lat": 43.381474,
+    "lng": -84.671349
+  },
+  "Alverno College|": {
+    "lat": 42.9837531,
+    "lng": -87.9654822
+  },
+  "Ambassador University|": {
+    "lat": 9.0133597,
+    "lng": 38.7469777
+  },
+  "American Coastline University|": null,
+  "American International College|": {
+    "lat": 42.1133954,
+    "lng": -72.5572856
+  },
+  "American University|": {
+    "lat": 38.9377511,
+    "lng": -77.0894676
+  },
+  "Amherst College|": {
+    "lat": 42.3703768,
+    "lng": -72.5160692
+  },
+  "Andrews University|": {
+    "lat": 41.9696627,
+    "lng": -86.3633155
+  },
+  "Angelo State University|": {
+    "lat": 31.4389278,
+    "lng": -100.4553039
+  },
+  "Anne Arundel Community College|": {
+    "lat": 39.0500226,
+    "lng": -76.5126691
+  },
+  "Antioch New England|": {
+    "lat": 42.9319603,
+    "lng": -72.2938971
+  },
+  "Antioch University|": {
+    "lat": 47.6159398,
+    "lng": -122.3462752
+  },
+  "Antioch University - Los Angeles|": {
+    "lat": 33.9887597,
+    "lng": -118.385523
+  },
+  "Antioch University - Seattle|": {
+    "lat": 47.6159398,
+    "lng": -122.3462752
+  },
+  "Appalachian State University|": {
+    "lat": 36.2113524,
+    "lng": -81.6860913
+  },
+  "Aquinas College|": {
+    "lat": -32.0272274,
+    "lng": 115.8625138
+  },
+  "Arcadia College|": {
+    "lat": -28.0794756,
+    "lng": 153.4086495
+  },
+  "Arizona Western College|": {
+    "lat": 32.6884606,
+    "lng": -114.4956955
+  },
+  "Arkansas State University|": {
+    "lat": 35.8447472,
+    "lng": -90.6726256
+  },
+  "Arkansas Tech University|": {
+    "lat": 35.2943327,
+    "lng": -93.1361253
+  },
+  "Armstrong State College|": {
+    "lat": -38.2315805,
+    "lng": 144.3380285
+  },
+  "Ashland University|": {
+    "lat": 40.8620672,
+    "lng": -82.3255774
+  },
+  "Assumption College|": {
+    "lat": -37.3010243,
+    "lng": 144.9458136
+  },
+  "Auburn University|": {
+    "lat": 32.5919528,
+    "lng": -85.4959775
+  },
+  "Auburn University at Montgomery|": {
+    "lat": 32.3709721,
+    "lng": -86.1771873
+  },
+  "Augsburg College|": {
+    "lat": 48.3651329,
+    "lng": 10.9053352
+  },
+  "Augustana College (IL)|": {
+    "lat": 41.5015277,
+    "lng": -90.5503699
+  },
+  "Augustana College (SD)|": null,
+  "Augusta University|": {
+    "lat": 33.4694103,
+    "lng": -81.9884196
+  },
+  "Aurora University|": {
+    "lat": 41.754829,
+    "lng": -88.3495036
+  },
+  "Austin College|": {
+    "lat": 33.6474084,
+    "lng": -96.5980179
+  },
+  "Austin Community College|": {
+    "lat": 30.2676712,
+    "lng": -97.7060588
+  },
+  "Austin Peay State University|": {
+    "lat": 36.5342965,
+    "lng": -87.3543085
+  },
+  "Averett College|": {
+    "lat": 31.3048128,
+    "lng": -85.8318804
+  },
+  "Avila College|": {
+    "lat": -37.8745971,
+    "lng": 145.132343
+  },
+  "Azusa Pacific University|": {
+    "lat": 34.1304633,
+    "lng": -117.8879646
+  },
+  "Babson College|": {
+    "lat": 42.2949962,
+    "lng": -71.2649172
+  },
+  "Baker University|": {
+    "lat": 38.7762431,
+    "lng": -95.179395
+  },
+  "Ball State University|": {
+    "lat": 40.2097296,
+    "lng": -85.4112151
+  },
+  "Baptist Bible College|": {
+    "lat": 37.2379781,
+    "lng": -93.2850339
+  },
+  "Bard College|": {
+    "lat": 42.0225482,
+    "lng": -73.9107242
+  },
+  "Barry University|": {
+    "lat": 25.8790289,
+    "lng": -80.2015168
+  },
+  "Bastyr University|": {
+    "lat": 47.7305124,
+    "lng": -122.2503086
+  },
+  "Bates College|": {
+    "lat": 44.1048469,
+    "lng": -70.1980486
+  },
+  "Baylor College of Medicine|": {
+    "lat": 29.7105439,
+    "lng": -95.3958079
+  },
+  "Baylor University|": {
+    "lat": 31.550434,
+    "lng": -97.1102906
+  },
+  "Bellevue University|": {
+    "lat": 41.1525221,
+    "lng": -95.9220452
+  },
+  "Belmont University|": {
+    "lat": 36.1327833,
+    "lng": -86.7926578
+  },
+  "Beloit College|": {
+    "lat": 42.5009819,
+    "lng": -89.0157777
+  },
+  "Bemidji State University|": {
+    "lat": 47.4850208,
+    "lng": -94.8740784
+  },
+  "Benedictine College|": {
+    "lat": 39.5748928,
+    "lng": -95.1137921
+  },
+  "Bennington College|": {
+    "lat": 42.9204432,
+    "lng": -73.2385253
+  },
+  "Bentley University|Massachusetts": {
+    "lat": 42.3834189,
+    "lng": -71.2225864
+  },
+  "Berea College|": {
+    "lat": 37.5715364,
+    "lng": -84.289796
+  },
+  "Berklee College of Music|": {
+    "lat": 42.3483475,
+    "lng": -71.0848704
+  },
+  "Bethany College|": {
+    "lat": 40.2058045,
+    "lng": -80.5610734
+  },
+  "Bethel College (KS)|": {
+    "lat": 38.0761894,
+    "lng": -97.3433939
+  },
+  "Bethel University|": {
+    "lat": 45.0597618,
+    "lng": -93.1639632
+  },
+  "Biola University|": {
+    "lat": 33.90686,
+    "lng": -118.0152172
+  },
+  "Birmingham-Southern College|": {
+    "lat": 33.5161855,
+    "lng": -86.855847
+  },
+  "Black Hills State University|": {
+    "lat": 44.4981504,
+    "lng": -103.8728541
+  },
+  "Bloomsburg University of Pennsylvania|Pennsylvania": {
+    "lat": 41.0089926,
+    "lng": -76.4470361
+  },
+  "Bluffton College|": {
+    "lat": 40.8870035,
+    "lng": -83.886864
+  },
+  "Bob Jones University|": {
+    "lat": 34.8718605,
+    "lng": -82.3651798
+  },
+  "Boise State University|": {
+    "lat": 43.6032821,
+    "lng": -116.19941
+  },
+  "Boston College|": {
+    "lat": 42.3354481,
+    "lng": -71.1682665
+  },
+  "Boston Graduate School of Psychoanalysis|": {
+    "lat": 42.3392801,
+    "lng": -71.1331208
+  },
+  "Boston University|": {
+    "lat": 42.3504215,
+    "lng": -71.1032247
+  },
+  "Bowdoin College|": {
+    "lat": 43.9012593,
+    "lng": -69.959841
+  },
+  "Bowie State University|": {
+    "lat": 39.0183881,
+    "lng": -76.7609512
+  },
+  "Bowling Green State University|": {
+    "lat": 41.3795005,
+    "lng": -83.629789
+  },
+  "Bradley University|": {
+    "lat": 40.6981131,
+    "lng": -89.6155139
+  },
+  "Brandeis University|": {
+    "lat": 42.3665095,
+    "lng": -71.2580196
+  },
+  "Brenau University|": {
+    "lat": 34.3036901,
+    "lng": -83.8223538
+  },
+  "Briar Cliff College|": {
+    "lat": 38.5498535,
+    "lng": -121.397973
+  },
+  "Bridgewater College|": {
+    "lat": 27.6962972,
+    "lng": 85.352347
+  },
+  "Brigham Young University - Idaho|": {
+    "lat": 43.8173791,
+    "lng": -111.782372
+  },
+  "Brigham Young University Hawaii|": {
+    "lat": 21.642385,
+    "lng": -157.9259551
+  },
+  "Broward College|": {
+    "lat": 26.080796,
+    "lng": -80.237543
+  },
+  "Bryant University|Rhode Island": {
+    "lat": 41.9220914,
+    "lng": -71.5371517
+  },
+  "Bryn Mawr College|": {
+    "lat": 40.0286808,
+    "lng": -75.3154551
+  },
+  "Bucknell University|": {
+    "lat": 40.9515356,
+    "lng": -76.8879603
+  },
+  "Buena Vista University|": {
+    "lat": 42.6405657,
+    "lng": -95.209698
+  },
+  "Butler University|": {
+    "lat": 39.8407191,
+    "lng": -86.1737494
+  },
+  "California Coast University|": {
+    "lat": 33.751259,
+    "lng": -117.868013
+  },
+  "California Lutheran University|": {
+    "lat": 34.2265565,
+    "lng": -118.8785217
+  },
+  "California Maritime Academy|": {
+    "lat": 38.0715045,
+    "lng": -122.2312778
+  },
+  "California National University|": {
+    "lat": 32.9102688,
+    "lng": -117.2428546
+  },
+  "California Polytechnic State University, San Luis Obispo|": {
+    "lat": 35.3074623,
+    "lng": -120.6646483
+  },
+  "California State University, Bakersfield|": {
+    "lat": 35.3493892,
+    "lng": -119.1033969
+  },
+  "California State University, Chico|": {
+    "lat": 39.7295013,
+    "lng": -121.8481099
+  },
+  "California State University, Dominguez Hills|": null,
+  "California State University, Fresno|": {
+    "lat": 36.8209963,
+    "lng": -119.7372976
+  },
+  "California State University, Fullerton|": {
+    "lat": 33.8830939,
+    "lng": -117.8852152
+  },
+  "California State University, Hayward|": {
+    "lat": 37.6555235,
+    "lng": -122.0558772
+  },
+  "California State University, Long Beach|": {
+    "lat": 33.7817709,
+    "lng": -118.1152001
+  },
+  "California State University, Los Angeles|": {
+    "lat": 33.7817709,
+    "lng": -118.1152001
+  },
+  "California State University, Monterey Bay|": null,
+  "California State University, Northridge|": {
+    "lat": 34.2455346,
+    "lng": -118.5263221
+  },
+  "California State University, Sacramento|": {
+    "lat": 38.5599044,
+    "lng": -121.4240819
+  },
+  "California State University, San Bernardino|": {
+    "lat": 34.1799047,
+    "lng": -117.3263
+  },
+  "California State University, San Marcos|": {
+    "lat": 33.1295667,
+    "lng": -117.1606492
+  },
+  "California State University, Stanislaus|": {
+    "lat": 37.5262549,
+    "lng": -120.8557722
+  },
+  "California State University System|": null,
+  "California University of Pennsylvania|Pennsylvania": {
+    "lat": 40.0644315,
+    "lng": -79.8843981
+  },
+  "Calvin College|": {
+    "lat": -24.6662306,
+    "lng": 30.3095644
+  },
+  "Cameron University|": {
+    "lat": 34.6017026,
+    "lng": -98.4441961
+  },
+  "Campbellsville College|": null,
+  "Campbell University|": {
+    "lat": 35.408071,
+    "lng": -78.7392468
+  },
+  "Canisius College|": {
+    "lat": 51.8376346,
+    "lng": 5.8848864
+  },
+  "Capella University|": {
+    "lat": 51.079986,
+    "lng": -114.1487073
+  },
+  "Capitol Technology University|": {
+    "lat": 39.0469821,
+    "lng": -76.8514527
+  },
+  "Carleton College|": {
+    "lat": 44.4718353,
+    "lng": -93.1414581
+  },
+  "Carlow College|": {
+    "lat": 52.838614,
+    "lng": -6.9267582
+  },
+  "Carroll College|": {
+    "lat": 43.0039527,
+    "lng": -88.2292641
+  },
+  "Carroll University|": {
+    "lat": 43.0039527,
+    "lng": -88.2292641
+  },
+  "Carson-Newman College|": null,
+  "Carthage College|": {
+    "lat": 42.6228012,
+    "lng": -87.8222909
+  },
+  "Case Western Reserve University|": {
+    "lat": 41.5013869,
+    "lng": -81.6007022
+  },
+  "Castleton State University|": {
+    "lat": 43.6064743,
+    "lng": -73.1804683
+  },
+  "Catholic University of America|": {
+    "lat": 38.9391024,
+    "lng": -76.9999642
+  },
+  "Cedarville College|": {
+    "lat": 39.7540491,
+    "lng": -83.8170518
+  },
+  "Centenary College of Louisiana|": {
+    "lat": 32.482254,
+    "lng": -93.7313806
+  },
+  "Central College|": {
+    "lat": 41.4036435,
+    "lng": -92.9315988
+  },
+  "Central Connecticut State University|": {
+    "lat": 41.6929277,
+    "lng": -72.765429
+  },
+  "Central Methodist College|": {
+    "lat": 12.9612231,
+    "lng": 77.6061563
+  },
+  "Central Michigan University|": {
+    "lat": 43.58355,
+    "lng": -84.7746308
+  },
+  "Central Washington University|": {
+    "lat": 47.006469,
+    "lng": -120.5367304
+  },
+  "Centre College|": {
+    "lat": 37.6444259,
+    "lng": -84.7809759
+  },
+  "Chadron State College|": {
+    "lat": 42.8168794,
+    "lng": -102.9977042
+  },
+  "Champlain College|": {
+    "lat": 44.4739064,
+    "lng": -73.2032715
+  },
+  "Chapman University|": {
+    "lat": 33.7933817,
+    "lng": -117.8516959
+  },
+  "Chatham College|": {
+    "lat": 42.3958226,
+    "lng": -82.2233366
+  },
+  "Chesapeake College|": {
+    "lat": 38.951059,
+    "lng": -76.0824834
+  },
+  "Cheyney University|": {
+    "lat": 39.9331033,
+    "lng": -75.5291687
+  },
+  "Chicago School of Professional Psychology|": null,
+  "Christian Brothers University|": {
+    "lat": 35.1289696,
+    "lng": -89.980225
+  },
+  "Christian Theological Seminary|": {
+    "lat": 39.8330974,
+    "lng": -86.1780437
+  },
+  "Christopher Newport University|": {
+    "lat": 37.0637197,
+    "lng": -76.4955712
+  },
+  "City University|": {
+    "lat": 51.5282561,
+    "lng": -0.1007315
+  },
+  "City University of New York|": {
+    "lat": 40.8077558,
+    "lng": -73.9616141
+  },
+  "Claremont Graduate School|": null,
+  "Claremont McKenna College|": {
+    "lat": 34.0999577,
+    "lng": -117.7061792
+  },
+  "Clarion University of Pennsylvania|Pennsylvania": {
+    "lat": 41.2098283,
+    "lng": -79.3777962
+  },
+  "Clarke College|": {
+    "lat": -33.8831758,
+    "lng": 151.2030956
+  },
+  "Clarkson University|": {
+    "lat": 44.6595887,
+    "lng": -75.0062397
+  },
+  "Clark University|": {
+    "lat": 42.2514681,
+    "lng": -71.8229509
+  },
+  "Clayton State College|": {
+    "lat": 33.5914147,
+    "lng": -84.3269908
+  },
+  "Clemson University|": {
+    "lat": 34.6686915,
+    "lng": -82.8374348
+  },
+  "Cleveland State University|": {
+    "lat": 41.5025834,
+    "lng": -81.6750871
+  },
+  "Clinch Valley College|": null,
+  "Coastal Carolina University|": {
+    "lat": 33.7953227,
+    "lng": -79.0126785
+  },
+  "Coast Colleges|": {
+    "lat": 33.6715898,
+    "lng": -117.9121267
+  },
+  "Coe College|": {
+    "lat": 41.9905971,
+    "lng": -91.6569664
+  },
+  "Coker College|": {
+    "lat": 34.3763178,
+    "lng": -80.0690082
+  },
+  "Colby College|": {
+    "lat": 44.5684775,
+    "lng": -69.6600257
+  },
+  "Colgate University|": {
+    "lat": 42.8154037,
+    "lng": -75.5395816
+  },
+  "College of Charleston|": {
+    "lat": 32.783631,
+    "lng": -79.9380666
+  },
+  "College of Eastern Utah|": null,
+  "College of New Rochelle|": {
+    "lat": 40.9252494,
+    "lng": -73.7882666
+  },
+  "College of Saint Benedict|": {
+    "lat": 45.5594818,
+    "lng": -94.3182963
+  },
+  "College of Saint Catherine|": {
+    "lat": 14.6791389,
+    "lng": 121.019017
+  },
+  "College of Saint Rose|": {
+    "lat": 42.6634258,
+    "lng": -73.7858289
+  },
+  "College of St. Francis|": {
+    "lat": 0.3366488,
+    "lng": 32.5642445
+  },
+  "College of St. Scholastica|": {
+    "lat": 46.8151886,
+    "lng": -92.10583
+  },
+  "College of the Atlantic|": {
+    "lat": 44.3940742,
+    "lng": -68.2199926
+  },
+  "College of the Holy Cross|": {
+    "lat": 42.2366865,
+    "lng": -71.8070248
+  },
+  "College of William and Mary|": {
+    "lat": 37.2690934,
+    "lng": -76.7220509
+  },
+  "College of Wooster|": {
+    "lat": 40.8116177,
+    "lng": -81.9338583
+  },
+  "Colorado Christian University|": {
+    "lat": 39.0922586,
+    "lng": -108.5984437
+  },
+  "Colorado College|": {
+    "lat": 38.8480439,
+    "lng": -104.8239509
+  },
+  "Colorado Mesa University|": {
+    "lat": 39.0819157,
+    "lng": -108.5559956
+  },
+  "Colorado School of Mines|": {
+    "lat": 39.7386338,
+    "lng": -105.2246389
+  },
+  "Colorado Technical University|": null,
+  "University of Colorado Anschutz Medical Campus|": {
+    "lat": 39.7446494,
+    "lng": -104.8386619
+  },
+  "Columbia College Chicago|": {
+    "lat": 41.8742404,
+    "lng": -87.6247913
+  },
+  "Columbia Southern University|": {
+    "lat": 30.3293045,
+    "lng": -87.6530654
+  },
+  "Columbia Union College|": {
+    "lat": 38.9861777,
+    "lng": -77.0000231
+  },
+  "Community College of Baltimore County|": {
+    "lat": 39.2523207,
+    "lng": -76.7353196
+  },
+  "Concordia College - Ann Arbor|": {
+    "lat": 42.2738907,
+    "lng": -83.6827875
+  },
+  "Concordia College - Moorhead|": {
+    "lat": 46.862419,
+    "lng": -96.7694258
+  },
+  "Concordia College - Seward|": null,
+  "Concordia College - St. Paul|": {
+    "lat": 38.9874706,
+    "lng": -93.5647914
+  },
+  "Connecticut College|": {
+    "lat": 41.3791334,
+    "lng": -72.1065306
+  },
+  "Connecticut State University System|": null,
+  "Cooper Union for the Advancement of Science and Art|": null,
+  "Coppin State University|": {
+    "lat": 39.3110927,
+    "lng": -76.6585289
+  },
+  "Allen College|Iowa": {
+    "lat": 42.5300951,
+    "lng": -92.3403229
+  },
+  "Cornell College|": {
+    "lat": 41.9258988,
+    "lng": -91.4254156
+  },
+  "Corning Community College|": {
+    "lat": 42.1165663,
+    "lng": -77.0741513
+  },
+  "Creighton University|": {
+    "lat": 41.2658565,
+    "lng": -95.9450555
+  },
+  "Curry College|": {
+    "lat": 42.2378786,
+    "lng": -71.1147115
+  },
+  "Daemen College|": {
+    "lat": 42.9657019,
+    "lng": -78.7880179
+  },
+  "Dakota State University|": {
+    "lat": 44.0132052,
+    "lng": -97.1111565
+  },
+  "Dakota Wesleyan University|": {
+    "lat": 43.6972351,
+    "lng": -98.0304679
+  },
+  "Dallas Baptist University|": {
+    "lat": 32.710327,
+    "lng": -96.9463532
+  },
+  "Dallas County Community College|": {
+    "lat": 32.4473513,
+    "lng": -87.0119731
+  },
+  "Dana College|": {
+    "lat": 13.0229432,
+    "lng": 77.702488
+  },
+  "Daniel Webster College|": {
+    "lat": 30.4207852,
+    "lng": -91.192662
+  },
+  "Davenport University|": {
+    "lat": 43.6133121,
+    "lng": -84.1832638
+  },
+  "Davidson College|": {
+    "lat": 35.5032193,
+    "lng": -80.8339303
+  },
+  "Davis & Elkins College|": {
+    "lat": 38.9332535,
+    "lng": -79.8435597
+  },
+  "Daytona State College|": {
+    "lat": 29.2031792,
+    "lng": -81.0502093
+  },
+  "Delaware State University|": {
+    "lat": 39.1867993,
+    "lng": -75.5423583
+  },
+  "Delta State University|": {
+    "lat": 33.747589,
+    "lng": -90.7329004
+  },
+  "Denison University|": {
+    "lat": 40.073005,
+    "lng": -82.5224859
+  },
+  "DePaul University|": {
+    "lat": 41.9245803,
+    "lng": -87.6507223
+  },
+  "DePauw University|": {
+    "lat": 39.6380494,
+    "lng": -86.8668737
+  },
+  "DeVry Institute of Technology|": null,
+  "Dickinson College|": {
+    "lat": 40.2028115,
+    "lng": -77.199574
+  },
+  "Dickinson State University|": {
+    "lat": 46.8827077,
+    "lng": -102.8011777
+  },
+  "Dillard University|": {
+    "lat": 29.9962374,
+    "lng": -90.0653678
+  },
+  "Dominican College|": {
+    "lat": 41.0532291,
+    "lng": -73.9543346
+  },
+  "Dordt College|": {
+    "lat": 43.080661,
+    "lng": -96.1640468
+  },
+  "Dowling College|": {
+    "lat": 40.8274657,
+    "lng": -72.8799709
+  },
+  "Drake University|": {
+    "lat": 41.6030742,
+    "lng": -93.6552753
+  },
+  "Drew University|": {
+    "lat": 40.7605379,
+    "lng": -74.4281605
+  },
+  "Drury College|": {
+    "lat": -37.0762429,
+    "lng": 174.9340779
+  },
+  "Earlham College|": {
+    "lat": 39.8204275,
+    "lng": -84.9132312
+  },
+  "East Carolina University|": {
+    "lat": 35.6328512,
+    "lng": -77.4852672
+  },
+  "East Central University|": {
+    "lat": 34.7726925,
+    "lng": -96.661968
+  },
+  "Eastern Connecticut State University|": {
+    "lat": 41.7210177,
+    "lng": -72.217649
+  },
+  "Eastern Illinois University|": {
+    "lat": 39.479694,
+    "lng": -88.1754902
+  },
+  "Eastern Kentucky University|": {
+    "lat": 37.7341619,
+    "lng": -84.3011984
+  },
+  "Eastern Mennonite University|": {
+    "lat": 38.4721629,
+    "lng": -78.8779452
+  },
+  "Eastern Michigan University|": {
+    "lat": 42.2522462,
+    "lng": -83.6245615
+  },
+  "Eastern New Mexico University|": {
+    "lat": 34.1767727,
+    "lng": -103.3578112
+  },
+  "Eastern Oregon State College|": null,
+  "Eastern Washington University|": {
+    "lat": 47.4910113,
+    "lng": -117.5842545
+  },
+  "East Stroudsburg State University of Pennsylvania|Pennsylvania": {
+    "lat": 40.9979175,
+    "lng": -75.1726818
+  },
+  "East Tennessee State University|": {
+    "lat": 36.3024236,
+    "lng": -82.3692822
+  },
+  "Edgewood College|": {
+    "lat": 43.0588111,
+    "lng": -89.4212241
+  },
+  "Edinboro University of Pennsylvania|Pennsylvania": {
+    "lat": 41.8714447,
+    "lng": -80.1283903
+  },
+  "Elizabeth City State University|": {
+    "lat": 36.2800894,
+    "lng": -76.2133643
+  },
+  "Elizabethtown College|": {
+    "lat": 40.149469,
+    "lng": -76.5900861
+  },
+  "Elmhurst College|": {
+    "lat": 51.8138354,
+    "lng": -0.8207463
+  },
+  "Elon College|": {
+    "lat": 36.1020911,
+    "lng": -79.4976753
+  },
+  "Embry-Riddle Aeronautical University|": {
+    "lat": 33.8082375,
+    "lng": -118.1344224
+  },
+  "Emerson College|": {
+    "lat": 51.0999015,
+    "lng": 0.051608
+  },
+  "Emmanuel College|": {
+    "lat": 42.3406848,
+    "lng": -71.1029059
+  },
+  "Emory & Henry College|VA": {
+    "lat": 36.7716217,
+    "lng": -81.8291872
+  },
+  "Emporia State University|": {
+    "lat": 39.7767377,
+    "lng": -105.0511037
+  },
+  "Erie Community College|": {
+    "lat": 42.8817738,
+    "lng": -78.8725853
+  },
+  "Lake Erie College of Osteopathic Medicine|": {
+    "lat": 42.0943156,
+    "lng": -76.8120068
+  },
+  "East Texas Baptist University|TX": {
+    "lat": 32.5579527,
+    "lng": -94.3751134
+  },
+  "Evergreen State College|": {
+    "lat": 47.2564895,
+    "lng": -122.4545622
+  },
+  "Fairleigh Dickinson University|": {
+    "lat": 40.8980727,
+    "lng": -74.0307211
+  },
+  "Fairmont State College|": {
+    "lat": 39.2798118,
+    "lng": -80.3300893
+  },
+  "Fayetteville State University|": {
+    "lat": 35.073715,
+    "lng": -78.8926354
+  },
+  "Ferris State University|": {
+    "lat": 43.6828521,
+    "lng": -85.4836192
+  },
+  "Fielding Institute|": null,
+  "Fisk University|": {
+    "lat": 36.1670712,
+    "lng": -86.8039065
+  },
+  "Fitchburg State College|": null,
+  "Florida Agricultural and Mechanical University|": null,
+  "Florida Atlantic University|": {
+    "lat": 26.1194037,
+    "lng": -80.1416919
+  },
+  "Florida Gulf Coast University|": {
+    "lat": 26.4636477,
+    "lng": -81.7747246
+  },
+  "Florida Institute of Technology|": {
+    "lat": 28.064271,
+    "lng": -80.623004
+  },
+  "Florida International University|": {
+    "lat": 25.7553898,
+    "lng": -80.3762833
+  },
+  "Fontbonne College|": {
+    "lat": 45.6304057,
+    "lng": 3.5600995
+  },
+  "Fordham University|": {
+    "lat": 40.8617344,
+    "lng": -73.8860317
+  },
+  "Fort Hays State University|": {
+    "lat": 38.8706832,
+    "lng": -99.3442115
+  },
+  "Fort Lewis College|": {
+    "lat": 37.2771975,
+    "lng": -107.86763
+  },
+  "Fountainhead College of Technology|": null,
+  "Franklin and Marshall College|": null,
+  "Franklin Pierce Law Center|": null,
+  "Franklin University|": {
+    "lat": 39.9576484,
+    "lng": -82.9909305
+  },
+  "Frederick Community College|": {
+    "lat": 39.451578,
+    "lng": -77.4181668
+  },
+  "Fresno Pacific University|": {
+    "lat": 36.72601,
+    "lng": -119.7341901
+  },
+  "Friends University|": {
+    "lat": 37.6784007,
+    "lng": -97.3654214
+  },
+  "Frostburg State University|": {
+    "lat": 39.6476066,
+    "lng": -78.9405983
+  },
+  "Fuller Theological Seminary|": {
+    "lat": 34.1480627,
+    "lng": -118.1403486
+  },
+  "Furman University|": {
+    "lat": 34.9257743,
+    "lng": -82.4385258
+  },
+  "Gallaudet University|": {
+    "lat": 38.9083288,
+    "lng": -76.9916857
+  },
+  "Gannon University|": {
+    "lat": 42.1281052,
+    "lng": -80.0867293
+  },
+  "Geneva College|": {
+    "lat": 40.7710885,
+    "lng": -80.3217135
+  },
+  "George Fox College|": {
+    "lat": 36.0920639,
+    "lng": -79.8871766
+  },
+  "George Mason University|": {
+    "lat": 38.8313333,
+    "lng": -77.3079884
+  },
+  "Georgetown University|": {
+    "lat": 38.9089393,
+    "lng": -77.0745796
+  },
+  "George Washington University|": {
+    "lat": 38.8998938,
+    "lng": -77.0474483
+  },
+  "Georgia College|": {
+    "lat": 33.08005,
+    "lng": -83.2318008
+  },
+  "Georgian Court University|": {
+    "lat": 40.0981853,
+    "lng": -74.2282
+  },
+  "Georgia Southern University|": {
+    "lat": 32.4214381,
+    "lng": -81.7845053
+  },
+  "Georgia Southwestern State University|": {
+    "lat": 32.0558659,
+    "lng": -84.2174443
+  },
+  "Gettysburg College|": {
+    "lat": 39.8374688,
+    "lng": -77.2396405
+  },
+  "GMI Engineering and Management Institute|": null,
+  "Golden Gate University|": {
+    "lat": 37.789198,
+    "lng": -122.3989456
+  },
+  "Goldey-Beacom College|": {
+    "lat": 39.7411259,
+    "lng": -75.6889714
+  },
+  "Gonzaga University|": {
+    "lat": 47.6671025,
+    "lng": -117.4030546
+  },
+  "Goshen College|": {
+    "lat": 41.562483,
+    "lng": -85.825225
+  },
+  "Goucher College|": {
+    "lat": 39.408995,
+    "lng": -76.5928709
+  },
+  "Governors State University|": {
+    "lat": 41.4469059,
+    "lng": -87.719456
+  },
+  "Grace College|": {
+    "lat": 54.9292489,
+    "lng": -1.6069181
+  },
+  "Graceland College|": {
+    "lat": 6.459873,
+    "lng": 7.500532
+  },
+  "Grand Valley State University|": {
+    "lat": 42.7788336,
+    "lng": -86.0760892
+  },
+  "Greenleaf University|": {
+    "lat": 33.8558487,
+    "lng": -117.8370016
+  },
+  "Grinnell College|": {
+    "lat": 41.7511199,
+    "lng": -92.7198486
+  },
+  "Guilford College|": {
+    "lat": 36.0918026,
+    "lng": -79.8872571
+  },
+  "Gustavus Adolphus College|": {
+    "lat": 44.3241873,
+    "lng": -93.9714681
+  },
+  "Hagerstown Community College|": {
+    "lat": 39.6329566,
+    "lng": -77.6684197
+  },
+  "Hamilton College|": {
+    "lat": 43.0537974,
+    "lng": -75.4069389
+  },
+  "Hamline University|": {
+    "lat": 44.9665114,
+    "lng": -93.1645864
+  },
+  "Hampden-Sydney College|": {
+    "lat": 37.2423749,
+    "lng": -78.4605692
+  },
+  "Hampshire College|": {
+    "lat": 42.3250217,
+    "lng": -72.5294022
+  },
+  "Hampton University|": {
+    "lat": 37.0210096,
+    "lng": -76.3386255
+  },
+  "Hanover College|": {
+    "lat": 38.7165177,
+    "lng": -85.4616428
+  },
+  "Harding University|": {
+    "lat": 35.2457455,
+    "lng": -91.7263463
+  },
+  "Harford Community College|": {
+    "lat": 39.5605328,
+    "lng": -76.2830203
+  },
+  "Hartwick College|": {
+    "lat": 42.4599781,
+    "lng": -75.0714688
+  },
+  "Harvey Mudd College|": {
+    "lat": 34.1061401,
+    "lng": -117.7087284
+  },
+  "Haskell Indian Nations University|": {
+    "lat": 38.9350688,
+    "lng": -95.2331843
+  },
+  "Hastings College|": {
+    "lat": 40.5943839,
+    "lng": -98.3654967
+  },
+  "Haverford College in Pennsylvania|Pennsylvania": null,
+  "Hawaii Pacific University|": {
+    "lat": 21.3795227,
+    "lng": -157.7830819
+  },
+  "Heidelberg College|": {
+    "lat": 49.4152032,
+    "lng": 8.7062863
+  },
+  "Hendrix College|": {
+    "lat": 35.1008234,
+    "lng": -92.4420508
+  },
+  "Hesston College|": {
+    "lat": 38.1346846,
+    "lng": -97.4339183
+  },
+  "High Point University|": {
+    "lat": 35.9720859,
+    "lng": -79.9936582
+  },
+  "Hillsdale College|": {
+    "lat": 41.9318835,
+    "lng": -84.6302306
+  },
+  "Hiram College|": {
+    "lat": 41.3136471,
+    "lng": -81.1430681
+  },
+  "Hobart and William Smith Colleges|": {
+    "lat": 42.8570498,
+    "lng": -76.9871974
+  },
+  "Hofstra University|": {
+    "lat": 40.7169083,
+    "lng": -73.6000225
+  },
+  "Hollins College|": {
+    "lat": 53.4915443,
+    "lng": -2.0760189
+  },
+  "Hood College|": {
+    "lat": 39.4229618,
+    "lng": -77.4189171
+  },
+  "Hope College|": {
+    "lat": 42.7867245,
+    "lng": -86.0996427
+  },
+  "Howard Community College|": {
+    "lat": 39.2115115,
+    "lng": -76.8774656
+  },
+  "Howard University|": {
+    "lat": 38.9218972,
+    "lng": -77.0195931
+  },
+  "Humboldt State University|": {
+    "lat": 40.8755745,
+    "lng": -124.078044
+  },
+  "Huntingdon College|": {
+    "lat": 32.3493496,
+    "lng": -86.2852119
+  },
+  "Huntington University|": {
+    "lat": 40.8990516,
+    "lng": -85.5022119
+  },
+  "ICI University|": {
+    "lat": 49.5007374,
+    "lng": 5.9452153
+  },
+  "Idaho State University|": {
+    "lat": 42.862567,
+    "lng": -112.4321627
+  },
+  "Illinois Benedictine College|": {
+    "lat": 41.7756465,
+    "lng": -88.0992579
+  },
+  "Illinois Institute of Technology|": {
+    "lat": 41.8361641,
+    "lng": -87.6264723
+  },
+  "Illinois State University|": {
+    "lat": 40.5179938,
+    "lng": -89.0084607
+  },
+  "Indiana Institute of Technology|": {
+    "lat": 41.0775484,
+    "lng": -85.1176847
+  },
+  "Indiana State University|": {
+    "lat": 39.470372,
+    "lng": -87.4081932
+  },
+  "Indiana University - Bloomington|Indiana": {
+    "lat": 39.1802358,
+    "lng": -86.5093526
+  },
+  "Indiana University at South Bend|": null,
+  "Indiana University of Pennsylvania|Pennsylvania": {
+    "lat": 40.6158628,
+    "lng": -79.1600044
+  },
+  "Indiana University/Purdue University at Columbus|": null,
+  "Indiana University/Purdue University at Fort Wayne|": null,
+  "Indiana University/Purdue University at Indianapolis|": null,
+  "Indiana University Southeast|": {
+    "lat": 38.3436674,
+    "lng": -85.8196412
+  },
+  "Indiana Wesleyan University, Marion|": {
+    "lat": 40.5163759,
+    "lng": -85.664165
+  },
+  "Institute for Advanced Study|": {
+    "lat": 40.3322547,
+    "lng": -74.6657877
+  },
+  "Institute for World Politics|": null,
+  "Iona College|": {
+    "lat": 40.9252494,
+    "lng": -73.7882666
+  },
+  "Iowa State University|": {
+    "lat": 42.0279608,
+    "lng": -93.6447375
+  },
+  "Irvine Valley College|": {
+    "lat": 33.6746378,
+    "lng": -117.779133
+  },
+  "Ithaca College|": {
+    "lat": 42.4197035,
+    "lng": -76.4983348
+  },
+  "Jackson State University|": {
+    "lat": 32.2964092,
+    "lng": -90.2074376
+  },
+  "Jacksonville State University|": {
+    "lat": 33.8249359,
+    "lng": -85.7641095
+  },
+  "Jacksonville University|": {
+    "lat": 30.3537227,
+    "lng": -81.6073061
+  },
+  "James Madison University|": {
+    "lat": 38.4364404,
+    "lng": -78.8689648
+  },
+  "John Brown University|": {
+    "lat": 34.7773056,
+    "lng": -92.3646106
+  },
+  "John F. Kennedy University|": {
+    "lat": 37.9567524,
+    "lng": -122.0547032
+  },
+  "Johns Hopkins University|": {
+    "lat": 39.3302022,
+    "lng": -76.6218536
+  },
+  "Johns Hopkins University Applied Physics Laboratory|": {
+    "lat": 39.1667462,
+    "lng": -76.8974081
+  },
+  "Johnson & Wales University|": {
+    "lat": 41.7882362,
+    "lng": -71.3903871
+  },
+  "Johnson Bible College|": {
+    "lat": 35.9354199,
+    "lng": -83.7493949
+  },
+  "Johnson C. Smith University|": {
+    "lat": 35.2437947,
+    "lng": -80.8554323
+  },
+  "Jones College|": {
+    "lat": 31.5947107,
+    "lng": -89.2019321
+  },
+  "Judson College|": {
+    "lat": 32.6294086,
+    "lng": -87.3130934
+  },
+  "Juniata College|": {
+    "lat": 40.5012255,
+    "lng": -78.0151628
+  },
+  "Kalamazoo College|": {
+    "lat": 42.2907573,
+    "lng": -85.5993647
+  },
+  "Kansas State University|Kansas": {
+    "lat": 39.20883,
+    "lng": -96.5884512
+  },
+  "Kansas Wesleyan University|": {
+    "lat": 38.8135329,
+    "lng": -97.6100544
+  },
+  "Kaplan University|": {
+    "lat": 43.0386991,
+    "lng": -87.9132205
+  },
+  "Kean College|": {
+    "lat": 40.0078077,
+    "lng": -74.1685769
+  },
+  "Keene State College|": {
+    "lat": 42.9254735,
+    "lng": -72.2808736
+  },
+  "Kennesaw State University|": {
+    "lat": 34.0383451,
+    "lng": -84.5831053
+  },
+  "Kent State University|": {
+    "lat": 41.1442325,
+    "lng": -81.3398321
+  },
+  "Kentucky Community & Technical College System|": null,
+  "Kenyon College|": {
+    "lat": 40.3725696,
+    "lng": -82.3942746
+  },
+  "Kettering University|": {
+    "lat": 43.0140409,
+    "lng": -83.714004
+  },
+  "King's College|": {
+    "lat": 22.284536,
+    "lng": 114.1402816
+  },
+  "Knox College|": {
+    "lat": 40.9419283,
+    "lng": -90.3722583
+  },
+  "Kutztown University of Pennsylvania|Pennsylvania": {
+    "lat": 40.5098059,
+    "lng": -75.7809883
+  },
+  "Lafayette College|": {
+    "lat": 40.6986835,
+    "lng": -75.209246
+  },
+  "LaGrange College|": {
+    "lat": 33.033811,
+    "lng": -85.0467503
+  },
+  "Lake Forest College|": {
+    "lat": 42.2476174,
+    "lng": -87.8294821
+  },
+  "Lake Superior College|": {
+    "lat": 46.7845476,
+    "lng": -92.1452014
+  },
+  "Lake Superior State University|": {
+    "lat": 46.4903164,
+    "lng": -84.3660154
+  },
+  "Lamar University|": {
+    "lat": 30.0388946,
+    "lng": -94.0758929
+  },
+  "Langston University|": {
+    "lat": 35.4899138,
+    "lng": -97.5006912
+  },
+  "LaSalle University|": {
+    "lat": 42.947752,
+    "lng": -78.8297653
+  },
+  "La Sierra University|": {
+    "lat": 33.9101505,
+    "lng": -117.4957465
+  },
+  "Lawrence Technological University|": {
+    "lat": 42.4752647,
+    "lng": -83.2506373
+  },
+  "Lawrence University|": {
+    "lat": 44.2607247,
+    "lng": -88.398891
+  },
+  "Lebanon Valley College|": {
+    "lat": 40.3345578,
+    "lng": -76.5137456
+  },
+  "Lehigh University|": {
+    "lat": 40.6068028,
+    "lng": -75.3782488
+  },
+  "Le Moyne College|": {
+    "lat": 43.0483411,
+    "lng": -76.0851761
+  },
+  "Lenoir Community College|": {
+    "lat": 35.2343151,
+    "lng": -77.5723808
+  },
+  "Lenoir-Rhyne College|": null,
+  "LeTourneau University|": {
+    "lat": 32.465759,
+    "lng": -94.7264445
+  },
+  "Lewis & Clark College|": {
+    "lat": 38.9523885,
+    "lng": -90.1951205
+  },
+  "Lewis-Clark State College|": {
+    "lat": 47.6833837,
+    "lng": -116.7968082
+  },
+  "Lewis University|": {
+    "lat": 41.6027723,
+    "lng": -88.0822138
+  },
+  "Liberty University|": {
+    "lat": 37.3539466,
+    "lng": -79.1531533
+  },
+  "Lincoln University|": {
+    "lat": 39.8065518,
+    "lng": -75.9287055
+  },
+  "Linfield College|": {
+    "lat": 45.1984734,
+    "lng": -123.1981384
+  },
+  "Lock Haven University|": {
+    "lat": 41.140913,
+    "lng": -77.4624846
+  },
+  "Loma Linda University|": {
+    "lat": 34.0514446,
+    "lng": -117.2628176
+  },
+  "Long Island University|": {
+    "lat": 40.6911022,
+    "lng": -73.9803965
+  },
+  "Longwood University|": {
+    "lat": 37.3090314,
+    "lng": -78.4016795
+  },
+  "Loras College|": {
+    "lat": 42.5050495,
+    "lng": -90.6788558
+  },
+  "Los Angeles Community College District|": {
+    "lat": 34.0488198,
+    "lng": -118.257928
+  },
+  "Louisiana College|": {
+    "lat": 31.3235321,
+    "lng": -92.4258488
+  },
+  "Louisiana State University|": {
+    "lat": 30.4062005,
+    "lng": -91.1854129
+  },
+  "Louisiana State University at Alexandria|": null,
+  "Louisiana Tech University|": {
+    "lat": 32.526106,
+    "lng": -92.6481217
+  },
+  "Loyola College|": {
+    "lat": 13.0617031,
+    "lng": 80.2346118
+  },
+  "Loyola Marymount University|": {
+    "lat": 33.9687824,
+    "lng": -118.4182021
+  },
+  "Loyola University Chicago|": {
+    "lat": 41.9991492,
+    "lng": -87.6573704
+  },
+  "Luther College|": {
+    "lat": -37.7817277,
+    "lng": 145.2715934
+  },
+  "Luther Seminary|": {
+    "lat": 44.984493,
+    "lng": -93.1961418
+  },
+  "Lycoming College|": {
+    "lat": 41.2454429,
+    "lng": -76.9998825
+  },
+  "Lynchburg College|": {
+    "lat": 37.3950644,
+    "lng": -79.1528157
+  },
+  "Lyndon State College|": {
+    "lat": 44.5348501,
+    "lng": -72.0247535
+  },
+  "Lyon College|": {
+    "lat": 35.7764261,
+    "lng": -91.6242394
+  },
+  "Macalester College|": {
+    "lat": 44.9376942,
+    "lng": -93.1692917
+  },
+  "Maharishi University of Management|": {
+    "lat": 41.023532,
+    "lng": -91.963967
+  },
+  "Malone College|": {
+    "lat": 40.8265967,
+    "lng": -81.3798006
+  },
+  "Manhattan College|": {
+    "lat": 40.8874403,
+    "lng": -73.9043147
+  },
+  "Mansfield University of Pennsylvania|Pennsylvania": {
+    "lat": 41.804302,
+    "lng": -77.069778
+  },
+  "Marietta College|": {
+    "lat": 39.416095,
+    "lng": -81.4484225
+  },
+  "Marist College|": {
+    "lat": -36.8819456,
+    "lng": 174.7254912
+  },
+  "Marlboro College|": {
+    "lat": 42.8388598,
+    "lng": -72.7347734
+  },
+  "Marquette University|": {
+    "lat": 43.0374344,
+    "lng": -87.9294774
+  },
+  "Marshall University|": {
+    "lat": 38.4236257,
+    "lng": -82.4274024
+  },
+  "Mary Baldwin College|": {
+    "lat": 38.1540287,
+    "lng": -79.0681974
+  },
+  "Marymount Manhattan College|": {
+    "lat": 40.7689316,
+    "lng": -73.9596956
+  },
+  "Marymount University|": {
+    "lat": 38.9054445,
+    "lng": -77.1276818
+  },
+  "Mary Washington College|": {
+    "lat": 38.370636,
+    "lng": -77.5319136
+  },
+  "McDaniel College|": {
+    "lat": 39.5851682,
+    "lng": -77.0037276
+  },
+  "McMurry University|": {
+    "lat": 32.429358,
+    "lng": -99.7487222
+  },
+  "McNeese State University|": {
+    "lat": 30.1806247,
+    "lng": -93.2162922
+  },
+  "Medical College of Georgia|": {
+    "lat": 33.4706616,
+    "lng": -81.9889321
+  },
+  "Medical College of Wisconsin|": {
+    "lat": 43.0438671,
+    "lng": -88.0224532
+  },
+  "Mercer County Community College|": {
+    "lat": 40.2554361,
+    "lng": -74.6499884
+  },
+  "Mercer University|": {
+    "lat": 32.8289341,
+    "lng": -83.6506702
+  },
+  "Mercy College|": {
+    "lat": 42.4209685,
+    "lng": -83.2215993
+  },
+  "Mercyhurst University|Pennsylvania": {
+    "lat": 42.1041456,
+    "lng": -80.0538851
+  },
+  "Meredith College|": {
+    "lat": 35.798214,
+    "lng": -78.6889369
+  },
+  "Messiah College|": {
+    "lat": 53.0187737,
+    "lng": -112.8261976
+  },
+  "Metropolitan Community College (MO)|": {
+    "lat": 39.1381617,
+    "lng": -94.5024275
+  },
+  "Metropolitan Community College (NE)|": {
+    "lat": 41.3080078,
+    "lng": -95.9588129
+  },
+  "Metropolitan State College of Denver|": {
+    "lat": 39.7450668,
+    "lng": -105.0077431
+  },
+  "Denver College of Nursing|Colorado": {
+    "lat": 39.75295,
+    "lng": -104.9946729
+  },
+  "Metropolitan State University|": {
+    "lat": 44.9572249,
+    "lng": -93.0741036
+  },
+  "Miami University of Ohio|": {
+    "lat": 39.5094198,
+    "lng": -84.7311546
+  },
+  "Michigan Technological University|": {
+    "lat": 47.1099114,
+    "lng": -88.5511513
+  },
+  "Mid-America Nazarene College|": null,
+  "Middlebury College|": {
+    "lat": 44.0036695,
+    "lng": -73.1729528
+  },
+  "Middle Georgia State College|": null,
+  "Middle Tennessee State University|": {
+    "lat": 35.8486008,
+    "lng": -86.3609036
+  },
+  "Midwestern State University|": {
+    "lat": 33.8711991,
+    "lng": -98.5221296
+  },
+  "Millersville University of Pennsylvania|Pennsylvania": {
+    "lat": 39.9979459,
+    "lng": -76.3509605
+  },
+  "Milligan College|": {
+    "lat": 36.3000695,
+    "lng": -82.2932563
+  },
+  "Millikin University|": {
+    "lat": 39.842988,
+    "lng": -88.9742628
+  },
+  "Millsaps College|": {
+    "lat": 32.3219635,
+    "lng": -90.1798225
+  },
+  "Milwaukee School of Engineering|": {
+    "lat": 43.045766,
+    "lng": -87.9079361
+  },
+  "Minneapolis College of Art and Design|": {
+    "lat": 44.9566921,
+    "lng": -93.27433
+  },
+  "Minnesota State University, Mankato|": {
+    "lat": 44.1453537,
+    "lng": -93.9977525
+  },
+  "Minnesota State University Moorhead|": {
+    "lat": 46.8672113,
+    "lng": -96.7564324
+  },
+  "Minot State University|": {
+    "lat": 48.2491151,
+    "lng": -101.3021308
+  },
+  "Mississippi College|": {
+    "lat": 32.3354174,
+    "lng": -90.3318824
+  },
+  "Mississippi State University|": {
+    "lat": 33.4386876,
+    "lng": -88.7943232
+  },
+  "Mississippi University for Women|": {
+    "lat": 33.4908044,
+    "lng": -88.4196624
+  },
+  "Missouri Southern State College|": null,
+  "Missouri University of Science and Technology|": {
+    "lat": 37.9532435,
+    "lng": -91.7742667
+  },
+  "Missouri Western State College|": null,
+  "Molloy College|": {
+    "lat": 40.686594,
+    "lng": -73.6246021
+  },
+  "Monmouth College|": {
+    "lat": 40.9144918,
+    "lng": -90.6383903
+  },
+  "Monmouth University|": {
+    "lat": 40.2794106,
+    "lng": -74.0068022
+  },
+  "Montana State University - Billings|": {
+    "lat": 45.797005,
+    "lng": -108.5215582
+  },
+  "Montana State University - Bozeman|": {
+    "lat": 45.6638859,
+    "lng": -111.079287
+  },
+  "Montana State University - Northern|": {
+    "lat": 48.5412308,
+    "lng": -109.6853331
+  },
+  "Montana Tech|": {
+    "lat": 46.010778,
+    "lng": -112.559847
+  },
+  "Montclair State University|": {
+    "lat": 40.8646878,
+    "lng": -74.1969213
+  },
+  "Montgomery College|": {
+    "lat": 39.0985195,
+    "lng": -77.1587885
+  },
+  "Montreat College|": {
+    "lat": 35.6459434,
+    "lng": -82.2970364
+  },
+  "Moravian College|": {
+    "lat": -9.6034899,
+    "lng": 33.8636143
+  },
+  "Morgan State University|": {
+    "lat": 39.3446663,
+    "lng": -76.5836094
+  },
+  "Mott Community College|": {
+    "lat": 43.0203856,
+    "lng": -83.6726519
+  },
+  "Mount Holyoke College|": {
+    "lat": 42.2553285,
+    "lng": -72.5696688
+  },
+  "Mount Saint Joseph College|": {
+    "lat": 39.0960132,
+    "lng": -84.6399402
+  },
+  "Mount Saint Mary College|": {
+    "lat": 41.5118052,
+    "lng": -74.0129321
+  },
+  "Mount Senario College|": null,
+  "Mount Union College|": {
+    "lat": -5.8572065,
+    "lng": 144.2135892
+  },
+  "Murray State University|": {
+    "lat": 36.6129699,
+    "lng": -88.322088
+  },
+  "Muskingum College|": {
+    "lat": 39.9616689,
+    "lng": -82.0333065
+  },
+  "Nashville State Community College|": {
+    "lat": 36.1351282,
+    "lng": -86.8559875
+  },
+  "National Defense University|": {
+    "lat": 38.8647678,
+    "lng": -77.0167403
+  },
+  "National-Louis University|": {
+    "lat": 41.8092203,
+    "lng": -88.0699037
+  },
+  "National Radio Astronomy Observatory|": {
+    "lat": 17.7565292,
+    "lng": -64.5839597
+  },
+  "National University|": {
+    "lat": 14.604293,
+    "lng": 120.9942727
+  },
+  "Naval Postgraduate School|": {
+    "lat": 36.596924,
+    "lng": -121.8732706
+  },
+  "Nazareth College|": {
+    "lat": -37.9393187,
+    "lng": 145.1955505
+  },
+  "Nevada System of Higher Education|": null,
+  "Newberry College|": {
+    "lat": 34.2852622,
+    "lng": -81.6216374
+  },
+  "New College of California|": {
+    "lat": 37.7766673,
+    "lng": -122.418818
+  },
+  "New England Institute of Technology|": {
+    "lat": 41.6602712,
+    "lng": -71.501355
+  },
+  "New Hampshire College|": {
+    "lat": 42.992957,
+    "lng": -71.4589622
+  },
+  "New Jersey Institute of Technology|": {
+    "lat": 40.7421254,
+    "lng": -74.1790316
+  },
+  "New Mexico Highlands University|": {
+    "lat": 35.5982253,
+    "lng": -105.2227839
+  },
+  "New Mexico Institute of Mining & Technology|": null,
+  "New Mexico State University|": {
+    "lat": 32.2729032,
+    "lng": -106.7434927
+  },
+  "New York Institute of Technology|": {
+    "lat": 40.807959,
+    "lng": -73.6062688
+  },
+  "Niagara University|": {
+    "lat": 43.1366031,
+    "lng": -79.0348892
+  },
+  "Nicholls State University|": {
+    "lat": 29.788594,
+    "lng": -90.8035083
+  },
+  "Norfolk State University|": {
+    "lat": 36.8482215,
+    "lng": -76.2629642
+  },
+  "North American University|": {
+    "lat": 41.1415179,
+    "lng": -95.9673816
+  },
+  "Northampton Community College|": {
+    "lat": 41.1447754,
+    "lng": -75.3644804
+  },
+  "North Carolina A&T State University|": {
+    "lat": 36.2116175,
+    "lng": -81.6760234
+  },
+  "North Carolina Central University|": {
+    "lat": 35.973209,
+    "lng": -78.8975505
+  },
+  "North Carolina Wesleyan College|": {
+    "lat": 36.0154351,
+    "lng": -77.7749098
+  },
+  "North Central Bible College|": {
+    "lat": 44.9688959,
+    "lng": -93.2618548
+  },
+  "North Dakota State University|": {
+    "lat": 46.897155,
+    "lng": -96.8182654
+  },
+  "Northeastern Louisiana University|": null,
+  "Northeastern State University|": {
+    "lat": 35.9239099,
+    "lng": -94.9681979
+  },
+  "Northeastern University|": {
+    "lat": 42.3351053,
+    "lng": -71.0892579
+  },
+  "Northern Arizona University|": {
+    "lat": 35.1830867,
+    "lng": -111.654961
+  },
+  "Northern Illinois University|": {
+    "lat": 41.9370934,
+    "lng": -88.7826784
+  },
+  "Northern Kentucky University|": {
+    "lat": 39.0346853,
+    "lng": -84.4659598
+  },
+  "Northern Michigan University|": {
+    "lat": 46.5613243,
+    "lng": -87.4104811
+  },
+  "Northern State University|": {
+    "lat": 45.4505464,
+    "lng": -98.4825596
+  },
+  "Northland College|": {
+    "lat": 46.5792909,
+    "lng": -90.8749058
+  },
+  "North Park College and Theological Seminary|": null,
+  "Northwestern College of Iowa|": null,
+  "Northwestern State University|": {
+    "lat": 31.74734,
+    "lng": -93.0989873
+  },
+  "Northwest Missouri State University|": {
+    "lat": 40.3963382,
+    "lng": -94.884145
+  },
+  "Northwest Nazarene College|": null,
+  "Norwich University|": {
+    "lat": 44.139179,
+    "lng": -72.6612695
+  },
+  "Nova Southeastern University|": {
+    "lat": 26.0788018,
+    "lng": -80.2435108
+  },
+  "Oakland University|": {
+    "lat": 42.6666333,
+    "lng": -83.2065575
+  },
+  "Oakwood University|": {
+    "lat": 34.758802,
+    "lng": -86.6545991
+  },
+  "Oberlin College|": {
+    "lat": 41.2957177,
+    "lng": -82.2215696
+  },
+  "Occidental College|": {
+    "lat": 34.127195,
+    "lng": -118.2099203
+  },
+  "Ohio Dominican College|": {
+    "lat": 39.9945316,
+    "lng": -82.9423587
+  },
+  "Ohio Northern University|": {
+    "lat": 40.7655751,
+    "lng": -83.8335624
+  },
+  "Ohio University|": {
+    "lat": 39.3241782,
+    "lng": -82.1015648
+  },
+  "Ohio Wesleyan University|": {
+    "lat": 40.292858,
+    "lng": -83.0642763
+  },
+  "Oklahoma Baptist University|": {
+    "lat": 35.364463,
+    "lng": -96.933851
+  },
+  "Oklahoma City University|": {
+    "lat": 35.4963152,
+    "lng": -97.5412241
+  },
+  "Old Dominion University|": {
+    "lat": 36.8862699,
+    "lng": -76.3097248
+  },
+  "Olivet Nazarene University|": {
+    "lat": 41.1552832,
+    "lng": -87.8722099
+  },
+  "Oral Roberts University|": {
+    "lat": 36.0508252,
+    "lng": -95.9521355
+  },
+  "Oregon Graduate Institute of Science and Technology|": null,
+  "Oregon Health Sciences University|": null,
+  "Oregon Institute of Technology|": {
+    "lat": 42.2583928,
+    "lng": -121.7853992
+  },
+  "Oregon State University|": {
+    "lat": 44.5630559,
+    "lng": -123.2839234
+  },
+  "Otterbein College|": {
+    "lat": 40.127744,
+    "lng": -82.9362778
+  },
+  "Our Lady of the Lake University|": {
+    "lat": 29.4270026,
+    "lng": -98.5435342
+  },
+  "Pace University|": {
+    "lat": 40.7111164,
+    "lng": -74.0048044
+  },
+  "Pacific Lutheran University|": {
+    "lat": 47.1437573,
+    "lng": -122.4443889
+  },
+  "Pacific Union College|": {
+    "lat": 38.5702492,
+    "lng": -122.4404486
+  },
+  "Pacific University|": {
+    "lat": 45.5226463,
+    "lng": -123.1093187
+  },
+  "Pacific Western University|": {
+    "lat": -6.2827211,
+    "lng": 144.002196
+  },
+  "Palm Beach Atlantic College|": {
+    "lat": 28.024465,
+    "lng": -81.6184099
+  },
+  "Palm Beach State College|": {
+    "lat": 26.6860512,
+    "lng": -80.2945759
+  },
+  "Peace College|": {
+    "lat": 37.4275751,
+    "lng": -122.166463
+  },
+  "Pembroke State University|": {
+    "lat": 34.6867,
+    "lng": -79.1995
+  },
+  "Pennsylvania College of Technology|Pennsylvania": {
+    "lat": 41.2360615,
+    "lng": -77.0275145
+  },
+  "Pennsylvania State University - Schuylkill Campus|Pennsylvania": null,
+  "Pensacola Christian College|": {
+    "lat": 30.4750939,
+    "lng": -87.2327253
+  },
+  "Pensacola State College|": {
+    "lat": 30.4800624,
+    "lng": -87.2017822
+  },
+  "Pepperdine University|": {
+    "lat": 51.4989932,
+    "lng": -0.1738898
+  },
+  "Peru State College|": {
+    "lat": 40.4735064,
+    "lng": -95.7311147
+  },
+  "Purdue University Fort Wayne|IN": {
+    "lat": 41.1210815,
+    "lng": -85.1057891
+  },
+  "Philadelphia University|": {
+    "lat": 32.1656097,
+    "lng": 35.8517862
+  },
+  "Phillips University|": {
+    "lat": 35.9046728,
+    "lng": -79.0533595
+  },
+  "Pittsburg State University|Pennsylvania": null,
+  "Pitzer College|": {
+    "lat": 34.1047176,
+    "lng": -117.7050428
+  },
+  "Platt College|": {
+    "lat": 33.9329451,
+    "lng": -117.298362
+  },
+  "Plymouth State University|New Hampshire": {
+    "lat": 43.7609047,
+    "lng": -71.6808714
+  },
+  "Polytechnic University of New York|": {
+    "lat": 43.1421581,
+    "lng": -75.2431406
+  },
+  "Polytechnic University of Puerto Rico|": {
+    "lat": 18.422431,
+    "lng": -66.0558915
+  },
+  "Pomona College|California": {
+    "lat": 34.0974775,
+    "lng": -117.7117275
+  },
+  "Portland Community College|": {
+    "lat": 45.4395163,
+    "lng": -122.7273996
+  },
+  "Portland State University|": {
+    "lat": 45.5118121,
+    "lng": -122.6849306
+  },
+  "Prairie View A&M University|": {
+    "lat": 30.0960954,
+    "lng": -95.9870007
+  },
+  "Pratt Institute|": {
+    "lat": 40.6913383,
+    "lng": -73.9630163
+  },
+  "Presbyterian College|": {
+    "lat": 34.4627505,
+    "lng": -81.8671771
+  },
+  "Prescott College|": {
+    "lat": 34.5448939,
+    "lng": -112.4774982
+  },
+  "Providence College|": {
+    "lat": 41.8442938,
+    "lng": -71.4354886
+  },
+  "Purdue Global University|": {
+    "lat": 44.3408982,
+    "lng": -69.7897202
+  },
+  "Purdue Global University (Student email)|": null,
+  "Purdue University Calumet|": {
+    "lat": 41.5813508,
+    "lng": -87.474601
+  },
+  "Purdue University North Central|": null,
+  "Quincy University|": {
+    "lat": 39.9554418,
+    "lng": -91.3896918
+  },
+  "Quinnipiac College|": null,
+  "Radford University|": {
+    "lat": 37.1370242,
+    "lng": -80.5499612
+  },
+  "Ramapo College|": {
+    "lat": 41.0822445,
+    "lng": -74.1738235
+  },
+  "Randolph-Macon College|": {
+    "lat": 37.7625105,
+    "lng": -77.4795421
+  },
+  "Randolph-Macon Woman's College|": null,
+  "Reed College|": {
+    "lat": 45.4814992,
+    "lng": -122.6310136
+  },
+  "Regent University|": {
+    "lat": 36.7993206,
+    "lng": -76.1944005
+  },
+  "Regis University|": {
+    "lat": 39.7897111,
+    "lng": -105.0313695
+  },
+  "Rensselaer Polytechnic Institute|": {
+    "lat": 42.7298969,
+    "lng": -73.6796678
+  },
+  "Rhode Island College|": {
+    "lat": 41.8415962,
+    "lng": -71.4628702
+  },
+  "Rhodes College|": {
+    "lat": 35.1556437,
+    "lng": -89.9889355
+  },
+  "Richard Stockton College of New Jersey|": null,
+  "Rider University|": {
+    "lat": 40.2815512,
+    "lng": -74.7404467
+  },
+  "Ripon College|": {
+    "lat": 43.8410236,
+    "lng": -88.8539386
+  },
+  "Rivier College|": {
+    "lat": 43.9884956,
+    "lng": 4.8877059
+  },
+  "Roanoke College|": {
+    "lat": 37.2486963,
+    "lng": -80.0373641
+  },
+  "Robert Morris University|": {
+    "lat": 40.5215586,
+    "lng": -80.2115783
+  },
+  "Rochester Institute of Technology|": {
+    "lat": 43.0826701,
+    "lng": -77.6729322
+  },
+  "Rockefeller University|": {
+    "lat": 40.7624395,
+    "lng": -73.9557565
+  },
+  "Rockford College|": {
+    "lat": 42.2683388,
+    "lng": -89.0186734
+  },
+  "Rockhurst College|": {
+    "lat": 39.0518559,
+    "lng": -94.5946232
+  },
+  "Rocky Mountain College|": {
+    "lat": 45.7970239,
+    "lng": -108.5548196
+  },
+  "Roger Williams University|": {
+    "lat": 41.6504681,
+    "lng": -71.260233
+  },
+  "Rollins College|": {
+    "lat": 28.5925815,
+    "lng": -81.3483095
+  },
+  "Rosary College|": {
+    "lat": 53.3187215,
+    "lng": -6.3075081
+  },
+  "Rose-Hulman Institute of Technology|": {
+    "lat": 39.4829201,
+    "lng": -87.3241582
+  },
+  "Rowan College|": {
+    "lat": 39.7804923,
+    "lng": -75.1226476
+  },
+  "Sacred Heart University|": {
+    "lat": 41.2225974,
+    "lng": -73.2444673
+  },
+  "Sage Colleges|": null,
+  "Saginaw Valley State University|": {
+    "lat": 43.5158881,
+    "lng": -83.9593131
+  },
+  "Saint Anselm College|": {
+    "lat": 42.9845198,
+    "lng": -71.5080062
+  },
+  "Saint Cloud State University|": {
+    "lat": 45.5478116,
+    "lng": -94.1512285
+  },
+  "Saint Edward's University|": null,
+  "St. Francis College|New York": {
+    "lat": 40.6930666,
+    "lng": -73.9922031
+  },
+  "Saint John's University (NY)|": {
+    "lat": 40.721731,
+    "lng": -73.7940147
+  },
+  "Saint Joseph's College (IN)|": {
+    "lat": 29.3745583,
+    "lng": 79.4599064
+  },
+  "Saint Joseph's University|": {
+    "lat": 39.9965296,
+    "lng": -75.2415117
+  },
+  "Saint Leo University|": {
+    "lat": 28.3385394,
+    "lng": -82.2580705
+  },
+  "Saint Louis University|": {
+    "lat": 38.635359,
+    "lng": -90.2318433
+  },
+  "Saint Mary College|": {
+    "lat": 39.2778813,
+    "lng": -94.904488
+  },
+  "Saint Mary's College (IN)|": {
+    "lat": 41.7074744,
+    "lng": -86.2562801
+  },
+  "Saint Mary's College of California|": {
+    "lat": 37.8409597,
+    "lng": -122.109459
+  },
+  "Saint Mary's University of Minnesota|": {
+    "lat": 44.0453409,
+    "lng": -91.6951877
+  },
+  "Saint Michael's College|": {
+    "lat": 44.4952594,
+    "lng": -73.165594
+  },
+  "Saint Olaf College|": null,
+  "Saint Vincent College|": {
+    "lat": 40.2899918,
+    "lng": -79.4045864
+  },
+  "Saint Xavier University|": {
+    "lat": 41.7079241,
+    "lng": -87.7146312
+  },
+  "Salisbury University|": {
+    "lat": 38.345692,
+    "lng": -75.606895
+  },
+  "Salish Kootenai College|": {
+    "lat": 47.5950499,
+    "lng": -114.1067334
+  },
+  "Samford University|": {
+    "lat": 33.4641484,
+    "lng": -86.7939592
+  },
+  "Sam Houston State University|": {
+    "lat": 30.7133471,
+    "lng": -95.5449136
+  },
+  "San Diego State University|": {
+    "lat": 32.7761529,
+    "lng": -117.0733037
+  },
+  "San Francisco State University|": {
+    "lat": 37.7245167,
+    "lng": -122.4799957
+  },
+  "San Jose State University|": {
+    "lat": 37.3351902,
+    "lng": -121.8812255
+  },
+  "Santa Clara University|": {
+    "lat": 37.3486243,
+    "lng": -121.936544
+  },
+  "Sarah Lawrence College|": {
+    "lat": 40.9344239,
+    "lng": -73.8449773
+  },
+  "School of the Art Institute of Chicago|": {
+    "lat": 41.8812522,
+    "lng": -87.6269745
+  },
+  "Seattle Central College|": {
+    "lat": 47.6161905,
+    "lng": -122.3214977
+  },
+  "Seattle Pacific University|": {
+    "lat": 47.6488675,
+    "lng": -122.3619664
+  },
+  "Seattle University|": {
+    "lat": 47.6095043,
+    "lng": -122.3187983
+  },
+  "Seton Hall University|": {
+    "lat": 40.7433314,
+    "lng": -74.2468921
+  },
+  "Sewanee, University of the South|": {
+    "lat": 35.2044041,
+    "lng": -85.9189506
+  },
+  "Shawnee State University|": {
+    "lat": 38.7314025,
+    "lng": -82.9923208
+  },
+  "Shenandoah University|": {
+    "lat": 39.1663054,
+    "lng": -78.1587638
+  },
+  "Shippensburg University of Pennsylvania|Pennsylvania": {
+    "lat": 40.061413,
+    "lng": -77.5194818
+  },
+  "Shorter College|": {
+    "lat": 34.2594287,
+    "lng": -85.1952751
+  },
+  "Simmons College|": {
+    "lat": 42.3389354,
+    "lng": -71.1004318
+  },
+  "Simon's Rock College|": {
+    "lat": 42.2107313,
+    "lng": -73.3816479
+  },
+  "Simpson College|": {
+    "lat": 41.3662127,
+    "lng": -93.5660541
+  },
+  "Sinclair Community College|": {
+    "lat": 39.7566396,
+    "lng": -84.1988565
+  },
+  "Skidmore College|": {
+    "lat": 43.0987179,
+    "lng": -73.7842286
+  },
+  "Slippery Rock University of Pennsylvania|Pennsylvania": {
+    "lat": 41.066198,
+    "lng": -80.0404079
+  },
+  "Smith College|": {
+    "lat": 42.3162239,
+    "lng": -72.6403932
+  },
+  "Sonoma State University|": {
+    "lat": 38.3398265,
+    "lng": -122.6734192
+  },
+  "South Dakota School of Mines and Technology|": null,
+  "South Dakota State University|": {
+    "lat": 44.344449,
+    "lng": -96.7982371
+  },
+  "Southeastern Louisiana University|": {
+    "lat": 30.5182254,
+    "lng": -90.4688149
+  },
+  "Southeast Missouri State University|": {
+    "lat": 37.3177704,
+    "lng": -89.5285427
+  },
+  "Southern College|": {
+    "lat": 10.2942788,
+    "lng": 76.3307067
+  },
+  "Southern College of Technology|": {
+    "lat": 10.390998,
+    "lng": 124.9788791
+  },
+  "Southern Connecticut State University|": {
+    "lat": 41.3342104,
+    "lng": -72.9450826
+  },
+  "Southern Illinois University-Carbondale|": {
+    "lat": 37.7083423,
+    "lng": -89.2275556
+  },
+  "Southern Illinois University-Edwardsville|": {
+    "lat": 38.7941616,
+    "lng": -90.0002789
+  },
+  "Southern Methodist University|": {
+    "lat": 32.8418011,
+    "lng": -96.7815281
+  },
+  "Southern Nazarene University|": {
+    "lat": 35.5138091,
+    "lng": -97.6293007
+  },
+  "Southern New Hampshire University|": {
+    "lat": 43.0374605,
+    "lng": -71.4478392
+  },
+  "Southern Oregon State College|": null,
+  "Southern University and A&M College|": {
+    "lat": 30.5258156,
+    "lng": -91.194946
+  },
+  "Southern Utah University|": {
+    "lat": 37.6748541,
+    "lng": -113.0731048
+  },
+  "South Texas College of Law|": null,
+  "Southwest Baptist University|": {
+    "lat": 37.6007601,
+    "lng": -93.4087307
+  },
+  "Southwestern Adventist College|": null,
+  "Southwestern Assemblies of God University|": {
+    "lat": 32.4073549,
+    "lng": -96.8529566
+  },
+  "Southwestern College (KS)|": {
+    "lat": 37.2492453,
+    "lng": -96.9740191
+  },
+  "Southwestern University|": {
+    "lat": 30.6371513,
+    "lng": -97.662741
+  },
+  "Southwest Minnesota State University|": {
+    "lat": 44.4574449,
+    "lng": -95.7592368
+  },
+  "Southwest Texas State University|": null,
+  "Spelman College|": {
+    "lat": 33.7450889,
+    "lng": -84.4113833
+  },
+  "Spring Arbor College|": {
+    "lat": 42.2058333,
+    "lng": -84.5538889
+  },
+  "Spring Hill College|": {
+    "lat": 30.6920656,
+    "lng": -88.135704
+  },
+  "St. Ambrose University|": {
+    "lat": 41.5397502,
+    "lng": -90.5811761
+  },
+  "St. Andrews Presbyterian College|": null,
+  "State University of New York at Albany|": {
+    "lat": 42.6639622,
+    "lng": -73.7802589
+  },
+  "State University of New York at Binghamton|": {
+    "lat": 42.0877998,
+    "lng": -75.9706607
+  },
+  "State University of New York at Buffalo|": null,
+  "State University of New York at Farmingdale|": null,
+  "State University of New York at Fredonia|": {
+    "lat": 42.4529786,
+    "lng": -79.3402006
+  },
+  "State University of New York at Oswego|": {
+    "lat": 43.4525481,
+    "lng": -76.5450409
+  },
+  "State University of New York at Plattsburgh|": {
+    "lat": 44.6835934,
+    "lng": -73.4773665
+  },
+  "State University of New York at Stony Brook|": {
+    "lat": 40.9090809,
+    "lng": -73.1205518
+  },
+  "Academic medical center at State University of New York at Stony Brook|": null,
+  "State University of New York College at Brockport|": null,
+  "State University of New York College at Buffalo|": null,
+  "State University of New York College at Cortland|": {
+    "lat": 42.5927112,
+    "lng": -76.1961728
+  },
+  "State University of New York College at Geneseo|": null,
+  "State University of New York College at New Paltz|": null,
+  "State University of New York College at Potsdam|": null,
+  "State University of New York College of Agriculture and Technology at Cobleskill|": {
+    "lat": 42.6689511,
+    "lng": -74.5064331
+  },
+  "State University of New York College of Environmental Science and Forestry|": {
+    "lat": 43.0347222,
+    "lng": -76.1355556
+  },
+  "State University of New York College of Technology at Alfred|": {
+    "lat": 42.2561256,
+    "lng": -77.7979136
+  },
+  "State University of New York Polytechnic Institute|": {
+    "lat": 43.1421581,
+    "lng": -75.2431406
+  },
+  "State University of New York System|": null,
+  "St. Bonaventure University|": {
+    "lat": 42.0767249,
+    "lng": -78.4816526
+  },
+  "Stephen F. Austin State University|": {
+    "lat": 31.623554,
+    "lng": -94.6434449
+  },
+  "Stephens College|": {
+    "lat": 38.9505943,
+    "lng": -92.3229551
+  },
+  "Stetson University|": {
+    "lat": 29.0365347,
+    "lng": -81.3005411
+  },
+  "Stevens Institute of Technology|": {
+    "lat": 40.7448096,
+    "lng": -74.0252392
+  },
+  "St. John's College - Annapolis|": {
+    "lat": 38.9822832,
+    "lng": -76.4922375
+  },
+  "St. John's College - Santa Fe|": {
+    "lat": 35.6674411,
+    "lng": -105.912113
+  },
+  "St. Joseph's College (ME)|": null,
+  "St. Lawrence University|": {
+    "lat": 44.5875837,
+    "lng": -75.1481446
+  },
+  "St. Louis College of Pharmacy|": {
+    "lat": 38.6370707,
+    "lng": -90.2609655
+  },
+  "St. Martin's College|": {
+    "lat": 35.897672,
+    "lng": 14.4797966
+  },
+  "St. Mary's College of Maryland|": {
+    "lat": 38.1903261,
+    "lng": -76.4252365
+  },
+  "Strayer College|": null,
+  "St. Thomas University (FL)|": {
+    "lat": 25.921286,
+    "lng": -80.2564809
+  },
+  "Suffolk University|": {
+    "lat": 42.3567011,
+    "lng": -71.0610578
+  },
+  "Sul Ross State University|": {
+    "lat": 30.3640745,
+    "lng": -103.64897
+  },
+  "Summit University of Louisiana|": null,
+  "Susquehanna University|": {
+    "lat": 40.7968873,
+    "lng": -76.8750374
+  },
+  "Swarthmore College|": {
+    "lat": 39.9029154,
+    "lng": -75.3552419
+  },
+  "Sweet Briar College|": {
+    "lat": 37.555329,
+    "lng": -79.0833323
+  },
+  "Syracuse University|": {
+    "lat": 43.0171129,
+    "lng": -76.1185536
+  },
+  "Tabor College|": {
+    "lat": -31.9795024,
+    "lng": 116.014887
+  },
+  "Tarleton State University|": {
+    "lat": 32.214673,
+    "lng": -98.2196882
+  },
+  "Taylor University|": {
+    "lat": 40.4560812,
+    "lng": -85.5011884
+  },
+  "Tennessee State University|": {
+    "lat": 36.1679249,
+    "lng": -86.8271487
+  },
+  "Tennessee Technological University|": {
+    "lat": 36.1748736,
+    "lng": -85.5089051
+  },
+  "Tarrant County College|": {
+    "lat": 32.9797326,
+    "lng": -97.3129042
+  },
+  "Texas A&M International University|": {
+    "lat": 27.5722485,
+    "lng": -99.4325843
+  },
+  "Texas A&M University - Commerce|": {
+    "lat": 33.2399911,
+    "lng": -95.9182528
+  },
+  "Texas A&M University - Corpus Christi|": {
+    "lat": 27.7127513,
+    "lng": -97.3233877
+  },
+  "Texas A&M University - Kingsville|": {
+    "lat": 27.5279817,
+    "lng": -97.8836721
+  },
+  "Texas Christian University|": {
+    "lat": 32.7080148,
+    "lng": -97.3611939
+  },
+  "Texas Southern University|": {
+    "lat": 29.7209058,
+    "lng": -95.3596267
+  },
+  "Texas State University|": {
+    "lat": 29.8910941,
+    "lng": -97.9376839
+  },
+  "Texas Tech University|": {
+    "lat": 33.5937526,
+    "lng": -101.8995955
+  },
+  "Texas Tech University-Health Sciences Center|": null,
+  "Texas Woman's University|": {
+    "lat": 33.226547,
+    "lng": -97.1267107
+  },
+  "The Citadel|": {
+    "lat": 32.7963982,
+    "lng": -79.9611833
+  },
+  "The Jewish Theological Seminary|": null,
+  "Thomas College|": {
+    "lat": 44.5223921,
+    "lng": -69.6633478
+  },
+  "Thomas Edison State University|": {
+    "lat": 40.2203628,
+    "lng": -74.768549
+  },
+  "Thomas Jefferson University|": {
+    "lat": 39.9489114,
+    "lng": -75.1580566
+  },
+  "Thomas More College|": {
+    "lat": 39.0209185,
+    "lng": -84.5676956
+  },
+  "Thunderbird School of Global Management|": {
+    "lat": 33.4528078,
+    "lng": -112.069269
+  },
+  "Towson University|": {
+    "lat": 39.3869768,
+    "lng": -76.6185804
+  },
+  "Transylvania University|": {
+    "lat": 38.053107,
+    "lng": -84.4939872
+  },
+  "Trenton State College|": {
+    "lat": 35.9486517,
+    "lng": -88.9416624
+  },
+  "Trine University|": {
+    "lat": 41.6311141,
+    "lng": -85.0105982
+  },
+  "Trinity College (CT)|": {
+    "lat": 41.7471549,
+    "lng": -72.6901199
+  },
+  "Trinity College (DC)|": {
+    "lat": 38.9273309,
+    "lng": -77.0041015
+  },
+  "Trinity University|": {
+    "lat": 29.4616913,
+    "lng": -98.4835083
+  },
+  "Troy State University|": {
+    "lat": 42.6041593,
+    "lng": -83.1651667
+  },
+  "Truman State University|": {
+    "lat": 40.184327,
+    "lng": -92.5825832
+  },
+  "Tucson University|": {
+    "lat": 32.2356928,
+    "lng": -110.951744
+  },
+  "Tufts University|": {
+    "lat": 42.4064913,
+    "lng": -71.1180073
+  },
+  "Tulane University|": {
+    "lat": 29.9412195,
+    "lng": -90.1201009
+  },
+  "Tuskegee University|": {
+    "lat": 32.4301095,
+    "lng": -85.7067335
+  },
+  "Uniformed Services University of the Health Sciences|": {
+    "lat": 39.0018688,
+    "lng": -77.086372
+  },
+  "Union College|": {
+    "lat": 42.8175752,
+    "lng": -73.9283917
+  },
+  "Union Institute|": {
+    "lat": 14.025866,
+    "lng": -60.9622912
+  },
+  "Union University|": {
+    "lat": 35.6771241,
+    "lng": -88.86095
+  },
+  "United States Air Force Academy|": {
+    "lat": 38.9912381,
+    "lng": -104.8588346
+  },
+  "United States International University|": {
+    "lat": 25.7553898,
+    "lng": -80.3762833
+  },
+  "United States Merchant Marine Academy|": {
+    "lat": 40.8123336,
+    "lng": -73.7619648
+  },
+  "United States Military Academy|": {
+    "lat": 41.3926455,
+    "lng": -73.9599242
+  },
+  "United States Naval Academy|": {
+    "lat": 38.9819343,
+    "lng": -76.4821709
+  },
+  "University of Advancing Technology|": {
+    "lat": 33.3778254,
+    "lng": -111.9760196
+  },
+  "University of Akron|": {
+    "lat": 41.0757383,
+    "lng": -81.5114532
+  },
+  "University of Alabama at Birmingham|": {
+    "lat": 33.5016153,
+    "lng": -86.8060476
+  },
+  "University of Alabama at Huntsville|": {
+    "lat": 34.7406465,
+    "lng": -86.6230495
+  },
+  "University of Alaska|": {
+    "lat": 55.2062776,
+    "lng": -162.7063065
+  },
+  "University of Alaska - Anchorage|": {
+    "lat": 61.190379,
+    "lng": -149.8223254
+  },
+  "University of Alaska - Fairbanks|": {
+    "lat": 64.8653409,
+    "lng": -147.8426097
+  },
+  "University of Alaska - Southeast|": {
+    "lat": 58.3923365,
+    "lng": -134.6478123
+  },
+  "University of Arkansas - Fayetteville|": {
+    "lat": 36.0970389,
+    "lng": -94.1703322
+  },
+  "University of Arkansas - Fort Smith|": {
+    "lat": 35.3829856,
+    "lng": -94.3741271
+  },
+  "University of Arkansas for Medical Sciences|": {
+    "lat": 34.748041,
+    "lng": -92.3223096
+  },
+  "University of Arkansas - Little Rock|": {
+    "lat": 34.7223681,
+    "lng": -92.3383026
+  },
+  "University of Arkansas - Monticello|": {
+    "lat": 33.5911121,
+    "lng": -91.8087871
+  },
+  "University of Baltimore|": {
+    "lat": 39.3054661,
+    "lng": -76.616577
+  },
+  "University of Bridgeport|": {
+    "lat": 41.1646585,
+    "lng": -73.1904612
+  },
+  "University of California, Merced|": {
+    "lat": 37.365182,
+    "lng": -120.4225275
+  },
+  "University of California, Office of the President|CA": null,
+  "University of Central Arkansas|": {
+    "lat": 35.077641,
+    "lng": -92.4579926
+  },
+  "University of Central Missouri|": {
+    "lat": 38.7575157,
+    "lng": -93.7408311
+  },
+  "UC Hastings College of the Law|CA": null,
+  "University of Charleston|": {
+    "lat": 38.3329392,
+    "lng": -81.6168853
+  },
+  "University of Cincinnati|": {
+    "lat": 39.1318991,
+    "lng": -84.5157575
+  },
+  "University of Colorado at Colorado Springs|": null,
+  "University of Colorado at Denver|": {
+    "lat": 39.6677728,
+    "lng": -104.9360342
+  },
+  "University of Colorado Health Sciences Center|": null,
+  "University of Connecticut|": {
+    "lat": 41.8111114,
+    "lng": -72.2483889
+  },
+  "University of Dallas|": {
+    "lat": 32.8487635,
+    "lng": -96.9225676
+  },
+  "University of Dayton|": {
+    "lat": 39.7384598,
+    "lng": -84.1791948
+  },
+  "University of Delaware|": {
+    "lat": 39.6803338,
+    "lng": -75.7530749
+  },
+  "University of Denver|": {
+    "lat": 39.6766157,
+    "lng": -104.9623745
+  },
+  "University of Detroit Mercy|": {
+    "lat": 42.4140319,
+    "lng": -83.1378601
+  },
+  "University of Dubuque|": {
+    "lat": 42.0352165,
+    "lng": -91.6361659
+  },
+  "University of Evansville|": {
+    "lat": 37.9735131,
+    "lng": -87.5322977
+  },
+  "University of Great Falls|": {
+    "lat": 47.4910998,
+    "lng": -111.2704633
+  },
+  "University of Hartford|": {
+    "lat": 41.8002648,
+    "lng": -72.7141205
+  },
+  "University of Hawaii at Hilo|": null,
+  "University of Hawaii at Manoa|": {
+    "lat": 21.2982795,
+    "lng": -157.8186932
+  },
+  "University of Hawaii System|": null,
+  "University of Houston|": {
+    "lat": 29.7207902,
+    "lng": -95.3440627
+  },
+  "University of Idaho|": {
+    "lat": 46.7237978,
+    "lng": -117.020439
+  },
+  "University of Illinois Chicago|": {
+    "lat": 41.8689223,
+    "lng": -87.6485848
+  },
+  "University of Illinois Springfield|": {
+    "lat": 39.7288145,
+    "lng": -89.6172915
+  },
+  "University of Illinois Urbana-Champaign|Illinois": {
+    "lat": 40.0761545,
+    "lng": -88.2233134
+  },
+  "University of Indianapolis|": {
+    "lat": 39.7093964,
+    "lng": -86.1344523
+  },
+  "University of Iowa|": {
+    "lat": 41.6311024,
+    "lng": -91.540752
+  },
+  "University of Jamestown|": {
+    "lat": 33.4844711,
+    "lng": -112.0767366
+  },
+  "University of Kansas|": {
+    "lat": 38.9535051,
+    "lng": -95.2630922
+  },
+  "University of Kansas School of Medicine|": null,
+  "University of Kentucky|": {
+    "lat": 38.0266291,
+    "lng": -84.5047222
+  },
+  "University of Louisiana at Lafeyette|": null,
+  "University of Louisiana at Monroe|": {
+    "lat": 32.5318286,
+    "lng": -92.0658112
+  },
+  "University of Louisville|": {
+    "lat": 38.2133223,
+    "lng": -85.7577075
+  },
+  "University of Maine|": {
+    "lat": 44.9015188,
+    "lng": -68.6617222
+  },
+  "University of Maine at Farmington|": {
+    "lat": 44.6671972,
+    "lng": -70.1531261
+  },
+  "University of Maine at Fort Kent|": {
+    "lat": 47.2500954,
+    "lng": -68.5882787
+  },
+  "University of Maine at Machias|": {
+    "lat": 44.7094174,
+    "lng": -67.4564854
+  },
+  "University of Maine at Presque Island|": null,
+  "University of Maine System|": null,
+  "University of Maryland, Baltimore|": {
+    "lat": 39.252377,
+    "lng": -76.7089181
+  },
+  "Mayo Clinic|": {
+    "lat": -26.1505617,
+    "lng": 27.9197318
+  },
+  "University of Maryland, Baltimore County|": {
+    "lat": 39.252377,
+    "lng": -76.7089181
+  },
+  "University of Maryland Eastern Shore|": {
+    "lat": 38.2140373,
+    "lng": -75.6828765
+  },
+  "University of Maryland - University College|": {
+    "lat": 38.9904124,
+    "lng": -76.9438586
+  },
+  "University of Massachusetts at Amherst|": {
+    "lat": 42.4033249,
+    "lng": -72.5325757
+  },
+  "University of Massachusetts at Dartmouth|": {
+    "lat": 41.6242703,
+    "lng": -71.0008734
+  },
+  "University of Massachusetts at Lowell|": {
+    "lat": 42.656559,
+    "lng": -71.3312344
+  },
+  "University of Memphis|": {
+    "lat": 35.1189387,
+    "lng": -89.9372196
+  },
+  "University of Miami|": {
+    "lat": 25.7172724,
+    "lng": -80.2787069
+  },
+  "University of Michigan - Dearborn|": {
+    "lat": 42.3172294,
+    "lng": -83.2319394
+  },
+  "University of Minnesota - Crookston|": {
+    "lat": 47.8012259,
+    "lng": -96.6067424
+  },
+  "University of Minnesota - Duluth|": {
+    "lat": 46.8203898,
+    "lng": -92.0852741
+  },
+  "University of Minnesota - Morris|": {
+    "lat": 45.5902344,
+    "lng": -95.8993091
+  },
+  "University of Mississippi|": {
+    "lat": 34.3646125,
+    "lng": -89.5396349
+  },
+  "University of Missouri|": {
+    "lat": 38.9364147,
+    "lng": -92.329703
+  },
+  "University of Missouri - Kansas City|": {
+    "lat": 39.0313232,
+    "lng": -94.5741909
+  },
+  "University of Missouri - Rolla|": {
+    "lat": 37.9532435,
+    "lng": -91.7742667
+  },
+  "University of Missouri - Saint Louis|": {
+    "lat": 38.7086398,
+    "lng": -90.3117145
+  },
+  "University of Montana|": {
+    "lat": 46.8541841,
+    "lng": -113.9655283
+  },
+  "University of Nebraska, Kearney|": {
+    "lat": 40.6989871,
+    "lng": -99.110445
+  },
+  "University of Nebraska, Lincoln|": {
+    "lat": 40.8205941,
+    "lng": -96.7026058
+  },
+  "University of Nebraska, Omaha|": {
+    "lat": 41.2577933,
+    "lng": -96.0104971
+  },
+  "University of Nevada, Las Vegas|": {
+    "lat": 36.1079411,
+    "lng": -115.1439051
+  },
+  "University of Nevada, Reno|": {
+    "lat": 39.5442688,
+    "lng": -119.8163105
+  },
+  "University of New England|": {
+    "lat": 43.4591747,
+    "lng": -70.3862214
+  },
+  "University of New Hampshire|New Hampshire": {
+    "lat": 43.1350987,
+    "lng": -70.9462079
+  },
+  "University of New Haven|": {
+    "lat": 41.2909137,
+    "lng": -72.9626388
+  },
+  "University of New Mexico|": {
+    "lat": 35.0866327,
+    "lng": -106.6202094
+  },
+  "University of New Orleans|": {
+    "lat": 30.0283526,
+    "lng": -90.0668428
+  },
+  "University of North Carolina at Asheville|": null,
+  "University of North Carolina at Charlotte|": null,
+  "The University of North Carolina at Greensboro|North Carolina": null,
+  "University of North Carolina at Wilmington|": {
+    "lat": 34.2249827,
+    "lng": -77.8690774
+  },
+  "University of North Dakota|": {
+    "lat": 47.9265412,
+    "lng": -97.0721209
+  },
+  "University of Northern Colorado|": {
+    "lat": 40.4028503,
+    "lng": -104.7017242
+  },
+  "University of Northern Iowa|": {
+    "lat": 42.5149569,
+    "lng": -92.4629522
+  },
+  "University of North Florida|": {
+    "lat": 30.2689865,
+    "lng": -81.5096561
+  },
+  "University of North Texas|": {
+    "lat": 33.2098926,
+    "lng": -97.1514762
+  },
+  "University of North Texas Health Science Center|": null,
+  "University of Oklahoma|": {
+    "lat": 35.1959878,
+    "lng": -97.4457083
+  },
+  "University of Oregon|": {
+    "lat": 44.0444197,
+    "lng": -123.0717603
+  },
+  "University of Phoenix|": {
+    "lat": 34.178789,
+    "lng": -118.591275
+  },
+  "University of Pittsburgh at Johnstown|Pennsylvania": {
+    "lat": 40.2695151,
+    "lng": -78.8432012
+  },
+  "University of Pittsburgh at Bradford|Pennsylvania": {
+    "lat": 41.943263,
+    "lng": -78.6722015
+  },
+  "University of Portland|": {
+    "lat": 45.5736806,
+    "lng": -122.7282878
+  },
+  "University of Puerto Rico|": {
+    "lat": 18.404635,
+    "lng": -66.0478486
+  },
+  "University of Puget Sound|": {
+    "lat": 47.261437,
+    "lng": -122.4809573
+  },
+  "University of Redlands|": {
+    "lat": 34.0635903,
+    "lng": -117.1638519
+  },
+  "University of Rhode Island|": {
+    "lat": 41.4875094,
+    "lng": -71.5343138
+  },
+  "University of Richmond|": {
+    "lat": 37.5758797,
+    "lng": -77.5412837
+  },
+  "University of Rochester|": {
+    "lat": 43.129864,
+    "lng": -77.628784
+  },
+  "University of Saint Thomas (MN)|": {
+    "lat": 44.056351,
+    "lng": -93.2294337
+  },
+  "University of Saint Thomas (TX)|": {
+    "lat": 29.7368368,
+    "lng": -95.3941719
+  },
+  "University of San Diego|": {
+    "lat": 32.7726301,
+    "lng": -117.1891347
+  },
+  "University of San Francisco|": {
+    "lat": 37.7793627,
+    "lng": -122.4514473
+  },
+  "University of Science & Arts of Oklahoma|": {
+    "lat": 35.0322101,
+    "lng": -97.9549629
+  },
+  "University of Scranton|": {
+    "lat": 41.4064465,
+    "lng": -75.6577499
+  },
+  "University of Sioux Falls|": {
+    "lat": 43.5312313,
+    "lng": -96.7387395
+  },
+  "University of South Alabama|": {
+    "lat": 30.6972412,
+    "lng": -88.1892334
+  },
+  "University of South Carolina|": {
+    "lat": 33.9928841,
+    "lng": -81.0268676
+  },
+  "Anderson University|South Carolina": {
+    "lat": 34.5148116,
+    "lng": -82.638355
+  },
+  "University of South Carolina - Aiken|": {
+    "lat": 33.5733497,
+    "lng": -81.770546
+  },
+  "University of South Dakota|": {
+    "lat": 42.7913704,
+    "lng": -96.9254235
+  },
+  "University of Southern California|": {
+    "lat": 34.0218689,
+    "lng": -118.2858579
+  },
+  "University of Southern Indiana|": {
+    "lat": 37.9584686,
+    "lng": -87.6742032
+  },
+  "University of Southern Maine|": {
+    "lat": 43.6832708,
+    "lng": -70.4496829
+  },
+  "University of Southern Mississippi|": {
+    "lat": 31.3286452,
+    "lng": -89.3367312
+  },
+  "University of Southwestern Louisiana|": {
+    "lat": 30.2117256,
+    "lng": -92.0195772
+  },
+  "University of Tampa|": {
+    "lat": 27.9473468,
+    "lng": -82.4654238
+  },
+  "University of Tennessee at Chattanooga|": null,
+  "University of Tennessee, Knoxville|": {
+    "lat": 35.9515612,
+    "lng": -83.93088
+  },
+  "University of Tennessee, Martin|": {
+    "lat": 36.3414523,
+    "lng": -88.8642273
+  },
+  "University of Texas at Arlington|": {
+    "lat": 32.7315155,
+    "lng": -97.1171533
+  },
+  "University of Texas at Brownsville|": null,
+  "University of Texas at Dallas|": {
+    "lat": 32.9875855,
+    "lng": -96.749784
+  },
+  "University of Texas at El Paso|": {
+    "lat": 31.7757047,
+    "lng": -106.5062875
+  },
+  "The University of Texas at San Antonio|Texas": {
+    "lat": 29.583331,
+    "lng": -98.6194451
+  },
+  "University of Texas at Tyler|": {
+    "lat": 32.3163078,
+    "lng": -95.2536994
+  },
+  "University of Texas Medical Branch|": {
+    "lat": 29.3120184,
+    "lng": -94.7762733
+  },
+  "University of Texas - Pan American|": null,
+  "University of Texas Southwestern Medical Center|": {
+    "lat": 32.812043,
+    "lng": -96.8417201
+  },
+  "University of Texas Permian Basin|": {
+    "lat": 31.8868832,
+    "lng": -102.3232439
+  },
+  "University of the District of Columbia|": {
+    "lat": 38.9448891,
+    "lng": -77.0662906
+  },
+  "University of the Incarnate Word|": {
+    "lat": 29.4688466,
+    "lng": -98.4691039
+  },
+  "University of the Ozarks|": {
+    "lat": 35.4786388,
+    "lng": -93.465589
+  },
+  "University of the Pacific|": {
+    "lat": 37.9804237,
+    "lng": -121.3128472
+  },
+  "University of Toledo|": {
+    "lat": 41.6582432,
+    "lng": -83.6147873
+  },
+  "University of Tulsa|": {
+    "lat": 36.1523306,
+    "lng": -95.9459602
+  },
+  "University of Vermont|": {
+    "lat": 44.4737365,
+    "lng": -73.1941468
+  },
+  "University of Washington|": {
+    "lat": 47.6554303,
+    "lng": -122.3001692
+  },
+  "University of West Alabama|": {
+    "lat": 32.5978108,
+    "lng": -88.1872404
+  },
+  "University of West Florida|": {
+    "lat": 30.5479646,
+    "lng": -87.2162015
+  },
+  "University of Wisconsin - Eau Claire|": {
+    "lat": 44.7987719,
+    "lng": -91.5069963
+  },
+  "University of Wisconsin - Green Bay|": {
+    "lat": 44.526527,
+    "lng": -87.9073466
+  },
+  "University of Wisconsin - LaCrosse|": null,
+  "University of Wisconsin - Milwaukee|": {
+    "lat": 43.077639,
+    "lng": -87.8819425
+  },
+  "University of Wisconsin - Oshkosh|": {
+    "lat": 44.0252,
+    "lng": -88.5510899
+  },
+  "University of Wisconsin - Parkside|": {
+    "lat": 42.6468292,
+    "lng": -87.8504055
+  },
+  "University of Wisconsin - Platteville|": {
+    "lat": 42.7308539,
+    "lng": -90.4951446
+  },
+  "University of Wisconsin - River Falls|": {
+    "lat": 44.8481427,
+    "lng": -92.6193599
+  },
+  "University of Wisconsin - Stevens Point|": {
+    "lat": 44.5314508,
+    "lng": -89.5694714
+  },
+  "University of Wisconsin - Stout|": {
+    "lat": 44.872426,
+    "lng": -91.9255798
+  },
+  "University of Wisconsin - Superior|": {
+    "lat": 46.7178089,
+    "lng": -92.088422
+  },
+  "University of Wisconsin System|": {
+    "lat": 43.0756117,
+    "lng": -89.4066909
+  },
+  "University of Wisconsin - Whitewater|": {
+    "lat": 42.8443596,
+    "lng": -88.7436664
+  },
+  "University of Wyoming|": {
+    "lat": 41.314986,
+    "lng": -105.5643222
+  },
+  "Upper Iowa University|": {
+    "lat": 42.8395855,
+    "lng": -91.7933043
+  },
+  "Ursinus College|": {
+    "lat": 40.1954088,
+    "lng": -75.4553199
+  },
+  "Utah State University|": {
+    "lat": 41.7526959,
+    "lng": -111.808733
+  },
+  "Utah Valley State College|": {
+    "lat": 40.2794106,
+    "lng": -111.7178868
+  },
+  "Valdosta State University|": {
+    "lat": 30.8472323,
+    "lng": -83.2889807
+  },
+  "Valley City State University|": {
+    "lat": 46.9185861,
+    "lng": -98.0027637
+  },
+  "Valparaiso University|": {
+    "lat": 41.4629628,
+    "lng": -87.044689
+  },
+  "Vance-Granville Community College|": {
+    "lat": 36.403649,
+    "lng": -78.1553745
+  },
+  "Vassar College|": {
+    "lat": 41.6854718,
+    "lng": -73.8934933
+  },
+  "Vermont Technical College|": null,
+  "Villa Julie College|": null,
+  "Villanova University|": {
+    "lat": 40.0367774,
+    "lng": -75.3420233
+  },
+  "Virginia Commonwealth University|": {
+    "lat": 37.5461246,
+    "lng": -77.4540609
+  },
+  "Virginia Community College System|": null,
+  "Virginia Intermont College|": {
+    "lat": 36.6046999,
+    "lng": -82.176338
+  },
+  "Virginia Military Institute|": {
+    "lat": 37.7913339,
+    "lng": -79.4355152
+  },
+  "Virginia State University|": {
+    "lat": 37.2383399,
+    "lng": -77.4195035
+  },
+  "Virginia Wesleyan College|": {
+    "lat": 38.9904756,
+    "lng": -80.2182609
+  },
+  "Wabash College|": {
+    "lat": 40.0367972,
+    "lng": -86.9072703
+  },
+  "Wake Forest University|": {
+    "lat": 36.133893,
+    "lng": -80.2755578
+  },
+  "Walden University|": {
+    "lat": 26.1870341,
+    "lng": -81.8081437
+  },
+  "Walla Walla University|Washington": {
+    "lat": 46.0475488,
+    "lng": -118.3905512
+  },
+  "Walsh College|": {
+    "lat": 42.5738544,
+    "lng": -83.1454981
+  },
+  "Warren Wilson College|": {
+    "lat": 35.6134478,
+    "lng": -82.4406782
+  },
+  "Wartburg College|": {
+    "lat": 51.9612539,
+    "lng": 4.5606447
+  },
+  "Washburn University|": {
+    "lat": 39.0336986,
+    "lng": -95.7015689
+  },
+  "Washington & Lee University|": {
+    "lat": 37.7929993,
+    "lng": -79.4477349
+  },
+  "Washington Bible College/Capital Bible Seminary|": null,
+  "Washington College|": {
+    "lat": 39.218376,
+    "lng": -76.0692567
+  },
+  "Washington State University|": {
+    "lat": 46.7337716,
+    "lng": -117.1498035
+  },
+  "Washington State University at Vancouver|": null,
+  "Washington University, Saint Louis|": {
+    "lat": 38.6472402,
+    "lng": -90.3084017
+  },
+  "Waubonsee Community College|": {
+    "lat": 41.7949312,
+    "lng": -88.4580921
+  },
+  "Waynesburg College|": {
+    "lat": 39.8986866,
+    "lng": -80.1876732
+  },
+  "Wayne State University|": {
+    "lat": 42.3571895,
+    "lng": -83.0709436
+  },
+  "Weber State University|": {
+    "lat": 41.1887229,
+    "lng": -111.9456028
+  },
+  "Webster University|": {
+    "lat": 38.5887875,
+    "lng": -90.3443641
+  },
+  "Wellesley College|": {
+    "lat": 42.291776,
+    "lng": -71.3032752
+  },
+  "Wells College|": {
+    "lat": 42.7441175,
+    "lng": -76.6934132
+  },
+  "Wentworth Institute of Technology|": {
+    "lat": 42.3365725,
+    "lng": -71.095373
+  },
+  "Wesleyan University|": {
+    "lat": 41.5559033,
+    "lng": -72.6559884
+  },
+  "Wesley College|": {
+    "lat": -37.148888,
+    "lng": 174.8894266
+  },
+  "West Chester University of Pennsylvania|Pennsylvania": {
+    "lat": 39.9373892,
+    "lng": -75.6001867
+  },
+  "West Coast University|": {
+    "lat": 34.0793256,
+    "lng": -118.292257
+  },
+  "Western Carolina University|": {
+    "lat": 35.3100146,
+    "lng": -83.1990402
+  },
+  "Western Connecticut State University|": {
+    "lat": 41.4004954,
+    "lng": -73.445022
+  },
+  "Western Governors University|": {
+    "lat": 40.6842251,
+    "lng": -111.8700236
+  },
+  "Western Illinois University|": {
+    "lat": 40.4771468,
+    "lng": -90.6862024
+  },
+  "Western Kentucky University|": {
+    "lat": 36.984529,
+    "lng": -86.457647
+  },
+  "Western Michigan University|": {
+    "lat": 42.2832928,
+    "lng": -85.6102611
+  },
+  "Western Montana College|": {
+    "lat": 7.0933219,
+    "lng": 79.9916576
+  },
+  "Western New England College|": {
+    "lat": 42.1125825,
+    "lng": -72.5147814
+  },
+  "Western New Mexico University|": {
+    "lat": 32.7774008,
+    "lng": -108.2856984
+  },
+  "Western State Colorado University|": null,
+  "Western Washington University|": {
+    "lat": 48.734141,
+    "lng": -122.4874638
+  },
+  "Westfield State College|": {
+    "lat": 42.128315,
+    "lng": -72.801994
+  },
+  "University of West Georgia|": {
+    "lat": 33.5750493,
+    "lng": -85.1033601
+  },
+  "West Liberty State College|": {
+    "lat": 40.169794,
+    "lng": -80.5986853
+  },
+  "Westminster College of New Wilmington|Pennsylvania": {
+    "lat": 41.1182434,
+    "lng": -80.3286896
+  },
+  "Westminster College of Fulton|Missouri": null,
+  "Westminster College of Salt Lake City|": null,
+  "Westminster Theological Seminary|": {
+    "lat": 40.0992226,
+    "lng": -75.1765749
+  },
+  "Westmont College|": {
+    "lat": 34.4504079,
+    "lng": -119.6615297
+  },
+  "West Texas A&M University|": {
+    "lat": 34.9853631,
+    "lng": -101.9112454
+  },
+  "West Virginia University|": {
+    "lat": 39.6348397,
+    "lng": -79.9542095
+  },
+  "West Virginia University at Parkersburg|": {
+    "lat": 39.215595,
+    "lng": -81.5067184
+  },
+  "Wheaton College|": {
+    "lat": 41.9670817,
+    "lng": -71.1830932
+  },
+  "Wheaton College, Norton MA|": {
+    "lat": 41.9670817,
+    "lng": -71.1830932
+  },
+  "Wheeling Jesuit College|": {
+    "lat": 40.0703506,
+    "lng": -80.691191
+  },
+  "Whitman College|": {
+    "lat": 46.0705665,
+    "lng": -118.3303178
+  },
+  "Whittier College|": {
+    "lat": 33.9778416,
+    "lng": -118.0302178
+  },
+  "Whitworth College|": {
+    "lat": 53.4724913,
+    "lng": -2.1887452
+  },
+  "Wichita State University|": {
+    "lat": 37.7193429,
+    "lng": -97.2898878
+  },
+  "Widener University|": {
+    "lat": 39.8606395,
+    "lng": -75.3565932
+  },
+  "Wilberforce University|": {
+    "lat": 39.7085906,
+    "lng": -83.878957
+  },
+  "Wilkes University|": {
+    "lat": 41.2444276,
+    "lng": -75.8902922
+  },
+  "Willamette University|": {
+    "lat": 44.9355889,
+    "lng": -123.0308129
+  },
+  "William Howard Taft University|": {
+    "lat": 39.1277679,
+    "lng": -84.5099538
+  },
+  "William Jewell College|": {
+    "lat": 39.2513794,
+    "lng": -94.4112222
+  },
+  "William Mitchell College of Law|": null,
+  "William Paterson University|": {
+    "lat": 40.947469,
+    "lng": -74.1965544
+  },
+  "William Penn College|": {
+    "lat": 41.3117756,
+    "lng": -92.6489405
+  },
+  "Williams College|": {
+    "lat": 42.7130236,
+    "lng": -73.2030082
+  },
+  "William Woods University|": {
+    "lat": 38.8629209,
+    "lng": -91.9488091
+  },
+  "Wilmington College|": {
+    "lat": 39.441677,
+    "lng": -83.817316
+  },
+  "Winona State University|": {
+    "lat": 44.0469203,
+    "lng": -91.6440377
+  },
+  "Winthrop University|": {
+    "lat": 34.9391203,
+    "lng": -81.0324911
+  },
+  "Wittenberg University|": {
+    "lat": 39.9351075,
+    "lng": -83.8130554
+  },
+  "Wofford College|": {
+    "lat": 34.9611582,
+    "lng": -81.9353216
+  },
+  "Woodbury University|": {
+    "lat": 34.2078523,
+    "lng": -118.34097
+  },
+  "Worcester Polytechnic Institute|": {
+    "lat": 42.274315,
+    "lng": -71.8084567
+  },
+  "Wright State University|": {
+    "lat": 39.7842038,
+    "lng": -84.0567799
+  },
+  "Xavier University of Louisiana|": {
+    "lat": 29.9638897,
+    "lng": -90.1092236
+  },
+  "Yeshiva University|": {
+    "lat": 40.8489807,
+    "lng": -73.9298403
+  },
+  "York College of Pennsylvania|Pennsylvania": {
+    "lat": 39.9474471,
+    "lng": -76.7267984
+  },
+  "Youngstown State University|": {
+    "lat": 41.1067218,
+    "lng": -80.6477542
+  },
+  "Houston Baptist University|TX": {
+    "lat": 29.6944291,
+    "lng": -95.5147559
+  },
+  "Brookings Institution|": {
+    "lat": 38.9090465,
+    "lng": -77.0406438
+  },
+  "Woods Hole Oceanographic Institution|": {
+    "lat": 41.5344346,
+    "lng": -70.6472024
+  },
+  "Alabama Southern Community College|": {
+    "lat": 31.4890523,
+    "lng": -87.324707
+  },
+  "Bevill State Community College|": {
+    "lat": 33.725842,
+    "lng": -87.8184025
+  },
+  "Bishop State Community College|": {
+    "lat": 30.6947174,
+    "lng": -88.0575253
+  },
+  "Central Alabama Community College|": {
+    "lat": 32.9243416,
+    "lng": -85.9455957
+  },
+  "Chattahoochee Valley Community College|": {
+    "lat": 32.4237871,
+    "lng": -85.0307291
+  },
+  "Enterprise State Community College|": {
+    "lat": 31.2981182,
+    "lng": -85.8371311
+  },
+  "Gadsden State Community College|": {
+    "lat": 33.9902905,
+    "lng": -85.9938681
+  },
+  "George C Wallace State Community College-Dothan|": {
+    "lat": 31.3175843,
+    "lng": -85.4657393
+  },
+  "George C Wallace State Community College-Hanceville|": {
+    "lat": 34.0730256,
+    "lng": -86.7851064
+  },
+  "George C Wallace State Community College-Selma|": null,
+  "H Councill Trenholm State Technical College|": null,
+  "James H Faulkner State Community College|": null,
+  "Jefferson Davis Community College|": {
+    "lat": 30.232801,
+    "lng": -92.6577023
+  },
+  "Jefferson State Community College|": {
+    "lat": 32.8724048,
+    "lng": -86.6215208
+  },
+  "J F Drake State Community and Technical College|": null,
+  "Calhoun Community College|": {
+    "lat": 34.6508577,
+    "lng": -86.9489086
+  },
+  "Lurleen B Wallace Community College|": {
+    "lat": 31.3233648,
+    "lng": -86.4511785
+  },
+  "Marion Military Institute|": {
+    "lat": 32.6193588,
+    "lng": -87.3235049
+  },
+  "Northeast Alabama Community College|": {
+    "lat": 34.5459194,
+    "lng": -85.9096966
+  },
+  "Northwest-Shoals Community College|": {
+    "lat": 34.3437334,
+    "lng": -87.7309114
+  },
+  "Shelton State Community College|": {
+    "lat": 33.1206471,
+    "lng": -87.5613494
+  },
+  "Snead State Community College|": {
+    "lat": 34.2006503,
+    "lng": -86.1691433
+  },
+  "Southern Union State Community College|": {
+    "lat": 32.6676727,
+    "lng": -85.3640852
+  },
+  "Ilisagvik College|": {
+    "lat": 71.324803,
+    "lng": -156.6797898
+  },
+  "Prince William Sound College|": {
+    "lat": 61.1341946,
+    "lng": -146.3553711
+  },
+  "Central Arizona College|": {
+    "lat": 31.3612336,
+    "lng": -109.6529144
+  },
+  "Chandler-Gilbert Community College|": {
+    "lat": 33.2954823,
+    "lng": -111.7903127
+  },
+  "Cochise College|": {
+    "lat": 31.5633609,
+    "lng": -110.2458271
+  },
+  "Coconino Community College|": {
+    "lat": 35.1711143,
+    "lng": -111.6455019
+  },
+  "Eastern Arizona College|": {
+    "lat": 32.8455678,
+    "lng": -109.7620438
+  },
+  "GateWay Community College|": {
+    "lat": 41.3039938,
+    "lng": -72.9278893
+  },
+  "Glendale Community College|": {
+    "lat": 34.16688,
+    "lng": -118.2284439
+  },
+  "Mesa Community College|": {
+    "lat": 33.3897698,
+    "lng": -111.8702146
+  },
+  "Mohave Community College|": {
+    "lat": 35.1899896,
+    "lng": -114.0539039
+  },
+  "Northland Pioneer College|": {
+    "lat": 33.825734,
+    "lng": -109.9734087
+  },
+  "Paradise Valley Community College|": {
+    "lat": 33.6514888,
+    "lng": -112.0106503
+  },
+  "Phoenix College|": {
+    "lat": 33.4823521,
+    "lng": -112.0891862
+  },
+  "Pima Community College|": {
+    "lat": 32.2301165,
+    "lng": -111.0160349
+  },
+  "Rio Salado College|": {
+    "lat": 33.4126691,
+    "lng": -111.9735914
+  },
+  "Scottsdale Community College|": {
+    "lat": 33.5119416,
+    "lng": -111.8827068
+  },
+  "South Mountain Community College|": {
+    "lat": 33.3819348,
+    "lng": -112.0340735
+  },
+  "Tohono O'Odham Community College|": {
+    "lat": 31.9902936,
+    "lng": -111.7144764
+  },
+  "Yavapai College|": {
+    "lat": 34.5472599,
+    "lng": -112.4549
+  },
+  "Arkansas Northeastern College|": {
+    "lat": 35.8984097,
+    "lng": -89.9210989
+  },
+  "Arkansas State University-Beebe|": {
+    "lat": 35.0704813,
+    "lng": -91.8951395
+  },
+  "Arkansas State University-Mountain Home|": null,
+  "Arkansas State University-Newport|": {
+    "lat": 35.6404209,
+    "lng": -91.1894937
+  },
+  "Black River Technical College|": {
+    "lat": 36.2408609,
+    "lng": -90.9518351
+  },
+  "College of the Ouachitas|": null,
+  "Cossatot Community College of the University of Arkansas|": null,
+  "East Arkansas Community College|": {
+    "lat": 35.0417579,
+    "lng": -90.7673336
+  },
+  "Mid-South Community College|": {
+    "lat": -34.9125466,
+    "lng": 139.3037257
+  },
+  "National Park Community College|": null,
+  "North Arkansas College|": {
+    "lat": 36.2212818,
+    "lng": -93.0896331
+  },
+  "NorthWest Arkansas Community College|": {
+    "lat": 36.3606473,
+    "lng": -94.1734396
+  },
+  "Ozarka College|": {
+    "lat": 36.0540065,
+    "lng": -91.89649
+  },
+  "Phillips Community College of the University of Arkansas|": null,
+  "Pulaski Technical College|": {
+    "lat": 34.7831896,
+    "lng": -92.3001644
+  },
+  "Rich Mountain Community College|": {
+    "lat": 34.5912169,
+    "lng": -94.2202104
+  },
+  "South Arkansas Community College|": {
+    "lat": 33.2100437,
+    "lng": -92.6672488
+  },
+  "Southeast Arkansas College|": {
+    "lat": 34.211743,
+    "lng": -92.0283335
+  },
+  "Southern Arkansas University Tech|": {
+    "lat": 33.6297229,
+    "lng": -92.7207898
+  },
+  "University of Arkansas Community College-Batesville|": {
+    "lat": 35.7933108,
+    "lng": -91.6148504
+  },
+  "University of Arkansas Community College-Hope|": null,
+  "University of Arkansas Community College-Morrilton|": {
+    "lat": 35.1723033,
+    "lng": -92.7292432
+  },
+  "Allan Hancock College|": {
+    "lat": 34.9432733,
+    "lng": -120.4231031
+  },
+  "American River College|": {
+    "lat": 38.6488437,
+    "lng": -121.3465012
+  },
+  "Antelope Valley College|": {
+    "lat": 34.6789309,
+    "lng": -118.1881094
+  },
+  "Bakersfield College|": {
+    "lat": 35.4087656,
+    "lng": -118.972026
+  },
+  "Barstow Community College|": {
+    "lat": 34.8713836,
+    "lng": -117.0256886
+  },
+  "Berkeley City College|": {
+    "lat": 37.869799,
+    "lng": -122.2696855
+  },
+  "Butte College|": {
+    "lat": 39.717731,
+    "lng": -121.8011785
+  },
+  "Cabrillo College|": {
+    "lat": 36.9900894,
+    "lng": -121.9251198
+  },
+  "Canada College|": {
+    "lat": 37.4477761,
+    "lng": -122.2651825
+  },
+  "Carrington College California-Sacramento|": {
+    "lat": 38.5559866,
+    "lng": -121.3712591
+  },
+  "Cerritos College|": {
+    "lat": 33.8831622,
+    "lng": -118.0973395
+  },
+  "Cerro Coso Community College|": {
+    "lat": 35.5675379,
+    "lng": -117.6716369
+  },
+  "Chabot College|": {
+    "lat": 37.6426649,
+    "lng": -122.1073304
+  },
+  "Chaffey College|": {
+    "lat": 34.1481388,
+    "lng": -117.5703738
+  },
+  "Citrus College|": {
+    "lat": 34.1343151,
+    "lng": -117.8856927
+  },
+  "City College of San Francisco|": {
+    "lat": 37.7259413,
+    "lng": -122.450336
+  },
+  "Coastline Community College|": {
+    "lat": 33.7144461,
+    "lng": -117.9303357
+  },
+  "College of Alameda|": {
+    "lat": 37.7824612,
+    "lng": -122.2793979
+  },
+  "College of Marin|": {
+    "lat": 37.9507726,
+    "lng": -122.5478097
+  },
+  "College of San Mateo|": {
+    "lat": 37.5350308,
+    "lng": -122.3347573
+  },
+  "College of the Canyons|": {
+    "lat": 34.4353051,
+    "lng": -118.4305718
+  },
+  "College of the Desert|": {
+    "lat": 33.7324666,
+    "lng": -116.3868288
+  },
+  "College of the Redwoods|": {
+    "lat": 40.6978479,
+    "lng": -124.1945486
+  },
+  "College of the Sequoias|": {
+    "lat": 36.3242822,
+    "lng": -119.3162948
+  },
+  "College of the Siskiyous|": {
+    "lat": 41.4116919,
+    "lng": -122.3904992
+  },
+  "Columbia College (MO)|": {
+    "lat": 38.9583375,
+    "lng": -92.3259443
+  },
+  "Columbia College (CA)|": {
+    "lat": 49.2715854,
+    "lng": -123.0950821
+  },
+  "Contra Costa College|": {
+    "lat": 37.9694356,
+    "lng": -122.3365902
+  },
+  "Copper Mountain Community College|": null,
+  "Cosumnes River College|": {
+    "lat": 38.4552767,
+    "lng": -121.4228781
+  },
+  "Crafton Hills College|": {
+    "lat": 34.040827,
+    "lng": -117.097949
+  },
+  "Cuesta College|": {
+    "lat": 35.3290417,
+    "lng": -120.7406204
+  },
+  "Cuyamaca College|": {
+    "lat": 32.7446616,
+    "lng": -116.9407029
+  },
+  "Cypress College|": {
+    "lat": 33.8278065,
+    "lng": -118.0240066
+  },
+  "De Anza College|": {
+    "lat": 37.3177006,
+    "lng": -122.0445571
+  },
+  "Diablo Valley College|": {
+    "lat": 37.9686779,
+    "lng": -122.0704218
+  },
+  "East Los Angeles College|": {
+    "lat": 34.0413172,
+    "lng": -118.1504124
+  },
+  "El Camino College-Compton Center|": null,
+  "El Camino Community College District|": null,
+  "Evergreen Valley College|": {
+    "lat": 37.3011208,
+    "lng": -121.7637335
+  },
+  "Feather River Community College District|": {
+    "lat": 39.9500901,
+    "lng": -120.968012
+  },
+  "Folsom Lake College|": {
+    "lat": 38.6628731,
+    "lng": -121.1270236
+  },
+  "Foothill College|": {
+    "lat": 37.3617114,
+    "lng": -122.1282717
+  },
+  "Fresno City College|": {
+    "lat": 36.7679339,
+    "lng": -119.7965914
+  },
+  "Fullerton College|": {
+    "lat": 33.8760825,
+    "lng": -117.9170885
+  },
+  "Gavilan College|": {
+    "lat": 36.9720652,
+    "lng": -121.5684391
+  },
+  "Golden West College|": {
+    "lat": 33.7337195,
+    "lng": -118.003575
+  },
+  "Grossmont College|": {
+    "lat": 32.816248,
+    "lng": -117.0054474
+  },
+  "Hartnell College|": {
+    "lat": 36.6745402,
+    "lng": -121.6664273
+  },
+  "Imperial Valley College|": {
+    "lat": 32.8293195,
+    "lng": -115.5055359
+  },
+  "Lake Tahoe Community College|": {
+    "lat": 38.926757,
+    "lng": -119.9701299
+  },
+  "Laney College|": {
+    "lat": 37.7942491,
+    "lng": -122.2607931
+  },
+  "Las Positas College|": {
+    "lat": 37.7127472,
+    "lng": -121.7971744
+  },
+  "Lassen Community College|": {
+    "lat": 40.4301376,
+    "lng": -120.6338875
+  },
+  "Long Beach City College|": {
+    "lat": 33.8287698,
+    "lng": -118.1360891
+  },
+  "Los Angeles City College|": {
+    "lat": 34.0863455,
+    "lng": -118.2933879
+  },
+  "Los Angeles County College of Nursing and Allied Health|": {
+    "lat": 34.0631865,
+    "lng": -118.211744
+  },
+  "Los Angeles Harbor College|": {
+    "lat": 33.7833511,
+    "lng": -118.2842514
+  },
+  "Los Angeles Mission College|": {
+    "lat": 34.3148609,
+    "lng": -118.4189764
+  },
+  "Los Angeles Pierce College|": {
+    "lat": 34.1833973,
+    "lng": -118.5797892
+  },
+  "Los Angeles Southwest College|": {
+    "lat": 33.9283374,
+    "lng": -118.3057119
+  },
+  "Los Angeles Trade Technical College|": {
+    "lat": 34.0312813,
+    "lng": -118.2703148
+  },
+  "Los Angeles Valley College|": {
+    "lat": 34.1757583,
+    "lng": -118.4203406
+  },
+  "Los Medanos College|": {
+    "lat": 38.0054122,
+    "lng": -121.8611075
+  },
+  "Mendocino College|": {
+    "lat": 39.1893024,
+    "lng": -123.2293959
+  },
+  "Merced College|": {
+    "lat": 37.3346619,
+    "lng": -120.4736278
+  },
+  "Merritt College|": {
+    "lat": 37.7903354,
+    "lng": -122.1647641
+  },
+  "MiraCosta College|": {
+    "lat": 33.1907697,
+    "lng": -117.3023599
+  },
+  "Mission College|": {
+    "lat": 37.3923125,
+    "lng": -121.9828889
+  },
+  "Modesto Junior College|": {
+    "lat": 37.6538032,
+    "lng": -121.0097842
+  },
+  "Monterey Peninsula College|": {
+    "lat": 36.5909278,
+    "lng": -121.8848368
+  },
+  "Moorpark College|": {
+    "lat": 34.2996156,
+    "lng": -118.8366656
+  },
+  "Moreno Valley College|": {
+    "lat": 33.8870421,
+    "lng": -117.2020798
+  },
+  "MTI College|": {
+    "lat": 38.6612373,
+    "lng": -121.3425507
+  },
+  "Mt. San Antonio College|": {
+    "lat": 34.0487669,
+    "lng": -117.8416242
+  },
+  "Mt. San Jacinto Community College District|": null,
+  "Napa Valley College|": {
+    "lat": 38.2740159,
+    "lng": -122.2763725
+  },
+  "Ohlone College|": {
+    "lat": 37.533546,
+    "lng": -121.9063319
+  },
+  "Orange Coast College|": {
+    "lat": 33.6715898,
+    "lng": -117.9121267
+  },
+  "Oxnard College|": {
+    "lat": 34.1672463,
+    "lng": -119.1628931
+  },
+  "Palomar College|": {
+    "lat": 33.15125,
+    "lng": -117.1808184
+  },
+  "Palo Verde College|": {
+    "lat": 33.6630329,
+    "lng": -114.6529014
+  },
+  "Pasadena City College|": {
+    "lat": 34.1440003,
+    "lng": -118.1185206
+  },
+  "Porterville College|": {
+    "lat": 36.0471977,
+    "lng": -119.0154854
+  },
+  "Reedley College|": {
+    "lat": 36.6083486,
+    "lng": -119.4604433
+  },
+  "Rio Hondo College|": {
+    "lat": 34.0637088,
+    "lng": -118.0360641
+  },
+  "Riverside City College|": {
+    "lat": 33.9716586,
+    "lng": -117.3806576
+  },
+  "Sacramento City College|": {
+    "lat": 38.5423995,
+    "lng": -121.4900622
+  },
+  "Saddleback College|": {
+    "lat": 33.5513754,
+    "lng": -117.6654169
+  },
+  "San Bernardino Valley College|California": {
+    "lat": 34.0870562,
+    "lng": -117.3107368
+  },
+  "San Diego City College|California": {
+    "lat": 32.7197942,
+    "lng": -117.1543311
+  },
+  "San Diego Mesa College|California": {
+    "lat": 32.8047981,
+    "lng": -117.1680666
+  },
+  "San Diego Miramar College|California": {
+    "lat": 32.9088854,
+    "lng": -117.1210641
+  },
+  "San Joaquin Delta College|": {
+    "lat": 37.9952557,
+    "lng": -121.3193097
+  },
+  "San Joaquin Valley College-Visalia|": {
+    "lat": 36.3285018,
+    "lng": -119.3847491
+  },
+  "San Jose City College|": {
+    "lat": 37.313909,
+    "lng": -121.9271204
+  },
+  "Santa Ana College|": {
+    "lat": 33.7576195,
+    "lng": -117.8887602
+  },
+  "Santa Barbara City College|": {
+    "lat": 34.4058643,
+    "lng": -119.6974204
+  },
+  "Santa Monica College|": {
+    "lat": 34.0167113,
+    "lng": -118.4707609
+  },
+  "Santa Rosa Junior College|": {
+    "lat": 38.4546363,
+    "lng": -122.7216065
+  },
+  "Santiago Canyon College|": {
+    "lat": 33.795913,
+    "lng": -117.7670266
+  },
+  "Shasta College|": {
+    "lat": 40.6273671,
+    "lng": -122.3143175
+  },
+  "Sierra College|": {
+    "lat": 39.3217398,
+    "lng": -120.2032048
+  },
+  "Skyline College|": {
+    "lat": 37.3198554,
+    "lng": -79.9592806
+  },
+  "Solano Community College|": {
+    "lat": 38.2355723,
+    "lng": -122.1205636
+  },
+  "Southwestern College (CA)|": {
+    "lat": 32.6399476,
+    "lng": -116.9980493
+  },
+  "Taft College|": {
+    "lat": 27.9835058,
+    "lng": -97.3891167
+  },
+  "Ventura College|": {
+    "lat": 34.2772814,
+    "lng": -119.2326722
+  },
+  "Victor Valley College|": {
+    "lat": 34.4731832,
+    "lng": -117.264965
+  },
+  "West Hills College-Coalinga|": {
+    "lat": 36.1492232,
+    "lng": -120.3567433
+  },
+  "West Los Angeles College|": {
+    "lat": 34.0045672,
+    "lng": -118.3870271
+  },
+  "West Valley College|": {
+    "lat": 37.2637874,
+    "lng": -122.0097039
+  },
+  "Woodland Community College|": {
+    "lat": 38.6604803,
+    "lng": -121.7353351
+  },
+  "Yuba College|": {
+    "lat": 39.1247439,
+    "lng": -121.5391656
+  },
+  "Aims Community College|": {
+    "lat": 40.4105842,
+    "lng": -104.7612905
+  },
+  "Arapahoe Community College|": {
+    "lat": 39.6080046,
+    "lng": -105.0182713
+  },
+  "Colorado Northwestern Community College|": {
+    "lat": 40.5223682,
+    "lng": -107.5794505
+  },
+  "Community College of Aurora|": {
+    "lat": 39.7277897,
+    "lng": -104.8831726
+  },
+  "Community College of Denver|": {
+    "lat": 39.7412631,
+    "lng": -105.0046085
+  },
+  "Front Range Community College|": {
+    "lat": 39.901215,
+    "lng": -105.039047
+  },
+  "Lamar Community College|": {
+    "lat": 38.0671492,
+    "lng": -102.6159617
+  },
+  "Morgan Community College|": {
+    "lat": 40.2587045,
+    "lng": -103.7718725
+  },
+  "Northeastern Junior College|": {
+    "lat": 40.6367426,
+    "lng": -103.2146221
+  },
+  "Otero Junior College|": {
+    "lat": 37.9703825,
+    "lng": -103.5457746
+  },
+  "Pikes Peak Community College|": null,
+  "Pueblo Community College|": {
+    "lat": 38.2631861,
+    "lng": -104.6371719
+  },
+  "Red Rocks Community College|": {
+    "lat": 39.7208268,
+    "lng": -105.1505438
+  },
+  "Trinidad State Junior College|": {
+    "lat": 37.4687414,
+    "lng": -105.8722109
+  },
+  "Asnuntuck Community College|": {
+    "lat": 41.997405,
+    "lng": -72.5700428
+  },
+  "Capital Community College|": {
+    "lat": 41.7683411,
+    "lng": -72.6725952
+  },
+  "Gateway Community College|": {
+    "lat": 41.3039938,
+    "lng": -72.9278893
+  },
+  "Housatonic Community College|": {
+    "lat": 41.1746056,
+    "lng": -73.190672
+  },
+  "Manchester Community College|": {
+    "lat": 41.7614377,
+    "lng": -72.5622718
+  },
+  "Middlesex Community College|": {
+    "lat": 41.5396356,
+    "lng": -72.6110492
+  },
+  "Naugatuck Valley Community College|": {
+    "lat": 41.5488249,
+    "lng": -73.0711674
+  },
+  "Northwestern Connecticut Community College|": {
+    "lat": 41.9251435,
+    "lng": -73.0590151
+  },
+  "Norwalk Community College|": {
+    "lat": 41.1018464,
+    "lng": -73.4531488
+  },
+  "Quinebaug Valley Community College|": {
+    "lat": 41.8252215,
+    "lng": -71.890382
+  },
+  "Three Rivers Community College|": {
+    "lat": 41.5091387,
+    "lng": -72.1024841
+  },
+  "Tunxis Community College|": {
+    "lat": 41.7048677,
+    "lng": -72.8780638
+  },
+  "Delaware College of Art and Design|": {
+    "lat": 39.7419108,
+    "lng": -75.5498901
+  },
+  "Delaware Technical Community College|": {
+    "lat": 39.1986407,
+    "lng": -75.5611822
+  },
+  "Florida Keys Community College|": {
+    "lat": 24.582783,
+    "lng": -81.7434795
+  },
+  "Hillsborough Community College|": {
+    "lat": 28.0274536,
+    "lng": -82.1028267
+  },
+  "North Florida Community College|": {
+    "lat": 30.4752833,
+    "lng": -83.4219327
+  },
+  "Pasco-Hernando Community College|": null,
+  "Tallahassee Community College|": {
+    "lat": 30.4429211,
+    "lng": -84.3410479
+  },
+  "Albany Technical College|": {
+    "lat": 31.5542235,
+    "lng": -84.173162
+  },
+  "Andrew College|": {
+    "lat": 31.7721955,
+    "lng": -84.7957087
+  },
+  "Athens Technical College|": {
+    "lat": 33.989178,
+    "lng": -83.3402109
+  },
+  "Atlanta Technical College|": {
+    "lat": 33.7123507,
+    "lng": -84.4047232
+  },
+  "Augusta Technical College|": {
+    "lat": 33.4184409,
+    "lng": -82.0485458
+  },
+  "Bainbridge State College|": {
+    "lat": 31.0407488,
+    "lng": -84.8814499
+  },
+  "Central Georgia Technical College|": {
+    "lat": 32.811982,
+    "lng": -83.6908706
+  },
+  "Chattahoochee Technical College|": {
+    "lat": 33.9105446,
+    "lng": -84.8267106
+  },
+  "Columbus Technical College|": {
+    "lat": 32.507851,
+    "lng": -84.9779304
+  },
+  "Darton State College|": null,
+  "Georgia Highlands College|": {
+    "lat": 34.1709319,
+    "lng": -85.2082918
+  },
+  "Georgia Military College|": {
+    "lat": 33.0787182,
+    "lng": -83.2245922
+  },
+  "Georgia Northwestern Technical College|": {
+    "lat": 34.2244172,
+    "lng": -85.1709137
+  },
+  "Georgia Perimeter College|": {
+    "lat": 33.6667,
+    "lng": -84.0289
+  },
+  "Georgia Piedmont Technical College|": {
+    "lat": 33.7897879,
+    "lng": -84.2342449
+  },
+  "Gwinnett Technical College|": {
+    "lat": 34.0678748,
+    "lng": -84.2749458
+  },
+  "Lanier Technical College|": {
+    "lat": 34.3296069,
+    "lng": -83.7767985
+  },
+  "Moultrie Technical College|": {
+    "lat": 31.1987466,
+    "lng": -83.765499
+  },
+  "North Georgia Technical College|": {
+    "lat": 34.8710545,
+    "lng": -83.9771969
+  },
+  "Ogeechee Technical College|": {
+    "lat": 32.3955618,
+    "lng": -81.8185452
+  },
+  "Coastal Pines Technical College|": {
+    "lat": 31.2554704,
+    "lng": -81.4561427
+  },
+  "Savannah Technical College|": {
+    "lat": 32.0233058,
+    "lng": -81.1153119
+  },
+  "Southeastern Technical College|": {
+    "lat": 32.083244,
+    "lng": -82.120594
+  },
+  "Southern Crescent Technical College|": {
+    "lat": 33.4024577,
+    "lng": -84.5703716
+  },
+  "South Georgia Technical College|": {
+    "lat": 31.9735437,
+    "lng": -83.7448913
+  },
+  "Southwest Georgia Technical College|": {
+    "lat": 30.8966635,
+    "lng": -84.2072126
+  },
+  "West Georgia Technical College|": {
+    "lat": 33.6915057,
+    "lng": -85.1831391
+  },
+  "Wiregrass Georgia Technical College|": {
+    "lat": 30.8893931,
+    "lng": -83.355142
+  },
+  "Hawaii Community College|": {
+    "lat": 21.2708249,
+    "lng": -157.8000816
+  },
+  "Honolulu Community College|": {
+    "lat": 21.3212813,
+    "lng": -157.870046
+  },
+  "Kapiolani Community College|": {
+    "lat": 21.2687466,
+    "lng": -157.801686
+  },
+  "Kauai Community College|": {
+    "lat": 21.9691968,
+    "lng": -159.3945355
+  },
+  "Leeward Community College|": {
+    "lat": 21.3924474,
+    "lng": -157.9833365
+  },
+  "Windward Community College|": {
+    "lat": 21.4085551,
+    "lng": -157.8134657
+  },
+  "College of Southern Idaho|": {
+    "lat": 42.5828909,
+    "lng": -114.4723756
+  },
+  "College of Western Idaho|": {
+    "lat": 43.613983,
+    "lng": -116.5083018
+  },
+  "Eastern Idaho Technical College|": null,
+  "North Idaho College|": {
+    "lat": 47.6783662,
+    "lng": -116.7971465
+  },
+  "Black Hawk College|": {
+    "lat": 41.4769912,
+    "lng": -90.4489005
+  },
+  "Carl Sandburg College|": {
+    "lat": 40.9816116,
+    "lng": -90.4069349
+  },
+  "City Colleges of Chicago|": {
+    "lat": 32.898417,
+    "lng": -80.0526243
+  },
+  "College of DuPage|": {
+    "lat": 41.841506,
+    "lng": -88.0730037
+  },
+  "College of Lake County|": {
+    "lat": 42.3554202,
+    "lng": -88.0123623
+  },
+  "Danville Area Community College|": {
+    "lat": 40.129215,
+    "lng": -87.5863026
+  },
+  "Elgin Community College|": {
+    "lat": 42.0186079,
+    "lng": -88.3214723
+  },
+  "Fox College|": {
+    "lat": 44.2820536,
+    "lng": -88.4612351
+  },
+  "Harper College|": {
+    "lat": 31.2170574,
+    "lng": -91.0186239
+  },
+  "Heartland Community College|": {
+    "lat": 40.1464324,
+    "lng": -89.3617626
+  },
+  "Highland Community College|": {
+    "lat": 39.8609334,
+    "lng": -95.2722006
+  },
+  "Illinois Central College|": {
+    "lat": 40.7083389,
+    "lng": -89.5190958
+  },
+  "Illinois Valley Community College|": {
+    "lat": 41.3046573,
+    "lng": -89.100924
+  },
+  "John A Logan College|": {
+    "lat": 37.7489932,
+    "lng": -89.0888152
+  },
+  "John Wood Community College|": {
+    "lat": 39.9133608,
+    "lng": -91.3349251
+  },
+  "Joliet Junior College|": {
+    "lat": 41.5003466,
+    "lng": -88.1809635
+  },
+  "Kankakee Community College|": {
+    "lat": 41.0956514,
+    "lng": -87.8522639
+  },
+  "Kaskaskia College|": {
+    "lat": 38.5619995,
+    "lng": -89.1925866
+  },
+  "Kishwaukee College|": {
+    "lat": 41.9385879,
+    "lng": -88.8820458
+  },
+  "Lake Land College|": {
+    "lat": 39.4160885,
+    "lng": -88.3844277
+  },
+  "Le Cordon Bleu College of Culinary Arts-Chicago|": {
+    "lat": 41.8979764,
+    "lng": -87.6383698
+  },
+  "Lewis and Clark Community College|": {
+    "lat": 38.9523885,
+    "lng": -90.1951205
+  },
+  "Lincoln Land Community College|": {
+    "lat": 39.7200455,
+    "lng": -89.611203
+  },
+  "MacCormac College|": null,
+  "McHenry County College|": {
+    "lat": 42.2609889,
+    "lng": -88.3679603
+  },
+  "Moraine Valley Community College|": {
+    "lat": 41.692682,
+    "lng": -87.8386466
+  },
+  "Morton College|": {
+    "lat": 41.8245408,
+    "lng": -87.7620749
+  },
+  "Northwestern College-Chicago Campus|": null,
+  "Oakton Community College|": {
+    "lat": 42.0621465,
+    "lng": -87.8805945
+  },
+  "Parkland College|": {
+    "lat": 40.1336555,
+    "lng": -88.2908739
+  },
+  "Prairie State College|": {
+    "lat": 41.5242646,
+    "lng": -87.6381833
+  },
+  "Rend Lake College|": {
+    "lat": 38.1296923,
+    "lng": -88.9205262
+  },
+  "Richland Community College|": {
+    "lat": 39.8849355,
+    "lng": -88.8933499
+  },
+  "Rock Valley College|": {
+    "lat": 42.3076052,
+    "lng": -88.99464
+  },
+  "Sauk Valley Community College|": {
+    "lat": 41.8196292,
+    "lng": -89.5976333
+  },
+  "Shawnee Community College|": {
+    "lat": 37.2685108,
+    "lng": -89.0352123
+  },
+  "Southeastern Illinois College|": {
+    "lat": 38.0911574,
+    "lng": -88.1603156
+  },
+  "South Suburban College|": {
+    "lat": 41.6054722,
+    "lng": -87.6197471
+  },
+  "Southwestern Illinois College|": {
+    "lat": 38.5186693,
+    "lng": -89.9210561
+  },
+  "Spoon River College|": {
+    "lat": 40.5262988,
+    "lng": -90.0734354
+  },
+  "Triton College|": {
+    "lat": 41.9146503,
+    "lng": -87.8412803
+  },
+  "Ancilla College|": {
+    "lat": 41.3376959,
+    "lng": -86.4460729
+  },
+  "Ivy Tech Community College|": {
+    "lat": 39.8048577,
+    "lng": -86.1590165
+  },
+  "Des Moines Area Community College|": {
+    "lat": 41.5215951,
+    "lng": -93.6040072
+  },
+  "Eastern Iowa Community College District|": null,
+  "Hawkeye Community College|": {
+    "lat": 42.4249406,
+    "lng": -92.3323143
+  },
+  "Indian Hills Community College|": {
+    "lat": 41.0440635,
+    "lng": -92.3916157
+  },
+  "Iowa Central Community College|": {
+    "lat": 42.489531,
+    "lng": -94.2032648
+  },
+  "Iowa Lakes Community College|": {
+    "lat": 43.3971061,
+    "lng": -94.8167437
+  },
+  "Iowa Western Community College|": {
+    "lat": 41.2737404,
+    "lng": -95.8003426
+  },
+  "Kirkwood Community College|": {
+    "lat": 41.9064268,
+    "lng": -91.6496843
+  },
+  "Marshalltown Community College|": {
+    "lat": 41.9993973,
+    "lng": -92.9052525
+  },
+  "Northeast Iowa Community College|": {
+    "lat": 42.4998277,
+    "lng": -90.6662717
+  },
+  "North Iowa Area Community College|": {
+    "lat": 43.1576201,
+    "lng": -93.1316612
+  },
+  "Northwest Iowa Community College|": {
+    "lat": 43.1828171,
+    "lng": -95.8773327
+  },
+  "Southeastern Community College|": {
+    "lat": 40.8153986,
+    "lng": -91.180509
+  },
+  "Southwestern Community College|": {
+    "lat": 41.0741837,
+    "lng": -94.3793908
+  },
+  "Western Iowa Tech Community College|": {
+    "lat": 42.485049,
+    "lng": -96.345615
+  },
+  "Allen County Community College|": {
+    "lat": 37.9382183,
+    "lng": -95.3952587
+  },
+  "Barton County Community College|": {
+    "lat": 38.4016355,
+    "lng": -98.7331815
+  },
+  "Butler Community College|": {
+    "lat": 37.8059393,
+    "lng": -96.8830807
+  },
+  "Cloud County Community College|": {
+    "lat": 39.5543598,
+    "lng": -97.6647549
+  },
+  "Coffeyville Community College|": {
+    "lat": 37.0338801,
+    "lng": -95.623118
+  },
+  "Colby Community College|": {
+    "lat": 39.3782233,
+    "lng": -101.0517702
+  },
+  "Cowley County Community College|": {
+    "lat": 37.4750713,
+    "lng": -97.2392873
+  },
+  "Dodge City Community College|": {
+    "lat": 37.7771539,
+    "lng": -100.0374148
+  },
+  "Flint Hills Technical College|": {
+    "lat": 38.417895,
+    "lng": -96.2247136
+  },
+  "Fort Scott Community College|": {
+    "lat": 37.8164278,
+    "lng": -94.715548
+  },
+  "Garden City Community College|": {
+    "lat": 37.970075,
+    "lng": -100.8496641
+  },
+  "Hutchinson Community College|": {
+    "lat": 38.0666217,
+    "lng": -97.9199357
+  },
+  "Independence Community College|": {
+    "lat": 37.1940321,
+    "lng": -95.7192466
+  },
+  "Johnson County Community College|": {
+    "lat": 38.9228761,
+    "lng": -94.7306468
+  },
+  "Kansas City Kansas Community College|": {
+    "lat": 39.1229393,
+    "lng": -94.7483238
+  },
+  "Labette Community College|": {
+    "lat": 37.3391896,
+    "lng": -95.2551722
+  },
+  "Manhattan Area Technical College|": {
+    "lat": 39.19751,
+    "lng": -96.6148102
+  },
+  "Neosho County Community College|": {
+    "lat": 37.6695036,
+    "lng": -95.4640409
+  },
+  "North Central Kansas Technical College|": {
+    "lat": 39.4826046,
+    "lng": -98.1096303
+  },
+  "Northwest Kansas Technical College|": {
+    "lat": 39.3449969,
+    "lng": -101.6983085
+  },
+  "Pratt Community College|": {
+    "lat": 37.6544738,
+    "lng": -98.7119955
+  },
+  "Seward County Community College and Area Technical School|": null,
+  "Wichita Area Technical College|": {
+    "lat": 37.760192,
+    "lng": -97.354726
+  },
+  "Ashland Community and Technical College|": null,
+  "Big Sandy Community and Technical College|": null,
+  "Bluegrass Community and Technical College|": {
+    "lat": 38.0246825,
+    "lng": -84.5031829
+  },
+  "Elizabethtown Community and Technical College|": {
+    "lat": 37.6933741,
+    "lng": -85.8788535
+  },
+  "Galen College of Nursing-Louisville|": {
+    "lat": 38.2811482,
+    "lng": -85.4986359
+  },
+  "Gateway Community and Technical College|": null,
+  "Hazard Community and Technical College|": {
+    "lat": 37.2654831,
+    "lng": -83.1805623
+  },
+  "Henderson Community College|": {
+    "lat": 35.3059731,
+    "lng": -82.4232998
+  },
+  "Hopkinsville Community College|": {
+    "lat": 36.8844442,
+    "lng": -87.4895414
+  },
+  "Jefferson Community and Technical College|": {
+    "lat": 38.2466182,
+    "lng": -85.7536613
+  },
+  "Madisonville Community College|": {
+    "lat": 37.3618318,
+    "lng": -87.5127148
+  },
+  "Maysville Community and Technical College|": {
+    "lat": 38.6260685,
+    "lng": -83.8059186
+  },
+  "Owensboro Community and Technical College|": {
+    "lat": 37.7187124,
+    "lng": -87.0832882
+  },
+  "Somerset Community College|": {
+    "lat": 40.6100961,
+    "lng": -74.6882225
+  },
+  "Southcentral Kentucky Community and Technical College|": null,
+  "Southeast Kentucky Community and Technical College|": {
+    "lat": 36.9657423,
+    "lng": -82.9983893
+  },
+  "West Kentucky Community and Technical College|": {
+    "lat": 37.0546403,
+    "lng": -88.6581473
+  },
+  "Baton Rouge Community College|": {
+    "lat": 30.448141,
+    "lng": -91.1360857
+  },
+  "Bossier Parish Community College|": {
+    "lat": 32.538835,
+    "lng": -93.6464404
+  },
+  "Delgado Community College|": {
+    "lat": 29.9864561,
+    "lng": -90.1041742
+  },
+  "L E Fletcher Technical Community College|": {
+    "lat": 29.5984645,
+    "lng": -90.741052
+  },
+  "Louisiana Delta Community College|": {
+    "lat": 32.4958166,
+    "lng": -92.0314683
+  },
+  "Louisiana State University-Eunice|": {
+    "lat": 30.472776,
+    "lng": -92.4364438
+  },
+  "Nunez Community College|": {
+    "lat": 29.9546771,
+    "lng": -89.9608471
+  },
+  "River Parishes Community College|": {
+    "lat": 30.1907893,
+    "lng": -90.9309372
+  },
+  "Southern University at Shreveport|": {
+    "lat": 32.5463248,
+    "lng": -93.8346305
+  },
+  "South Louisiana Community College|": {
+    "lat": 30.0344862,
+    "lng": -91.8728324
+  },
+  "SOWELA Technical Community College|": {
+    "lat": 30.2169798,
+    "lng": -93.1629852
+  },
+  "Central Maine Community College|": {
+    "lat": 44.1321115,
+    "lng": -70.2320624
+  },
+  "Central Maine Medical Center College of Nursing and Health Professions|": null,
+  "Eastern Maine Community College|": {
+    "lat": 44.8245077,
+    "lng": -68.7438022
+  },
+  "Kennebec Valley Community College|": {
+    "lat": 44.5960285,
+    "lng": -69.6101575
+  },
+  "Northern Maine Community College|": {
+    "lat": 46.6954875,
+    "lng": -68.0357646
+  },
+  "Southern Maine Community College|": {
+    "lat": 43.6472293,
+    "lng": -70.229185
+  },
+  "Washington County Community College|": {
+    "lat": 45.1587229,
+    "lng": -67.2614609
+  },
+  "York County Community College|": {
+    "lat": 43.3071689,
+    "lng": -70.5942211
+  },
+  "Allegany College of Maryland|": {
+    "lat": 39.6523234,
+    "lng": -78.7290617
+  },
+  "Baltimore City Community College|": {
+    "lat": 39.3201795,
+    "lng": -76.6621741
+  },
+  "Carroll Community College|": {
+    "lat": 39.5303397,
+    "lng": -76.9911788
+  },
+  "Cecil College|": {
+    "lat": 39.6421241,
+    "lng": -75.955277
+  },
+  "College of Southern Maryland|": {
+    "lat": 38.5589964,
+    "lng": -77.0106524
+  },
+  "Garrett College|": {
+    "lat": 39.5615972,
+    "lng": -79.3392137
+  },
+  "Prince George's Community College|": {
+    "lat": 38.8868714,
+    "lng": -76.8263878
+  },
+  "Wor-Wic Community College|": {
+    "lat": 38.3728036,
+    "lng": -75.5001185
+  },
+  "Berkshire Community College|": {
+    "lat": 42.4576093,
+    "lng": -73.3158611
+  },
+  "Bristol Community College|": {
+    "lat": 41.7212648,
+    "lng": -71.1202793
+  },
+  "Bunker Hill Community College|": {
+    "lat": 42.3762175,
+    "lng": -71.0714596
+  },
+  "Cape Cod Community College|": {
+    "lat": 41.6927589,
+    "lng": -70.3369364
+  },
+  "Greenfield Community College|": {
+    "lat": 42.5982765,
+    "lng": -72.6302298
+  },
+  "Holyoke Community College|": {
+    "lat": 42.1938906,
+    "lng": -72.6515706
+  },
+  "Massachusetts Bay Community College|": {
+    "lat": 42.310923,
+    "lng": -71.264412
+  },
+  "Massasoit Community College|": {
+    "lat": 42.0772566,
+    "lng": -70.988584
+  },
+  "Mount Wachusett Community College|": {
+    "lat": 42.5947058,
+    "lng": -71.9824622
+  },
+  "Northern Essex Community College|": {
+    "lat": 42.7966928,
+    "lng": -71.0470029
+  },
+  "North Shore Community College|": {
+    "lat": 42.5923662,
+    "lng": -70.9688185
+  },
+  "Quincy College|": {
+    "lat": 42.2530395,
+    "lng": -71.0032045
+  },
+  "Quinsigamond Community College|": {
+    "lat": 42.3144209,
+    "lng": -71.793414
+  },
+  "Roxbury Community College|": {
+    "lat": 42.3280927,
+    "lng": -71.0963586
+  },
+  "Springfield Technical Community College|": {
+    "lat": 42.1085288,
+    "lng": -72.5799735
+  },
+  "Urban College of Boston|": {
+    "lat": 42.3520984,
+    "lng": -71.0629633
+  },
+  "Alpena Community College|": {
+    "lat": 45.0815532,
+    "lng": -83.4446306
+  },
+  "Bay de Noc Community College|": {
+    "lat": 45.7716351,
+    "lng": -87.0864384
+  },
+  "Bay Mills Community College|": {
+    "lat": 46.4546027,
+    "lng": -84.6065971
+  },
+  "Delta College|": {
+    "lat": 43.5600443,
+    "lng": -83.9843183
+  },
+  "Glen Oaks Community College|": {
+    "lat": 41.8922222,
+    "lng": -85.4972222
+  },
+  "Gogebic Community College|": {
+    "lat": 47.1031292,
+    "lng": -88.5932207
+  },
+  "Grand Rapids Community College|": {
+    "lat": 42.9665672,
+    "lng": -85.665001
+  },
+  "Henry Ford College|": {
+    "lat": 42.3248168,
+    "lng": -83.2374531
+  },
+  "Jackson College|": {
+    "lat": 42.165453,
+    "lng": -84.4032521
+  },
+  "Kalamazoo Valley Community College|": {
+    "lat": 42.2253343,
+    "lng": -85.68208
+  },
+  "Kellogg Community College|": {
+    "lat": 42.3357321,
+    "lng": -85.1777679
+  },
+  "Keweenaw Bay Ojibwa Community College|": {
+    "lat": 46.7644176,
+    "lng": -88.4471132
+  },
+  "Kirtland Community College|": {
+    "lat": 44.6024102,
+    "lng": -84.704247
+  },
+  "Lake Michigan College|": {
+    "lat": 42.4099164,
+    "lng": -86.243949
+  },
+  "Lansing Community College|": {
+    "lat": 42.7379548,
+    "lng": -84.5530234
+  },
+  "Macomb Community College|": {
+    "lat": 42.5054107,
+    "lng": -82.9730483
+  },
+  "Mid Michigan Community College|": {
+    "lat": 43.9697212,
+    "lng": -84.7646674
+  },
+  "Monroe County Community College|": {
+    "lat": 41.9165863,
+    "lng": -83.4690733
+  },
+  "Montcalm Community College|": {
+    "lat": 43.2554855,
+    "lng": -85.0999137
+  },
+  "Muskegon Community College|": {
+    "lat": 43.2477608,
+    "lng": -86.196485
+  },
+  "North Central Michigan College|": {
+    "lat": 45.3557888,
+    "lng": -84.9454474
+  },
+  "Oakland Community College|": {
+    "lat": 42.4565681,
+    "lng": -83.2132673
+  },
+  "Saginaw Chippewa Tribal College|": {
+    "lat": 43.6121112,
+    "lng": -84.7310422
+  },
+  "Schoolcraft College|": {
+    "lat": 42.419317,
+    "lng": -83.4286936
+  },
+  "Southwestern Michigan College|": {
+    "lat": 41.9661071,
+    "lng": -86.0829737
+  },
+  "St. Clair County Community College|": {
+    "lat": 33.6062481,
+    "lng": -86.2923733
+  },
+  "Washtenaw Community College|": {
+    "lat": 42.2631875,
+    "lng": -83.6650462
+  },
+  "Wayne County Community College District|": {
+    "lat": 42.2171587,
+    "lng": -83.2409116
+  },
+  "West Shore Community College|": {
+    "lat": 44.0098532,
+    "lng": -86.3300827
+  },
+  "Alexandria Technical & Community College|": {
+    "lat": 45.8719648,
+    "lng": -95.3728295
+  },
+  "Anoka-Ramsey Community College|": {
+    "lat": 45.5704735,
+    "lng": -93.2421376
+  },
+  "Anoka Technical College|": {
+    "lat": 45.2167365,
+    "lng": -93.4165538
+  },
+  "Central Lakes College-Brainerd|": {
+    "lat": 46.3454119,
+    "lng": -94.2170921
+  },
+  "Century College|": {
+    "lat": 45.043077,
+    "lng": -92.9818049
+  },
+  "Dakota County Technical College|": {
+    "lat": 44.735737,
+    "lng": -93.0758254
+  },
+  "Fond du Lac Tribal and Community College|": {
+    "lat": 46.6899868,
+    "lng": -92.4525124
+  },
+  "Hennepin Technical College|": {
+    "lat": 44.8359168,
+    "lng": -93.442748
+  },
+  "Hibbing Community College|": {
+    "lat": 47.4221372,
+    "lng": -92.9206686
+  },
+  "Inver Hills Community College|": {
+    "lat": 44.8294539,
+    "lng": -93.0553243
+  },
+  "Itasca Community College|": {
+    "lat": 47.2425412,
+    "lng": -93.494696
+  },
+  "Leech Lake Tribal College|": null,
+  "Mesabi Range Community and Technical College|": null,
+  "Minneapolis Community and Technical College|": {
+    "lat": 44.9780743,
+    "lng": -93.2923878
+  },
+  "Minnesota State College-Southeast Technical|": null,
+  "Minnesota State Community and Technical College|": {
+    "lat": 46.8271043,
+    "lng": -95.8325417
+  },
+  "Minnesota West Community and Technical College|": {
+    "lat": 43.6206593,
+    "lng": -95.0029007
+  },
+  "Normandale Community College|": {
+    "lat": 44.8311253,
+    "lng": -93.3329742
+  },
+  "North Hennepin Community College|": {
+    "lat": 45.105697,
+    "lng": -93.3742022
+  },
+  "Northland Community and Technical College|": {
+    "lat": 47.9472832,
+    "lng": -97.0163682
+  },
+  "Northwest Technical College|": {
+    "lat": 41.4523971,
+    "lng": -84.2985428
+  },
+  "Pine Technical College|": {
+    "lat": 45.8197116,
+    "lng": -92.9677635
+  },
+  "Rainy River Community College|": {
+    "lat": 48.59001,
+    "lng": -93.4307507
+  },
+  "Ridgewater College|": {
+    "lat": 44.8728111,
+    "lng": -94.3725161
+  },
+  "Riverland Community College|": {
+    "lat": 43.676699,
+    "lng": -93.0011044
+  },
+  "Rochester Community and Technical College|": {
+    "lat": 44.0166296,
+    "lng": -92.4250149
+  },
+  "Saint Paul College|": {
+    "lat": 44.9485125,
+    "lng": -93.1136905
+  },
+  "South Central College|": {
+    "lat": 44.286135,
+    "lng": -93.2867637
+  },
+  "St Cloud Technical and Community College|": null,
+  "Vermilion Community College|": {
+    "lat": 47.9090782,
+    "lng": -91.8329018
+  },
+  "White Earth Tribal and Community College|": null,
+  "Coahoma Community College|": {
+    "lat": 34.2530663,
+    "lng": -90.5685791
+  },
+  "Copiah-Lincoln Community College|": {
+    "lat": 31.6887608,
+    "lng": -90.3936987
+  },
+  "Olin College of Engineering|": {
+    "lat": 42.2900134,
+    "lng": -71.2608012
+  },
+  "East Central Community College|": {
+    "lat": 32.4442966,
+    "lng": -89.1119286
+  },
+  "East Mississippi Community College|": {
+    "lat": 32.8305481,
+    "lng": -88.486058
+  },
+  "Hinds Community College|": {
+    "lat": 32.2798451,
+    "lng": -90.0893382
+  },
+  "Holmes Community College|": {
+    "lat": 33.7640343,
+    "lng": -89.8205512
+  },
+  "Itawamba Community College|": {
+    "lat": 34.2762011,
+    "lng": -88.4159175
+  },
+  "Jones County Junior College|": {
+    "lat": 31.5947107,
+    "lng": -89.2019321
+  },
+  "Meridian Community College|": {
+    "lat": 32.368001,
+    "lng": -88.7322742
+  },
+  "Mississippi Delta Community College|": {
+    "lat": 33.4430538,
+    "lng": -90.5003499
+  },
+  "Mississippi Gulf Coast Community College|": {
+    "lat": 30.3946083,
+    "lng": -88.6456263
+  },
+  "Northeast Mississippi Community College|": {
+    "lat": 34.6684279,
+    "lng": -88.5648083
+  },
+  "Northwest Mississippi Community College|": {
+    "lat": 34.6235605,
+    "lng": -89.9741966
+  },
+  "Pearl River Community College|": {
+    "lat": 30.8448513,
+    "lng": -89.5445413
+  },
+  "Southwest Mississippi Community College|": {
+    "lat": 31.2932459,
+    "lng": -90.4442369
+  },
+  "Crowder College|": {
+    "lat": 36.8101115,
+    "lng": -94.3601994
+  },
+  "East Central College|": {
+    "lat": 37.947063,
+    "lng": -91.7484451
+  },
+  "Jefferson College|": {
+    "lat": -34.654451,
+    "lng": -58.7900652
+  },
+  "Linn State Technical College|": {
+    "lat": 38.4726423,
+    "lng": -91.8207786
+  },
+  "Mineral Area College|": {
+    "lat": 37.844746,
+    "lng": -90.4811411
+  },
+  "Missouri State University|": {
+    "lat": 37.2017202,
+    "lng": -93.2807714
+  },
+  "Missouri State University-West Plains|": {
+    "lat": 36.7299517,
+    "lng": -91.8569684
+  },
+  "Moberly Area Community College|": {
+    "lat": 39.4186156,
+    "lng": -92.4532705
+  },
+  "North Central Missouri College|": {
+    "lat": 40.0776569,
+    "lng": -93.6173456
+  },
+  "Ozarks Technical Community College|": {
+    "lat": 37.2166701,
+    "lng": -93.2795511
+  },
+  "Southeast Missouri Hospital College of Nursing and Health Sciences|": null,
+  "State Fair Community College|": {
+    "lat": 38.6963394,
+    "lng": -93.2705725
+  },
+  "St Charles Community College|": {
+    "lat": 38.7614195,
+    "lng": -90.6409943
+  },
+  "Wentworth Military Academy & Junior College|": null,
+  "Aaniiih Nakoda College|": {
+    "lat": 48.4843493,
+    "lng": -108.7587456
+  },
+  "Blackfeet Community College|": {
+    "lat": 48.5523,
+    "lng": -113.0087867
+  },
+  "Chief Dull Knife College|": {
+    "lat": 45.6256159,
+    "lng": -106.664594
+  },
+  "Dawson Community College|": {
+    "lat": 47.0855421,
+    "lng": -104.7249147
+  },
+  "Flathead Valley Community College|": {
+    "lat": 48.2310428,
+    "lng": -114.3223222
+  },
+  "Fort Peck Community College|": {
+    "lat": 48.11356,
+    "lng": -105.19287
+  },
+  "Great Falls College Montana State University|": {
+    "lat": 47.485976,
+    "lng": -111.2700131
+  },
+  "Helena College University of Montana|": {
+    "lat": 46.595738,
+    "lng": -112.0157702
+  },
+  "Little Big Horn College|": {
+    "lat": 45.6034631,
+    "lng": -107.4562961
+  },
+  "Miles Community College|": {
+    "lat": 46.405378,
+    "lng": -105.8264325
+  },
+  "Stone Child College|": {
+    "lat": 48.2889693,
+    "lng": -109.8709006
+  },
+  "Central Community College|": {
+    "lat": 40.4345545,
+    "lng": -99.3627384
+  },
+  "Little Priest Tribal College|": {
+    "lat": 42.2349773,
+    "lng": -96.4677933
+  },
+  "Mid-Plains Community College|": {
+    "lat": 40.5253823,
+    "lng": -101.6427833
+  },
+  "Nebraska College of Technical Agriculture|": {
+    "lat": 40.637213,
+    "lng": -100.5091475
+  },
+  "Nebraska Indian Community College|": {
+    "lat": 42.8357733,
+    "lng": -97.8542121
+  },
+  "Northeast Community College|": {
+    "lat": 42.0497194,
+    "lng": -97.3955199
+  },
+  "Southeast Community College Area|": {
+    "lat": 41.5215951,
+    "lng": -93.6040072
+  },
+  "Western Nebraska Community College|": {
+    "lat": 41.8768737,
+    "lng": -103.6435856
+  },
+  "Truckee Meadows Community College|": {
+    "lat": 39.572049,
+    "lng": -119.7981617
+  },
+  "Great Bay Community College|": {
+    "lat": 43.0720544,
+    "lng": -70.799237
+  },
+  "Lakes Region Community College|": {
+    "lat": 43.5079426,
+    "lng": -71.4623998
+  },
+  "Nashua Community College|": {
+    "lat": 42.7979348,
+    "lng": -71.5237629
+  },
+  "NHTI-Concord's Community College|": null,
+  "River Valley Community College|": {
+    "lat": 42.9277309,
+    "lng": -72.2809461
+  },
+  "White Mountains Community College|": {
+    "lat": 44.5035101,
+    "lng": -71.1585465
+  },
+  "Assumption College for Sisters|": {
+    "lat": 40.7573543,
+    "lng": -74.6026586
+  },
+  "Atlantic Cape Community College|": {
+    "lat": 39.4600639,
+    "lng": -74.6799071
+  },
+  "Bergen Community College|": {
+    "lat": 40.9501907,
+    "lng": -74.0883598
+  },
+  "Brookdale Community College|": {
+    "lat": 40.3258392,
+    "lng": -74.1314935
+  },
+  "Camden County College|": {
+    "lat": 39.7848574,
+    "lng": -75.0390822
+  },
+  "County College of Morris|": {
+    "lat": 40.8582439,
+    "lng": -74.5799673
+  },
+  "Cumberland County College|": {
+    "lat": 43.6504061,
+    "lng": -70.3592114
+  },
+  "Essex County College|": {
+    "lat": 40.7388594,
+    "lng": -74.1782
+  },
+  "Gloucester County College|": {
+    "lat": 39.7804923,
+    "lng": -75.1226476
+  },
+  "Hudson County Community College|": {
+    "lat": 40.7823256,
+    "lng": -74.0232347
+  },
+  "Middlesex County College|": {
+    "lat": 40.5054276,
+    "lng": -74.3663357
+  },
+  "Ocean County College|": {
+    "lat": 40.0093212,
+    "lng": -74.1663622
+  },
+  "Passaic County Community College|": {
+    "lat": 40.9175222,
+    "lng": -74.1691347
+  },
+  "Raritan Valley Community College|": {
+    "lat": 40.6100961,
+    "lng": -74.6882225
+  },
+  "Salem Community College|": {
+    "lat": 39.7001803,
+    "lng": -75.4700909
+  },
+  "Sussex County Community College|": {
+    "lat": 41.0693665,
+    "lng": -74.7578789
+  },
+  "Union County College|": {
+    "lat": 40.6644609,
+    "lng": -74.2175998
+  },
+  "Warren County Community College|": {
+    "lat": 40.7447372,
+    "lng": -75.0183348
+  },
+  "Central New Mexico Community College|": {
+    "lat": 35.0739657,
+    "lng": -106.6280121
+  },
+  "Clovis Community College|": {
+    "lat": 34.4031784,
+    "lng": -103.1653315
+  },
+  "Eastern New Mexico University-Roswell Campus|": null,
+  "Luna Community College|": {
+    "lat": 34.9407214,
+    "lng": -104.6863274
+  },
+  "Mesalands Community College|": {
+    "lat": 35.1683541,
+    "lng": -103.7368527
+  },
+  "New Mexico Junior College|": {
+    "lat": 32.7578619,
+    "lng": -103.1837931
+  },
+  "New Mexico Military Institute|": {
+    "lat": 33.4114651,
+    "lng": -104.5251505
+  },
+  "New Mexico State University-Alamogordo|": {
+    "lat": 32.9191517,
+    "lng": -105.9260629
+  },
+  "New Mexico State University-Carlsbad|": {
+    "lat": 32.4422697,
+    "lng": -104.2652984
+  },
+  "New Mexico State University-Dona Ana|": {
+    "lat": 32.2729032,
+    "lng": -106.7434927
+  },
+  "San Juan College|": {
+    "lat": 36.7704193,
+    "lng": -108.1716495
+  },
+  "Santa Fe Community College|": {
+    "lat": 35.603432,
+    "lng": -105.993333
+  },
+  "Southwestern Indian Polytechnic Institute|": null,
+  "Adirondack Community College|": {
+    "lat": 43.3529381,
+    "lng": -73.6533733
+  },
+  "American Academy of Dramatic Arts-New York|": {
+    "lat": 40.7455156,
+    "lng": -73.9847757
+  },
+  "ASA College|": {
+    "lat": 40.6915258,
+    "lng": -73.985998
+  },
+  "Cayuga County Community College|": {
+    "lat": 42.9434118,
+    "lng": -76.543207
+  },
+  "Clinton Community College|": {
+    "lat": 44.6483438,
+    "lng": -73.4414286
+  },
+  "Columbia-Greene Community College|": {
+    "lat": 42.2182749,
+    "lng": -73.8169465
+  },
+  "CUNY Borough of Manhattan Community College|": null,
+  "CUNY Bronx Community College|": null,
+  "CUNY Hostos Community College|": null,
+  "CUNY Kingsborough Community College|": null,
+  "CUNY LaGuardia Community College|": null,
+  "CUNY Queensborough Community College|": null,
+  "CUNY Baruch College|NY": null,
+  "CUNY Queens College|NY": {
+    "lat": 40.737004,
+    "lng": -73.8251979
+  },
+  "CUNY City Tech|NY": null,
+  "CUNY City College of NY|NY": null,
+  "CUNY Brooklyn College|NY": null,
+  "CUNY Medgar Evers College|NY": null,
+  "CUNY College of Staten Island|NY": {
+    "lat": 40.6088639,
+    "lng": -74.1538552
+  },
+  "CUNY Macauly Honors College|NY": null,
+  "Dutchess Community College|": {
+    "lat": 41.7261284,
+    "lng": -73.8997412
+  },
+  "Finger Lakes Community College|": {
+    "lat": 42.8665712,
+    "lng": -76.9870264
+  },
+  "Fulton-Montgomery Community College|": {
+    "lat": 42.9822881,
+    "lng": -74.2930344
+  },
+  "Genesee Community College|": {
+    "lat": 43.0174518,
+    "lng": -78.1418839
+  },
+  "Herkimer County Community College|": {
+    "lat": 43.0325,
+    "lng": -75.0077778
+  },
+  "Hudson Valley Community College|": {
+    "lat": 42.6963889,
+    "lng": -73.6841667
+  },
+  "Jamestown Community College|": {
+    "lat": -15.9294842,
+    "lng": -5.7144214
+  },
+  "Jefferson Community College|": {
+    "lat": 43.9923363,
+    "lng": -75.9353352
+  },
+  "Mohawk Valley Community College|": {
+    "lat": 43.076606,
+    "lng": -75.2166599
+  },
+  "Monroe Community College|": {
+    "lat": 43.1014464,
+    "lng": -77.6099191
+  },
+  "Nassau Community College|": {
+    "lat": 40.7299983,
+    "lng": -73.5930089
+  },
+  "Niagara County Community College|": {
+    "lat": 43.1470675,
+    "lng": -78.8763582
+  },
+  "North Country Community College|": {
+    "lat": 44.3190504,
+    "lng": -74.1194088
+  },
+  "Onondaga Community College|": {
+    "lat": 43.0056477,
+    "lng": -76.1973428
+  },
+  "Orange County Community College|": {
+    "lat": 41.4384808,
+    "lng": -74.4266981
+  },
+  "Rockland Community College|": {
+    "lat": 41.1330926,
+    "lng": -74.0886395
+  },
+  "Saint Elizabeth College of Nursing|": {
+    "lat": 43.0826175,
+    "lng": -75.2680693
+  },
+  "Schenectady County Community College|": {
+    "lat": 42.8151845,
+    "lng": -73.9525017
+  },
+  "Suffolk County Community College|": {
+    "lat": 40.8473013,
+    "lng": -73.0558279
+  },
+  "Sullivan County Community College|": {
+    "lat": 41.7123136,
+    "lng": -74.6284937
+  },
+  "SUNY Broome Community College|": null,
+  "SUNY Westchester Community College|": null,
+  "Technical Career Institutes|": null,
+  "Tompkins Cortland Community College|": {
+    "lat": 42.5027791,
+    "lng": -76.2867718
+  },
+  "Ulster County Community College|": {
+    "lat": 41.8513291,
+    "lng": -74.1308022
+  },
+  "Alamance Community College|": {
+    "lat": 36.06457,
+    "lng": -79.3591113
+  },
+  "Asheville-Buncombe Technical Community College|": {
+    "lat": 35.5707505,
+    "lng": -82.555557
+  },
+  "Beaufort County Community College|": {
+    "lat": 35.5332876,
+    "lng": -76.9646138
+  },
+  "Bladen Community College|": {
+    "lat": 34.6457214,
+    "lng": -78.7318752
+  },
+  "Blue Ridge Community College|": {
+    "lat": 35.3059731,
+    "lng": -82.4232998
+  },
+  "Brunswick Community College|": {
+    "lat": 34.0391691,
+    "lng": -78.2302355
+  },
+  "Caldwell Community College and Technical Institute|": {
+    "lat": 35.8542429,
+    "lng": -81.4839733
+  },
+  "Cape Fear Community College|": {
+    "lat": 34.2405455,
+    "lng": -77.9487806
+  },
+  "Carolinas College of Health Sciences|": null,
+  "Carteret Community College|": {
+    "lat": 34.7234897,
+    "lng": -76.7551009
+  },
+  "Catawba Valley Community College|": {
+    "lat": 35.6973179,
+    "lng": -81.2882332
+  },
+  "Central Carolina Community College|": {
+    "lat": 35.4724199,
+    "lng": -79.1441567
+  },
+  "Central Piedmont Community College|": {
+    "lat": 35.2177789,
+    "lng": -80.8296588
+  },
+  "Cleveland Community College|": {
+    "lat": 35.2800377,
+    "lng": -81.4914656
+  },
+  "Coastal Carolina Community College|": {
+    "lat": 34.7726827,
+    "lng": -77.3847685
+  },
+  "College of the Albemarle|": {
+    "lat": 35.9039785,
+    "lng": -75.6715999
+  },
+  "Craven Community College|": {
+    "lat": 35.1113402,
+    "lng": -77.1031665
+  },
+  "Davidson County Community College|": {
+    "lat": 35.8665448,
+    "lng": -80.180713
+  },
+  "Durham Technical Community College|": {
+    "lat": 35.9754139,
+    "lng": -78.8818704
+  },
+  "Edgecombe Community College|": {
+    "lat": 35.8795248,
+    "lng": -77.5729764
+  },
+  "Fayetteville Technical Community College|": {
+    "lat": 35.0686419,
+    "lng": -78.9265526
+  },
+  "Forsyth Technical Community College|": {
+    "lat": 36.0671567,
+    "lng": -80.2716318
+  },
+  "Gaston College|": {
+    "lat": 35.3087294,
+    "lng": -81.1926223
+  },
+  "Guilford Technical Community College|": {
+    "lat": 36.0894042,
+    "lng": -79.7276843
+  },
+  "Halifax Community College|": {
+    "lat": 36.4274073,
+    "lng": -77.6167242
+  },
+  "Haywood Community College|": {
+    "lat": 35.5248303,
+    "lng": -82.9273647
+  },
+  "Isothermal Community College|": {
+    "lat": 35.3378734,
+    "lng": -81.9136968
+  },
+  "James Sprunt Community College|": null,
+  "Johnston Community College|": {
+    "lat": 35.5008875,
+    "lng": -78.3327477
+  },
+  "Louisburg College|": {
+    "lat": 36.1051503,
+    "lng": -78.2991614
+  },
+  "Martin Community College|": {
+    "lat": 35.8346682,
+    "lng": -77.0977588
+  },
+  "Mayland Community College|": {
+    "lat": 35.9362392,
+    "lng": -82.0196119
+  },
+  "McDowell Technical Community College|": {
+    "lat": 35.6561177,
+    "lng": -81.9620185
+  },
+  "Mitchell Community College|": {
+    "lat": 35.7828082,
+    "lng": -80.8942738
+  },
+  "Montgomery Community College|": {
+    "lat": 35.3666543,
+    "lng": -79.870632
+  },
+  "Nash Community College|": {
+    "lat": 35.9758196,
+    "lng": -77.8992119
+  },
+  "Pamlico Community College|": {
+    "lat": 35.1429978,
+    "lng": -76.7809558
+  },
+  "Piedmont Community College|": {
+    "lat": 36.4314927,
+    "lng": -78.9803942
+  },
+  "Pitt Community College|": {
+    "lat": 35.5512396,
+    "lng": -77.4099923
+  },
+  "Randolph Community College|": {
+    "lat": 35.8933047,
+    "lng": -79.9341461
+  },
+  "Richmond Community College|": {
+    "lat": 34.9048533,
+    "lng": -79.7098433
+  },
+  "Roanoke-Chowan Community College|": {
+    "lat": 36.3261617,
+    "lng": -77.0227061
+  },
+  "Robeson Community College|": {
+    "lat": 34.675637,
+    "lng": -79.0069702
+  },
+  "Rockingham Community College|": {
+    "lat": 36.3879147,
+    "lng": -79.7569785
+  },
+  "Rowan-Cabarrus Community College|": {
+    "lat": 35.6396188,
+    "lng": -80.4799838
+  },
+  "Sampson Community College|": {
+    "lat": 34.9905451,
+    "lng": -78.360337
+  },
+  "Sandhills Community College|": {
+    "lat": 35.2210115,
+    "lng": -79.4063423
+  },
+  "South Piedmont Community College|": {
+    "lat": 35.0002709,
+    "lng": -80.2116204
+  },
+  "Stanly Community College|": {
+    "lat": 35.3378984,
+    "lng": -80.2348372
+  },
+  "Surry Community College|": {
+    "lat": 36.3842863,
+    "lng": -80.7201997
+  },
+  "Tri-County Community College|": {
+    "lat": 35.0676624,
+    "lng": -83.966395
+  },
+  "Wake Technical Community College|": {
+    "lat": 35.7060132,
+    "lng": -78.7956694
+  },
+  "Wayne Community College|": {
+    "lat": 35.4018772,
+    "lng": -77.9434443
+  },
+  "Western Piedmont Community College|": {
+    "lat": 35.7221452,
+    "lng": -81.6878995
+  },
+  "Wilkes Community College|": {
+    "lat": 36.1355152,
+    "lng": -81.1830366
+  },
+  "Wilson Community College|": {
+    "lat": 35.728935,
+    "lng": -77.895831
+  },
+  "Cankdeska Cikana Community College|": {
+    "lat": 47.9783803,
+    "lng": -98.9903263
+  },
+  "Dakota College at Bottineau|": {
+    "lat": 48.8330593,
+    "lng": -100.4404276
+  },
+  "Lake Region State College|": {
+    "lat": 48.1285334,
+    "lng": -98.8690386
+  },
+  "North Dakota State College of Science|": {
+    "lat": 46.2767047,
+    "lng": -96.6131324
+  },
+  "Williston State College|": {
+    "lat": 48.1577554,
+    "lng": -103.6113657
+  },
+  "Belmont College|": {
+    "lat": 40.2647139,
+    "lng": -81.0048335
+  },
+  "Central Ohio Technical College|": {
+    "lat": 40.0695087,
+    "lng": -82.4473778
+  },
+  "Chatfield College|": {
+    "lat": 39.210406,
+    "lng": -83.8879639
+  },
+  "Cincinnati State Technical and Community College|": {
+    "lat": 39.150007,
+    "lng": -84.5368081
+  },
+  "Clark State Community College|": {
+    "lat": 39.8977642,
+    "lng": -83.7991172
+  },
+  "Columbus State Community College|": {
+    "lat": 39.9690421,
+    "lng": -82.9875638
+  },
+  "Cuyahoga Community College District|": {
+    "lat": 41.4992612,
+    "lng": -81.6921151
+  },
+  "Davis College|": {
+    "lat": 42.1009085,
+    "lng": -75.9629758
+  },
+  "Eastern Gateway Community College|": {
+    "lat": 41.098524,
+    "lng": -80.6482831
+  },
+  "Edison State Community College|": {
+    "lat": 40.1589613,
+    "lng": -84.2111034
+  },
+  "Hocking College|": {
+    "lat": 39.5428477,
+    "lng": -82.4501213
+  },
+  "James A Rhodes State College|": {
+    "lat": 39.0479385,
+    "lng": -83.9410275
+  },
+  "Lakeland Community College|": {
+    "lat": 41.6392917,
+    "lng": -81.3644777
+  },
+  "Lorain County Community College|": {
+    "lat": 41.4134338,
+    "lng": -82.0725031
+  },
+  "Marion Technical College|": {
+    "lat": 29.1784236,
+    "lng": -82.1479219
+  },
+  "North Central State College|": {
+    "lat": 40.7995487,
+    "lng": -82.5816907
+  },
+  "Northwest State Community College|": {
+    "lat": 41.4523971,
+    "lng": -84.2985428
+  },
+  "Ohio State University Agricultural Technical Institute|": {
+    "lat": 40.7750913,
+    "lng": -81.9224364
+  },
+  "Owens Community College|": {
+    "lat": 41.5884075,
+    "lng": -83.5251446
+  },
+  "Southern State Community College|": {
+    "lat": 39.2369316,
+    "lng": -83.6126426
+  },
+  "Stark State College|": {
+    "lat": 41.0829651,
+    "lng": -81.5044684
+  },
+  "Terra State Community College|": null,
+  "University of Akron Wayne College|": {
+    "lat": 40.8630062,
+    "lng": -81.7890207
+  },
+  "Washington State Community College|": {
+    "lat": 39.4311947,
+    "lng": -81.4344353
+  },
+  "Zane State College|": {
+    "lat": 39.9616689,
+    "lng": -82.0333065
+  },
+  "Carl Albert State College|": {
+    "lat": 35.0379723,
+    "lng": -94.6353602
+  },
+  "Connors State College|": {
+    "lat": 35.7775133,
+    "lng": -95.3118988
+  },
+  "Eastern Oklahoma State College|": {
+    "lat": 34.9311371,
+    "lng": -95.740312
+  },
+  "Murray State College|": {
+    "lat": 34.2223805,
+    "lng": -96.6778738
+  },
+  "Northeastern Oklahoma A&M College|": {
+    "lat": 36.8785909,
+    "lng": -94.8647753
+  },
+  "Northern Oklahoma College|": {
+    "lat": 36.1291594,
+    "lng": -97.0714475
+  },
+  "Oklahoma City Community College|": {
+    "lat": 35.3883783,
+    "lng": -97.5695971
+  },
+  "Redlands Community College|": {
+    "lat": 35.5193582,
+    "lng": -97.9749894
+  },
+  "Rose State College|": {
+    "lat": 35.4438957,
+    "lng": -97.4148934
+  },
+  "Seminole State College|": {
+    "lat": 28.7453809,
+    "lng": -81.3056689
+  },
+  "Tulsa Community College|": {
+    "lat": 36.0424973,
+    "lng": -95.8621602
+  },
+  "Western Oklahoma State College|": {
+    "lat": 34.6689741,
+    "lng": -99.336455
+  },
+  "Blue Mountain Community College|": {
+    "lat": 45.6764004,
+    "lng": -118.8167662
+  },
+  "Central Oregon Community College|": {
+    "lat": 44.070687,
+    "lng": -121.3484377
+  },
+  "Chemeketa Community College|": {
+    "lat": 44.9772777,
+    "lng": -122.9782503
+  },
+  "Clackamas Community College|": {
+    "lat": 45.3246707,
+    "lng": -122.5735504
+  },
+  "Clatsop Community College|": {
+    "lat": 46.1832381,
+    "lng": -123.8235376
+  },
+  "Columbia Gorge Community College|": {
+    "lat": 45.5894806,
+    "lng": -121.1892775
+  },
+  "Klamath Community College|": {
+    "lat": 42.1956962,
+    "lng": -121.7007318
+  },
+  "Lane Community College|": {
+    "lat": 44.0097885,
+    "lng": -123.0327645
+  },
+  "Linn-Benton Community College|": {
+    "lat": 44.5858111,
+    "lng": -123.1150576
+  },
+  "Mt. Hood Community College|": {
+    "lat": 45.5142663,
+    "lng": -122.395848
+  },
+  "Rogue Community College|": {
+    "lat": 42.4113666,
+    "lng": -123.3928132
+  },
+  "Southwestern Oregon Community College|": {
+    "lat": 43.3960793,
+    "lng": -124.2523508
+  },
+  "Tillamook Bay Community College|": {
+    "lat": 45.456358,
+    "lng": -123.8133775
+  },
+  "Treasure Valley Community College|": {
+    "lat": 44.0182889,
+    "lng": -116.9728556
+  },
+  "Umpqua Community College|": {
+    "lat": 43.2912262,
+    "lng": -123.3357035
+  },
+  "Bucks County Community College|": {
+    "lat": 40.2394494,
+    "lng": -74.9657987
+  },
+  "Butler County Community College|": {
+    "lat": 37.8071224,
+    "lng": -96.8829781
+  },
+  "Community College of Allegheny County|": {
+    "lat": 40.4495912,
+    "lng": -80.0131309
+  },
+  "Community College of Beaver County|": {
+    "lat": 40.6547932,
+    "lng": -80.3063001
+  },
+  "Community College of Philadelphia|": {
+    "lat": 39.9618483,
+    "lng": -75.1665244
+  },
+  "Delaware County Community College|": {
+    "lat": 39.9671919,
+    "lng": -75.3927798
+  },
+  "Harcum College|": {
+    "lat": 40.0215652,
+    "lng": -75.3133409
+  },
+  "Harrisburg Area Community College-Harrisburg|": {
+    "lat": 40.273238,
+    "lng": -76.8889141
+  },
+  "Lackawanna College|": {
+    "lat": 41.4117636,
+    "lng": -75.6586757
+  },
+  "Lehigh Carbon Community College|": {
+    "lat": 40.6649206,
+    "lng": -75.6129527
+  },
+  "Luzerne County Community College|": {
+    "lat": 41.1938759,
+    "lng": -75.9910072
+  },
+  "Manor College|": {
+    "lat": 40.0881075,
+    "lng": -75.1052795
+  },
+  "Montgomery County Community College|": {
+    "lat": 40.1733507,
+    "lng": -75.2750532
+  },
+  "Pennsylvania Highlands Community College|Pennsylvania": {
+    "lat": 40.2641005,
+    "lng": -78.8373663
+  },
+  "Pennsylvania Institute of Technology|Pennsylvania": {
+    "lat": 39.9073841,
+    "lng": -75.3890018
+  },
+  "Pittsburgh Technical Institute|Pennsylvania": {
+    "lat": 40.4230365,
+    "lng": -80.1897714
+  },
+  "Reading Area Community College|": {
+    "lat": 40.3343147,
+    "lng": -75.9352092
+  },
+  "Thaddeus Stevens College of Technology|": {
+    "lat": 40.0376855,
+    "lng": -76.2893736
+  },
+  "University of Pittsburgh-Titusville|Pennsylvania": {
+    "lat": 41.6292285,
+    "lng": -79.6643868
+  },
+  "Valley Forge Military Academy and College|": null,
+  "Westmoreland County Community College|": {
+    "lat": 40.2340935,
+    "lng": -79.5654337
+  },
+  "Community College of Rhode Island|": {
+    "lat": 41.8979117,
+    "lng": -71.4553119
+  },
+  "Central Carolina Technical College|": {
+    "lat": 33.9332125,
+    "lng": -80.3709144
+  },
+  "Denmark Technical College|": {
+    "lat": 33.3132106,
+    "lng": -81.1267676
+  },
+  "Florence-Darlington Technical College|": {
+    "lat": 34.2463814,
+    "lng": -79.8132036
+  },
+  "Greenville Technical College|": {
+    "lat": 34.8257854,
+    "lng": -82.3706599
+  },
+  "Horry-Georgetown Technical College|": {
+    "lat": 33.6607491,
+    "lng": -78.9437061
+  },
+  "Midlands Technical College|": {
+    "lat": 33.9883421,
+    "lng": -80.9804921
+  },
+  "Northeastern Technical College|": {
+    "lat": 34.6986286,
+    "lng": -79.938798
+  },
+  "Orangeburg Calhoun Technical College|": {
+    "lat": 33.5441354,
+    "lng": -80.829581
+  },
+  "Piedmont Technical College|": {
+    "lat": 34.293579,
+    "lng": -81.6040896
+  },
+  "Spartanburg Community College|": {
+    "lat": 34.9753927,
+    "lng": -81.9917144
+  },
+  "Spartanburg Methodist College|": {
+    "lat": 34.9529311,
+    "lng": -81.9691685
+  },
+  "Technical College of the Lowcountry|": {
+    "lat": 32.4198897,
+    "lng": -80.6897913
+  },
+  "Tri-County Technical College|": {
+    "lat": 34.6417287,
+    "lng": -82.7904505
+  },
+  "Trident Technical College|": {
+    "lat": 32.9257293,
+    "lng": -80.0309214
+  },
+  "Williamsburg Technical College|": {
+    "lat": 33.6598647,
+    "lng": -79.8162497
+  },
+  "York Technical College|": {
+    "lat": 34.9343908,
+    "lng": -80.9940843
+  },
+  "Kilian Community College|": null,
+  "Lake Area Technical Institute|": {
+    "lat": 44.9014868,
+    "lng": -97.0953436
+  },
+  "Mitchell Technical Institute|": {
+    "lat": 43.6900794,
+    "lng": -98.0013479
+  },
+  "Sisseton Wahpeton College|": {
+    "lat": 45.5628612,
+    "lng": -97.0602967
+  },
+  "Southeast Technical Institute|": {
+    "lat": 43.5684402,
+    "lng": -96.7815302
+  },
+  "Western Dakota Technical Institute|": null,
+  "Chattanooga State Community College|": {
+    "lat": 35.0991503,
+    "lng": -85.2391824
+  },
+  "Cleveland State Community College|": {
+    "lat": 35.2010692,
+    "lng": -84.8786496
+  },
+  "Columbia State Community College|": {
+    "lat": 35.6170163,
+    "lng": -87.1002846
+  },
+  "Dyersburg State Community College|": {
+    "lat": 36.0479051,
+    "lng": -89.3895771
+  },
+  "Jackson State Community College|": {
+    "lat": 35.6450712,
+    "lng": -88.7806129
+  },
+  "John A Gupton College|": {
+    "lat": 36.1565573,
+    "lng": -86.7948445
+  },
+  "Motlow State Community College|": {
+    "lat": 35.702121,
+    "lng": -85.7440632
+  },
+  "Northeast State Community College|": {
+    "lat": 36.4854544,
+    "lng": -82.4074254
+  },
+  "Pellissippi State Community College|": {
+    "lat": 35.9487376,
+    "lng": -84.1658316
+  },
+  "Roane State Community College|": {
+    "lat": 35.8800078,
+    "lng": -84.6190876
+  },
+  "Southwest Tennessee Community College|": {
+    "lat": 35.1616518,
+    "lng": -89.8663467
+  },
+  "Volunteer State Community College|": {
+    "lat": 36.3633133,
+    "lng": -86.4980298
+  },
+  "Walters State Community College|": {
+    "lat": 36.2148666,
+    "lng": -83.2620644
+  },
+  "Alvin Community College|": {
+    "lat": 29.3962,
+    "lng": -95.2402
+  },
+  "Amarillo College|": {
+    "lat": 35.1892741,
+    "lng": -101.846012
+  },
+  "Angelina College|": {
+    "lat": 31.286555,
+    "lng": -94.7324043
+  },
+  "Blinn College|": {
+    "lat": 30.160314,
+    "lng": -96.4078412
+  },
+  "Brookhaven College|": {
+    "lat": 32.9290352,
+    "lng": -96.85005
+  },
+  "Cedar Valley College|": {
+    "lat": 32.6216296,
+    "lng": -96.7670086
+  },
+  "Central Texas College|": {
+    "lat": 31.1140211,
+    "lng": -97.810795
+  },
+  "Schreiner University|Texas": {
+    "lat": 30.0312703,
+    "lng": -99.1302465
+  },
+  "Cisco College|": {
+    "lat": 32.3996172,
+    "lng": -98.9853085
+  },
+  "Clarendon College|": {
+    "lat": 34.9459911,
+    "lng": -100.9062896
+  },
+  "Coastal Bend College|": {
+    "lat": 28.4356864,
+    "lng": -97.7563346
+  },
+  "College of the Mainland|": {
+    "lat": 29.3954349,
+    "lng": -94.9996523
+  },
+  "Collin County Community College District|": null,
+  "Del Mar College|": {
+    "lat": 27.7514436,
+    "lng": -97.3980447
+  },
+  "Eastfield College|": {
+    "lat": 32.8167421,
+    "lng": -96.6614148
+  },
+  "El Centro College|": {
+    "lat": 32.766388,
+    "lng": -96.7864246
+  },
+  "El Paso Community College|": {
+    "lat": 31.7723402,
+    "lng": -106.3708953
+  },
+  "Frank Phillips College|": {
+    "lat": 35.6545179,
+    "lng": -101.405719
+  },
+  "Galveston College|": {
+    "lat": 29.2832966,
+    "lng": -94.8089018
+  },
+  "Grayson College|": {
+    "lat": 33.7051453,
+    "lng": -96.6322693
+  },
+  "Hill College|": {
+    "lat": 32.3489802,
+    "lng": -97.3840081
+  },
+  "Houston Community College|": {
+    "lat": 29.7422846,
+    "lng": -95.3772124
+  },
+  "Howard College|": {
+    "lat": 31.4858573,
+    "lng": -100.3850254
+  },
+  "Jacksonville College-Main Campus|": null,
+  "Kilgore College|": {
+    "lat": 32.3781513,
+    "lng": -94.8710321
+  },
+  "Lamar Institute of Technology|": {
+    "lat": 30.0484333,
+    "lng": -94.0780913
+  },
+  "Lamar State College-Orange|": {
+    "lat": 30.0924108,
+    "lng": -93.7315174
+  },
+  "Lamar State College-Port Arthur|": {
+    "lat": 29.8782933,
+    "lng": -93.9268002
+  },
+  "Laredo Community College|": {
+    "lat": 27.4331817,
+    "lng": -99.4812998
+  },
+  "Lee College|": {
+    "lat": 29.7332828,
+    "lng": -94.9762689
+  },
+  "Lone Star College System|": {
+    "lat": 30.1868012,
+    "lng": -95.4880929
+  },
+  "McLennan Community College|": {
+    "lat": 31.5905987,
+    "lng": -97.1713209
+  },
+  "Navarro College|": {
+    "lat": 32.076352,
+    "lng": -96.5009561
+  },
+  "North Central Texas College|": {
+    "lat": 33.2140559,
+    "lng": -97.1293042
+  },
+  "Northeast Texas Community College|": {
+    "lat": 33.1038897,
+    "lng": -94.8805728
+  },
+  "North Lake College|": {
+    "lat": 32.8751896,
+    "lng": -96.9671805
+  },
+  "Odessa College|": {
+    "lat": 31.8669864,
+    "lng": -102.3830557
+  },
+  "Alamo Colleges District|": null,
+  "Panola College|": {
+    "lat": 32.1525532,
+    "lng": -94.3598376
+  },
+  "Paris Junior College|": {
+    "lat": 33.6493581,
+    "lng": -95.5294431
+  },
+  "Ranger College|": {
+    "lat": 32.4557966,
+    "lng": -98.6844575
+  },
+  "Richland College|": {
+    "lat": 32.9205388,
+    "lng": -96.7288082
+  },
+  "South Plains College|": {
+    "lat": 33.5766328,
+    "lng": -102.3636385
+  },
+  "Southwest Texas Junior College|": {
+    "lat": 29.2208146,
+    "lng": -99.7408144
+  },
+  "Temple College|": {
+    "lat": 31.0720495,
+    "lng": -97.3488111
+  },
+  "Texarkana College|": {
+    "lat": 33.4444166,
+    "lng": -94.0774782
+  },
+  "Texas State Technical College-Harlingen|": {
+    "lat": 26.2177734,
+    "lng": -97.6663833
+  },
+  "Texas State Technical College-Marshall|": null,
+  "Texas State Technical College-Waco|": {
+    "lat": 31.6354121,
+    "lng": -97.0871685
+  },
+  "Texas State Technical College-West Texas|": {
+    "lat": 32.4626959,
+    "lng": -100.4741667
+  },
+  "Trinity Valley Community College|": {
+    "lat": 32.1950593,
+    "lng": -95.8596131
+  },
+  "Tyler Junior College|": {
+    "lat": 32.3349608,
+    "lng": -95.2824611
+  },
+  "Vernon College|": {
+    "lat": 32.1862441,
+    "lng": -82.5838967
+  },
+  "Victoria College|": {
+    "lat": 43.6669287,
+    "lng": -79.3919522
+  },
+  "Weatherford College|": {
+    "lat": 32.7408234,
+    "lng": -97.7909829
+  },
+  "Western Texas College|": {
+    "lat": 32.6800884,
+    "lng": -100.9149215
+  },
+  "Wharton County Junior College|": {
+    "lat": 29.3238584,
+    "lng": -96.0855144
+  },
+  "Latter-day Saints Business College|": null,
+  "Salt Lake Community College|": {
+    "lat": 40.6726602,
+    "lng": -111.9436997
+  },
+  "Community College of Vermont|": {
+    "lat": 44.2808236,
+    "lng": -72.5749122
+  },
+  "Central Virginia Community College|": {
+    "lat": 37.3592837,
+    "lng": -79.186346
+  },
+  "Dabney S Lancaster Community College|": null,
+  "Danville Community College|": {
+    "lat": 36.5630509,
+    "lng": -79.4093587
+  },
+  "Eastern Shore Community College|": {
+    "lat": 37.6408333,
+    "lng": -75.7516068
+  },
+  "Germanna Community College|": {
+    "lat": 38.4575079,
+    "lng": -77.9749478
+  },
+  "John Tyler Community College|": {
+    "lat": 37.4893518,
+    "lng": -77.6649396
+  },
+  "J Sargeant Reynolds Community College|": {
+    "lat": 37.6336527,
+    "lng": -77.4763845
+  },
+  "Lord Fairfax Community College|": {
+    "lat": 38.6701775,
+    "lng": -78.4616725
+  },
+  "Mountain Empire Community College|": {
+    "lat": 36.8542181,
+    "lng": -82.7595212
+  },
+  "New River Community College|": {
+    "lat": 37.1047654,
+    "lng": -80.695224
+  },
+  "Northern Virginia Community College|": {
+    "lat": 38.8408718,
+    "lng": -77.1144703
+  },
+  "Patrick Henry Community College|": {
+    "lat": 36.7388003,
+    "lng": -79.8701585
+  },
+  "Paul D Camp Community College|": null,
+  "Piedmont Virginia Community College|": {
+    "lat": 38.0053571,
+    "lng": -78.4889345
+  },
+  "Rappahannock Community College|": {
+    "lat": 37.9569571,
+    "lng": -76.7623292
+  },
+  "Richard Bland College of the College of William and Mary|": null,
+  "Southside Virginia Community College|": {
+    "lat": 36.838651,
+    "lng": -77.9196414
+  },
+  "Southwest Virginia Community College|": {
+    "lat": 37.0062604,
+    "lng": -81.7969817
+  },
+  "Thomas Nelson Community College|": {
+    "lat": 37.0635098,
+    "lng": -76.4192855
+  },
+  "Tidewater Community College|": {
+    "lat": 36.7846562,
+    "lng": -76.0986294
+  },
+  "Virginia Highlands Community College|": {
+    "lat": 36.6990404,
+    "lng": -82.0014682
+  },
+  "Virginia Western Community College|": {
+    "lat": 37.2457228,
+    "lng": -79.9732946
+  },
+  "Wytheville Community College|": {
+    "lat": 36.9558557,
+    "lng": -81.0714708
+  },
+  "Bates Technical College|": {
+    "lat": 47.2515115,
+    "lng": -122.4464119
+  },
+  "Bellingham Technical College|": {
+    "lat": 48.764887,
+    "lng": -122.510672
+  },
+  "Big Bend Community College|": {
+    "lat": 47.185052,
+    "lng": -119.3286553
+  },
+  "Cascadia Community College|": {
+    "lat": 47.7608677,
+    "lng": -122.1922103
+  },
+  "Clark College|": {
+    "lat": 33.7483398,
+    "lng": -84.4119502
+  },
+  "Clover Park Technical College|": {
+    "lat": 47.1762988,
+    "lng": -122.4947129
+  },
+  "Edmonds Community College|": {
+    "lat": 47.8208711,
+    "lng": -122.3283959
+  },
+  "Everett Community College|": {
+    "lat": 48.005767,
+    "lng": -122.2026286
+  },
+  "Grays Harbor College|": {
+    "lat": 46.9551501,
+    "lng": -123.8012069
+  },
+  "Green River Community College|": {
+    "lat": 47.3059156,
+    "lng": -122.231175
+  },
+  "Highline Community College|": {
+    "lat": 47.5153965,
+    "lng": -122.344656
+  },
+  "Lower Columbia College|": {
+    "lat": 46.1423913,
+    "lng": -122.938378
+  },
+  "Pierce College at Puyallup|": {
+    "lat": 47.157749,
+    "lng": -122.2725724
+  },
+  "Renton Technical College|": {
+    "lat": 47.491597,
+    "lng": -122.1761368
+  },
+  "Shoreline Community College|": {
+    "lat": 47.7489752,
+    "lng": -122.3598849
+  },
+  "Skagit Valley College|": {
+    "lat": 48.4376932,
+    "lng": -122.3101454
+  },
+  "South Puget Sound Community College|": {
+    "lat": 47.022211,
+    "lng": -122.9317291
+  },
+  "Spokane Community College|": {
+    "lat": 47.6748784,
+    "lng": -117.3576797
+  },
+  "Spokane Falls Community College|": {
+    "lat": 47.6764299,
+    "lng": -117.4639762
+  },
+  "Tacoma Community College|": {
+    "lat": 47.2474759,
+    "lng": -122.5210626
+  },
+  "Walla Walla Community College|": {
+    "lat": 46.0792706,
+    "lng": -118.2778138
+  },
+  "Wenatchee Valley College|": {
+    "lat": 47.4308399,
+    "lng": -120.3378998
+  },
+  "Whatcom Community College|": {
+    "lat": 48.7961122,
+    "lng": -122.4959568
+  },
+  "Yakima Valley Community College|": {
+    "lat": 46.5864196,
+    "lng": -120.5278214
+  },
+  "Blue Ridge Community and Technical College|": {
+    "lat": 39.4356987,
+    "lng": -78.0016954
+  },
+  "Bridgemont Community and Technical College|": null,
+  "Eastern West Virginia Community and Technical College|": {
+    "lat": 39.0754201,
+    "lng": -78.9325241
+  },
+  "Huntington Junior College|": {
+    "lat": 38.4197238,
+    "lng": -82.4432726
+  },
+  "Kanawha Valley Community and Technical College|": {
+    "lat": 38.3569863,
+    "lng": -81.7043125
+  },
+  "Mountwest Community and Technical College|": {
+    "lat": 38.3926592,
+    "lng": -82.4582079
+  },
+  "New River Community and Technical College|": null,
+  "Pierpont Community and Technical College|": {
+    "lat": 39.4323442,
+    "lng": -80.1922269
+  },
+  "Southern West Virginia Community and Technical College|": {
+    "lat": 37.8514207,
+    "lng": -82.0234276
+  },
+  "West Virginia Northern Community College|": {
+    "lat": 40.0632538,
+    "lng": -80.7213475
+  },
+  "Blackhawk Technical College|": {
+    "lat": 42.5930784,
+    "lng": -89.0164898
+  },
+  "Chippewa Valley Technical College|": {
+    "lat": 44.7928955,
+    "lng": -91.5030813
+  },
+  "Fox Valley Technical College|": {
+    "lat": 44.0688948,
+    "lng": -89.2981309
+  },
+  "Gateway Technical College|": {
+    "lat": 42.6063132,
+    "lng": -87.8476903
+  },
+  "Lac Courte Oreilles Ojibwa Community College|": {
+    "lat": 45.9437663,
+    "lng": -91.3653408
+  },
+  "Lakeshore Technical College|": {
+    "lat": 43.9249379,
+    "lng": -87.7534367
+  },
+  "Madison Area Technical College|": {
+    "lat": 43.0377191,
+    "lng": -89.3955859
+  },
+  "Mid-State Technical College|": {
+    "lat": 44.5246937,
+    "lng": -89.5855238
+  },
+  "Milwaukee Area Technical College|": {
+    "lat": 43.0443736,
+    "lng": -87.9203141
+  },
+  "Moraine Park Technical College|": {
+    "lat": 43.7856867,
+    "lng": -88.4183183
+  },
+  "Nicolet Area Technical College|": {
+    "lat": 45.6098499,
+    "lng": -89.4170861
+  },
+  "Northcentral Technical College|": {
+    "lat": 44.985374,
+    "lng": -89.64536
+  },
+  "Northeast Wisconsin Technical College|": {
+    "lat": 44.8385794,
+    "lng": -87.3626717
+  },
+  "Southwest Wisconsin Technical College|": {
+    "lat": 42.9760035,
+    "lng": -90.6363756
+  },
+  "University of Wisconsin Colleges|": {
+    "lat": 42.721636,
+    "lng": -87.7800985
+  },
+  "Waukesha County Technical College|": {
+    "lat": 43.072232,
+    "lng": -88.2559265
+  },
+  "Western Technical College|": {
+    "lat": 43.8155716,
+    "lng": -91.2453459
+  },
+  "Wisconsin Indianhead Technical College|": {
+    "lat": 46.714044,
+    "lng": -92.0854059
+  },
+  "Casper College|": {
+    "lat": 42.8282385,
+    "lng": -106.3284324
+  },
+  "Central Wyoming College|": {
+    "lat": 43.0302207,
+    "lng": -108.4266047
+  },
+  "Eastern Wyoming College|": {
+    "lat": 42.0798571,
+    "lng": -104.1913504
+  },
+  "Laramie County Community College|": {
+    "lat": 41.1059601,
+    "lng": -104.7792727
+  },
+  "Northwest College|": {
+    "lat": 54.3968074,
+    "lng": -126.6516381
+  },
+  "Sheridan College|": {
+    "lat": 43.4695852,
+    "lng": -79.6992129
+  },
+  "Western Wyoming Community College|": {
+    "lat": 41.5908728,
+    "lng": -109.2365813
+  },
+  "Trinity Bible College & Graduate School|ND": null,
+  "University of Michigan-Flint|MI": {
+    "lat": 43.0190005,
+    "lng": -83.6889868
+  },
+  "Kenai Peninsula College|": {
+    "lat": 59.6473775,
+    "lng": -151.5312909
+  },
+  "Mat-Su College|": {
+    "lat": 61.576443,
+    "lng": -149.2065127
+  },
+  "Kodiak College|": {
+    "lat": 57.8083381,
+    "lng": -152.3607167
+  },
+  "Alaska Pacific University|": {
+    "lat": 61.1915341,
+    "lng": -149.80079
+  },
+  "Wayland Baptist University|": {
+    "lat": 33.6083504,
+    "lng": -101.907343
+  },
+  "Polk State College|": {
+    "lat": 28.0331349,
+    "lng": -81.715241
+  },
+  "Brescia University|": {
+    "lat": 37.7683615,
+    "lng": -87.111778
+  },
+  "Rogers State University|": {
+    "lat": 36.3186099,
+    "lng": -95.6361137
+  },
+  "Neumann University|": {
+    "lat": 39.875563,
+    "lng": -75.4404745
+  },
+  "Savannah College of Art and Design|": {
+    "lat": 32.0777692,
+    "lng": -81.1009937
+  },
+  "Ashford University|": {
+    "lat": 32.8272306,
+    "lng": -117.1419519
+  },
+  "McPherson College|": {
+    "lat": 38.372226,
+    "lng": -97.64195
+  },
+  "Community College System of New Hampshire|": null,
+  "Defiance College|Ohio": {
+    "lat": 41.2978185,
+    "lng": -84.3529544
+  },
+  "Medical University of South Carolina|": {
+    "lat": 32.7853384,
+    "lng": -79.9501885
+  },
+  "Gulf Coast State College|Florida": {
+    "lat": 30.1861197,
+    "lng": -85.7254378
+  },
+  "Academy of Art University|California": {
+    "lat": 37.776019,
+    "lng": -122.3987087
+  },
+  "Lenoir-Rhyne University|North Carolina": {
+    "lat": 35.7417475,
+    "lng": -81.3267581
+  },
+  "Point Park University|Pennsylvania": {
+    "lat": 40.4386483,
+    "lng": -80.0017698
+  },
+  "Northwood University|Michigan": {
+    "lat": 43.631141,
+    "lng": -84.2768041
+  },
+  "Clark Atlanta University|GA": {
+    "lat": 33.7501247,
+    "lng": -84.411589
+  },
+  "Morehouse|GA": {
+    "lat": 33.747374,
+    "lng": -84.4160951
+  },
+  "University of St. Augustine for Health Sciences|": {
+    "lat": 33.1523815,
+    "lng": -117.1654399
+  },
+  "Gwynedd Mercy University|Pennsylvania": {
+    "lat": 40.1986857,
+    "lng": -75.2354905
+  },
+  "California Institute of the Arts|": {
+    "lat": 34.392317,
+    "lng": -118.5666724
+  },
+  "Des Moines University|": {
+    "lat": 41.5820811,
+    "lng": -93.6617632
+  },
+  "Utah Tech University|": {
+    "lat": 37.1030098,
+    "lng": -113.5653354
+  },
+  "Midwestern University|": {
+    "lat": 41.8286679,
+    "lng": -87.9991253
+  },
+  "Illinois Wesleyan University|": {
+    "lat": 40.4924271,
+    "lng": -88.9904211
+  },
+  "Maryville College|": {
+    "lat": 35.751472,
+    "lng": -83.9642249
+  },
+  "Endicott College|": {
+    "lat": 42.5540691,
+    "lng": -70.8441366
+  },
+  "The University of Alabama|": {
+    "lat": 33.2166374,
+    "lng": -87.5526506
+  },
+  "Great Basin College|": {
+    "lat": 40.8429466,
+    "lng": -115.7663214
+  },
+  "Einsteinmed|": null,
+  "Miami Dade College|": {
+    "lat": 25.780295,
+    "lng": -80.18971
+  },
+  "Florida SouthWestern State College|": {
+    "lat": 26.9218287,
+    "lng": -82.0194295
+  },
+  "Bishop McNamara High School|": {
+    "lat": 38.8522475,
+    "lng": -76.8885013
+  },
+  "Chaminade University of Honolulu|": {
+    "lat": 21.2902665,
+    "lng": -157.8073478
+  },
+  "Dalton State College|": {
+    "lat": 34.774555,
+    "lng": -85.0035114
+  },
+  "Ojai Unified School District|": {
+    "lat": 34.4488885,
+    "lng": -119.2419182
+  },
+  "Bismark State College|": {
+    "lat": 46.8209518,
+    "lng": -100.8156833
+  },
+  "Quadrat Academy|": null,
+  "University of North Alabama|": {
+    "lat": 34.8075226,
+    "lng": -87.6816129
+  },
+  "Bellevue College|Washington": {
+    "lat": 47.5851216,
+    "lng": -122.1469595
+  },
+  "CUNY Lehman College|New York, NY": null,
+  "CUNY John Jay College of Criminal Justice|New York, NY": null,
+  "Hunter College CUNY|New York, NY": null,
+  "CUNY York College|New York, NY": null,
+  "Pennsylvania State University - Harrisburg|": {
+    "lat": 40.2030819,
+    "lng": -76.7425749
+  },
+  "Alcorn State University|": {
+    "lat": 31.8747584,
+    "lng": -91.1386665
+  },
+  "Allen University|": {
+    "lat": 34.010463,
+    "lng": -81.0199356
+  },
+  "American Baptist College|": {
+    "lat": 36.2022777,
+    "lng": -86.7902765
+  },
+  "Arkansas at Pine Bluff, University of|": null,
+  "Arkansas Baptist College|": {
+    "lat": 34.7349723,
+    "lng": -92.2898356
+  },
+  "Barber-Scotia College|": {
+    "lat": 35.4056655,
+    "lng": -80.5848722
+  },
+  "Benedict College|": {
+    "lat": 34.0139627,
+    "lng": -81.0209729
+  },
+  "Bennett College|": {
+    "lat": 36.0675102,
+    "lng": -79.7796382
+  },
+  "Bethune-Cookman University|": {
+    "lat": 29.2118536,
+    "lng": -81.0319825
+  },
+  "Bluefield State College|": null,
+  "Carver College|": {
+    "lat": 30.7009136,
+    "lng": -88.092997
+  },
+  "Central State University|": {
+    "lat": 39.7165135,
+    "lng": -83.8756859
+  },
+  "Claflin University|": {
+    "lat": 33.4994181,
+    "lng": -80.8531543
+  },
+  "Clinton College|": {
+    "lat": 34.9134907,
+    "lng": -81.04316
+  },
+  "Edward Waters University|": {
+    "lat": 30.3441959,
+    "lng": -81.6835694
+  },
+  "Florida Memorial University|": {
+    "lat": 25.9175201,
+    "lng": -80.2706854
+  },
+  "Fort Valley State University|": {
+    "lat": 32.5336633,
+    "lng": -83.8950462
+  },
+  "Gasden State Community College|": null,
+  "Grambling State University|": {
+    "lat": 32.5195028,
+    "lng": -92.7211638
+  },
+  "Harris-Stowe State University|": {
+    "lat": 38.6333552,
+    "lng": -90.224392
+  },
+  "Hood Theological|": {
+    "lat": 35.6447475,
+    "lng": -80.4801065
+  },
+  "Huston-Tillotson University|": {
+    "lat": 30.2646724,
+    "lng": -97.7223483
+  },
+  "Interdenominational Theological Center|": {
+    "lat": 33.7534529,
+    "lng": -84.4094361
+  },
+  "Jarvis Christian College|": {
+    "lat": 32.5916138,
+    "lng": -95.1766295
+  },
+  "Johnson C Smith Theological Seminary *|": null,
+  "Kentucky State University|": {
+    "lat": 38.1978976,
+    "lng": -84.8537589
+  },
+  "Knoxville College|": {
+    "lat": 35.9711458,
+    "lng": -83.9441355
+  },
+  "Lane College|": {
+    "lat": 35.6282633,
+    "lng": -88.8066917
+  },
+  "Lawson State Community College|": {
+    "lat": 33.3746745,
+    "lng": -86.9930189
+  },
+  "LeMoyne-Owen College|": {
+    "lat": 35.1177651,
+    "lng": -90.0338729
+  },
+  "Livingstone College|": {
+    "lat": 35.6712869,
+    "lng": -80.4856795
+  },
+  "Meharry Medical College|": {
+    "lat": 36.1660229,
+    "lng": -86.8075619
+  },
+  "Miles College|": {
+    "lat": 33.4810986,
+    "lng": -86.9091102
+  },
+  "Miles School of Law|": null,
+  "Morehouse School of Medicine|": {
+    "lat": 33.7431332,
+    "lng": -84.4120967
+  },
+  "Morris Brown College|": {
+    "lat": 33.7555819,
+    "lng": -84.4089586
+  },
+  "Morris College|": {
+    "lat": 33.9383314,
+    "lng": -80.3470005
+  },
+  "Paine College|": {
+    "lat": 33.4694315,
+    "lng": -81.9956032
+  },
+  "Paul Quinn College|": {
+    "lat": 32.6788166,
+    "lng": -96.7536778
+  },
+  "Philander Smith College|": {
+    "lat": 34.7380768,
+    "lng": -92.2814983
+  },
+  "Rust College|": {
+    "lat": 34.7762325,
+    "lng": -89.4473185
+  },
+  "Savannah State University|": {
+    "lat": 32.0244257,
+    "lng": -81.0624808
+  },
+  "Selma University|": {
+    "lat": 32.4206437,
+    "lng": -87.0338257
+  },
+  "Shaw University|": {
+    "lat": 35.7707688,
+    "lng": -78.6369792
+  },
+  "Simmons College of Kentucky|": {
+    "lat": 38.2396962,
+    "lng": -85.765311
+  },
+  "South Carolina State University|": {
+    "lat": 33.4987851,
+    "lng": -80.8468434
+  },
+  "Southern University at New Orleans|": {
+    "lat": 30.0318606,
+    "lng": -90.0445991
+  },
+  "Southwestern Christian College|": {
+    "lat": 32.7351398,
+    "lng": -96.2858159
+  },
+  "St. Augustine's University|": {
+    "lat": 35.7881141,
+    "lng": -78.6188664
+  },
+  "Stillman College|": {
+    "lat": 33.1978474,
+    "lng": -87.5857279
+  },
+  "Talladega College|": {
+    "lat": 33.4325135,
+    "lng": -86.1148878
+  },
+  "Texas College|": {
+    "lat": 32.3746078,
+    "lng": -95.3124532
+  },
+  "Tougaloo College|": {
+    "lat": 32.4036241,
+    "lng": -90.1619083
+  },
+  "Virginia Union University|": {
+    "lat": 37.5617598,
+    "lng": -77.4510598
+  },
+  "Virginia University of Lynchburg|": {
+    "lat": 37.3950644,
+    "lng": -79.1528157
+  },
+  "Voorhees University|": {
+    "lat": 33.3058578,
+    "lng": -81.1285669
+  },
+  "West Virginia State University|": {
+    "lat": 38.3793907,
+    "lng": -81.7680603
+  },
+  "Wiley College|": {
+    "lat": 32.53757,
+    "lng": -94.37598
+  },
+  "Winston-Salem State University|": {
+    "lat": 36.0895154,
+    "lng": -80.2239737
+  },
+  "Unity Environmental College|Maine": null,
+  "Catawba College|": {
+    "lat": 35.6915505,
+    "lng": -80.4860085
+  },
+  "Texas A&M University-Texarkana|": {
+    "lat": 33.4897289,
+    "lng": -94.1032975
+  },
+  "Belhaven University|": {
+    "lat": 32.3201391,
+    "lng": -90.1690572
+  },
+  "Berry College|": {
+    "lat": 34.290842,
+    "lng": -85.1890789
+  },
+  "Bloomfield College|": {
+    "lat": 40.7951985,
+    "lng": -74.1938246
+  },
+  "Bridgewater State University|": {
+    "lat": 41.9882958,
+    "lng": -70.9635926
+  },
+  "Cabrini University|": null,
+  "Caldwell University|": {
+    "lat": 40.8339079,
+    "lng": -74.2713297
+  },
+  "Covenant College|": {
+    "lat": -26.316181,
+    "lng": 28.046557
+  },
+  "California State University|": {
+    "lat": 34.1799047,
+    "lng": -117.3263
+  },
+  "Colorado State University-Pueblo|": {
+    "lat": 38.3087419,
+    "lng": -104.5768455
+  },
+  "Bay Atlantic University|": null,
+  "Siena College|": {
+    "lat": 42.7192659,
+    "lng": -73.751192
+  },
+  "Texas Wesleyan University|": {
+    "lat": 32.7330676,
+    "lng": -97.280134
+  },
+  "Island Drafting & Technical Institute|NY": null,
+  "Bay Path University|MA": {
+    "lat": 42.055796,
+    "lng": -72.5841918
+  },
+  "Snow College|": {
+    "lat": 39.3605453,
+    "lng": -111.5806727
+  },
+  "State Center Community College District|": null,
+  "Davidson-Davie Community College|": {
+    "lat": 35.8665448,
+    "lng": -80.180713
+  },
+  "Berkeley College|": {
+    "lat": 41.3110823,
+    "lng": -72.9273247
+  },
+  "Schiller International University|": {
+    "lat": 49.4013697,
+    "lng": 8.6715978
+  },
+  "Greensboro College|": {
+    "lat": 36.0713888,
+    "lng": -79.8008558
+  },
+  "Verde Valley School|": {
+    "lat": 34.8049591,
+    "lng": -111.8062229
+  },
+  "Oglethorpe University|": {
+    "lat": 33.8763258,
+    "lng": -84.3343891
+  },
+  "Detroit School of Technology|": {
+    "lat": 42.3411642,
+    "lng": -83.1027926
+  },
+  "North Central College|": {
+    "lat": 41.7743655,
+    "lng": -88.1427492
+  },
+  "The University of Montana Western|": {
+    "lat": 45.2096759,
+    "lng": -112.6391549
+  },
+  "Queens University of Charlotte|": null,
+  "Lincoln Memorial University|": {
+    "lat": 36.5718381,
+    "lng": -83.661624
+  },
+  "Greenville University|": {
+    "lat": 38.8964861,
+    "lng": -89.4125081
+  },
+  "State University of New York at Oneonta|New York": {
+    "lat": 42.4712015,
+    "lng": -75.0630288
+  },
+  "Northwestern Michigan College|Michigan": {
+    "lat": 44.7664786,
+    "lng": -85.5798466
+  },
+  "Adrian College|": {
+    "lat": 41.8984947,
+    "lng": -84.0608324
+  },
+  "Concordia University Wisconsin|": {
+    "lat": 43.25434,
+    "lng": -87.9147839
+  },
+  "Delaware Valley University|": {
+    "lat": 40.2931485,
+    "lng": -75.1599412
+  },
+  "Eckerd College|": {
+    "lat": 27.7142658,
+    "lng": -82.6855432
+  },
+  "University of South Carolina Upstate|": {
+    "lat": 35.0003217,
+    "lng": -81.970885
+  },
+  "Fairfield University|": {
+    "lat": 41.1596756,
+    "lng": -73.2574031
+  },
+  "Foothill-De Anza Community College District|": null,
+  "Francis Marion University|": {
+    "lat": 34.1912442,
+    "lng": -79.6666713
+  },
+  "George Fox University|": {
+    "lat": 45.3038557,
+    "lng": -122.9665978
+  },
+  "Grand View University|": {
+    "lat": 41.6198031,
+    "lng": -93.5988096
+  },
+  "Abraham Baldwin Agricultural College|Georgia": {
+    "lat": 31.4850217,
+    "lng": -83.5333475
+  },
+  "Capital University|Ohio": {
+    "lat": 39.9554343,
+    "lng": -82.9376327
+  },
+  "State University of New York College at Oneonta|New York": null,
+  "University of Mount Olive|North Carolina": {
+    "lat": 35.0959884,
+    "lng": -77.0853554
+  },
+  "The University of Olivet|Michigan": null,
+  "Westminster University|Salt Lake City, Utah": {
+    "lat": 40.7312521,
+    "lng": -111.8555636
+  },
+  "Dominican University|Illinois": {
+    "lat": 41.9028967,
+    "lng": -87.8226266
+  },
+  "Claremont Colleges|": {
+    "lat": 34.1051646,
+    "lng": -117.708709
+  },
+  "Rowan College at Burlington County|": {
+    "lat": 39.9723832,
+    "lng": -74.8935442
+  },
+  "Aspen University|": {
+    "lat": 35.3289824,
+    "lng": -80.7274093
+  },
+  "California University of Science and Medicine|": {
+    "lat": 34.0771199,
+    "lng": -117.3504906
+  },
+  "CUNY School of Law|": null,
+  "Doane University|": {
+    "lat": 40.6213154,
+    "lng": -96.9471759
+  },
+  "Eastern Virginia Medical School|": {
+    "lat": 36.8607818,
+    "lng": -76.3021167
+  },
+  "Elms College|": {
+    "lat": 42.1419011,
+    "lng": -72.600423
+  },
+  "Estrella Mountain Community College|": {
+    "lat": 33.4807971,
+    "lng": -112.345724
+  },
+  "Florida Southern College|": {
+    "lat": 28.0304561,
+    "lng": -81.9455425
+  },
+  "Franklin Pierce University|": {
+    "lat": 42.7793366,
+    "lng": -72.0558917
+  },
+  "Kansas City University|": {
+    "lat": 39.106847,
+    "lng": -94.561009
+  },
+  "Loyola University New Orleans|": {
+    "lat": 29.9356364,
+    "lng": -90.1204516
+  },
+  "Maryland Institute College of Arts|": null,
+  "Merrimack College|": {
+    "lat": 42.6668806,
+    "lng": -71.1229218
+  },
+  "Nebraska Wesleyan University|": {
+    "lat": 40.8383056,
+    "lng": -96.6479296
+  },
+  "New York Medical College|": {
+    "lat": 41.0849859,
+    "lng": -73.811039
+  },
+  "Pacific Northwest University of Health Sciences|": {
+    "lat": 46.6038684,
+    "lng": -120.4579542
+  },
+  "Rowan College of South Jersey|": {
+    "lat": 39.7804923,
+    "lng": -75.1226476
+  },
+  "Sofia University|": {
+    "lat": 42.6935092,
+    "lng": 23.3353169
+  },
+  "SUNY Downstate Health Sciences University|": null,
+  "University of South Carolina, Beaufort|": {
+    "lat": 32.4371798,
+    "lng": -80.6693796
+  },
+  "Vermont Law School|": {
+    "lat": 43.8218824,
+    "lng": -72.5212449
+  },
+  "Western Nevada College|": {
+    "lat": 39.1864064,
+    "lng": -119.7905599
+  },
+  "Western University of Health Sciences|": {
+    "lat": 34.0579419,
+    "lng": -117.7452108
+  },
+  "St. Mary's University|Texas": {
+    "lat": 29.4522346,
+    "lng": -98.5646075
+  },
+  "South Florida State College|Florida": {
+    "lat": 27.5696237,
+    "lng": -81.5040563
+  },
+  "Alvernia University|Pennsylvania": {
+    "lat": 40.3099619,
+    "lng": -75.9353046
+  },
+  "Hellenic American University|": null,
+  "University of Holy Cross|": {
+    "lat": 29.9119808,
+    "lng": -89.996294
+  },
+  "University of Pikeville|": {
+    "lat": 37.4748252,
+    "lng": -82.5210016
+  },
+  "Stonehill College|Massachusetts": {
+    "lat": 42.0599777,
+    "lng": -71.0793257
+  },
+  "Southern Virginia University|Virginia": {
+    "lat": 37.7418153,
+    "lng": -79.3403795
+  },
+  "Louisiana State University - Shreveport|Louisiana": {
+    "lat": 32.4297329,
+    "lng": -93.7024701
+  },
+  "Maricopa Community Colleges|Arizona": {
+    "lat": 33.4128512,
+    "lng": -111.9757669
+  },
+  "Wingate University|": {
+    "lat": 34.9871011,
+    "lng": -80.4373149
+  },
+  "California College of the Arts|San Francisco": {
+    "lat": 37.767859,
+    "lng": -122.4006019
+  },
+  "Dallas College|Texas": {
+    "lat": 32.9145892,
+    "lng": -96.887661
+  },
+  "University of North Texas at Dallas|Texas": null
+}
