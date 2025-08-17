@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "UniStartupBoard.html",
+      "src": "**/*",
       "use": "@vercel/static"
     }
   ],
@@ -10,6 +10,10 @@
     {
       "src": "/",
       "dest": "/UniStartupBoard.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }

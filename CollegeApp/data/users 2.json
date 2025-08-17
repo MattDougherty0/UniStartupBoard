@@ -1,0 +1,778 @@
+[
+  {
+    "id": 1,
+    "email": "sarahchen@pitt.edu",
+    "university": "University of Pittsburgh",
+    "lat": 40.444,
+    "lng": -79.9532,
+    "profile": {
+      "firstName": "Sarah",
+      "lastName": "Chen",
+      "bio": "Computer Science major passionate about sustainable technology and smart city solutions.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 2,
+    "email": "marcusjohnson@cmu.edu",
+    "university": "Carnegie Mellon University",
+    "lat": 40.4433,
+    "lng": -79.944,
+    "profile": {
+      "firstName": "Marcus",
+      "lastName": "Johnson",
+      "bio": "Engineering student focused on robotics and environmental conservation. Love exploring Pittsburgh's rivers.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 3,
+    "email": "priyapatel@duq.edu",
+    "university": "Duquesne University",
+    "lat": 40.4374,
+    "lng": -79.9909,
+    "profile": {
+      "firstName": "Priya",
+      "lastName": "Patel",
+      "bio": "Public Health major working on healthcare accessibility solutions for rural communities.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "no",
+      "social": {}
+    }
+  },
+  {
+    "id": 4,
+    "email": "alexrodriguez@carlow.edu",
+    "university": "Carlow University",
+    "lat": 40.4397,
+    "lng": -79.9642,
+    "profile": {
+      "firstName": "Alex",
+      "lastName": "Rodriguez",
+      "bio": "Business student with a passion for local food systems and community development.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 5,
+    "email": "emilythompson@pointpark.edu",
+    "university": "Point Park University",
+    "lat": 40.4387,
+    "lng": -80.0019,
+    "profile": {
+      "firstName": "Emily",
+      "lastName": "Thompson",
+      "bio": "Environmental Science major working on renewable energy solutions for Pittsburgh neighborhoods.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 6,
+    "email": "davidkim@chatham.edu",
+    "university": "Chatham University",
+    "lat": 40.4492,
+    "lng": -79.9258,
+    "profile": {
+      "firstName": "David",
+      "lastName": "Kim",
+      "bio": "Computer Engineering student developing IoT solutions for smart city infrastructure.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 7,
+    "email": "rachelwilliams@ccac.edu",
+    "university": "Community College of Allegheny County",
+    "lat": 40.445,
+    "lng": -80.018,
+    "profile": {
+      "firstName": "Rachel",
+      "lastName": "Williams",
+      "bio": "Psychology major creating mental health support platforms for college students.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 8,
+    "email": "jordandavis@rmu.edu",
+    "university": "Robert Morris University",
+    "lat": 40.5206,
+    "lng": -80.2106,
+    "profile": {
+      "firstName": "Jordan",
+      "lastName": "Davis",
+      "bio": "Urban Planning student focused on sustainable transportation solutions for Pittsburgh's unique topography.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "no",
+      "social": {}
+    }
+  },
+  {
+    "id": 9,
+    "email": "aishahassan@setonhill.edu",
+    "university": "Seton Hill University",
+    "lat": 40.3092,
+    "lng": -79.5567,
+    "profile": {
+      "firstName": "Aisha",
+      "lastName": "Hassan",
+      "bio": "Data Science major working on analytics solutions for small businesses in the Strip District.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 10,
+    "email": "michaelo'connor@stvincent.edu",
+    "university": "Saint Vincent College",
+    "lat": 40.2931,
+    "lng": -79.4036,
+    "profile": {
+      "firstName": "Michael",
+      "lastName": "O'Connor",
+      "bio": "Mechanical Engineering student developing autonomous systems for environmental cleanup.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 11,
+    "email": "sophiagarcia@greensburg.pitt.edu",
+    "university": "University of Pittsburgh at Greensburg",
+    "lat": 40.2766,
+    "lng": -79.5316,
+    "profile": {
+      "firstName": "Sophia",
+      "lastName": "Garcia",
+      "bio": "Education major creating personalized learning platforms for K-12 students.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 12,
+    "email": "tylerbrown@calu.edu",
+    "university": "PennWest California",
+    "lat": 40.0656,
+    "lng": -79.8853,
+    "profile": {
+      "firstName": "Tyler",
+      "lastName": "Brown",
+      "bio": "Chemical Engineering student working on smart brewing technology for craft beer enthusiasts.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 13,
+    "email": "ninaanderson@washjeff.edu",
+    "university": "Washington & Jefferson College",
+    "lat": 40.1709,
+    "lng": -80.2392,
+    "profile": {
+      "firstName": "Nina",
+      "lastName": "Anderson",
+      "bio": "Architecture student developing VR solutions for urban planning and architectural visualization.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "no",
+      "social": {}
+    }
+  },
+  {
+    "id": 14,
+    "email": "kevinzhang@waynesburg.edu",
+    "university": "Waynesburg University",
+    "lat": 39.9006,
+    "lng": -80.1867,
+    "profile": {
+      "firstName": "Kevin",
+      "lastName": "Zhang",
+      "bio": "Blockchain developer working on credential verification systems for educational institutions.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 15,
+    "email": "mayasingh@sru.edu",
+    "university": "Slippery Rock University",
+    "lat": 41.0639,
+    "lng": -80.0423,
+    "profile": {
+      "firstName": "Maya",
+      "lastName": "Singh",
+      "bio": "Community Development major creating platforms to strengthen neighborhood bonds in Pittsburgh.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 16,
+    "email": "chriswilson@iup.edu",
+    "university": "Indiana University of Pennsylvania",
+    "lat": 40.6175,
+    "lng": -79.1603,
+    "profile": {
+      "firstName": "Chris",
+      "lastName": "Wilson",
+      "bio": "AR/VR developer working on navigation and tourism solutions for Pittsburgh visitors.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 17,
+    "email": "sarahchen@stanford.edu",
+    "university": "Stanford University",
+    "lat": 37.4275,
+    "lng": -122.1697,
+    "profile": {
+      "firstName": "Sarah",
+      "lastName": "Chen",
+      "bio": "Computer Science major passionate about sustainable technology and smart city solutions.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 18,
+    "email": "marcusjohnson@berkeley.edu",
+    "university": "University of California, Berkeley",
+    "lat": 37.8715,
+    "lng": -122.273,
+    "profile": {
+      "firstName": "Marcus",
+      "lastName": "Johnson",
+      "bio": "Engineering student focused on robotics and environmental conservation. Love exploring Pittsburgh's rivers.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 19,
+    "email": "priyapatel@sfsu.edu",
+    "university": "San Francisco State University",
+    "lat": 37.7219,
+    "lng": -122.4782,
+    "profile": {
+      "firstName": "Priya",
+      "lastName": "Patel",
+      "bio": "Public Health major working on healthcare accessibility solutions for rural communities.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "no",
+      "social": {}
+    }
+  },
+  {
+    "id": 20,
+    "email": "alexrodriguez@usfca.edu",
+    "university": "University of San Francisco",
+    "lat": 37.775,
+    "lng": -122.45,
+    "profile": {
+      "firstName": "Alex",
+      "lastName": "Rodriguez",
+      "bio": "Business student with a passion for local food systems and community development.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 21,
+    "email": "emilythompson@harvard.edu",
+    "university": "Harvard University",
+    "lat": 42.377,
+    "lng": -71.1167,
+    "profile": {
+      "firstName": "Emily",
+      "lastName": "Thompson",
+      "bio": "Environmental Science major working on renewable energy solutions for Pittsburgh neighborhoods.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 22,
+    "email": "davidkim@mit.edu",
+    "university": "Massachusetts Institute of Technology",
+    "lat": 42.3601,
+    "lng": -71.0942,
+    "profile": {
+      "firstName": "David",
+      "lastName": "Kim",
+      "bio": "Computer Engineering student developing IoT solutions for smart city infrastructure.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 23,
+    "email": "rachelwilliams@bu.edu",
+    "university": "Boston University",
+    "lat": 42.3505,
+    "lng": -71.1054,
+    "profile": {
+      "firstName": "Rachel",
+      "lastName": "Williams",
+      "bio": "Psychology major creating mental health support platforms for college students.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 24,
+    "email": "jordandavis@northeastern.edu",
+    "university": "Northeastern University",
+    "lat": 42.3398,
+    "lng": -71.0892,
+    "profile": {
+      "firstName": "Jordan",
+      "lastName": "Davis",
+      "bio": "Urban Planning student focused on sustainable transportation solutions for Pittsburgh's unique topography.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "no",
+      "social": {}
+    }
+  },
+  {
+    "id": 25,
+    "email": "ivynguyen@stanford.edu",
+    "university": "Stanford University",
+    "lat": 37.4275,
+    "lng": -122.1697,
+    "profile": {
+      "firstName": "Ivy",
+      "lastName": "Nguyen",
+      "bio": "Ivy Nguyen is a student at Stanford University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 26,
+    "email": "lenazhao@stanford.edu",
+    "university": "Stanford University",
+    "lat": 37.4275,
+    "lng": -122.1697,
+    "profile": {
+      "firstName": "Lena",
+      "lastName": "Zhao",
+      "bio": "Lena Zhao is a student at Stanford University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 27,
+    "email": "ananyapatel@berkeley.edu",
+    "university": "University of California, Berkeley",
+    "lat": 37.8715,
+    "lng": -122.273,
+    "profile": {
+      "firstName": "Ananya",
+      "lastName": "Patel",
+      "bio": "Ananya Patel is a student at University of California, Berkeley working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 28,
+    "email": "mayasingh@berkeley.edu",
+    "university": "University of California, Berkeley",
+    "lat": 37.8715,
+    "lng": -122.273,
+    "profile": {
+      "firstName": "Maya",
+      "lastName": "Singh",
+      "bio": "Maya Singh is a student at University of California, Berkeley working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 29,
+    "email": "minapark@sfsu.edu",
+    "university": "San Francisco State University",
+    "lat": 37.7219,
+    "lng": -122.4782,
+    "profile": {
+      "firstName": "Mina",
+      "lastName": "Park",
+      "bio": "Mina Park is a student at San Francisco State University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 30,
+    "email": "priyapatel@sfsu.edu",
+    "university": "San Francisco State University",
+    "lat": 37.7219,
+    "lng": -122.4782,
+    "profile": {
+      "firstName": "Priya",
+      "lastName": "Patel",
+      "bio": "Priya Patel is a student at San Francisco State University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 31,
+    "email": "owenchen@usfca.edu",
+    "university": "University of San Francisco",
+    "lat": 37.775,
+    "lng": -122.45,
+    "profile": {
+      "firstName": "Owen",
+      "lastName": "Chen",
+      "bio": "Owen Chen is a student at University of San Francisco working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 32,
+    "email": "noahwilliams@usfca.edu",
+    "university": "University of San Francisco",
+    "lat": 37.775,
+    "lng": -122.45,
+    "profile": {
+      "firstName": "Noah",
+      "lastName": "Williams",
+      "bio": "Noah Williams is a student at University of San Francisco working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 33,
+    "email": "noahbrooks@harvard.edu",
+    "university": "Harvard University",
+    "lat": 42.377,
+    "lng": -71.1167,
+    "profile": {
+      "firstName": "Noah",
+      "lastName": "Brooks",
+      "bio": "Noah Brooks is a student at Harvard University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 34,
+    "email": "zoeli@harvard.edu",
+    "university": "Harvard University",
+    "lat": 42.377,
+    "lng": -71.1167,
+    "profile": {
+      "firstName": "Zoe",
+      "lastName": "Li",
+      "bio": "Zoe Li is a student at Harvard University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 35,
+    "email": "ericzhao@mit.edu",
+    "university": "Massachusetts Institute of Technology",
+    "lat": 42.3601,
+    "lng": -71.0942,
+    "profile": {
+      "firstName": "Eric",
+      "lastName": "Zhao",
+      "bio": "Eric Zhao is a student at Massachusetts Institute of Technology working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 36,
+    "email": "saraahmed@mit.edu",
+    "university": "Massachusetts Institute of Technology",
+    "lat": 42.3601,
+    "lng": -71.0942,
+    "profile": {
+      "firstName": "Sara",
+      "lastName": "Ahmed",
+      "bio": "Sara Ahmed is a student at Massachusetts Institute of Technology working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 37,
+    "email": "bencohen@bu.edu",
+    "university": "Boston University",
+    "lat": 42.3505,
+    "lng": -71.1054,
+    "profile": {
+      "firstName": "Ben",
+      "lastName": "Cohen",
+      "bio": "Ben Cohen is a student at Boston University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 38,
+    "email": "hannalee@bu.edu",
+    "university": "Boston University",
+    "lat": 42.3505,
+    "lng": -71.1054,
+    "profile": {
+      "firstName": "Hanna",
+      "lastName": "Lee",
+      "bio": "Hanna Lee is a student at Boston University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 39,
+    "email": "mateogarcia@northeastern.edu",
+    "university": "Northeastern University",
+    "lat": 42.3398,
+    "lng": -71.0892,
+    "profile": {
+      "firstName": "Mateo",
+      "lastName": "Garcia",
+      "bio": "Mateo Garcia is a student at Northeastern University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 40,
+    "email": "chloepark@northeastern.edu",
+    "university": "Northeastern University",
+    "lat": 42.3398,
+    "lng": -71.0892,
+    "profile": {
+      "firstName": "Chloe",
+      "lastName": "Park",
+      "bio": "Chloe Park is a student at Northeastern University working on innovative projects.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 41,
+    "email": "matt@alias.co",
+    "name": "",
+    "university": "Alias University",
+    "lat": 40.4406,
+    "lng": -79.9959,
+    "isEduVerified": false,
+    "skills": [],
+    "interests": [],
+    "availabilityHours": 0,
+    "city": "",
+    "campus": "",
+    "intent": null,
+    "portfolio": {
+      "github": "",
+      "behance": "",
+      "linkedin": "",
+      "personalSite": ""
+    },
+    "preferences": {
+      "emailImmediate": false,
+      "emailDigest": "weekly"
+    },
+    "createdAt": "2025-08-16T05:42:32.400Z",
+    "updatedAt": "2025-08-16T05:42:32.400Z",
+    "profile": null
+  },
+  {
+    "id": 42,
+    "email": "jessicawong@sjsu.edu",
+    "university": "San Jose State University",
+    "lat": 37.3352,
+    "lng": -121.8811,
+    "profile": {
+      "firstName": "Jessica",
+      "lastName": "Wong",
+      "bio": "Computer Engineering major working on smart home automation and energy efficiency solutions.",
+      "picture": "https://images.unsplash.com/photo-1534361967620-2249b4a87a49",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 43,
+    "email": "carlosrodriguez@sjsu.edu",
+    "university": "San Jose State University",
+    "lat": 37.3352,
+    "lng": -121.8811,
+    "profile": {
+      "firstName": "Carlos",
+      "lastName": "Rodriguez",
+      "bio": "Business major developing fintech solutions for small businesses and startups.",
+      "picture": "https://images.unsplash.com/photo-1519338381761-c7523edc1f46",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 44,
+    "email": "sophiagarcia@scu.edu",
+    "university": "Santa Clara University",
+    "lat": 37.3496,
+    "lng": -121.9390,
+    "profile": {
+      "firstName": "Sophia",
+      "lastName": "Garcia",
+      "bio": "Environmental Science major working on sustainable agriculture and food waste reduction.",
+      "picture": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+      "graduationYear": "2025",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  },
+  {
+    "id": 45,
+    "email": "kevinchen@scu.edu",
+    "university": "Santa Clara University",
+    "lat": 37.3496,
+    "lng": -121.9390,
+    "profile": {
+      "firstName": "Kevin",
+      "lastName": "Chen",
+      "bio": "Computer Science major developing AI-powered educational tools for underserved communities.",
+      "picture": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7",
+      "graduationYear": "2026",
+      "hasIdea": "yes",
+      "isWorkingOnIdea": "yes",
+      "social": {}
+    }
+  }
+]
