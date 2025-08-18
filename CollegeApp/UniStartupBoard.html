@@ -3330,6 +3330,7 @@
     function MapView({ user, posts, users, onUniversityFilter, center = null, showUserMarker = true, title = null, zoom = 12 }) {
       const mapRef = React.useRef(null);
       const mapInstanceRef = React.useRef(null);
+      const skipNextRecenterRef = React.useRef(false);
 
       React.useEffect(() => {
         if (!mapRef.current || mapInstanceRef.current) return;
@@ -3425,9 +3426,10 @@
             const map = mapInstanceRef.current;
             if (map) {
               const current = map.getZoom();
-              const base = Number.isFinite(zoom) ? zoom : (Number.isFinite(current) ? current : 12);
-              const targetZoom = Math.min(base + 1, 18); // +1 level ≈ 2x scale ("double")
-              map.setView([data.lat, data.lng], targetZoom, { animate: true });
+              const base = Number.isFinite(current) ? current : (Number.isFinite(zoom) ? zoom : 12);
+              const targetZoom = Math.min(base + 2, 18); // +2 levels for a clearer zoom-in
+              skipNextRecenterRef.current = true; // prevent immediate recenter override
+              map.flyTo([data.lat, data.lng], targetZoom, { animate: true, duration: 0.8 });
             }
           });
         });
@@ -3445,6 +3447,11 @@
         if (!mapInstanceRef.current) return;
         const nextCenter = center ? [center.lat, center.lng] : (user?.lat && user?.lng ? [user.lat, user.lng] : null);
         if (nextCenter) {
+          if (skipNextRecenterRef.current) {
+            // Skip one recenter immediately after an explicit click-zoom
+            skipNextRecenterRef.current = false;
+            return;
+          }
           mapInstanceRef.current.setView(nextCenter, zoom);
         }
       }, [center, zoom]);
