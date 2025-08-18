@@ -503,10 +503,11 @@
               setView("profile");
             }
                   } else {
-            // No user authenticated - update global flags
+            // No user authenticated - public mode: Global board
             window.currentUser = null;
             setUser(null);
-            setView("signin");
+            setFeedMode('global');
+            setView("board");
           }
         });
 
