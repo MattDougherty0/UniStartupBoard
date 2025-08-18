@@ -3444,7 +3444,6 @@
             `);
 
           marker.on('click', () => {
-            onUniversityFilter(universityName);
             const current = map.getZoom();
             const base = Number.isFinite(current) ? current : (Number.isFinite(zoom) ? zoom : 12);
             const targetZoom = Math.min(base + 2, 18);
