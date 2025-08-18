@@ -866,8 +866,15 @@
             { uni: 'New York University', emailDomain: 'nyu.edu', first: 'Chloe', last: 'Rossi', bio: 'Interactive media student building creator tools.', year: '2025' },
             { uni: 'Cornell Tech', emailDomain: 'tech.cornell.edu', first: 'Dante', last: 'Rivera', bio: 'CS grad student focused on applied AI for cities.', year: '2026' }
           ];
+          const chicagoUserSpecs = [
+            { uni: 'University of Chicago', emailDomain: 'uchicago.edu', first: 'Lila', last: 'Stone', bio: 'Booth student exploring venture-backed fintech.', year: '2025' },
+            { uni: 'Northwestern University', emailDomain: 'northwestern.edu', first: 'Omar', last: 'Hassan', bio: 'McCormick engineer prototyping consumer apps at The Garage.', year: '2026' },
+            { uni: 'University of Illinois Chicago', emailDomain: 'uic.edu', first: 'Gianna', last: 'Russo', bio: 'UIC CS major focused on health AI and urban systems.', year: '2025' },
+            { uni: 'Illinois Institute of Technology', emailDomain: 'iit.edu', first: 'Mateo', last: 'Silva', bio: 'IIT EE building embedded systems for hard tech.', year: '2026' },
+            { uni: 'Loyola University Chicago', emailDomain: 'luc.edu', first: 'Nora', last: 'Alvarez', bio: 'Ethics-focused student building social impact ventures.', year: '2025' }
+          ];
           const createdCityUsers = [];
-          [...sfUserSpecs, ...bostonUserSpecs, ...nycUserSpecs].forEach(spec => {
+          [...sfUserSpecs, ...bostonUserSpecs, ...nycUserSpecs, ...chicagoUserSpecs].forEach(spec => {
             const u = ensureUserForUniversity(spec.uni, spec.emailDomain, spec.first, spec.last, spec.bio, spec.year);
             if (u) createdCityUsers.push(u);
           });
@@ -953,6 +960,26 @@
             'Cornell Tech': { domain: 'tech.cornell.edu', names: [
               { first: 'Dante', last: 'Rivera' }, { first: 'Iris', last: 'Lin' }, { first: 'Tomas', last: 'Novak' },
               { first: 'Yara', last: 'Haddad' }
+            ]},
+            'University of Chicago': { domain: 'uchicago.edu', names: [
+              { first: 'Lila', last: 'Stone' }, { first: 'Arman', last: 'Khan' }, { first: 'Julia', last: 'Ng' },
+              { first: 'Kenji', last: 'Ito' }
+            ]},
+            'Northwestern University': { domain: 'northwestern.edu', names: [
+              { first: 'Omar', last: 'Hassan' }, { first: 'Mina', last: 'Solomon' }, { first: 'Evan', last: 'Pierce' },
+              { first: 'Grace', last: 'Huang' }
+            ]},
+            'University of Illinois Chicago': { domain: 'uic.edu', names: [
+              { first: 'Gianna', last: 'Russo' }, { first: 'Diego', last: 'Lopez' }, { first: 'Samir', last: 'Patel' },
+              { first: 'Helena', last: 'Popov' }
+            ]},
+            'Illinois Institute of Technology': { domain: 'iit.edu', names: [
+              { first: 'Mateo', last: 'Silva' }, { first: 'Anil', last: 'Verma' }, { first: 'Jade', last: 'Kim' },
+              { first: 'Victor', last: 'Nguyen' }
+            ]},
+            'Loyola University Chicago': { domain: 'luc.edu', names: [
+              { first: 'Nora', last: 'Alvarez' }, { first: 'Elena', last: 'Marin' }, { first: 'Jonah', last: 'Reed' },
+              { first: 'Priya', last: 'Rao' }
             ]}
           };
           Object.entries(nameBank).forEach(([uniName, info]) => {
