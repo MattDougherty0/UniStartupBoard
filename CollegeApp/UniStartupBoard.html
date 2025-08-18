@@ -1984,6 +1984,8 @@
                             return 13; // More zoomed in to show downtown, rivers, Oakland clearly
                           } else if (selectedCity === 'New York City') {
                             return 12; // Show Manhattan/Brooklyn core to include Columbia, NYU, Cornell Tech
+                          } else if (selectedCity === 'Chicago') {
+                            return 11; // Slightly more zoomed out to include UChicago, UIC, IIT, Loyola, Northwestern
                           }
                           return 12; // Default zoom
                         })()}
