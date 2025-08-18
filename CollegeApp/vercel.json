@@ -6,7 +6,7 @@
   ],
   "routes": [
     { "src": "/", "dest": "/UniStartupBoard.html" },
-    { "src": "/data/(.*)", "dest": "/data/$1" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/data/(.*)", "dest": "/data/" },
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
