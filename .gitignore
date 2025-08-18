@@ -1,0 +1,9 @@
+# Ignore Vercel project metadata (environment-specific)
+.vercel/
+CollegeApp/.vercel/
+
+# Ignore local data artifacts that shouldn't be versioned
+CollegeApp/data/university_domains.json
+
+# macOS
+.DS_Store
