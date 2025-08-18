@@ -3419,9 +3419,16 @@
               </div>
             `);
 
-          // Add click handler for filtering
+          // Add click handler: filter, then zoom-in and center on the clicked university
           marker.on('click', () => {
             onUniversityFilter(universityName);
+            const map = mapInstanceRef.current;
+            if (map) {
+              const current = map.getZoom();
+              const base = Number.isFinite(zoom) ? zoom : (Number.isFinite(current) ? current : 12);
+              const targetZoom = Math.min(base + 1, 18); // +1 level ≈ 2x scale ("double")
+              map.setView([data.lat, data.lng], targetZoom, { animate: true });
+            }
           });
         });
 
