@@ -244,7 +244,7 @@
       const [view, setView] = useState("signin");
       const [verificationSent, setVerificationSent] = useState(false);
       const [selectedUserId, setSelectedUserId] = useState(null);
-      const [feedMode, setFeedMode] = useState("local"); // 'local' | 'global' | 'city'
+      const [feedMode, setFeedMode] = useState("global"); // default to global for signed-out users
       const [selectedCity, setSelectedCity] = useState("Boston");
 
       const [universityFilter, setUniversityFilter] = useState(null);
@@ -1892,7 +1892,15 @@
             return city === selectedCity;
           });
       
-      const displayedPosts = feedMode === 'local' ? filteredPosts : (feedMode === 'city' ? cityFilteredPosts : posts);
+      // Apply visibility rules: Global = 5 most recent; City = top 5; Local = nearby (only for signed-in)
+      let displayedPosts;
+      if (feedMode === 'global') {
+        displayedPosts = [...posts].sort((a,b) => new Date(b.createdAt||0)-new Date(a.createdAt||0)).slice(0,5);
+      } else if (feedMode === 'city') {
+        displayedPosts = cityFilteredPosts.slice(0,5);
+      } else {
+        displayedPosts = filteredPosts;
+      }
 
       return (
         <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 font-sans">
@@ -1993,7 +2001,7 @@
               <div className="max-w-2xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
-              <ProfileView user={user} users={users} selectedUserId={selectedUserId} onEdit={() => setView("profile-edit")} />
+              <ProfileView user={user} users={users} selectedUserId={selectedUserId} onEdit={() => { if (!user) { setView('signin'); return; } setView("profile-edit"); }} />
                   </div>
                 </div>
               </div>
@@ -2848,14 +2856,16 @@
         <div className="max-w-4xl mx-auto">
           <div id="post-list-start"></div>
           <div className="mt-2 mb-3">
-            <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
+            <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">
+              {feedMode === 'global' ? 'Global Startup Projects' : (feedMode === 'city' ? `${selectedCity} Startup Projects` : 'Startup Projects Near You')}
+            </h2>
           </div>
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center space-x-4">
               {!universityFilter && (
                 <>
                   <button
-                    onClick={() => setFeedMode('local')}
+                    onClick={() => { if (!user) { setView('signin'); return; } setFeedMode('local'); }}
                     className={`px-3 py-1 rounded text-sm font-medium ${feedMode === 'local' ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                   >
                     Local
@@ -2872,7 +2882,7 @@
                   >
                     Global
                   </button>
-                  {feedMode === 'local' && (
+                  {feedMode === 'local' && user && (
                     <div className="flex items-center space-x-2 ml-4">
                       <span className="text-gray-600 font-mono text-sm">Distance:</span>
                       <select
@@ -2993,7 +3003,7 @@
                     key={post.id}
                     className="bg-white rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 p-3 hover:bg-orange-50 hover:shadow-lg cursor-pointer"
                     style={{ transition: 'background 0.2s' }}
-                    onClick={() => setView(`post-${post.id}`)}
+                    onClick={() => { if (!user) { setView('signin'); return; } setView(`post-${post.id}`); }}
                   >
                     {/* Title */}
                     <h3 className="text-base font-bold text-gray-900 mb-1 font-mono line-clamp-1">
@@ -3019,7 +3029,7 @@
                             <span className="ml-1 text-gray-600">by</span>
                             <button
                               className="text-orange-600 hover:underline font-mono text-xs font-semibold ml-1"
-                              onClick={e => { e.stopPropagation(); viewUserProfile && viewUserProfile(postUser.id); }}
+                              onClick={e => { e.stopPropagation(); if (!user) { setView('signin'); return; } viewUserProfile && viewUserProfile(postUser.id); }}
                             >
                               {postUser.profile.firstName} {postUser.profile.lastName}
                             </button>
@@ -3029,7 +3039,7 @@
                       {/* Actions */}
                       <div className="flex items-center space-x-2">
                         <button
-                          onClick={e => { e.stopPropagation(); setView(`post-${post.id}`); }}
+                          onClick={e => { e.stopPropagation(); if (!user) { setView('signin'); return; } setView(`post-${post.id}`); }}
                           className="text-orange-500 hover:text-orange-600 font-mono text-xs font-semibold px-1"
                         >
                           Project Details
