@@ -255,8 +255,8 @@
       const [error, setError] = useState(null);
       const [actionNotice, setActionNotice] = useState("");
 
-      const promptSignIn = (message) => {
-        setActionNotice(message || 'Sign in to view additional details.');
+      const promptSignIn = (_message) => {
+        setActionNotice('Sign in with .edu email to view');
         setView('signin');
         // Auto-clear after a short period
         try { setTimeout(() => setActionNotice(""), 3500); } catch(_) {}
