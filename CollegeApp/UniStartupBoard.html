@@ -2846,6 +2846,7 @@
 
       return (
         <div className="max-w-4xl mx-auto">
+          <div id="post-list-start"></div>
           <div className="mt-2 mb-3">
             <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">Startup Board</h2>
           </div>
@@ -3330,6 +3331,8 @@
     function MapView({ user, posts, users, onUniversityFilter, center = null, showUserMarker = true, title = null, zoom = 12 }) {
       const mapRef = React.useRef(null);
       const mapInstanceRef = React.useRef(null);
+      const skipNextRecenterRef = React.useRef(false);
+      const markerLayerRef = React.useRef(null);
 
       React.useEffect(() => {
         if (!mapRef.current || mapInstanceRef.current) return;
@@ -3350,6 +3353,23 @@
             .bindPopup(`<b>You</b><br>${user.university}`)
             .openPopup();
         }
+        // Create a dedicated layer for university markers
+        markerLayerRef.current = L.layerGroup().addTo(mapInstanceRef.current);
+
+        return () => {
+          if (mapInstanceRef.current) {
+            mapInstanceRef.current.remove();
+            mapInstanceRef.current = null;
+          }
+        };
+      }, [user, onUniversityFilter, center, showUserMarker]);
+
+      // Update markers whenever posts/users change without re-initializing the map
+      React.useEffect(() => {
+        const map = mapInstanceRef.current;
+        const layer = markerLayerRef.current;
+        if (!map || !layer) return;
+        layer.clearLayers();
 
         // Group posts by university
         const universityPosts = {};
@@ -3368,11 +3388,15 @@
           }
         });
 
-        // Add university markers with counts
+        // Provide a global helper for popup button to filter and scroll
+        window.filterByUniversity = (uniName) => {
+          onUniversityFilter(uniName);
+          const el = document.getElementById('post-list-start');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
         Object.entries(universityPosts).forEach(([universityName, data]) => {
           const count = data.posts.length;
-          
-          // Create custom icon with count
           const customIcon = L.divIcon({
             className: 'custom-marker',
             html: `
@@ -3398,7 +3422,7 @@
           });
 
           const marker = L.marker([data.lat, data.lng], { icon: customIcon })
-            .addTo(mapInstanceRef.current)
+            .addTo(layer)
             .bindPopup(`
               <div style="min-width: 200px;">
                 <b>${universityName}</b><br>
@@ -3419,25 +3443,26 @@
               </div>
             `);
 
-          // Add click handler for filtering
           marker.on('click', () => {
-            onUniversityFilter(universityName);
+            const current = map.getZoom();
+            const base = Number.isFinite(current) ? current : (Number.isFinite(zoom) ? zoom : 12);
+            const targetZoom = Math.min(base + 2, 18);
+            skipNextRecenterRef.current = true;
+            map.flyTo([data.lat, data.lng], targetZoom, { animate: true, duration: 0.8 });
           });
         });
-
-        return () => {
-          if (mapInstanceRef.current) {
-            mapInstanceRef.current.remove();
-            mapInstanceRef.current = null;
-          }
-        };
-      }, [user, posts, users, onUniversityFilter, center, showUserMarker]);
+      }, [posts, users, onUniversityFilter]);
 
       // Recenter and update zoom whenever `center` or `zoom` changes
       React.useEffect(() => {
         if (!mapInstanceRef.current) return;
         const nextCenter = center ? [center.lat, center.lng] : (user?.lat && user?.lng ? [user.lat, user.lng] : null);
         if (nextCenter) {
+          if (skipNextRecenterRef.current) {
+            // Skip one recenter immediately after an explicit click-zoom
+            skipNextRecenterRef.current = false;
+            return;
+          }
           mapInstanceRef.current.setView(nextCenter, zoom);
         }
       }, [center, zoom]);
