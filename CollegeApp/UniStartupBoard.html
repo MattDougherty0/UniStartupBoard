@@ -130,6 +130,9 @@
         'Harvard University', 'Massachusetts Institute of Technology', 'Boston University',
         'Northeastern University'
       ]),
+      'New York City': new Set([
+        'Columbia University', 'New York University', 'Cornell Tech'
+      ]),
       'Chicago': new Set([
         'University of Chicago', 'Northwestern University', 'University of Illinois Chicago',
         'Illinois Institute of Technology', 'Loyola University Chicago'
@@ -610,6 +613,20 @@
               changed = true;
             }
           });
+          // Add NYC universities if not present
+          const nycUniversities = [
+            { name: 'Columbia University', emailDomain: 'columbia.edu', lat: 40.8075, lng: -73.9626, city: 'New York City' },
+            { name: 'New York University', emailDomain: 'nyu.edu', lat: 40.7295, lng: -73.9965, city: 'New York City' },
+            { name: 'Cornell Tech', emailDomain: 'tech.cornell.edu', lat: 40.7555, lng: -73.9533, city: 'New York City' }
+          ];
+          nycUniversities.forEach(nu => {
+            if (!nameToUni.has(nu.name)) {
+              const newUni = { id: nextId(), ...nu };
+              universitiesToSet.push(newUni);
+              nameToUni.set(nu.name, newUni);
+              changed = true;
+            }
+          });
           // Add Chicago universities if not present
           const chicagoUniversities = [
             { name: 'University of Chicago', emailDomain: 'uchicago.edu', lat: 41.7886, lng: -87.5987, city: 'Chicago' },
@@ -844,8 +861,13 @@
             { uni: 'Boston University', emailDomain: 'bu.edu', first: 'Sofia', last: 'Garcia', bio: 'Public health student focused on access.', year: '2025' },
             { uni: 'Northeastern University', emailDomain: 'northeastern.edu', first: 'Liam', last: 'OBrien', bio: 'Software engineer passionate about co-ops.', year: '2026' }
           ];
+          const nycUserSpecs = [
+            { uni: 'Columbia University', emailDomain: 'columbia.edu', first: 'Arjun', last: 'Mehta', bio: 'Data Science student exploring fintech and urban analytics.', year: '2026' },
+            { uni: 'New York University', emailDomain: 'nyu.edu', first: 'Chloe', last: 'Rossi', bio: 'Interactive media student building creator tools.', year: '2025' },
+            { uni: 'Cornell Tech', emailDomain: 'tech.cornell.edu', first: 'Dante', last: 'Rivera', bio: 'CS grad student focused on applied AI for cities.', year: '2026' }
+          ];
           const createdCityUsers = [];
-          [...sfUserSpecs, ...bostonUserSpecs].forEach(spec => {
+          [...sfUserSpecs, ...bostonUserSpecs, ...nycUserSpecs].forEach(spec => {
             const u = ensureUserForUniversity(spec.uni, spec.emailDomain, spec.first, spec.last, spec.bio, spec.year);
             if (u) createdCityUsers.push(u);
           });
@@ -918,6 +940,19 @@
             'Northeastern University': { domain: 'northeastern.edu', names: [
               { first: 'Jordan', last: 'Davis' }, { first: 'Mateo', last: 'Garcia' }, { first: 'Chloe', last: 'Park' },
               { first: 'Aisha', last: 'Hassan' }
+            ]}
+            ,
+            'Columbia University': { domain: 'columbia.edu', names: [
+              { first: 'Arjun', last: 'Mehta' }, { first: 'Mia', last: 'Goldberg' }, { first: 'Ethan', last: 'Levy' },
+              { first: 'Sana', last: 'Qureshi' }
+            ]},
+            'New York University': { domain: 'nyu.edu', names: [
+              { first: 'Chloe', last: 'Rossi' }, { first: 'Noah', last: 'Green' }, { first: 'Ava', last: 'Cohen' },
+              { first: 'Leo', last: 'Santos' }
+            ]},
+            'Cornell Tech': { domain: 'tech.cornell.edu', names: [
+              { first: 'Dante', last: 'Rivera' }, { first: 'Iris', last: 'Lin' }, { first: 'Tomas', last: 'Novak' },
+              { first: 'Yara', last: 'Haddad' }
             ]}
           };
           Object.entries(nameBank).forEach(([uniName, info]) => {
@@ -1278,6 +1313,35 @@
               if (authors.length === 0) break;
               const author = authors[i % authors.length];
               const project = chicagoProjects[(idx + i) % chicagoProjects.length];
+              postsToSet.push({
+                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+                userId: author.id,
+                university: uniName,
+                title: project.title,
+                summary: project.summary,
+                lookingFor: project.lookingFor,
+                category: project.category,
+                projectLink: project.projectLink,
+                stage: project.stage,
+                createdAt: new Date().toISOString().split('T')[0],
+                comments: []
+              });
+            }
+          });
+          // Seed NYC posts: 3 per NYC university, unique users
+          const nycProjects = [
+            { title: 'Uptown Fintech Lab', summary: 'Columbia students building inclusive finance tools for urban communities.', lookingFor: 'Backend, data', category: 'Finance', stage: 'development', projectLink: '' },
+            { title: 'NYU Creator Stack', summary: 'Tooling for creators and micro-entrepreneurs from ITP/IMA.', lookingFor: 'Frontend, design', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'Roosevelt AI Systems', summary: 'Applied AI at Cornell Tech tackling city operations and mobility.', lookingFor: 'ML, product', category: 'Tech', stage: 'idea', projectLink: '' }
+          ];
+          const nycNames = ['Columbia University', 'New York University', 'Cornell Tech'];
+          nycNames.forEach((uniName, idx) => {
+            const need = 3 - postsToSet.filter(p => p.university === uniName).length;
+            for (let i = 0; i < need; i++) {
+              const authors = usersToSet.filter(u => u.university === uniName);
+              if (authors.length === 0) break;
+              const author = authors[i % authors.length];
+              const project = nycProjects[idx % nycProjects.length];
               postsToSet.push({
                 id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
                 userId: author.id,
@@ -1872,6 +1936,9 @@
                           } else if (selectedCity === 'Pittsburgh') {
                             // Center on MLK Community Garden in Hill District
                             return {lat: 40.4450, lng: -79.9850};
+                          } else if (selectedCity === 'New York City') {
+                            // Center between Columbia (Morningside), NYU (Greenwich), and Cornell Tech (Roosevelt Island)
+                            return {lat: 40.764, lng: -73.981};
                           }
                           // Fallback to university average for other cities
                           const cityUnis = universities.filter(u => u.city === selectedCity);
@@ -1888,6 +1955,8 @@
                             return 13; // Same zoom as Pittsburgh to show Cambridge, Somerville, Back Bay, South End clearly
                           } else if (selectedCity === 'Pittsburgh') {
                             return 13; // More zoomed in to show downtown, rivers, Oakland clearly
+                          } else if (selectedCity === 'New York City') {
+                            return 12; // Show Manhattan/Brooklyn core to include Columbia, NYU, Cornell Tech
                           }
                           return 12; // Default zoom
                         })()}
@@ -2636,7 +2705,7 @@
         // Ensure Pittsburgh exists
         if (!set.has('Pittsburgh')) set.add('Pittsburgh');
         // Prefer ordered list
-        const ordered = ['Boston', 'San Francisco', 'Pittsburgh', 'Chicago'];
+        const ordered = ['Boston', 'San Francisco', 'Pittsburgh', 'New York City', 'Chicago'];
         const rest = Array.from(set).filter(c => !ordered.includes(c)).sort();
         return [...ordered.filter(c => set.has(c)), ...rest];
       }, [universities]);
