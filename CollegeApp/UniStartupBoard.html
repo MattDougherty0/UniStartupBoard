@@ -136,6 +136,12 @@
       'Chicago': new Set([
         'University of Chicago', 'Northwestern University', 'University of Illinois Chicago',
         'Illinois Institute of Technology', 'Loyola University Chicago'
+      ]),
+      'Seattle': new Set([
+        'University of Washington'
+      ]),
+      'Austin': new Set([
+        'The University of Texas at Austin'
       ])
     };
     function inferCityByName(universityName) {
@@ -635,6 +641,21 @@
             { name: 'Illinois Institute of Technology', emailDomain: 'iit.edu', lat: 41.8349, lng: -87.6270, city: 'Chicago' },
             { name: 'Loyola University Chicago', emailDomain: 'luc.edu', lat: 42.0016, lng: -87.6598, city: 'Chicago' }
           ];
+          // Add Seattle and Austin universities if not present
+          const seattleUniversities = [
+            { name: 'University of Washington', emailDomain: 'uw.edu', lat: 47.6553, lng: -122.3035, city: 'Seattle' }
+          ];
+          const austinUniversities = [
+            { name: 'The University of Texas at Austin', emailDomain: 'utexas.edu', lat: 30.2849, lng: -97.7341, city: 'Austin' }
+          ];
+          [...seattleUniversities, ...austinUniversities].forEach(nu => {
+            if (!nameToUni.has(nu.name)) {
+              const newUni = { id: nextId(), ...nu };
+              universitiesToSet.push(newUni);
+              nameToUni.set(nu.name, newUni);
+              changed = true;
+            }
+          });
           chicagoUniversities.forEach(nu => {
             if (!nameToUni.has(nu.name)) {
               const newUni = { id: nextId(), ...nu };
@@ -873,8 +894,16 @@
             { uni: 'Illinois Institute of Technology', emailDomain: 'iit.edu', first: 'Mateo', last: 'Silva', bio: 'IIT EE building embedded systems for hard tech.', year: '2026' },
             { uni: 'Loyola University Chicago', emailDomain: 'luc.edu', first: 'Nora', last: 'Alvarez', bio: 'Ethics-focused student building social impact ventures.', year: '2025' }
           ];
+          const seattleUserSpecs = [
+            { uni: 'University of Washington', emailDomain: 'uw.edu', first: 'Hannah', last: 'Park', bio: 'UW HCDE student building civic tech and data tools.', year: '2026' },
+            { uni: 'University of Washington', emailDomain: 'uw.edu', first: 'Ravi', last: 'Narayan', bio: 'CSE student working on distributed systems and ML.', year: '2025' }
+          ];
+          const austinUserSpecs = [
+            { uni: 'The University of Texas at Austin', emailDomain: 'utexas.edu', first: 'Kayla', last: 'Rodriguez', bio: 'UT Austin CS building AI infra and devtools.', year: '2026' },
+            { uni: 'The University of Texas at Austin', emailDomain: 'utexas.edu', first: 'Zane', last: 'Howard', bio: 'Business + CS pursuing consumer apps at Austin startups.', year: '2025' }
+          ];
           const createdCityUsers = [];
-          [...sfUserSpecs, ...bostonUserSpecs, ...nycUserSpecs, ...chicagoUserSpecs].forEach(spec => {
+          [...sfUserSpecs, ...bostonUserSpecs, ...nycUserSpecs, ...chicagoUserSpecs, ...seattleUserSpecs, ...austinUserSpecs].forEach(spec => {
             const u = ensureUserForUniversity(spec.uni, spec.emailDomain, spec.first, spec.last, spec.bio, spec.year);
             if (u) createdCityUsers.push(u);
           });
@@ -980,6 +1009,14 @@
             'Loyola University Chicago': { domain: 'luc.edu', names: [
               { first: 'Nora', last: 'Alvarez' }, { first: 'Elena', last: 'Marin' }, { first: 'Jonah', last: 'Reed' },
               { first: 'Priya', last: 'Rao' }
+            ]},
+            'University of Washington': { domain: 'uw.edu', names: [
+              { first: 'Hannah', last: 'Park' }, { first: 'Ravi', last: 'Narayan' }, { first: 'Selina', last: 'Chow' },
+              { first: 'Marco', last: 'Delgado' }
+            ]},
+            'The University of Texas at Austin': { domain: 'utexas.edu', names: [
+              { first: 'Kayla', last: 'Rodriguez' }, { first: 'Zane', last: 'Howard' }, { first: 'Priyanka', last: 'Ghosh' },
+              { first: 'Jared', last: 'Ng' }
             ]}
           };
           Object.entries(nameBank).forEach(([uniName, info]) => {
@@ -1384,6 +1421,68 @@
               });
             }
           });
+          // Seed Seattle: UW with 5 posts
+          const uwProjects = [
+            { title: 'Seattle Civic Data', summary: 'Open data tools from HCDE and CSE students for city services.', lookingFor: 'Frontend, PM', category: 'Civic Tech', stage: 'development', projectLink: '' },
+            { title: 'Husky Health AI', summary: 'ML for population health with local clinics.', lookingFor: 'ML research, backend', category: 'Health', stage: 'planning', projectLink: '' },
+            { title: 'Cloud Systems Lab', summary: 'Distributed systems research applied to student startups.', lookingFor: 'Systems, devops', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'UW Sustainability Hub', summary: 'Campus-wide sustainability projects with IoT and analytics.', lookingFor: 'IoT, data viz', category: 'Sustainability', stage: 'development', projectLink: '' },
+            { title: 'Lake Union Robotics', summary: 'Aquatic robotics for monitoring and cleanup.', lookingFor: 'Robotics, mechE', category: 'Tech', stage: 'planning', projectLink: '' }
+          ];
+          {
+            const uniName = 'University of Washington';
+            const need = 5 - postsToSet.filter(p => p.university === uniName).length;
+            for (let i = 0; i < need; i++) {
+              const authors = usersToSet.filter(u => u.university === uniName);
+              if (authors.length === 0) break;
+              const author = authors[i % authors.length];
+              const project = uwProjects[i % uwProjects.length];
+              postsToSet.push({
+                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+                userId: author.id,
+                university: uniName,
+                title: project.title,
+                summary: project.summary,
+                lookingFor: project.lookingFor,
+                category: project.category,
+                projectLink: project.projectLink,
+                stage: project.stage,
+                createdAt: new Date().toISOString().split('T')[0],
+                comments: []
+              });
+            }
+          }
+          // Seed Austin: UT Austin with 5 posts
+          const utaProjects = [
+            { title: 'Longhorn AI Lab', summary: 'Applied AI teams tackling real problems with Austin partners.', lookingFor: 'ML, product', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'Austin Mobility', summary: 'Urban mobility analytics for multi-modal transport.', lookingFor: 'Data, backend', category: 'Civic Tech', stage: 'planning', projectLink: '' },
+            { title: 'Texas HealthTech', summary: 'Digital health tools with Dell Med collaboration.', lookingFor: 'Mobile, HIPAA', category: 'Health', stage: 'idea', projectLink: '' },
+            { title: 'Energy Frontier', summary: 'Grid optimization and storage projects with ERCOT datasets.', lookingFor: 'EE, data', category: 'Sustainability', stage: 'development', projectLink: '' },
+            { title: 'Creator Commerce', summary: 'Consumer apps for creators and microbusinesses.', lookingFor: 'Frontend, growth', category: 'Tech', stage: 'planning', projectLink: '' }
+          ];
+          {
+            const uniName = 'The University of Texas at Austin';
+            const need = 5 - postsToSet.filter(p => p.university === uniName).length;
+            for (let i = 0; i < need; i++) {
+              const authors = usersToSet.filter(u => u.university === uniName);
+              if (authors.length === 0) break;
+              const author = authors[i % authors.length];
+              const project = utaProjects[i % utaProjects.length];
+              postsToSet.push({
+                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+                userId: author.id,
+                university: uniName,
+                title: project.title,
+                summary: project.summary,
+                lookingFor: project.lookingFor,
+                category: project.category,
+                projectLink: project.projectLink,
+                stage: project.stage,
+                createdAt: new Date().toISOString().split('T')[0],
+                comments: []
+              });
+            }
+          }
           const sanFranciscoProjects = [
             { title: 'Bay Area Clean Mobility', summary: 'EV charging optimization across SF neighborhoods.', lookingFor: 'Electrical engineers, backend devs', category: 'Sustainability', stage: 'planning', projectLink: '' },
             { title: 'Berkeley Open Science Cloud', summary: 'Open platform for reproducible research.', lookingFor: 'Full-stack devs, data scientists', category: 'Tech', stage: 'idea', projectLink: '' },
@@ -1966,6 +2065,12 @@
                           } else if (selectedCity === 'New York City') {
                             // Center between Columbia (Morningside), NYU (Greenwich), and Cornell Tech (Roosevelt Island)
                             return {lat: 40.764, lng: -73.981};
+                          } else if (selectedCity === 'Seattle') {
+                            // Focus on UW area while keeping greater Seattle in frame
+                            return {lat: 47.63, lng: -122.33};
+                          } else if (selectedCity === 'Austin') {
+                            // Focus on UT Austin and central Austin
+                            return {lat: 30.28, lng: -97.74};
                           }
                           // Fallback to university average for other cities
                           const cityUnis = universities.filter(u => u.city === selectedCity);
@@ -2734,7 +2839,7 @@
         // Ensure Pittsburgh exists
         if (!set.has('Pittsburgh')) set.add('Pittsburgh');
         // Prefer ordered list
-        const ordered = ['Boston', 'San Francisco', 'Pittsburgh', 'New York City', 'Chicago'];
+        const ordered = ['Boston', 'San Francisco', 'Pittsburgh', 'New York City', 'Chicago', 'Seattle', 'Austin'];
         const rest = Array.from(set).filter(c => !ordered.includes(c)).sort();
         return [...ordered.filter(c => set.has(c)), ...rest];
       }, [universities]);
@@ -2801,7 +2906,7 @@
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-white font-mono text-sm font-semibold truncate max-w-[210px]">
+                  <span className="text-white font-mono text-sm font-semibold truncate max-w-[330px]">
                     {universityFilter}
                   </span>
                   <button
