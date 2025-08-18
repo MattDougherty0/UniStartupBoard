@@ -129,6 +129,10 @@
       'Boston': new Set([
         'Harvard University', 'Massachusetts Institute of Technology', 'Boston University',
         'Northeastern University'
+      ]),
+      'Chicago': new Set([
+        'University of Chicago', 'Northwestern University', 'University of Illinois Chicago',
+        'Illinois Institute of Technology', 'Loyola University Chicago'
       ])
     };
     function inferCityByName(universityName) {
@@ -599,6 +603,22 @@
           const nextId = () => (Math.max(0, ...universitiesToSet.map(u => u.id || 0)) + 1);
           // Add SF and Boston unis if not present
           [...sanFranciscoUniversities, ...bostonUniversities].forEach(nu => {
+            if (!nameToUni.has(nu.name)) {
+              const newUni = { id: nextId(), ...nu };
+              universitiesToSet.push(newUni);
+              nameToUni.set(nu.name, newUni);
+              changed = true;
+            }
+          });
+          // Add Chicago universities if not present
+          const chicagoUniversities = [
+            { name: 'University of Chicago', emailDomain: 'uchicago.edu', lat: 41.7886, lng: -87.5987, city: 'Chicago' },
+            { name: 'Northwestern University', emailDomain: 'northwestern.edu', lat: 42.0565, lng: -87.6753, city: 'Chicago' },
+            { name: 'University of Illinois Chicago', emailDomain: 'uic.edu', lat: 41.8708, lng: -87.6505, city: 'Chicago' },
+            { name: 'Illinois Institute of Technology', emailDomain: 'iit.edu', lat: 41.8349, lng: -87.6270, city: 'Chicago' },
+            { name: 'Loyola University Chicago', emailDomain: 'luc.edu', lat: 42.0016, lng: -87.6598, city: 'Chicago' }
+          ];
+          chicagoUniversities.forEach(nu => {
             if (!nameToUni.has(nu.name)) {
               const newUni = { id: nextId(), ...nu };
               universitiesToSet.push(newUni);
@@ -1238,6 +1258,41 @@
             await saveToFirestoreApp('posts', postsToSet);
           }
           // Seed posts for SF/Boston ensuring at least 3 per university
+          // Seed Chicago posts: 3 per listed Chicago university, unique users
+          const chicagoProjects = [
+            { title: 'Chicago Venture Lab', summary: 'Student founders building high-growth ventures with Booth mentorship.', lookingFor: 'Product, growth', category: 'Finance', stage: 'development', projectLink: '' },
+            { title: 'Garage Startups', summary: 'Teams incubated at The Garage scaling MVPs to market.', lookingFor: 'Full-stack, design', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'UIC Health AI', summary: 'Clinical AI for urban health challenges.', lookingFor: 'ML engineers, clinicians', category: 'Health', stage: 'idea', projectLink: '' },
+            { title: 'IIT Systems Lab', summary: 'Hard tech and systems engineering ventures.', lookingFor: 'Embedded, robotics', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'Loyola Social Impact', summary: 'Ethics-forward ventures for communities.', lookingFor: 'Ops, nonprofit partners', category: 'Social Impact', stage: 'development', projectLink: '' }
+          ];
+          const chicagoNames = [
+            'University of Chicago', 'Northwestern University', 'University of Illinois Chicago',
+            'Illinois Institute of Technology', 'Loyola University Chicago'
+          ];
+          chicagoNames.forEach((uniName, idx) => {
+            // ensure 3 posts per uni
+            const need = 3 - postsToSet.filter(p => p.university === uniName).length;
+            for (let i = 0; i < need; i++) {
+              const authors = usersToSet.filter(u => u.university === uniName);
+              if (authors.length === 0) break;
+              const author = authors[i % authors.length];
+              const project = chicagoProjects[(idx + i) % chicagoProjects.length];
+              postsToSet.push({
+                id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
+                userId: author.id,
+                university: uniName,
+                title: project.title,
+                summary: project.summary,
+                lookingFor: project.lookingFor,
+                category: project.category,
+                projectLink: project.projectLink,
+                stage: project.stage,
+                createdAt: new Date().toISOString().split('T')[0],
+                comments: []
+              });
+            }
+          });
           const sanFranciscoProjects = [
             { title: 'Bay Area Clean Mobility', summary: 'EV charging optimization across SF neighborhoods.', lookingFor: 'Electrical engineers, backend devs', category: 'Sustainability', stage: 'planning', projectLink: '' },
             { title: 'Berkeley Open Science Cloud', summary: 'Open platform for reproducible research.', lookingFor: 'Full-stack devs, data scientists', category: 'Tech', stage: 'idea', projectLink: '' },
@@ -2581,7 +2636,7 @@
         // Ensure Pittsburgh exists
         if (!set.has('Pittsburgh')) set.add('Pittsburgh');
         // Prefer ordered list
-        const ordered = ['Boston', 'San Francisco', 'Pittsburgh'];
+        const ordered = ['Boston', 'San Francisco', 'Pittsburgh', 'Chicago'];
         const rest = Array.from(set).filter(c => !ordered.includes(c)).sort();
         return [...ordered.filter(c => set.has(c)), ...rest];
       }, [universities]);
