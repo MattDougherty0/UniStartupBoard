@@ -1904,7 +1904,7 @@
       // Apply visibility rules: Global = 5 most recent; City = top 5; Local = nearby (only for signed-in)
       let displayedPosts;
       if (feedMode === 'global') {
-        displayedPosts = [...posts].sort((a,b) => new Date(b.createdAt||0)-new Date(a.createdAt||0)).slice(0,5);
+        displayedPosts = [...posts].sort((a,b) => new Date(b.createdAt||0)-new Date(a.createdAt||0)).slice(0,20);
       } else if (feedMode === 'city') {
         displayedPosts = cityFilteredPosts.slice(0,5);
       } else {
@@ -1987,7 +1987,7 @@
           </header>
 
           {/* Main Content */}
-          <main className="container mx-auto px-4 py-8">
+          <main className={`container mx-auto px-4 ${view === 'board' ? 'py-4' : 'py-8'}`}>
             {view === "signin" && (
               <div className="max-w-md mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -2045,7 +2045,7 @@
             {view === "board" && (
               <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <div className="p-8">
+                  <div className="px-8 pt-3 pb-8">
                     {/* Loading State */}
                     {isLoading && (
                       <div className="text-center py-8">
@@ -2882,7 +2882,7 @@
       return (
         <div className="max-w-4xl mx-auto">
           <div id="post-list-start"></div>
-          <div className="mt-2 mb-3">
+          <div className="mt-0 mb-3">
             <h2 className="text-2xl leading-tight font-bold text-gray-900 font-mono">
               {feedMode === 'global' ? 'Global Startup Projects' : (feedMode === 'city' ? `${selectedCity} Startup Projects` : 'Startup Projects Near You')}
             </h2>
