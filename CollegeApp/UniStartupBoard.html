@@ -2235,7 +2235,7 @@
               <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
-                    <AboutPage />
+                    <AboutPage setView={setView} user={user} />
                   </div>
                 </div>
               </div>
@@ -2538,7 +2538,7 @@
       const graduationYears = Array.from({ length: 6 }, (_, i) => currentYear + i);
 
       return (
-        <div className="space-y-6">
+        <div className="space-y-0">
           <div className="flex items-start space-x-6">
             <div className="flex-shrink-0">
               <div className="relative">
@@ -3512,15 +3512,63 @@
       );
     }
 
-    function AboutPage() {
+    function AboutPage({ setView, user }) {
       return (
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 font-mono">About UniStartupBoard</h2>
-          <p className="text-gray-700 font-mono text-sm leading-relaxed">
-            UniStartupBoard is a community and platform that connects university students who want to build startups and explore entrepreneurship. Share your ideas, find co-founders and contributors, and discover what students on your campus—and nearby—are working on.
+          <div className="mb-3">
+            <h1 className="text-2xl font-bold text-gray-800 font-mono">About UniStartupBoard</h1>
+            <p className="text-orange-500 font-mono text-sm mt-1">Enabling the next generation of startups</p>
+            <div className="border-b border-gray-200 mt-2"></div>
+          </div>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">The problem</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            University startup ecosystems are noisy and fragmented. Great ideas stall because:
           </p>
-          <p className="text-gray-700 font-mono text-sm leading-relaxed">
-            Create a profile to showcase your skills and interests, browse projects by domain or need, and connect with teammates who complement your strengths. Our mission is simple: make it easy for students to find each other and turn innovative ideas into real products—together.
+          <ul className="list-disc pl-6 text-gray-700 font-mono text-sm leading-normal space-y-1">
+            <li>the <span className="font-semibold">one critical teammate</span> (designer, ML person, biz dev lead) never crosses paths with the team that needs them,</li>
+            <li>resources live in scattered group chats, newsletters, and dead forums, and</li>
+            <li>students don’t see what’s being built <span className="font-semibold">outside</span> their immediate friend circle or campus.</li>
+          </ul>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            The result? Promising projects fail to reach escape velocity—not for lack of talent or ambition, but for lack of the <span className="font-semibold">right connection at the right time</span>.
+          </p>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">Our mission</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            Make it effortless for students to find each other and turn innovative ideas into real products—together.
+          </p>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">What UniStartupBoard is</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            UniStartupBoard is a matchmaking and discovery platform for student builders. It’s where you:
+          </p>
+          <ul className="list-disc pl-6 text-gray-700 font-mono text-sm leading-normal space-y-1">
+            <li><span className="font-semibold">Find co-founders and contributors</span> who complement your skills,</li>
+            <li><span className="font-semibold">Showcase</span> what you’re building and what you need next,</li>
+            <li><span className="font-semibold">Discover</span> projects across your campus—and nearby—that align with your interests.</li>
+          </ul>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">How it works</h2>
+          <ol className="list-decimal pl-6 text-gray-700 font-mono text-sm leading-normal space-y-1 mt-0.5">
+            <li><button type="button" className="font-semibold text-orange-600 hover:text-orange-700 underline" onClick={() => setView(user ? 'profile' : 'signin')}>Create a profile</button> – highlight skills, interests, stack, and availability.</li>
+            <li><span className="font-semibold">Post a project or join one</span> – clearly list the problem, stage, and what you need (e.g., “Backend help 5–8 hrs/week”).</li>
+            <li><span className="font-semibold">Get smart matches</span> – our matching surfaces complementary skills, similar interests, and overlapping availability.</li>
+            <li><span className="font-semibold">Connect</span> – warm intros, message, and set up a first call—right inside the platform.</li>
+          </ol>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">Get started</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            Create your profile, post your project (or join one), and meet the people who make your idea inevitable.
+          </p>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">Contact</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            If you have any comments or feedback, please reach out to
+            {' '}<a href="mailto:matt@alias.co" className="text-orange-600 hover:text-orange-700 underline">matt@alias.co</a>.
+          </p>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-1">
+            This entire project was vibecoded and an opportunity to test out new systems &amp; capabilities. I learned a lot building this, and this project aims to tackle what I experienced to be a very real problem.
           </p>
         </div>
       );
