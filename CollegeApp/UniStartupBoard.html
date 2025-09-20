@@ -2235,7 +2235,7 @@
               <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-8">
-                    <AboutPage />
+                    <AboutPage setView={setView} user={user} />
                   </div>
                 </div>
               </div>
@@ -3512,7 +3512,7 @@
       );
     }
 
-    function AboutPage() {
+    function AboutPage({ setView, user }) {
       return (
         <div className="space-y-6">
           <div className="mb-3">
@@ -3549,9 +3549,9 @@
             <li><span className="font-semibold">Discover</span> projects across your campus—and nearby—that align with your interests.</li>
           </ul>
 
-          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">How it works (fast)</h2>
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">How it works</h2>
           <ol className="list-decimal pl-6 text-gray-700 font-mono text-sm leading-normal space-y-1 mt-0.5">
-            <li><span className="font-semibold">Create a profile</span> – highlight skills, interests, stack, and availability.</li>
+            <li><button type="button" className="font-semibold text-orange-600 hover:text-orange-700 underline" onClick={() => setView(user ? 'profile' : 'signin')}>Create a profile</button> – highlight skills, interests, stack, and availability.</li>
             <li><span className="font-semibold">Post a project or join one</span> – clearly list the problem, stage, and what you need (e.g., “Backend help 5–8 hrs/week”).</li>
             <li><span className="font-semibold">Get smart matches</span> – our matching surfaces complementary skills, similar interests, and overlapping availability.</li>
             <li><span className="font-semibold">Connect</span> – warm intros, message, and set up a first call—right inside the platform.</li>
@@ -3560,6 +3560,12 @@
           <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">Get started</h2>
           <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
             Create your profile, post your project (or join one), and meet the people who make your idea inevitable.
+          </p>
+
+          <h2 className="text-xl font-semibold text-gray-800 font-mono mt-6 mb-0 border-b border-gray-200 pb-1">Contact</h2>
+          <p className="text-gray-700 font-mono text-sm leading-normal mt-0.5">
+            If you have any comments or feedback, please reach out to
+            {' '}<a href="mailto:matt@alias.co" className="text-orange-600 hover:text-orange-700 underline">matt@alias.co</a>.
           </p>
         </div>
       );
