@@ -3133,12 +3133,12 @@
                   </span>
                   <span>{post.university}</span>
                   <span className="mx-2">•</span>
-                  <span>{post.createdAt}</span>
+                  <span className="text-sm">{post.createdAt}</span>
                   {postUser && postUser.profile && (
                     <>
-                      <span className="ml-1 text-gray-600">by</span>
+                      <span className="ml-1 text-gray-600 text-sm">by</span>
                       <button
-                        className="text-orange-600 hover:underline font-mono text-xs font-semibold ml-1"
+                        className="text-orange-600 hover:underline font-mono text-sm font-semibold ml-1 align-baseline"
                         onClick={e => { e.stopPropagation(); viewUserProfile && viewUserProfile(postUser.id); }}
                       >
                         {postUser.profile.firstName} {postUser.profile.lastName}
