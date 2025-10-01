@@ -2324,30 +2324,34 @@
       const [isLoading, setIsLoading] = useState(false);
       const [selectedUniversityName, setSelectedUniversityName] = useState("");
       const [detectedChoices, setDetectedChoices] = useState([]);
-      const [knownDomainMap, setKnownDomainMap] = useState(null);
+      
+      // Initialize with seed universities immediately (not null) to avoid race condition
+      const [knownDomainMap, setKnownDomainMap] = useState({
+        'cmu.edu': 'Carnegie Mellon University',
+        'pitt.edu': 'University of Pittsburgh',
+        'duq.edu': 'Duquesne University',
+        'cnu.edu': 'Christopher Newport University',
+        'sfsu.edu': 'San Francisco State University',
+        'usfca.edu': 'University of San Francisco',
+        'stanford.edu': 'Stanford University',
+        'berkeley.edu': 'University of California, Berkeley',
+        'sjsu.edu': 'San Jose State University',
+        'scu.edu': 'Santa Clara University',
+        'harvard.edu': 'Harvard University',
+        'mit.edu': 'Massachusetts Institute of Technology',
+        'bu.edu': 'Boston University',
+        'northeastern.edu': 'Northeastern University',
+        'nyu.edu': 'New York University',
+        'columbia.edu': 'Columbia University',
+        'cornell.edu': 'Cornell University',
+        'uchicago.edu': 'University of Chicago',
+        'northwestern.edu': 'Northwestern University'
+      });
 
-      // Load the large domain map once for the sign-up form (independent of app state)
+      // Load the full domain map and merge with seeds (async enhancement, not blocking)
       useEffect(() => {
         (async () => {
           try {
-            // Minimal built-in seeds to avoid any flash before fetch resolves
-            const seeds = {
-              'cmu.edu': 'Carnegie Mellon University',
-              'pitt.edu': 'University of Pittsburgh',
-              'duq.edu': 'Duquesne University',
-              'cnu.edu': 'Christopher Newport University',
-              'sfsu.edu': 'San Francisco State University',
-              'usfca.edu': 'University of San Francisco',
-              'stanford.edu': 'Stanford University',
-              'berkeley.edu': 'University of California, Berkeley',
-              'sjsu.edu': 'San Jose State University',
-              'scu.edu': 'Santa Clara University',
-              'harvard.edu': 'Harvard University',
-              'mit.edu': 'Massachusetts Institute of Technology',
-              'bu.edu': 'Boston University',
-              'northeastern.edu': 'Northeastern University'
-            };
-            let merged = { ...seeds };
             const tryPaths = [
               'data/university_domains.json',
               '/data/university_domains.json',
@@ -2363,14 +2367,14 @@
                 const res = await fetch(p, { cache: 'no-store' });
                 if (res && res.ok) {
                   const json = await res.json();
-                  merged = { ...merged, ...json };
+                  // Merge with existing seeds
+                  setKnownDomainMap(prev => ({ ...prev, ...json }));
                   break;
                 }
               } catch (_) {}
             }
-            setKnownDomainMap(merged);
-          } catch (_) {
-            setKnownDomainMap(null);
+          } catch (error) {
+            console.warn('Failed to load extended domain map:', error);
           }
         })();
       }, []);
@@ -2384,8 +2388,7 @@
           setSelectedUniversityName("");
           return;
         }
-        // Wait for known-domain map to be ready so first try uses the JSON list
-        if (knownDomainMap === null) return;
+        // knownDomainMap is now initialized with seeds, no need to wait
         // 0) Immediate hard map (prefer exact subdomain match, then normalized root)
         if (knownDomainMap && (knownDomainMap[domainRaw] || knownDomainMap[domain])) {
           const name = knownDomainMap[domainRaw] || knownDomainMap[domain];
