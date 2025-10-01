@@ -1368,24 +1368,46 @@
           // Seed posts for SF/Boston ensuring at least 3 per university
           // Seed Chicago posts: 3 per listed Chicago university, unique users
           const chicagoProjects = [
-            { title: 'Chicago Venture Lab', summary: 'Student founders building high-growth ventures with Booth mentorship.', lookingFor: 'Product, growth', category: 'Finance', stage: 'development', projectLink: '' },
-            { title: 'Garage Startups', summary: 'Teams incubated at The Garage scaling MVPs to market.', lookingFor: 'Full-stack, design', category: 'Tech', stage: 'planning', projectLink: '' },
-            { title: 'UIC Health AI', summary: 'Clinical AI for urban health challenges.', lookingFor: 'ML engineers, clinicians', category: 'Health', stage: 'idea', projectLink: '' },
-            { title: 'IIT Systems Lab', summary: 'Hard tech and systems engineering ventures.', lookingFor: 'Embedded, robotics', category: 'Tech', stage: 'planning', projectLink: '' },
-            { title: 'Loyola Social Impact', summary: 'Ethics-forward ventures for communities.', lookingFor: 'Ops, nonprofit partners', category: 'Social Impact', stage: 'development', projectLink: '' }
+            // University of Chicago (3 projects)
+            { title: 'Booth Venture Capital Analytics', summary: 'AI-powered platform analyzing startup metrics and market trends for early-stage VCs. Built by Booth MBAs with backgrounds in finance and machine learning.', lookingFor: 'Data scientists, financial analysts, full-stack developers', category: 'Finance', stage: 'development', projectLink: '' },
+            { title: 'Hyde Park Health Exchange', summary: 'Connecting underserved South Side communities with healthcare resources. Platform matches patients with local clinics, volunteer doctors, and social services.', lookingFor: 'Healthcare coordinators, mobile developers, community organizers', category: 'Health', stage: 'planning', projectLink: '' },
+            { title: 'Quantum Computing Education', summary: 'Interactive learning platform making quantum computing accessible to undergraduates. Features visualizations, simulations, and hands-on coding exercises.', lookingFor: 'Physics PhDs, frontend developers, educational content creators', category: 'Education', stage: 'idea', projectLink: '' },
+            
+            // Northwestern (3 projects)
+            { title: 'Medill News Integrity AI', summary: 'Machine learning tools to detect deepfakes and verify news sources. Developed by Medill journalism students partnering with CS researchers.', lookingFor: 'ML engineers, journalists, security researchers', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'Garage Innovation Marketplace', summary: 'Platform connecting Northwestern student entrepreneurs with mentors, investors, and corporate partners. Built from The Garage incubator community.', lookingFor: 'Product managers, business development, full-stack developers', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'Evanston Sustainability Hub', summary: 'Community-driven platform for tracking and reducing carbon footprints. Features local business partnerships and gamified sustainability challenges.', lookingFor: 'Environmental scientists, UX designers, backend developers', category: 'Sustainability', stage: 'development', projectLink: '' },
+            
+            // University of Illinois Chicago (3 projects)
+            { title: 'Urban Health Data Commons', summary: 'Open platform aggregating public health data for Chicago neighborhoods. Enables researchers to identify health disparities and intervention opportunities.', lookingFor: 'Data engineers, epidemiologists, visualization specialists', category: 'Health', stage: 'planning', projectLink: '' },
+            { title: 'Pilsen Arts Collective Platform', summary: 'Digital marketplace for local Chicago artists to sell work and connect with galleries. Includes virtual exhibition spaces and community event coordination.', lookingFor: 'Web developers, art curators, marketing specialists', category: 'Social Impact', stage: 'idea', projectLink: '' },
+            { title: 'Smart Transit Chicago', summary: 'Real-time CTA optimization using crowdsourced data and predictive analytics. Helps commuters find fastest routes and avoid delays.', lookingFor: 'Mobile developers, data scientists, urban planners', category: 'Tech', stage: 'development', projectLink: '' },
+            
+            // Illinois Institute of Technology (3 projects)
+            { title: 'Industrial IoT Monitoring System', summary: 'Sensor network for predictive maintenance in manufacturing facilities. Uses ML to predict equipment failures before they occur.', lookingFor: 'Embedded systems engineers, industrial engineers, ML specialists', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'Bronzeville Tech Training', summary: 'Coding bootcamp and career placement program for underrepresented communities on Chicago South Side. Partners with local tech companies.', lookingFor: 'Software instructors, career counselors, nonprofit managers', category: 'Education', stage: 'planning', projectLink: '' },
+            { title: 'Chicago Architecture AR', summary: 'Augmented reality app showcasing Chicago architectural history. Users point phones at buildings to see historical photos and architect information.', lookingFor: 'AR developers, historians, 3D modelers', category: 'Tech', stage: 'idea', projectLink: '' },
+            
+            // Loyola University Chicago (3 projects)
+            { title: 'Jesuit Social Justice Network', summary: 'Platform connecting faith-based organizations working on social justice initiatives. Facilitates resource sharing and collaborative advocacy campaigns.', lookingFor: 'Nonprofit coordinators, web developers, policy advocates', category: 'Social Impact', stage: 'development', projectLink: '' },
+            { title: 'Rogers Park Community Kitchen', summary: 'Food insecurity platform matching surplus restaurant food with local families. Includes volunteer coordination and nutrition education resources.', lookingFor: 'Logistics coordinators, mobile developers, nutritionists', category: 'Social Impact', stage: 'planning', projectLink: '' },
+            { title: 'Ethics in AI Consulting', summary: 'Consulting service helping companies implement ethical AI practices. Provides frameworks for bias detection and responsible ML deployment.', lookingFor: 'AI ethicists, consultants, technical writers', category: 'Tech', stage: 'idea', projectLink: '' }
           ];
           const chicagoNames = [
             'University of Chicago', 'Northwestern University', 'University of Illinois Chicago',
             'Illinois Institute of Technology', 'Loyola University Chicago'
           ];
           chicagoNames.forEach((uniName, idx) => {
-            // ensure 3 posts per uni
+            // ensure 3 posts per uni - each university gets its own unique 3 projects
             const need = 3 - postsToSet.filter(p => p.university === uniName).length;
             for (let i = 0; i < need; i++) {
               const authors = usersToSet.filter(u => u.university === uniName);
               if (authors.length === 0) break;
               const author = authors[i % authors.length];
-              const project = chicagoProjects[(idx + i) % chicagoProjects.length];
+              // Each university gets 3 consecutive unique projects: idx*3, idx*3+1, idx*3+2
+              const projectIdx = (idx * 3) + i;
+              const project = chicagoProjects[projectIdx];
+              if (!project) break; // Safety check
               postsToSet.push({
                 id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
                 userId: author.id,
@@ -1403,9 +1425,20 @@
           });
           // Seed NYC posts: 3 per NYC university, unique users
           const nycProjects = [
-            { title: 'Uptown Fintech Lab', summary: 'Columbia students building inclusive finance tools for urban communities.', lookingFor: 'Backend, data', category: 'Finance', stage: 'development', projectLink: '' },
-            { title: 'NYU Creator Stack', summary: 'Tooling for creators and micro-entrepreneurs from ITP/IMA.', lookingFor: 'Frontend, design', category: 'Tech', stage: 'planning', projectLink: '' },
-            { title: 'Roosevelt AI Systems', summary: 'Applied AI at Cornell Tech tackling city operations and mobility.', lookingFor: 'ML, product', category: 'Tech', stage: 'idea', projectLink: '' }
+            // Columbia University (3 projects)
+            { title: 'Morningside Microfinance', summary: 'Digital lending platform providing small loans to underbanked communities in Upper Manhattan. Uses alternative credit scoring based on rent and utility payments.', lookingFor: 'Backend engineers, financial analysts, community liaisons', category: 'Finance', stage: 'development', projectLink: '' },
+            { title: 'Columbia Climate Tech', summary: 'Carbon capture technology spinout from Earth Institute research. Developing modular systems for urban buildings to reduce atmospheric CO2.', lookingFor: 'Chemical engineers, climate scientists, business development', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'Harlem Health Access', summary: 'Telemedicine platform connecting Columbia medical students with Harlem residents. Provides free consultations and specialist referrals for underserved populations.', lookingFor: 'Medical students, mobile developers, healthcare coordinators', category: 'Health', stage: 'development', projectLink: '' },
+            
+            // NYU (3 projects)
+            { title: 'Washington Square Music Collective', summary: 'Blockchain-based platform for independent musicians to distribute music and receive fair compensation. Built by Tisch and Stern students.', lookingFor: 'Smart contract developers, music producers, UX designers', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'ITP Interactive Installations', summary: 'Platform connecting interactive artists with galleries and public spaces. Features portfolio hosting, exhibition management, and hardware rental marketplace.', lookingFor: 'Full-stack developers, artists, gallery coordinators', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'NYU Global Health Innovation', summary: 'Low-cost diagnostic devices for resource-limited settings. Engineering students partnering with global health researchers to develop portable medical equipment.', lookingFor: 'Biomedical engineers, global health experts, supply chain specialists', category: 'Health', stage: 'development', projectLink: '' },
+            
+            // Cornell Tech (3 projects)
+            { title: 'Roosevelt Island Smart Grid', summary: 'IoT sensor network optimizing energy distribution for Cornell Tech campus. Piloting vehicle-to-grid integration with electric buses and renewable energy.', lookingFor: 'Electrical engineers, IoT specialists, data scientists', category: 'Sustainability', stage: 'development', projectLink: '' },
+            { title: 'NYC Transit Optimization AI', summary: 'Machine learning platform predicting subway delays and suggesting optimal routes. Integrates MTA data with weather, events, and crowdsourced information.', lookingFor: 'ML engineers, mobile developers, urban planners', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'Startup Studio Accelerator', summary: 'Venture studio model connecting Cornell Tech students with serial entrepreneurs. Provides pre-seed funding, technical resources, and mentorship for rapid prototyping.', lookingFor: 'Product managers, investors, technical leads', category: 'Finance', stage: 'idea', projectLink: '' }
           ];
           const nycNames = ['Columbia University', 'New York University', 'Cornell Tech'];
           nycNames.forEach((uniName, idx) => {
@@ -1414,7 +1447,10 @@
               const authors = usersToSet.filter(u => u.university === uniName);
               if (authors.length === 0) break;
               const author = authors[i % authors.length];
-              const project = nycProjects[idx % nycProjects.length];
+              // Each university gets 3 consecutive unique projects: idx*3, idx*3+1, idx*3+2
+              const projectIdx = (idx * 3) + i;
+              const project = nycProjects[projectIdx];
+              if (!project) break; // Safety check
               postsToSet.push({
                 id: (Math.max(0, ...postsToSet.map(p => p.id || 0)) + 1),
                 userId: author.id,
@@ -1493,16 +1529,32 @@
             }
           }
           const sanFranciscoProjects = [
-            { title: 'Bay Area Clean Mobility', summary: 'EV charging optimization across SF neighborhoods.', lookingFor: 'Electrical engineers, backend devs', category: 'Sustainability', stage: 'planning', projectLink: '' },
-            { title: 'Berkeley Open Science Cloud', summary: 'Open platform for reproducible research.', lookingFor: 'Full-stack devs, data scientists', category: 'Tech', stage: 'idea', projectLink: '' },
-            { title: 'Civic Tech SF', summary: 'Tools for city services accessibility and transparency.', lookingFor: 'Designers, product managers', category: 'Social Impact', stage: 'development', projectLink: '' },
-            { title: 'Health AI Assistant', summary: 'Personalized health insights from wearable data.', lookingFor: 'ML engineers, clinicians', category: 'Health', stage: 'planning', projectLink: '' }
+            { title: 'Mission District Food Rescue', summary: 'Platform connecting SF restaurants with food banks to reduce waste. Uses ML to predict surplus food and optimize pickup routes.', lookingFor: 'Full-stack developers, logistics coordinators, nonprofit partners', category: 'Social Impact', stage: 'development', projectLink: '' },
+            { title: 'BART Real-Time Analytics', summary: 'Crowdsourced platform predicting BART delays and crowding. Helps Bay Area commuters plan routes and find alternatives during disruptions.', lookingFor: 'Mobile developers, data scientists, UX designers', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'SF Housing Equity Platform', summary: 'Data transparency tool tracking affordable housing development and displacement in SF neighborhoods. Partners with tenant advocacy groups.', lookingFor: 'Data engineers, policy researchers, community organizers', category: 'Social Impact', stage: 'idea', projectLink: '' },
+            { title: 'Golden Gate Park IoT', summary: 'Sensor network monitoring environmental conditions in SF parks. Tracks air quality, biodiversity, and visitor patterns for conservation efforts.', lookingFor: 'IoT engineers, environmental scientists, data visualization specialists', category: 'Sustainability', stage: 'development', projectLink: '' },
+            { title: 'Bay Area Climate Resilience', summary: 'Platform helping SF residents prepare for climate impacts like sea level rise and earthquakes. Includes resource guides and community preparedness networks.', lookingFor: 'Climate scientists, web developers, emergency management experts', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'Chinatown Cultural Preservation', summary: 'Digital archive and virtual museum preserving Chinatown history and culture. Features oral histories, 3D scans of historic sites, and language learning tools.', lookingFor: 'Historians, 3D modelers, full-stack developers', category: 'Education', stage: 'idea', projectLink: '' },
+            { title: 'SF Gig Worker Cooperative', summary: 'Platform enabling gig workers to form cooperatives and negotiate better terms. Provides legal resources, collective bargaining tools, and benefits pooling.', lookingFor: 'Labor organizers, legal experts, platform developers', category: 'Social Impact', stage: 'development', projectLink: '' },
+            { title: 'Bay Biotech Diagnostics', summary: 'Low-cost point-of-care diagnostic devices for community health clinics. Spinout from SF State biology research with UCSF partnerships.', lookingFor: 'Biomedical engineers, regulatory specialists, clinical coordinators', category: 'Health', stage: 'planning', projectLink: '' },
+            { title: 'Oakland Port Logistics AI', summary: 'ML platform optimizing shipping container logistics at Oakland Port. Reduces congestion and environmental impact through smarter routing.', lookingFor: 'ML engineers, supply chain experts, maritime specialists', category: 'Tech', stage: 'idea', projectLink: '' },
+            { title: 'Tenderloin Safety Network', summary: 'Community-driven safety app connecting residents, businesses, and social services in the Tenderloin. Includes crisis intervention and resource navigation.', lookingFor: 'Social workers, mobile developers, community health workers', category: 'Social Impact', stage: 'development', projectLink: '' },
+            { title: 'Bay Area Renewable Microgrid', summary: 'Community microgrid project using solar and battery storage for resilient power. Piloting in East Bay neighborhoods prone to fire-related outages.', lookingFor: 'Electrical engineers, policy advocates, financing experts', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'SF Arts & Tech Incubator', summary: 'Accelerator combining creative arts and emerging tech. Supports projects in VR art, generative AI, and interactive installations.', lookingFor: 'Artists, technologists, gallery partners', category: 'Tech', stage: 'development', projectLink: '' }
           ];
           const bostonProjects = [
-            { title: 'Harvard Diagnostics Lab', summary: 'Rapid, low-cost diagnostic tools for clinics.', lookingFor: 'Bioengineers, ML researchers', category: 'Health', stage: 'development', projectLink: '' },
-            { title: 'MIT Urban Routing', summary: 'Real-time routing with multimodal transit in Boston.', lookingFor: 'Routing algos, mobile devs', category: 'Tech', stage: 'planning', projectLink: '' },
-            { title: 'BU Health Analytics', summary: 'Analytics platform for hospital operations.', lookingFor: 'Data engineers, analysts', category: 'Finance', stage: 'idea', projectLink: '' },
-            { title: 'Northeastern Co-op Hub', summary: 'Marketplace connecting students with startups.', lookingFor: 'Full-stack, growth', category: 'Education', stage: 'development', projectLink: '' }
+            { title: 'Cambridge Biotech Accelerator', summary: 'Early-stage life sciences incubator bridging Harvard and MIT research. Provides lab space, regulatory guidance, and investor connections.', lookingFor: 'Biotech researchers, regulatory consultants, venture partners', category: 'Health', stage: 'development', projectLink: '' },
+            { title: 'Charles River Water Quality', summary: 'IoT sensor network monitoring Charles River ecosystem health. Real-time data on pollution, temperature, and wildlife for environmental advocacy.', lookingFor: 'Environmental engineers, data scientists, policy advocates', category: 'Sustainability', stage: 'planning', projectLink: '' },
+            { title: 'Boston Housing Justice', summary: 'Platform tracking student displacement and advocating for tenant rights in Allston, Brighton, and Mission Hill. Includes legal resources and organizing tools.', lookingFor: 'Community organizers, web developers, housing lawyers', category: 'Social Impact', stage: 'idea', projectLink: '' },
+            { title: 'MIT Mobility Lab', summary: 'Autonomous shuttle service pilot for Boston neighborhoods. Testing self-driving technology in challenging winter weather and dense urban environments.', lookingFor: 'Robotics engineers, computer vision specialists, urban planners', category: 'Tech', stage: 'development', projectLink: '' },
+            { title: 'Fenway Arts Collective', summary: 'Digital platform connecting local Boston artists with galleries, collectors, and public art opportunities. Includes portfolio hosting and commission management.', lookingFor: 'Full-stack developers, art curators, marketing specialists', category: 'Tech', stage: 'planning', projectLink: '' },
+            { title: 'Boston Public Schools Tech', summary: 'Educational technology platform partnering with BPS to provide personalized learning tools. Addresses equity gaps in STEM education.', lookingFor: 'Educational technologists, teachers, curriculum designers', category: 'Education', stage: 'idea', projectLink: '' },
+            { title: 'Seaport Climate Adaptation', summary: 'Engineering solutions for coastal flooding in Boston Seaport. Combines green infrastructure with smart sensors for storm surge prediction.', lookingFor: 'Civil engineers, climate scientists, GIS specialists', category: 'Sustainability', stage: 'development', projectLink: '' },
+            { title: 'Harvard Square Small Business', summary: 'E-commerce and marketing platform for local Harvard Square businesses competing with chains. Includes delivery coordination and customer loyalty programs.', lookingFor: 'Web developers, marketing specialists, local business liaisons', category: 'Finance', stage: 'planning', projectLink: '' },
+            { title: 'Boston Healthcare Navigator', summary: 'App helping patients navigate complex Boston hospital systems. Provides appointment scheduling, insurance navigation, and specialist referrals.', lookingFor: 'Healthcare coordinators, mobile developers, insurance experts', category: 'Health', stage: 'development', projectLink: '' },
+            { title: 'Northeastern Co-op Marketplace', summary: 'Job board and networking platform connecting Northeastern co-op students with startups and tech companies. Includes skill assessments and career guidance.', lookingFor: 'Full-stack developers, career counselors, HR professionals', category: 'Education', stage: 'planning', projectLink: '' },
+            { title: 'Boston Marathon Analytics', summary: 'Performance tracking and training platform for runners preparing for Boston Marathon. Uses wearable data and ML for personalized coaching.', lookingFor: 'Sports scientists, mobile developers, ML engineers', category: 'Health', stage: 'idea', projectLink: '' },
+            { title: 'Back Bay Energy Efficiency', summary: 'Retrofitting historic Back Bay buildings with modern energy-efficient systems. Balances preservation requirements with sustainability goals.', lookingFor: 'Mechanical engineers, architects, historic preservation specialists', category: 'Sustainability', stage: 'development', projectLink: '' }
           ];
           let addedCityPosts = false;
           const ensurePostForUni = (uniName, project) => {
@@ -1636,6 +1688,26 @@
         }
       };
       fetchData();
+    }, []);
+
+    // Admin reset all Firestore data via ?resetData=1
+    useEffect(() => {
+      const params = new URLSearchParams(window.location.search || '');
+      if (params.get('resetData') === '1') {
+        console.log('[ADMIN] Resetting all Firestore data...');
+        (async () => {
+          try {
+            // Clear all Firestore data by setting empty arrays
+            await saveToFirestore('app', 'posts', { data: [] });
+            await saveToFirestore('app', 'users', { data: [] });
+            await saveToFirestore('app', 'universities', { data: [] });
+            console.log('[ADMIN] Firestore data cleared. Refresh page without ?resetData=1 to regenerate.');
+            alert('Firestore data cleared! Please refresh the page without ?resetData=1 to regenerate with new unique projects.');
+          } catch (e) {
+            console.error('[ADMIN] Reset failed:', e);
+          }
+        })();
+      }
     }, []);
 
     // Admin prune for Pittsburgh posts via ?prunePgh=1

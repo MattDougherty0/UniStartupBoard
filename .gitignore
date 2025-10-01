@@ -7,3 +7,4 @@ CollegeApp/data/university_domains.json
 
 # macOS
 .DS_Store
+.vercel
