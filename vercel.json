@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "CollegeApp/UniStartupBoard.html", "use": "@vercel/static" },
+    { "src": "CollegeApp/data/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "^/$", "dest": "/CollegeApp/UniStartupBoard.html" },
+    { "src": "^/data/(.*)$", "dest": "/CollegeApp/data/$1" },
+    { "src": "/(.*)", "dest": "/CollegeApp/UniStartupBoard.html" }
+  ]
+}
+
+
