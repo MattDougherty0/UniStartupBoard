@@ -494,7 +494,11 @@
             if (existingUser) {
               console.log("Found existing user:", existingUser);
               setUser(existingUser);
-              setView("board");
+              if (existingUser.profile) {
+                setView("board");
+              } else {
+                setView("profile");
+              }
             } else {
               // Create new user
               const newUser = { 
@@ -2566,8 +2570,8 @@
       const graduationYears = Array.from({ length: 6 }, (_, i) => currentYear + i);
 
       return (
-        <div className="space-y-0">
-          <div className="flex items-start space-x-6">
+        <div className="flex flex-col space-y-8">
+          <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="flex-shrink-0">
               <div className="relative">
                 {picture ? (
@@ -2597,8 +2601,8 @@
                 </label>
               </div>
             </div>
-            <div className="flex-grow space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex-grow space-y-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                   <input
@@ -2631,7 +2635,7 @@
                   rows="3"
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">I have an Idea</label>
                   <select
@@ -2660,7 +2664,7 @@
             </div>
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50/80 border border-gray-200 rounded-xl p-5 shadow-sm">
             <label className="block text-sm font-medium text-gray-700 mb-1">Your Idea</label>
           <textarea
               placeholder="Describe your startup idea..."
@@ -2671,7 +2675,7 @@
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Graduation Year</label>
               <select
@@ -2697,7 +2701,7 @@
             </div>
           </div>
 
-          <div>
+          <div className="bg-gray-50/80 border border-gray-200 rounded-xl p-5 shadow-sm">
             <label className="block text-sm font-medium text-gray-700 mb-1">What You're Looking For</label>
           <textarea
               placeholder="Describe what kind of collaborators you're looking for..."
@@ -2708,9 +2712,9 @@
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             <h3 className="text-lg font-medium text-gray-900">Social Links</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Twitter</label>
                 <input
