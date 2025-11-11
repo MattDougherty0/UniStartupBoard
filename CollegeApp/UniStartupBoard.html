@@ -2328,35 +2328,40 @@
       const [selectedUniversityName, setSelectedUniversityName] = useState("");
       const [detectedChoices, setDetectedChoices] = useState([]);
       const knownDomainMap = ALL_UNIVERSITY_DOMAINS; // Use the embedded constant - instant, no loading needed
+      const lookupTokenRef = React.useRef(0);
 
     // Build candidate universities from email domain
       useEffect(() => {
         const domainRaw = (email.split('@')[1] || '').toLowerCase();
         const domain = normalizeDomain(domainRaw);
-        if (!domain) {
-          setDetectedChoices([]);
-          setSelectedUniversityName("");
-          return;
-        }
-        // knownDomainMap is now initialized with seeds, no need to wait
-        // 0) Immediate hard map (prefer exact subdomain match, then normalized root)
-        if (knownDomainMap && (knownDomainMap[domainRaw] || knownDomainMap[domain])) {
-          const name = knownDomainMap[domainRaw] || knownDomainMap[domain];
-          setDetectedChoices([{ name, emailDomain: domain, ...getDefaultCoordinates() }]);
+        const requestId = ++lookupTokenRef.current;
+
+        const applyResolution = (choices, name) => {
+          if (lookupTokenRef.current !== requestId) return;
+          setDetectedChoices(choices);
           setSelectedUniversityName(name);
+        };
+
+        if (!domain) {
+          applyResolution([], "");
           return;
         }
-        // 1) Exact domain match from current universities list
+
+        const knownName = knownDomainMap && (knownDomainMap[domainRaw] || knownDomainMap[domain]);
+        if (knownName) {
+          applyResolution([{ name: knownName, emailDomain: domain, ...getDefaultCoordinates() }], knownName);
+          return;
+        }
+
         const candidates = (universities || []).filter(u => {
           const d = (u.emailDomain || '').toLowerCase();
           return domain === d;
         });
         if (candidates.length > 0) {
-          setDetectedChoices(candidates);
-          setSelectedUniversityName(candidates[0].name);
+          applyResolution(candidates, candidates[0].name);
           return;
         }
-        // 2) Try from domain index (Firestore)
+
         (async () => {
           try {
             const map = (function() {
@@ -2372,17 +2377,14 @@
             const hit = m && m[domain];
             if (hit) {
               const choice = { name: hit.name, emailDomain: domain, lat: hit.lat, lng: hit.lng, city: hit.city };
-              setDetectedChoices([choice]);
-              setSelectedUniversityName(choice.name);
+              applyResolution([choice], choice.name);
               return;
             }
           } catch (error) {
             console.warn('Domain index lookup failed:', error);
           }
-          // 3) Fallback: infer from domain string
           const inferred = getUniversityFromDomain(domain);
-          setDetectedChoices([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }]);
-          setSelectedUniversityName(inferred);
+          applyResolution([{ name: inferred, emailDomain: domain, ...getDefaultCoordinates() }], inferred);
         })();
       }, [email, universities, knownDomainMap]);
 
@@ -2428,7 +2430,8 @@
                   const raw = (val.split('@')[1] || '').toLowerCase();
                   if (!raw) return;
                   const norm = normalizeDomain(raw);
-                  const name = (window.__KNOWN_DOMAIN_MAP && (window.__KNOWN_DOMAIN_MAP[raw] || window.__KNOWN_DOMAIN_MAP[norm])) ||
+                  const name = (knownDomainMap && (knownDomainMap[raw] || knownDomainMap[norm])) ||
+                               (window.__KNOWN_DOMAIN_MAP && (window.__KNOWN_DOMAIN_MAP[raw] || window.__KNOWN_DOMAIN_MAP[norm])) ||
                                (typeof KNOWN_DOMAIN_MAP !== 'undefined' && (KNOWN_DOMAIN_MAP[raw] || KNOWN_DOMAIN_MAP[norm]));
                   if (name) {
                     setDetectedChoices([{ name, emailDomain: norm, ...getDefaultCoordinates() }]);
