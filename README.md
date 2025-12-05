@@ -1,4 +1,4 @@
-Make it effortless for students to find each other and turn innovative ideas into real products—together.
+UniStartupBoard makes it effortless for students to find each other and turn innovative ideas into real products—together.
 
 (This was just a weekend MVP project as an MVP, but I do think there is a legitimate gap here)
 
@@ -14,9 +14,7 @@ University startup ecosystems are noisy and fragmented. Great ideas stall becaus
 
 The result? Promising projects fail to reach escape velocity—not for lack of talent or ambition, but for lack of the right connection at the right time.
 
-What UniStartupBoard is:
-
--UniStartupBoard is a matchmaking and discovery platform for student builders. It’s where you:
+What UniStartupBoard is: A matchmaking and discovery platform for student builders. It’s where you:
 
 -Find co-founders and contributors who complement your skills,
 
