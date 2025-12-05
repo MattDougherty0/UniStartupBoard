@@ -2,9 +2,9 @@ UniStartupBoard makes it effortless for students to find each other and turn inn
 
 (This was just a weekend MVP project as an MVP, but I do think there is a legitimate gap here)
 
-The problem:
+The problem: University startup ecosystems are noisy and fragmented. 
 
-University startup ecosystems are noisy and fragmented. Great ideas stall because:
+Great ideas stall because:
 
 -the one critical teammate (designer, ML person, biz dev lead) never crosses paths with the team that needs them,
 
@@ -12,11 +12,15 @@ University startup ecosystems are noisy and fragmented. Great ideas stall becaus
 
 -students don’t see what’s being built outside their immediate friend circle or campus.
 
-The result? Promising projects fail to reach escape velocity—not for lack of talent or ambition, but for lack of the right connection at the right time.
+The result? 
 
-What UniStartupBoard is: A matchmaking and discovery platform for student builders. It’s where you:
+Promising projects fail to reach escape velocity—not for lack of talent or ambition, but for lack of the right connection at the right time.
 
--Find co-founders and contributors who complement your skills,
+This is a matchmaking and discovery platform for student builders. 
+
+It’s where you:
+
+-Find co-founders and contributors who complement your skills at your school or in your city,
 
 -Showcase what you’re building and what you need next,
 
