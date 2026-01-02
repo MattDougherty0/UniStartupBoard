@@ -1,6 +1,6 @@
 UniStartupBoard makes it effortless for students to find each other and turn innovative ideas into real products—together.
 
-(This was just a weekend MVP project as an MVP, but I do think there is a legitimate gap here)
+(This was just a weekend project as an MVP, but I do think there is a legitimate gap here)
 
 The problem: University startup ecosystems are noisy and fragmented. 
 
