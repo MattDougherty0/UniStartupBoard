@@ -1,29 +1,20 @@
-UniStartupBoard makes it effortless for students to find each other and turn innovative ideas into real products—together.
+# UniStartupBoard
 
-(This was just a weekend project as an MVP, but I do think there is a legitimate gap here)
+A weekend MVP for helping university students find startup projects, teammates, and collaborators outside their immediate circle.
 
-The problem: University startup ecosystems are noisy and fragmented. 
+**[View the live prototype](https://unistartupboard.vercel.app/)**
 
-Great ideas stall because:
+## Why I built it
 
--the one critical teammate (designer, ML person, biz dev lead) never crosses paths with the team that needs them,
+University startup communities tend to be fragmented across classes, clubs, incubators, group chats, and personal networks. Good projects can stall because the right designer, engineer, operator, or domain expert never sees them.
 
--resources live in scattered group chats, newsletters, and dead forums, and
+The prototype gives students one place to:
 
--students don’t see what’s being built outside their immediate friend circle or campus.
+- Browse projects by campus, city, category, and recency
+- See what each team is building and which roles it needs
+- Discover work happening outside their own school or friend group
+- Publish a project so potential collaborators can find it
 
-The result? 
+## Status
 
-Promising projects fail to reach escape velocity—not for lack of talent or ambition, but for lack of the right connection at the right time.
-
-This is a matchmaking and discovery platform for student builders. 
-
-It’s where you:
-
--Find co-founders and contributors who complement your skills at your school or in your city,
-
--Showcase what you’re building and what you need next,
-
--Discover projects across your campus—and nearby—that align with your interests.
-
-If you have any comments or feedback, please reach out to matt@alias.co.
+This is an exploratory MVP, not a production service. I built it to test whether a simple project-and-collaborator directory could make campus startup ecosystems easier to navigate.
